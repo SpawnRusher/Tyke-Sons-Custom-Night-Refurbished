@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cwkhvdfhbnt5w"]
+
+[ext_resource type="Script" uid="uid://c1npvymc85upw" path="res://scripts/game_over.gd" id="1_tbwuq"]
+[ext_resource type="Texture2D" uid="uid://c8qaqgh20yyav" path="res://sprites/game_over/game_over_bg.png" id="2_racf3"]
+[ext_resource type="Texture2D" uid="uid://cj40x3322eor" path="res://sprites/game_over/gameover_0-0_0.png" id="3_7m3ot"]
+
+[node name="Game_Over" type="Node2D" unique_id=906401226]
+script = ExtResource("1_tbwuq")
+
+[node name="game_over_background" type="Sprite2D" parent="." unique_id=843305970]
+texture = ExtResource("2_racf3")
+centered = false
+
+[node name="game_over_anchored" type="Sprite2D" parent="." unique_id=764933452]
+texture = ExtResource("3_7m3ot")
+centered = false
+
+[node name="game_over" type="Sprite2D" parent="." unique_id=1695623067]
+modulate = Color(1, 1, 1, 0.5294118)
+texture = ExtResource("3_7m3ot")
+centered = false
+
+[node name="white_fade" type="ColorRect" parent="." unique_id=236365111]
+offset_right = 1280.0
+offset_bottom = 720.0

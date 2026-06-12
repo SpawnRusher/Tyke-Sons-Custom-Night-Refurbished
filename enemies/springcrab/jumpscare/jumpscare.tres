@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://3jfdm0d3dpxy"]
+
+[ext_resource type="Texture2D" uid="uid://ccwntsc4343j2" path="res://enemies/springcrab/jumpscare/_0.png" id="1_1hx7q"]
+[ext_resource type="Texture2D" uid="uid://n3c368d3su37" path="res://enemies/springcrab/jumpscare/_1.png" id="2_g0id5"]
+[ext_resource type="Texture2D" uid="uid://cpnem4rsh6gok" path="res://enemies/springcrab/jumpscare/_2.png" id="3_ck2o4"]
+[ext_resource type="Texture2D" uid="uid://dnsqt038unmh5" path="res://enemies/springcrab/jumpscare/_3.png" id="4_xh7cm"]
+[ext_resource type="Texture2D" uid="uid://m22r4f13wvic" path="res://enemies/springcrab/jumpscare/_4.png" id="5_568lw"]
+[ext_resource type="Texture2D" uid="uid://d0s0gb2pmbtaq" path="res://enemies/springcrab/jumpscare/_5.png" id="6_1u4xv"]
+[ext_resource type="Texture2D" uid="uid://cnbk4pkh8issk" path="res://enemies/springcrab/jumpscare/_6.png" id="7_sxgfg"]
+[ext_resource type="Texture2D" uid="uid://1urdj0lwaogb" path="res://enemies/springcrab/jumpscare/_7.png" id="8_btp0t"]
+[ext_resource type="Texture2D" uid="uid://b04usn8gcsudu" path="res://enemies/springcrab/jumpscare/_8.png" id="9_rsd4j"]
+[ext_resource type="Texture2D" uid="uid://s6sgky3f147h" path="res://enemies/springcrab/jumpscare/_9.png" id="10_l286v"]
+[ext_resource type="Texture2D" uid="uid://cdd6pksm1f6c8" path="res://enemies/springcrab/jumpscare/_10.png" id="11_egar6"]
+[ext_resource type="Texture2D" uid="uid://btsiduca27pku" path="res://enemies/springcrab/jumpscare/_11.png" id="12_n2pg8"]
+[ext_resource type="Texture2D" uid="uid://bqignrqhcceyy" path="res://enemies/springcrab/jumpscare/_12.png" id="13_016p5"]
+[ext_resource type="Texture2D" uid="uid://d4byijicsjkpd" path="res://enemies/springcrab/jumpscare/_13.png" id="14_fdsla"]
+[ext_resource type="Texture2D" uid="uid://75cl867v8ung" path="res://enemies/springcrab/jumpscare/_14.png" id="15_ir2p0"]
+[ext_resource type="Texture2D" uid="uid://blcrn73v0v5t2" path="res://enemies/springcrab/jumpscare/_15.png" id="16_82ppl"]
+[ext_resource type="Texture2D" uid="uid://dwsv5fma56wsk" path="res://enemies/springcrab/jumpscare/_16.png" id="17_28t0c"]
+[ext_resource type="Texture2D" uid="uid://cwebesnin7tae" path="res://enemies/springcrab/jumpscare/_17.png" id="18_r5dey"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1hx7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g0id5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ck2o4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xh7cm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_568lw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1u4xv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sxgfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_btp0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rsd4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l286v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_egar6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n2pg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_016p5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fdsla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ir2p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_82ppl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_28t0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_r5dey")
+}],
+"loop": false,
+"name": &"default",
+"speed": 22.5
+}]

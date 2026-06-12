@@ -1,0 +1,110 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://def4na0hddbtv"]
+
+[ext_resource type="Texture2D" uid="uid://bvtt4vmsxs0h2" path="res://enemies/happyshroom/jumpscare/middle/_0.png" id="1_bcvya"]
+[ext_resource type="Texture2D" uid="uid://uf72lk5dphmd" path="res://enemies/happyshroom/jumpscare/middle/_1.png" id="2_vvucj"]
+[ext_resource type="Texture2D" uid="uid://b5w370xvw0i35" path="res://enemies/happyshroom/jumpscare/middle/_2.png" id="3_wyy2s"]
+[ext_resource type="Texture2D" uid="uid://cany3wmc2600h" path="res://enemies/happyshroom/jumpscare/middle/_3.png" id="4_1bpki"]
+[ext_resource type="Texture2D" uid="uid://c0edxjxje417i" path="res://enemies/happyshroom/jumpscare/middle/_4.png" id="5_s5eoc"]
+[ext_resource type="Texture2D" uid="uid://dvpaoytv4j8mm" path="res://enemies/happyshroom/jumpscare/middle/_5.png" id="6_knwer"]
+[ext_resource type="Texture2D" uid="uid://bs4ub1x2o65q0" path="res://enemies/happyshroom/jumpscare/middle/_6.png" id="7_o3qyw"]
+[ext_resource type="Texture2D" uid="uid://b1d32yeg4cud0" path="res://enemies/happyshroom/jumpscare/middle/_7.png" id="8_3wvbm"]
+[ext_resource type="Texture2D" uid="uid://hnytki2jxxyt" path="res://enemies/happyshroom/jumpscare/middle/_8.png" id="9_47o4b"]
+[ext_resource type="Texture2D" uid="uid://cc8om4nwcw765" path="res://enemies/happyshroom/jumpscare/middle/_9.png" id="10_sp8l8"]
+[ext_resource type="Texture2D" uid="uid://q1wo05edspd7" path="res://enemies/happyshroom/jumpscare/middle/_10.png" id="11_4wiu1"]
+[ext_resource type="Texture2D" uid="uid://drivn6hdba2uq" path="res://enemies/happyshroom/jumpscare/middle/_11.png" id="12_k82x6"]
+[ext_resource type="Texture2D" uid="uid://p1k0hv6pae7c" path="res://enemies/happyshroom/jumpscare/middle/_12.png" id="13_0wdes"]
+[ext_resource type="Texture2D" uid="uid://csk4wapbhtxrk" path="res://enemies/happyshroom/jumpscare/middle/_13.png" id="14_n2q30"]
+[ext_resource type="Texture2D" uid="uid://duect7asrkmga" path="res://enemies/happyshroom/jumpscare/middle/_14.png" id="15_oebyt"]
+[ext_resource type="Texture2D" uid="uid://c2l7oj70gow44" path="res://enemies/happyshroom/jumpscare/middle/_15.png" id="16_ktp7q"]
+[ext_resource type="Texture2D" uid="uid://jxugxb3pcihq" path="res://enemies/happyshroom/jumpscare/middle/_16.png" id="17_b7pqv"]
+[ext_resource type="Texture2D" uid="uid://bcqxsspyj7kcy" path="res://enemies/happyshroom/jumpscare/middle/_17.png" id="18_jnjo6"]
+[ext_resource type="Texture2D" uid="uid://bttgw27xir80b" path="res://enemies/happyshroom/jumpscare/middle/_18.png" id="19_dg77h"]
+[ext_resource type="Texture2D" uid="uid://cbfb5mwev12dt" path="res://enemies/happyshroom/jumpscare/middle/_19.png" id="20_jbgs4"]
+[ext_resource type="Texture2D" uid="uid://bi33hxlfmntf5" path="res://enemies/happyshroom/jumpscare/middle/_20.png" id="21_xgfno"]
+[ext_resource type="Texture2D" uid="uid://dm7veyrakrd1b" path="res://enemies/happyshroom/jumpscare/middle/_21.png" id="22_06lfu"]
+[ext_resource type="Texture2D" uid="uid://ryb4kccsfw2n" path="res://enemies/happyshroom/jumpscare/middle/_22.png" id="23_ilkrm"]
+[ext_resource type="Texture2D" uid="uid://bw81vkau5la0r" path="res://enemies/happyshroom/jumpscare/middle/_23.png" id="24_0t655"]
+[ext_resource type="Texture2D" uid="uid://cnwyx78xndw3k" path="res://enemies/happyshroom/jumpscare/middle/_24.png" id="25_g2qil"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bcvya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vvucj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wyy2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1bpki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s5eoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_knwer")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o3qyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3wvbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_47o4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_sp8l8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4wiu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k82x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0wdes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_n2q30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_oebyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ktp7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_b7pqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jnjo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_dg77h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jbgs4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xgfno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_06lfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ilkrm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_0t655")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_g2qil")
+}],
+"loop": true,
+"name": &"default",
+"speed": 22.5
+}]

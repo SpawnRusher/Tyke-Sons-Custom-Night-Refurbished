@@ -1,0 +1,90 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://clo6xwmvoik7q"]
+
+[ext_resource type="Texture2D" uid="uid://d3wqlgg7agbde" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_0.png" id="1_tbo8q"]
+[ext_resource type="Texture2D" uid="uid://cc6ehf4te1nc3" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_1.png" id="2_knnim"]
+[ext_resource type="Texture2D" uid="uid://bexw7cv2txm6f" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_2.png" id="3_th6vc"]
+[ext_resource type="Texture2D" uid="uid://bfmxctjh7pv5n" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_3.png" id="4_ibppe"]
+[ext_resource type="Texture2D" uid="uid://dt2gq4mheploj" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_4.png" id="5_8tevr"]
+[ext_resource type="Texture2D" uid="uid://c03313x36eg78" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_5.png" id="6_0jreo"]
+[ext_resource type="Texture2D" uid="uid://cq4krgjuux6oj" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_6.png" id="7_4m6ny"]
+[ext_resource type="Texture2D" uid="uid://db01iffgaavc" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_7.png" id="8_hn5s5"]
+[ext_resource type="Texture2D" uid="uid://d3dwd3bv5cdgs" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_8.png" id="9_6ihjb"]
+[ext_resource type="Texture2D" uid="uid://bse5txxr7tdol" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_9.png" id="10_7qjdj"]
+[ext_resource type="Texture2D" uid="uid://drryb0abm8gux" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_10.png" id="11_xefce"]
+[ext_resource type="Texture2D" uid="uid://bx8cv225tb81m" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_11.png" id="12_fkwuw"]
+[ext_resource type="Texture2D" uid="uid://b26mry0pbdg5" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_12.png" id="13_xtqoq"]
+[ext_resource type="Texture2D" uid="uid://6o4iiix8fbob" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_13.png" id="14_6ldlp"]
+[ext_resource type="Texture2D" uid="uid://dicawlh3n4ao1" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_14.png" id="15_tkigl"]
+[ext_resource type="Texture2D" uid="uid://cfv3630y3ed7s" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_15.png" id="16_r47ek"]
+[ext_resource type="Texture2D" uid="uid://dtauhg3byxtpb" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_16.png" id="17_rfddm"]
+[ext_resource type="Texture2D" uid="uid://grl1t71tha2w" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_17.png" id="18_vjxl2"]
+[ext_resource type="Texture2D" uid="uid://ocvqc3rylgqj" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_18.png" id="19_do7yq"]
+[ext_resource type="Texture2D" uid="uid://0n0euglra0m" path="res://enemies/nightmare_chipper/jumpscare/bedroom/_19.png" id="20_uoxau"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tbo8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_knnim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_th6vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ibppe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8tevr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0jreo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4m6ny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hn5s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6ihjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7qjdj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xefce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fkwuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xtqoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6ldlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tkigl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_r47ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_rfddm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vjxl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_do7yq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_uoxau")
+}],
+"loop": false,
+"name": &"default",
+"speed": 22.5
+}]

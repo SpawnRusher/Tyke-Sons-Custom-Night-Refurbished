@@ -1,0 +1,62 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bdcay5wlrvx68"]
+
+[ext_resource type="Texture2D" uid="uid://82ghl2lu0la2" path="res://enemies/phantom_chipomat/jumpscare/_0.png" id="1_yw20f"]
+[ext_resource type="Texture2D" uid="uid://c7q2tapbv2y46" path="res://enemies/phantom_chipomat/jumpscare/_1.png" id="2_sjf2y"]
+[ext_resource type="Texture2D" uid="uid://3ec3bbuiep2v" path="res://enemies/phantom_chipomat/jumpscare/_2.png" id="3_gqlef"]
+[ext_resource type="Texture2D" uid="uid://c4eo5crldwue1" path="res://enemies/phantom_chipomat/jumpscare/_3.png" id="4_5ctgb"]
+[ext_resource type="Texture2D" uid="uid://be2xjkqd5en5f" path="res://enemies/phantom_chipomat/jumpscare/_4.png" id="5_xkjxw"]
+[ext_resource type="Texture2D" uid="uid://c7vxv7nsjg5w6" path="res://enemies/phantom_chipomat/jumpscare/_5.png" id="6_qbpnx"]
+[ext_resource type="Texture2D" uid="uid://bukykvto7ccxo" path="res://enemies/phantom_chipomat/jumpscare/_6.png" id="7_ykyjg"]
+[ext_resource type="Texture2D" uid="uid://c08220odmo3uo" path="res://enemies/phantom_chipomat/jumpscare/_7.png" id="8_c3pfr"]
+[ext_resource type="Texture2D" uid="uid://e7htpodhdpmq" path="res://enemies/phantom_chipomat/jumpscare/_8.png" id="9_kpsua"]
+[ext_resource type="Texture2D" uid="uid://bsvpp51wm4jqm" path="res://enemies/phantom_chipomat/jumpscare/_9.png" id="10_2hqtb"]
+[ext_resource type="Texture2D" uid="uid://f1m4gg1omyib" path="res://enemies/phantom_chipomat/jumpscare/_10.png" id="11_iqjn7"]
+[ext_resource type="Texture2D" uid="uid://dmo4v3arlj3e1" path="res://enemies/phantom_chipomat/jumpscare/_11.png" id="12_atlma"]
+[ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://enemies/phantom_chipomat/jumpscare/_12.png" id="13_wfsea"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yw20f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sjf2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gqlef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ctgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xkjxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qbpnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ykyjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c3pfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kpsua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2hqtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iqjn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_atlma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wfsea")
+}],
+"loop": false,
+"name": &"default",
+"speed": 27.0
+}]
