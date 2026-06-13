@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0sxpquqg45q0"]
 
 [ext_resource type="Script" uid="uid://b4vf8qu1fhmm7" path="res://scripts/office.gd" id="1_igavh"]
+[ext_resource type="Script" uid="uid://dlqq8s6hcoknw" path="res://scripts/night.gd" id="1_wo2nd"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://sprites/night/windows/left/closed/window_left_closed.png" id="2_5oh6c"]
 [ext_resource type="Texture2D" uid="uid://c65bxq70v2qwm" path="res://sprites/night/windows/back/upstairs/frame_0001.png" id="2_8qejh"]
 [ext_resource type="Texture2D" uid="uid://cikt47swtrh33" path="res://sprites/night/office/darkness_outside_crop.png" id="2_rfwdb"]
@@ -312,6 +313,7 @@
 [ext_resource type="Texture2D" uid="uid://f1m4gg1omyib" path="res://enemies/phantom_chipomat/jumpscare/_10.png" id="278_hs32g"]
 [ext_resource type="Texture2D" uid="uid://dmo4v3arlj3e1" path="res://enemies/phantom_chipomat/jumpscare/_11.png" id="279_3oyjr"]
 [ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://enemies/phantom_chipomat/jumpscare/_12.png" id="280_qm66n"]
+[ext_resource type="Script" uid="uid://bdrovxrj7semx" path="res://scripts/go_to_sleep.gd" id="296_45h36"]
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://sounds/jumpscares/jumpscare.ogg" id="511_mhlfx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38vnp"]
@@ -1680,9 +1682,12 @@ animations = [{
 }]
 
 [node name="Night" type="Node2D" unique_id=2032443085]
+process_mode = 3
+script = ExtResource("1_wo2nd")
 metadata/_edit_vertical_guides_ = [-306.0]
 
 [node name="Office" type="CanvasLayer" parent="." unique_id=381297013]
+process_mode = 1
 layer = 0
 follow_viewport_enabled = true
 script = ExtResource("1_igavh")
@@ -1804,6 +1809,7 @@ animation = &"jumpscare"
 centered = false
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
+process_mode = 1
 
 [node name="Sleep_Assurance" type="TextureRect" parent="GUI" unique_id=1275540076]
 offset_left = 15.0
@@ -1881,6 +1887,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "0:00.00"
 
 [node name="Jumpscare" type="CanvasLayer" parent="." unique_id=439011563]
+process_mode = 1
 visible = false
 script = ExtResource("208_r08i8")
 
@@ -1888,7 +1895,19 @@ script = ExtResource("208_r08i8")
 sprite_frames = SubResource("SpriteFrames_3whfi")
 centered = false
 
+[node name="Go_To_Sleep" type="CanvasLayer" parent="." unique_id=605595461]
+process_mode = 1
+script = ExtResource("296_45h36")
+
+[node name="Fade" type="ColorRect" parent="Go_To_Sleep" unique_id=1907996195]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
 [node name="Enemies" type="Node" parent="." unique_id=1986394494]
+process_mode = 1
 
 [node name="Chipomat_1" type="Node" parent="Enemies" unique_id=1578248507 node_paths=PackedStringArray("office", "sprite")]
 script = ExtResource("243_nsmdx")

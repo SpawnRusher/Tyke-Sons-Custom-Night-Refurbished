@@ -1,5 +1,6 @@
-res://scripts/
+res://sprites/win_screen/star/
 res://scenes/
+res://scripts/
 res://enemies/chipper/
 res://enemies/springcrab/
 res://enemies/the_rockstars/
@@ -11,8 +12,6 @@ res://enemies/fun_fungal/jumpscare/
 res://enemies/chipper/jumpscare/
 res://enemies/bruce/jumpscare/
 res://enemies/toy/jumpscare/
-res://enemies/nightmare chipper/jumpscare/middle/
-res://enemies/nightmare chipper/jumpscare/bedroom/
 res://enemies/seabill/jumpscare/
 res://enemies/springcrab/jumpscare/
 res://

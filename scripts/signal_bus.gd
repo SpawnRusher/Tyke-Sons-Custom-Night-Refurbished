@@ -12,3 +12,5 @@ signal pickup_lumber()
 
 signal enemy_defended(enemy)
 signal remove_sleep_assurance(delta,enemy)
+
+signal go_to_sleep()

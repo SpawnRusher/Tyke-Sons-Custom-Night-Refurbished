@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 
 func spawn_springcrab() -> void:
 	spawned = true
-	SpecialFunctions.audio(walking_sound,1,1,0,0,0,false)
+	SpecialFunctions.audio(walking_sound)
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer

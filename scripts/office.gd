@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var window_bg = $Office_BG/Window_BG
 @onready var front_window = $Office_BG/Front_Window
 @onready var dark_overlay = $Office_BG/Dark_Office_Overlay
+@onready var sleep_assurance = $"../GUI/Sleep_Assurance"
 
 var last_animation_played: String
 var animation_direction: String
@@ -33,7 +34,7 @@ func _process(_delta: float) -> void:
 	if "closed" in office.animation:
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			office.play("opening_"+animation_direction)
-			SpecialFunctions.audio(CURTAIN_OPENING,1,1,0,0,0,false)
+			SpecialFunctions.audio(CURTAIN_OPENING)
 			
 	if "open_" in office.animation: # underscore in name is necessary here to distinct "open_dir" from "opening_dir"
 		
@@ -49,7 +50,7 @@ func _process(_delta: float) -> void:
 
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 				office.play("closing_"+animation_direction)
-				SpecialFunctions.audio(CURTAIN_CLOSING,1,1,0,0,0,false)
+				SpecialFunctions.audio(CURTAIN_CLOSING)
 				if using_flashlight == true:
 					SignalBus.flashlight_off.emit()
 				
@@ -95,11 +96,15 @@ func _process(_delta: float) -> void:
 		if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
 			office.play("leave_"+animation_direction)
 			window_bg.visible = false
-			if animation_direction == "b": SpecialFunctions.audio(STAIRS_DOWN,1,1,0,0,0,false)
-			else: SpecialFunctions.audio(RUNNING,1,1,0,0,0,false)
+			if animation_direction == "b": SpecialFunctions.audio(STAIRS_DOWN)
+			else: SpecialFunctions.audio(RUNNING)
 	
 
-
+func _input(event: InputEvent) -> void:
+	if office.animation == "open_b" and office.frame == 1:
+		if event is InputEventKey and event.keycode == KEY_B:
+			if sleep_assurance.sleep_assurance_current_score >= sleep_assurance.sleep_assurance_points_goal * 100.0:
+				SignalBus.go_to_sleep.emit()
 
 
 func _animation_finished() -> void:
@@ -132,16 +137,16 @@ func _animation_finished() -> void:
 func turn_checks():
 	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100):
 		office.play("turn_l")
-		SpecialFunctions.audio(RUNNING,1,1,0,0,0,false)
+		SpecialFunctions.audio(RUNNING)
 	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680):
 		office.play("turn_r")
-		SpecialFunctions.audio(RUNNING,1,1,0,0,0,false)
+		SpecialFunctions.audio(RUNNING)
 	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100):
 		office.play("turn_f")
-		SpecialFunctions.audio(RUNNING,1,1,0,0,0,false)
+		SpecialFunctions.audio(RUNNING)
 	if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
 		office.play("turn_b")
-		SpecialFunctions.audio(STAIRS_UP,1,1,0,0,0,false)
+		SpecialFunctions.audio(STAIRS_UP)
 	if office.animation != "office" and office.animation != "return": # sets animation_direction only if there is a direction
 		animation_direction = office.animation.right(1)
 	

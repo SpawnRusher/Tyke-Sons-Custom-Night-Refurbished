@@ -17,8 +17,8 @@ var DEATH_VOICELINES: Dictionary[int,Array] = {
 	}
 
 func _ready() -> void:
-	SpecialFunctions.audio(GAMEOVER,1,1,0,0,0,false)
-	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false)
+	SpecialFunctions.audio(GAMEOVER)
+	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false,false,true)
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
 	if Global.died_to_id in DEATH_VOICELINES:

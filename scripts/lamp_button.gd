@@ -16,6 +16,6 @@ func _process(_delta: float) -> void:
 	visible = !disabled
 
 func togglelights():
-	SpecialFunctions.audio(LAMPTOGGLE,1,1,1,0,0,false)
+	SpecialFunctions.audio(LAMPTOGGLE)
 	dark_overlay.visible = button_pressed
 	

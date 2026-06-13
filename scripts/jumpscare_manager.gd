@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func jumpscare_start(enemy: Enemy, area: String) -> void:
 	if not jumpscare_sprite.is_playing():
-		SpecialFunctions.audio(enemy.jumpscare_sound,1,1,0,0,0,false)
+		SpecialFunctions.audio(enemy.jumpscare_sound)
 		
 		if enemy.jumpscare_middle_uid == null and enemy.jumpscare_bedroom_uid == null:
 			push_error("No Jumpscare UIDs have been set for ",enemy,"!")

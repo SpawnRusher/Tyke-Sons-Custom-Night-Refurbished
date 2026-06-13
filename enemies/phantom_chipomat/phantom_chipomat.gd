@@ -40,7 +40,7 @@ func phantom_attack():
 	await sprite.animation_finished
 	SignalBus.phantom_jumpscare.emit()
 	var tween = get_tree().create_tween()
-	tween.tween_property(sprite,"self_modulate:a8",0,0.8)
+	tween.tween_property(sprite,"self_modulate:a",0,0.8)
 	await tween.finished
 	sprite.visible = false
 	current_attack_timer = attack_timer

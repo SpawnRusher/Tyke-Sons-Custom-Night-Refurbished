@@ -1,13 +1,14 @@
 extends Node
 
 ## Creates an AudioStreamPlayer (or 2D if using panning) to play an audio and delete. Volume, pitch, and panning can be changed, as well as looping the audio any number of times. Audio can be persisted through scenes if needed as well.[br]
-## [br][param: stream]: The AudioStream to play.
-## [br][param: volume]: The volume to play the audio at. Uses linear volume instead of dBs.
-## [br][param: pitch]: The pitch to play the audio at.
-## [br][param: pan]: The panning to play the audio at
-## [br][param: repeats]: The amount of times to repeat the audio.
-## [br][param: persist_through_scenes]: Allows the audio to persist playing through scenes. Not recommended to use with infinite repeats.
-func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_delay:= 0.0, repeats:= 0, persist_through_scenes:= false) -> void:
+## [br][param stream]: The AudioStream to play.
+## [br][param volume]: The volume to play the audio at. Uses linear volume instead of dBs.
+## [br][param pitch]: The pitch to play the audio at.
+## [br][param pan]: The panning to play the audio at
+## [br][param repeats]: The amount of times to repeat the audio.
+## [br][param persist_through_scenes]: Allows the audio to persist playing through scenes. Not recommended to use with infinite repeats.
+## [br][param deferred]: Allows deferring the add_child process of the AudioStreamPlayer. Useful for if errors occur when trying to add the node to the tree.
+func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_delay:= 0.0, repeats:= 0, persist_through_scenes:= false, deferred:= false) -> void:
 	assert(start_delay >= 0,"Parameter 'start_delay' must be greater than or equal to 0.")
 	assert(repeats >= -1,"Parameter 'repeats' must be greater than or equal to -1.")
 
@@ -16,10 +17,16 @@ func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_dela
 		audio = AudioStreamPlayer2D.new()
 		
 		
-	if persist_through_scenes == false:
-		get_tree().current_scene.add_child(audio)
+	if not persist_through_scenes:
+		if not deferred:
+			get_tree().current_scene.add_child(audio)
+		else:
+			get_tree().current_scene.add_child.call_deferred(audio)
 	else:
-		add_child(audio)
+		if not deferred:
+			add_child(audio)
+		else:
+			add_child.call_deferred(audio)
 	
 
 	audio.finished.connect(audio.queue_free)
@@ -34,6 +41,8 @@ func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_dela
 	
 	if start_delay != 0:
 		await get_tree().create_timer(start_delay).timeout
+	if not audio.is_inside_tree():
+		await audio.tree_entered
 	audio.play()
 
 	await audio.finished
@@ -50,9 +59,10 @@ func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_dela
 ## [br][param repeats]: The amount of times you want the timer to be repeated. -1 can be used to repeat indefinitely.
 ## [br][param random_offset_negative]: The time in seconds you want for the timer to have as a random negative offset.
 ## [br][param random_offset_positive]: The time in seconds you want for the timer to have as a random positive offset.
-## [br][param persist_through_scenes]: Allows the timer to not be deleted when the scene changes.
 ## [br][param real_time]: Makes the timer consistent with real time and not be affected by game engine speed changes.
-func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:= 0, random_offset_negative:= 0.0, random_offset_positive:= 0.0, persist_through_scenes:= false, real_time:= false) -> void:
+## [br][param persist_through_scenes]: Allows the timer to not be deleted when the scene changes.
+## [br][param deferred]: Allows deferring the add_child process of the AudioStreamPlayer. Useful for if errors occur when trying to add the node to the tree.
+func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:= 0, random_offset_negative:= 0.0, random_offset_positive:= 0.0, real_time:= false, persist_through_scenes:= false, deferred:= false) -> void:
 	assert(interval >= 0,"Parameter 'interval' must be greater than or equal to 0.")
 	assert(start_delay >= 0,"Parameter 'start_delay' must be greater than or equal to 0.")
 	assert(repeats >= -1,"Parameter 'repeats' must be greater than or equal to -1.")
@@ -63,9 +73,15 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 
 	var timer = Timer.new()
 	if persist_through_scenes == false:
-		get_tree().current_scene.add_child.call_deferred(timer)
+		if not deferred:
+			get_tree().current_scene.add_child(timer)
+		else:
+			get_tree().current_scene.add_child.call_deferred(timer)
 	else:
-		add_child(timer)
+		if not deferred:
+			add_child(timer)
+		else:
+			add_child.call_deferred(timer)
 		
 	timer.wait_time = interval + randf_range(random_offset_negative, random_offset_positive)
 	timer.ignore_time_scale = real_time # Real_time:= false, if true, it will ignore the time scale and run on real time, not being affected by engine changes
@@ -74,7 +90,9 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 	
 	if start_delay != 0:
 		await get_tree().create_timer(start_delay).timeout
-	timer.autostart = true
+	if not timer.is_inside_tree():
+		await timer.tree_entered
+	timer.start()
 	
 	await timer.timeout
 	if repeats >= 1:
