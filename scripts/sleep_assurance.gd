@@ -7,7 +7,7 @@ const SLEEP_ASSURANCE_POINT_PROGRESS = preload("uid://irutswq3wufd")
 @onready var grid = $Sleep_Assurance_Grid
 
 var sleep_assurance_points_goal: float = 8
-var sleep_assurance_current_score: float = 800
+var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
 
 var sleep_assurance_points_array: Array[TextureProgressBar]

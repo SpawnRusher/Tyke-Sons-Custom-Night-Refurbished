@@ -1,7 +1,7 @@
 extends TextureRect
 class_name Enemy_Portrait
 
-enum IDS {
+enum PORTRAIT_IDS {
 	NONE,
 	THE_CHIPOMATS,
 	FUN_FUNGAL,
@@ -15,7 +15,7 @@ enum IDS {
 	PHANTOM_CHIPOMAT }
 
 @export var enabled: bool
-@export var id: IDS
+@export var id: PORTRAIT_IDS
 
 @onready var border: TextureButton = $Portrait_Border
 

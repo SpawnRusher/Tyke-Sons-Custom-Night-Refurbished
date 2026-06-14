@@ -1,5 +1,7 @@
 extends Node
 
+# warnings-disable
+
 signal jumpscare(enemy: Enemy, area: String)
 signal phantom_jumpscare()
 

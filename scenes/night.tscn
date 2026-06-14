@@ -268,7 +268,6 @@
 [ext_resource type="Texture2D" uid="uid://cte0unk8uusqk" path="res://enemies/seabill/sprite/turning/_8.png" id="247_l0erh"]
 [ext_resource type="AudioStream" uid="uid://laco0tc7l474" path="res://enemies/the_chipomats/chipomat_3/chipomat_3_knocking.ogg" id="247_rh5cc"]
 [ext_resource type="Script" uid="uid://f0vepf3put15" path="res://enemies/fun_fungal/fun_fungal.gd" id="248_0v4p3"]
-[ext_resource type="FontFile" uid="uid://b8roedgt0e88w" path="res://fonts/Candara.ttf" id="248_jupka"]
 [ext_resource type="AudioStream" uid="uid://c3oja2d32psne" path="res://sounds/jumpscares/jumpscare_fun_fungal.ogg" id="249_rh5cc"]
 [ext_resource type="Texture2D" uid="uid://6pfbks7ckkm2" path="res://enemies/seabill/sprite/walking/_1.png" id="249_t5hgj"]
 [ext_resource type="Texture2D" uid="uid://b2b5osjtryrof" path="res://enemies/seabill/sprite/walking/_2.png" id="250_ye2pl"]
@@ -313,6 +312,8 @@
 [ext_resource type="Texture2D" uid="uid://f1m4gg1omyib" path="res://enemies/phantom_chipomat/jumpscare/_10.png" id="278_hs32g"]
 [ext_resource type="Texture2D" uid="uid://dmo4v3arlj3e1" path="res://enemies/phantom_chipomat/jumpscare/_11.png" id="279_3oyjr"]
 [ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://enemies/phantom_chipomat/jumpscare/_12.png" id="280_qm66n"]
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="294_0v611"]
+[ext_resource type="Script" uid="uid://buqm8ftxeefrl" path="res://scenes/night_timer.gd" id="295_0v611"]
 [ext_resource type="Script" uid="uid://bdrovxrj7semx" path="res://scripts/go_to_sleep.gd" id="296_45h36"]
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://sounds/jumpscares/jumpscare.ogg" id="511_mhlfx"]
 
@@ -1877,14 +1878,16 @@ offset_right = -48.0
 offset_bottom = -46.0
 texture = ExtResource("243_0v4p3")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI" unique_id=402580439]
-offset_left = 916.0
-offset_top = -129.0
-offset_right = 1201.0
-offset_bottom = -18.0
-theme_override_fonts/normal_font = ExtResource("248_jupka")
+[node name="Night_Timer" type="RichTextLabel" parent="GUI" unique_id=402580439]
+process_mode = 3
+offset_left = 1068.0
+offset_right = 1353.0
+offset_bottom = 111.0
+theme_override_fonts/normal_font = ExtResource("294_0v611")
 theme_override_font_sizes/normal_font_size = 48
-text = "0:00.00"
+text = "00:00.00"
+scroll_active = false
+script = ExtResource("295_0v611")
 
 [node name="Jumpscare" type="CanvasLayer" parent="." unique_id=439011563]
 process_mode = 1
@@ -1919,6 +1922,7 @@ leave_timer = 2.0
 random_variance = 0.05
 knock_sound = ExtResource("244_g0ty3")
 enemy_id = 1
+portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://hmexkiu40fv1"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -1933,6 +1937,7 @@ leave_timer = 1.5
 random_variance = 0.1
 knock_sound = ExtResource("246_0v4p3")
 enemy_id = 2
+portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://cgsw7agy1qjmd"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -1947,6 +1952,7 @@ leave_timer = 1.0
 random_variance = 0.15
 knock_sound = ExtResource("247_rh5cc")
 enemy_id = 3
+portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dnrmdge40dfkx"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -1958,6 +1964,7 @@ sprite = NodePath("../../Office/Office_BG/Fun_Fungal")
 progress_timer = 30.0
 idle_timer = 1.0
 enemy_id = 4
+portrait_id = 2
 jumpscare_sound = ExtResource("249_rh5cc")
 jumpscare_middle_uid = "uid://cshws6mtgkvy2"
 metadata/_custom_type_script = "uid://f0vepf3put15"
@@ -1973,6 +1980,7 @@ random_variance = 0.1
 kill_timer_pause_threshold = 1.0
 walking_sound = ExtResource("258_7ujts")
 enemy_id = 5
+portrait_id = 3
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://3jfdm0d3dpxy"
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
@@ -1980,6 +1988,7 @@ metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 [node name="Nightmare_Chipper" type="Node" parent="Enemies" unique_id=370165754]
 script = ExtResource("260_xuceh")
 enemy_id = 6
+portrait_id = 4
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dax66f01j7667"
 jumpscare_bedroom_uid = "uid://clo6xwmvoik7q"
@@ -1988,6 +1997,7 @@ metadata/_custom_type_script = "uid://bdnro702nmhg3"
 [node name="Happyshroom" type="Node" parent="Enemies" unique_id=1538158135]
 script = ExtResource("260_jcrtd")
 enemy_id = 7
+portrait_id = 5
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://def4na0hddbtv"
 jumpscare_bedroom_uid = "uid://ceyirmcu15e87"
@@ -2002,6 +2012,7 @@ move_time = 2.0
 min_position = -137.0
 max_position = -62.0
 enemy_id = 8
+portrait_id = 6
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://ds5xydebj2r1t"
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
@@ -2015,6 +2026,7 @@ move_time = 2.0
 min_position = -137.0
 max_position = -62.0
 enemy_id = 9
+portrait_id = 6
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://delfuqqlobkqo"
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
@@ -2028,6 +2040,7 @@ move_time = 2.0
 min_position = -64.0
 max_position = 48.0
 enemy_id = 10
+portrait_id = 6
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://1tnfmu8enmc0"
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
@@ -2035,6 +2048,7 @@ metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 [node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
 script = ExtResource("261_f68if")
 enemy_id = 12
+portrait_id = 7
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://q3g8sjm1h832"
 metadata/_custom_type_script = "uid://dp3c40drmnlof"
@@ -2042,6 +2056,7 @@ metadata/_custom_type_script = "uid://dp3c40drmnlof"
 [node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
 script = ExtResource("256_yal7k")
 enemy_id = 11
+portrait_id = 7
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://jwd0ebtcbs12"
 metadata/_custom_type_script = "uid://qeu7nri32ca2"
@@ -2057,6 +2072,7 @@ random_variance = 0.1
 kill_timer_pause_threshold = 1.0
 leaving_sound = ExtResource("268_5ma6e")
 enemy_id = 13
+portrait_id = 8
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://oacgoiegq16"
 metadata/_custom_type_script = "uid://ejhhd5vc7s8g"
@@ -2078,6 +2094,7 @@ start_position = 600.0
 end_position = 1100.0
 stare_times = 3
 enemy_id = 14
+portrait_id = 9
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dwcd7fsh2iu32"
 metadata/_custom_type_script = "uid://dv66h4165ppew"
@@ -2089,6 +2106,7 @@ dark_office = NodePath("../../Office/Office_BG/Dark_Office_Overlay")
 sprite = NodePath("../../Office/Camera/Phantom_Chipomat")
 attack_timer = 1.5
 enemy_id = 15
+portrait_id = 10
 jumpscare_sound = ExtResource("267_xx0gj")
 jumpscare_middle_uid = "uid://bdcay5wlrvx68"
 metadata/_custom_type_script = "uid://5w5286ex124e"

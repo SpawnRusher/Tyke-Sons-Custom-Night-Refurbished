@@ -23,6 +23,11 @@ SpecialFunctions="*uid://bwuaj8p61dfjw"
 SaveData="*uid://dnouxd2nfhm1r"
 Settings="*uid://cc84ahuhn0m27"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280

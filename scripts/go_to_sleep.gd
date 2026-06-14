@@ -9,6 +9,7 @@ func _notification(what: int) -> void:
 		go_to_sleep()
 		
 func go_to_sleep():
+	
 	SpecialFunctions.audio(SLEEPING,1,1,0,0,0,true,true)
 	fade.visible = true
 	var tween = get_tree().create_tween()
