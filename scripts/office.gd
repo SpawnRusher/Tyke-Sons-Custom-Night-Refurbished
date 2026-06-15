@@ -20,6 +20,8 @@ const STAIRS_DOWN = preload("uid://douddgjtsblw3")
 const STAIRS_UP = preload("uid://c12xjq2e7f4ix")
 const CURTAIN_CLOSING = preload("uid://dyiyvq3cj3wg1")
 const CURTAIN_OPENING = preload("uid://bh2qhxmm805wf")
+const NOSE_HONK = preload("uid://dp2sm6go3v2r4")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -190,3 +192,7 @@ func _update_sleep_assurance_score(score):
 	
 func _start_happyshroom_fight():
 	happyshroom_fight_active = true
+
+
+func _on_nose_pressed() -> void:
+	SpecialFunctions.audio(NOSE_HONK)

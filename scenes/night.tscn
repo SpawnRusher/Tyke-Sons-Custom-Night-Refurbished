@@ -1778,6 +1778,14 @@ offset_bottom = 25.0
 action_mode = 0
 button_mask = 3
 
+[node name="Nose" type="Button" parent="Office/Office_BG" unique_id=96758172]
+offset_left = 586.0
+offset_top = 380.0
+offset_right = 610.0
+offset_bottom = 390.0
+action_mode = 0
+flat = true
+
 [node name="Lamp_Button" type="Button" parent="Office" unique_id=578000767]
 offset_left = 1176.0
 offset_top = 127.0
@@ -2136,3 +2144,4 @@ jumpscare_middle_uid = "uid://bdcay5wlrvx68"
 metadata/_custom_type_script = "uid://5w5286ex124e"
 
 [connection signal="pressed" from="Office/Office_BG/Batteries/Batteries_Button" to="GUI/Flashlight_Battery" method="_on_batteries_button_pressed"]
+[connection signal="pressed" from="Office/Office_BG/Nose" to="Office" method="_on_nose_pressed"]
