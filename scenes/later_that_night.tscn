@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://skiyqr13pcni"]
+
+[ext_resource type="Script" uid="uid://co0b0tcvo8bpr" path="res://scripts/later_that_night.gd" id="1_pkw6q"]
+[ext_resource type="Texture2D" uid="uid://drxrys54liejp" path="res://sprites/later_that_night/Active_0-0_0.png" id="2_uurvf"]
+[ext_resource type="Texture2D" uid="uid://0qbmwcbdfdcv" path="res://sprites/later_that_night/Active 3_0-0_0.png" id="3_l1iar"]
+
+[node name="Later_That_Night" type="Node2D" unique_id=1648555687]
+script = ExtResource("1_pkw6q")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=305762863]
+position = Vector2(640, 1040)
+texture = ExtResource("2_uurvf")
+offset = Vector2(0, -400)
+
+[node name="Text" type="Sprite2D" parent="." unique_id=340172057]
+position = Vector2(640, 360)
+texture = ExtResource("3_l1iar")
+
+[node name="Fade" type="ColorRect" parent="." unique_id=721652190]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)

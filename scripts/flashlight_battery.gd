@@ -56,7 +56,7 @@ func phantom_jumpscare() -> void:
 
 
 func _on_batteries_button_pressed() -> void:
-	if current_batteries_cooldown == batteries_cooldown:
+	if current_batteries_cooldown >= batteries_cooldown:
 		value = 100.0
 		current_batteries_cooldown = 0
 		SpecialFunctions.audio(QUIETBUTTONPRESS)

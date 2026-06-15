@@ -1,8 +1,8 @@
+ColorRect
+Sprite2D
 CanvasModulate
 RichTextLabel
-ColorRect
 CanvasLayer
-Sprite2D
 TextureRect
 Node
 AnimatedSprite2D
