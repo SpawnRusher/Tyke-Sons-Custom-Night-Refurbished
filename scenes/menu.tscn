@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ck264h375n4j7" path="res://sprites/menu/bg.png" id="1_7jp70"]
 [ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://sprites/menu/bgborder.png" id="2_mxgkd"]
-[ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://scenes/enemy_portrait.tscn" id="3_g6gyw"]
+[ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://enemies/enemy_portrait.tscn" id="3_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://brh14odddgcmm" path="res://sprites/menu/portraits/the_chipomats.png" id="4_3dmrc"]
 [ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://sprites/menu/portraits/fun_fungal.png" id="5_81l6r"]
 [ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://sprites/menu/portraits/springcrab.png" id="6_rsfmq"]

@@ -313,7 +313,7 @@
 [ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://enemies/phantom_chipomat/jumpscare/_12.png" id="280_qm66n"]
 [ext_resource type="Script" uid="uid://coyr3dg7wbjo0" path="res://scripts/gui.gd" id="283_0f1a6"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="294_0v611"]
-[ext_resource type="Script" uid="uid://buqm8ftxeefrl" path="res://scenes/night_timer.gd" id="295_0v611"]
+[ext_resource type="Script" uid="uid://buqm8ftxeefrl" path="res://scripts/night_timer.gd" id="295_0v611"]
 [ext_resource type="Script" uid="uid://bdrovxrj7semx" path="res://scripts/go_to_sleep.gd" id="296_45h36"]
 [ext_resource type="Script" uid="uid://d13p32mq2jeip" path="res://enemies/happyshroom/happyshroom.gd" id="298_tt6cj"]
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://sounds/jumpscares/jumpscare.ogg" id="511_mhlfx"]

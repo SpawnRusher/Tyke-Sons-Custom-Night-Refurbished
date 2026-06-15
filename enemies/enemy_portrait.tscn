@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6cj7ldkxh614"]
 
 [ext_resource type="Texture2D" uid="uid://brh14odddgcmm" path="res://sprites/menu/portraits/the_chipomats.png" id="1_jaq2b"]
-[ext_resource type="Script" uid="uid://cqq11s5sen8bw" path="res://classes/enemy_portrait.gd" id="2_ufxrq"]
+[ext_resource type="Script" uid="uid://cqq11s5sen8bw" path="res://enemies/enemy_portrait.gd" id="2_ufxrq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rkrv"]
 atlas = ExtResource("1_jaq2b")
