@@ -4,8 +4,8 @@ extends Node
 ## [br][param stream]: The AudioStream to play.
 ## [br][param volume]: The volume to play the audio at. Uses linear volume instead of dBs.
 ## [br][param pitch]: The pitch to play the audio at.
-## [br][param pan]: The panning to play the audio at
-## [br][param repeats]: The amount of times to repeat the audio.
+## [br][param pan]: The panning to play the audio at.
+## [br][param repeats]: The amount of times to repeat the audio. -1 can be used to make something repeat infinitely.
 ## [br][param persist_through_scenes]: Allows the audio to persist playing through scenes. Not recommended to use with infinite repeats.
 ## [br][param deferred]: Allows deferring the add_child process of the AudioStreamPlayer. Useful for if errors occur when trying to add the node to the tree.
 func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_delay:= 0.0, repeats:= 0, persist_through_scenes:= false, deferred:= false) -> void:

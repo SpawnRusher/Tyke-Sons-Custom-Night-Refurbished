@@ -29,7 +29,7 @@ var jumpscare_ready: bool
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
+		_queue_free()
 		return
 	
 	SignalBus.update_flashlight_state.connect(flash_springcrab)
@@ -59,6 +59,10 @@ func _process(delta: float) -> void:
 				
 		if current_kill_timer <= 0:
 			prepare_jumpscare()
+			
+func _queue_free():
+	self.queue_free()
+	# Springcrab doesn't free its sprite because its sprite is used even when its disabled, for flashing front window
 
 func spawn_springcrab() -> void:
 	spawned = true

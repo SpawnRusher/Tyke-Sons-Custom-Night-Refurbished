@@ -34,8 +34,7 @@ var jumpscare_ready: bool
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		sprite.queue_free()
+		_queue_free()
 		return
 	
 	total_spawn_timer = spawn_timer
@@ -69,6 +68,10 @@ func _process(delta: float) -> void:
 			
 		if current_leave_timer <= 0:
 			leave_toy()
+			
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
 
 func visibility_checks() -> void:
 	if office.animation != "open_b":

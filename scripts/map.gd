@@ -9,8 +9,8 @@ extends AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	office.animation_changed.connect(player_icon_tween)
-	pass # Replace with function body.
 
 
 func player_icon_tween():
@@ -46,3 +46,7 @@ func player_icon_tween():
 		await get_tree().create_timer(0.7).timeout
 		var player_tween = get_tree().current_scene.create_tween()
 		player_tween.tween_property(player,"position:y",default_player_y,1.4).set_trans(Tween.TRANS_LINEAR)
+
+func _activate_happyshroom():
+	player.position.x = default_player_x
+	player.position.y = default_player_y

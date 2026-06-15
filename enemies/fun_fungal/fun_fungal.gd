@@ -20,8 +20,7 @@ var lerp_progress: float
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		sprite.queue_free()
+		_queue_free()
 		return
 
 	reset()
@@ -52,6 +51,10 @@ func _process(delta: float) -> void:
 			
 	if current_progress >= progress_timer:
 		jumpscare()
+
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
 
 func reset() -> void:
 	SignalBus.enemy_defended.emit(self)

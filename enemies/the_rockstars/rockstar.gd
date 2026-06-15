@@ -4,7 +4,7 @@ class_name Rockstar
 ## The Player icon.
 @export var player: TextureRect
 ## The Rockstar's icon, a TextureRect node.
-@export var icon: TextureRect
+@export var sprite: TextureRect
 ## The axis the enemy moves on.
 @export_enum("x","y") var move_axis: String
 ## The time it takes for the enemy icon to move from min_position to max_position, or vice-versa.
@@ -27,8 +27,7 @@ var move_direction: int = wrapi(randi_range(1,2),-1,2)
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		icon.queue_free()
+		_queue_free()
 		return
 
 	if move_direction == 1:
@@ -41,11 +40,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if player.get_global_rect().intersects(icon.get_global_rect()):
+	if player.get_global_rect().intersects(sprite.get_global_rect()):
 		jumpscare()
+		
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
 	
 func blinking() -> void:
-	icon.visible = !icon.visible
+	sprite.visible = !sprite.visible
 	
 func start_moving() -> void:
 	move_direction *= -1
@@ -55,7 +58,7 @@ func start_moving() -> void:
 
 	var tween = get_tree().create_tween()
 	var current_move_time = move_time*(1+randf_range(-random_variance,random_variance))
-	tween.tween_property(icon,"position:"+move_axis,move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(sprite,"position:"+move_axis,move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
 	# this 'await' is required, without it, im technically calling start_moving() from inside of itself
 	await get_tree().create_timer(current_move_time).timeout
 	SpecialFunctions.timer(start_moving,idle_time,0,0,0,0,false)

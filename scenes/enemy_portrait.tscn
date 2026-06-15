@@ -14,14 +14,12 @@ load_path = "res://.godot/imported/portraitborder1.png-d60093249ee3ae7ff187586a9
 load_path = "res://.godot/imported/portraitborder2.png-cad44123684953ee4e436f9a63b6a5b6.ctex"
 
 [node name="Enemy_Portrait" type="TextureRect" unique_id=1551062530]
-texture_filter = 1
 offset_left = 176.0
 offset_top = 114.0
 offset_right = 296.0
 offset_bottom = 234.0
 texture = SubResource("AtlasTexture_4rkrv")
 script = ExtResource("2_ufxrq")
-active = null
 id = null
 
 [node name="Portrait_Border" type="TextureButton" parent="." unique_id=1956503844]

@@ -1,6 +1,8 @@
 extends TextureProgressBar
 
 const QUIETBUTTONPRESS = preload("uid://dubq1cwtm73fs")
+const FLASHLIGHT = preload("uid://b1ly4og0c82sg")
+const FLASHLIGHT_DEAD = preload("uid://iwmdlvotnfwa")
 
 var using_flashlight: bool
 
@@ -9,8 +11,6 @@ var using_flashlight: bool
 @export var batteries_button: TextureButton
 @export var batteries_cooldown: float
 
-const FLASHLIGHT = preload("uid://b1ly4og0c82sg")
-
 var current_batteries_cooldown: float
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +18,7 @@ func _ready() -> void:
 	SignalBus.flashlight_off.connect(flashlight_off)
 	SignalBus.flashlight_on.connect(flashlight_on)
 	SignalBus.phantom_jumpscare.connect(phantom_jumpscare)
+	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 
 	batteries.max_value = batteries_cooldown
 
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 	if value == 0:
 		if using_flashlight == true:
 			using_flashlight = false
-			SpecialFunctions.audio(FLASHLIGHT)
+			SpecialFunctions.audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(false)
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
@@ -47,6 +48,8 @@ func flashlight_on() -> void:
 			using_flashlight = true
 			SpecialFunctions.audio(FLASHLIGHT)
 		SignalBus.update_flashlight_state.emit(using_flashlight)
+	else:
+		SpecialFunctions.audio(FLASHLIGHT_DEAD)
 
 func phantom_jumpscare() -> void:
 	value -= 30
@@ -66,4 +69,8 @@ func visibility_checks():
 		batteries.value = 0
 		if office.frame == 1:
 			batteries.value = current_batteries_cooldown
-	
+			
+func _activate_happyshroom():
+	value = 100
+	using_flashlight = false
+	SignalBus.update_flashlight_state.emit(using_flashlight)

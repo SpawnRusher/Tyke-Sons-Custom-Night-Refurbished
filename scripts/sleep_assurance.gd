@@ -15,6 +15,7 @@ var sleep_assurance_points_array: Array[TextureProgressBar]
 func _ready() -> void:
 	SignalBus.enemy_defended.connect(_add_score)
 	SignalBus.remove_sleep_assurance.connect(_remove_score)
+	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	for i in sleep_assurance_points_goal:
 		var temp_point = TextureProgressBar.new()
 		temp_point.texture_under = SLEEP_ASSURANCE_POINT_BORDER
@@ -27,8 +28,18 @@ func _ready() -> void:
 	
 	_update_points()
 
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if event is InputEventKey and event.is_pressed():
+			if event.keycode == KEY_I:
+				sleep_assurance_current_score -= 100
+				_update_points()
+			if event.keycode == KEY_O:
+				sleep_assurance_current_score += 100
+				_update_points()
 
 func _update_points():
+	SignalBus.broadcast_sleep_assurance_score.emit(sleep_assurance_current_score/sleep_assurance_points_goal)
 	for points in sleep_assurance_points_array:
 		var point_index = sleep_assurance_points_array.find(points)
 		points.value = sleep_assurance_current_score - (point_index*100)
@@ -56,4 +67,8 @@ func _add_score(enemy):
 func _remove_score(delta: float, enemy: Enemy):
 	if enemy is Seabill:
 		sleep_assurance_current_score -= 10 * delta
+	_update_points()
+	
+func _activate_happyshroom():
+	sleep_assurance_current_score = 0
 	_update_points()

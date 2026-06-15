@@ -49,8 +49,7 @@ var pause: bool
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		sprite.queue_free()
+		_queue_free()
 		return
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -115,8 +114,10 @@ func _process(delta: float) -> void:
 		if current_walk_progress == 1.0:
 			leave_seabill()
 			
-		
-	
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
+	dark_flicker.queue_free()
 			
 func ready_seabill() -> void:
 	SpecialFunctions.audio(SPAWN_VOICELINES.pick_random())

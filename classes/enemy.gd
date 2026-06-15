@@ -9,7 +9,6 @@ enum ENEMY_IDS {
 	FUN_FUNGAL,
 	SPRINGCRAB,
 	NIGHTMARE_CHIPPER,
-	HAPPYSHROOM,
 	FREDBEAR,
 	BUSTER,
 	BIDY,
@@ -25,7 +24,6 @@ enum PORTRAIT_IDS {
 	FUN_FUNGAL,
 	SPRINGCRAB,
 	NIGHTMARE_CHIPPER,
-	HAPPYSHROOM,
 	THE_ROCKSTARS,
 	THE_LUMBERERS,
 	TOY,
@@ -48,7 +46,7 @@ func _ready() -> void:
 	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":
 		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
 		
-	enabled = Global.ENABLED_IDS[portrait_id-1]
+	enabled = Global.ENABLED_IDS[portrait_id]
 	
 
 

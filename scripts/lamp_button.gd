@@ -6,6 +6,7 @@ const LAMPTOGGLE = preload("uid://bf8j1xugtu8dh")
 @onready var window_bg = $"../Office_BG/Window_BG"
 @onready var seabill = $"../../Enemies/Seabill"
 @onready var dark_overlay = $"../Office_BG/Dark_Office_Overlay"
+
 func _ready() -> void:
 	self.pressed.connect(togglelights)
 

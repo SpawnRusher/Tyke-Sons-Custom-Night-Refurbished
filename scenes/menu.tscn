@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://toc38okidr1k"]
 
 [ext_resource type="Texture2D" uid="uid://ck264h375n4j7" path="res://sprites/menu/bg.png" id="1_7jp70"]
-[ext_resource type="Script" uid="uid://w4dmrdg3gho7" path="res://scripts/menu.gd" id="1_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://sprites/menu/bgborder.png" id="2_mxgkd"]
 [ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://scenes/enemy_portrait.tscn" id="3_g6gyw"]
 [ext_resource type="Texture2D" uid="uid://brh14odddgcmm" path="res://sprites/menu/portraits/the_chipomats.png" id="4_3dmrc"]
 [ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://sprites/menu/portraits/fun_fungal.png" id="5_81l6r"]
 [ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://sprites/menu/portraits/springcrab.png" id="6_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://slavmstc868q" path="res://sprites/menu/portraits/nightmare_chipper.png" id="7_oi1it"]
-[ext_resource type="Texture2D" uid="uid://cvg7a2vwup25e" path="res://sprites/menu/portraits/happyshroom.png" id="8_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://da8xxetjtnimg" path="res://sprites/menu/portraits/the_rockstars.png" id="9_6wigr"]
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="10_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://bgec1wacj5fnb" path="res://sprites/menu/portraits/seabill.png" id="11_ffqrc"]
@@ -31,10 +29,6 @@ region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1beph"]
 atlas = ExtResource("7_oi1it")
-region = Rect2(0, 0, 120, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cu644"]
-atlas = ExtResource("8_fy8yy")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7x65h"]
@@ -61,7 +55,6 @@ atlas = ExtResource("12_x16fv")
 region = Rect2(0, 0, 120, 120)
 
 [node name="Menu" type="Node2D" unique_id=87801377]
-script = ExtResource("1_mxgkd")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=903196640]
 anchor_mode = 0
@@ -74,92 +67,96 @@ centered = false
 texture = ExtResource("2_mxgkd")
 centered = false
 
-[node name="The_Chipomats" parent="." unique_id=1551062530 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 292.0
-offset_top = 212.0
-offset_right = 412.0
-offset_bottom = 332.0
-texture = SubResource("AtlasTexture_tbbh3")
-id = 1
-
-[node name="Fun_Fungal" parent="." unique_id=1368074244 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 436.0
-offset_top = 212.0
-offset_right = 556.0
-offset_bottom = 332.0
-texture = SubResource("AtlasTexture_negbw")
-id = 2
-
-[node name="Springcrab" parent="." unique_id=724411342 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 580.0
-offset_top = 212.0
-offset_right = 700.0
-offset_bottom = 332.0
-texture = SubResource("AtlasTexture_mg76g")
-id = 3
-
-[node name="Nightmare_Chipper" parent="." unique_id=110385668 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 724.0
-offset_top = 212.0
-offset_right = 844.0
-offset_bottom = 332.0
-texture = SubResource("AtlasTexture_1beph")
-id = 4
-
-[node name="Happyshroom" parent="." unique_id=203513033 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 868.0
-offset_top = 212.0
-offset_right = 988.0
-offset_bottom = 332.0
-texture = SubResource("AtlasTexture_cu644")
-id = 5
-
-[node name="The_Rockstars" parent="." unique_id=1501125903 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 292.0
-offset_top = 356.0
-offset_right = 412.0
-offset_bottom = 476.0
-texture = SubResource("AtlasTexture_7x65h")
-id = 6
-
-[node name="The_Lumberers" parent="." unique_id=339125956 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 436.0
-offset_top = 356.0
-offset_right = 556.0
-offset_bottom = 476.0
-texture = SubResource("AtlasTexture_5i3g8")
-id = 7
-
-[node name="Toy" parent="." unique_id=169010502 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 580.0
-offset_top = 356.0
-offset_right = 700.0
-offset_bottom = 476.0
-texture = SubResource("AtlasTexture_b38jj")
-id = 8
-
-[node name="Seabill" parent="." unique_id=1476772420 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 724.0
-offset_top = 356.0
-offset_right = 844.0
-offset_bottom = 476.0
-texture = SubResource("AtlasTexture_j1aad")
-id = 9
-
-[node name="Phantom_Chipomat" parent="." unique_id=170324132 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 868.0
-offset_top = 356.0
-offset_right = 988.0
-offset_bottom = 476.0
-texture = SubResource("AtlasTexture_x5dr5")
-id = 10
-
 [node name="Start_Button" type="TextureButton" parent="." unique_id=857379688]
-offset_left = 552.5
-offset_top = 600.0
-offset_right = 727.5
-offset_bottom = 670.0
+offset_left = 290.5
+offset_top = 318.0
+offset_right = 465.5
+offset_bottom = 388.0
 action_mode = 0
 texture_normal = ExtResource("13_g54pe")
 texture_hover = ExtResource("14_48ryc")
 script = ExtResource("15_vhsb5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Enemy_Portraits" type="Node" parent="." unique_id=461896928]
+
+[node name="The_Chipomats" parent="Enemy_Portraits" unique_id=1551062530 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 150.0
+offset_bottom = 150.0
+texture = SubResource("AtlasTexture_tbbh3")
+id = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Fun_Fungal" parent="Enemy_Portraits" unique_id=1368074244 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 174.0
+offset_top = 30.0
+offset_right = 294.0
+offset_bottom = 150.0
+texture = SubResource("AtlasTexture_negbw")
+id = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Springcrab" parent="Enemy_Portraits" unique_id=724411342 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 318.0
+offset_top = 30.0
+offset_right = 438.0
+offset_bottom = 150.0
+texture = SubResource("AtlasTexture_mg76g")
+id = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Nightmare_Chipper" parent="Enemy_Portraits" unique_id=110385668 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 462.0
+offset_top = 30.0
+offset_right = 582.0
+offset_bottom = 150.0
+texture = SubResource("AtlasTexture_1beph")
+id = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="The_Rockstars" parent="Enemy_Portraits" unique_id=1501125903 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 30.0
+offset_top = 174.0
+offset_right = 150.0
+offset_bottom = 294.0
+texture = SubResource("AtlasTexture_7x65h")
+id = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="The_Lumberers" parent="Enemy_Portraits" unique_id=339125956 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 174.0
+offset_top = 174.0
+offset_right = 294.0
+offset_bottom = 294.0
+texture = SubResource("AtlasTexture_5i3g8")
+id = 7
+metadata/_edit_use_anchors_ = true
+
+[node name="Toy" parent="Enemy_Portraits" unique_id=169010502 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 318.0
+offset_top = 174.0
+offset_right = 438.0
+offset_bottom = 294.0
+texture = SubResource("AtlasTexture_b38jj")
+id = 8
+metadata/_edit_use_anchors_ = true
+
+[node name="Seabill" parent="Enemy_Portraits" unique_id=1476772420 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 462.0
+offset_top = 174.0
+offset_right = 582.0
+offset_bottom = 294.0
+texture = SubResource("AtlasTexture_j1aad")
+id = 9
+metadata/_edit_use_anchors_ = true
+
+[node name="Phantom_Chipomat" parent="Enemy_Portraits" unique_id=170324132 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
+offset_left = 606.0
+offset_top = 174.0
+offset_right = 726.0
+offset_bottom = 294.0
+texture = SubResource("AtlasTexture_x5dr5")
+id = 10
+metadata/_edit_use_anchors_ = true

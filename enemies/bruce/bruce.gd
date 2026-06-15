@@ -4,6 +4,8 @@ class_name Bruce
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		#sprite.queue_free()
+		_queue_free()
 		return
+
+func _queue_free():
+	self.queue_free()

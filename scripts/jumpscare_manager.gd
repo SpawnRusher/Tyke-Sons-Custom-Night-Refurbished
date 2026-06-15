@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func jumpscare_start(enemy: Enemy, area: String) -> void:
 	if not jumpscare_sprite.is_playing():
+		get_tree().paused = true
 		SpecialFunctions.audio(enemy.jumpscare_sound)
 		
 		if enemy.jumpscare_middle_uid == null and enemy.jumpscare_bedroom_uid == null:

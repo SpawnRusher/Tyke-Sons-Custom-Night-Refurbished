@@ -284,7 +284,6 @@
 [ext_resource type="Texture2D" uid="uid://bokpbflilley2" path="res://enemies/seabill/sprite/walking/_10.png" id="258_ypa18"]
 [ext_resource type="Texture2D" uid="uid://dinfmfxcc66yh" path="res://enemies/seabill/sprite/walking/_11.png" id="259_sj5rq"]
 [ext_resource type="Texture2D" uid="uid://xqgftohiibru" path="res://enemies/seabill/sprite/walking/_12.png" id="260_hs32g"]
-[ext_resource type="Script" uid="uid://cbqp2rud0hl32" path="res://enemies/happyshroom/happyshroom.gd" id="260_jcrtd"]
 [ext_resource type="Script" uid="uid://bdnro702nmhg3" path="res://enemies/nightmare_chipper/nightmare_chipper.gd" id="260_xuceh"]
 [ext_resource type="Texture2D" uid="uid://npku372htnu8" path="res://enemies/seabill/sprite/walking/_13.png" id="261_3oyjr"]
 [ext_resource type="Script" uid="uid://dp3c40drmnlof" path="res://enemies/bruce/bruce.gd" id="261_f68if"]
@@ -312,9 +311,11 @@
 [ext_resource type="Texture2D" uid="uid://f1m4gg1omyib" path="res://enemies/phantom_chipomat/jumpscare/_10.png" id="278_hs32g"]
 [ext_resource type="Texture2D" uid="uid://dmo4v3arlj3e1" path="res://enemies/phantom_chipomat/jumpscare/_11.png" id="279_3oyjr"]
 [ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://enemies/phantom_chipomat/jumpscare/_12.png" id="280_qm66n"]
+[ext_resource type="Script" uid="uid://coyr3dg7wbjo0" path="res://scripts/gui.gd" id="283_0f1a6"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="294_0v611"]
 [ext_resource type="Script" uid="uid://buqm8ftxeefrl" path="res://scenes/night_timer.gd" id="295_0v611"]
 [ext_resource type="Script" uid="uid://bdrovxrj7semx" path="res://scripts/go_to_sleep.gd" id="296_45h36"]
+[ext_resource type="Script" uid="uid://d13p32mq2jeip" path="res://enemies/happyshroom/happyshroom.gd" id="298_tt6cj"]
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://sounds/jumpscares/jumpscare.ogg" id="511_mhlfx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38vnp"]
@@ -1753,6 +1754,7 @@ sprite_frames = SubResource("SpriteFrames_uqrpi")
 centered = false
 
 [node name="Seabill" type="AnimatedSprite2D" parent="Office/Office_BG" unique_id=30119534]
+visible = false
 show_behind_parent = true
 position = Vector2(600, 260)
 sprite_frames = SubResource("SpriteFrames_fyxh2")
@@ -1790,6 +1792,7 @@ toggle_mode = true
 action_mode = 0
 icon = ExtResource("266_qp5yl")
 script = ExtResource("3_th6wt")
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera" type="Camera2D" parent="Office" unique_id=1927307826]
 anchor_mode = 0
@@ -1809,8 +1812,11 @@ sprite_frames = SubResource("SpriteFrames_0r0ah")
 animation = &"jumpscare"
 centered = false
 
+[node name="CanvasModulate" type="CanvasModulate" parent="Office" unique_id=943145618]
+
 [node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
 process_mode = 1
+script = ExtResource("283_0f1a6")
 
 [node name="Sleep_Assurance" type="TextureRect" parent="GUI" unique_id=1275540076]
 offset_left = 15.0
@@ -1819,6 +1825,7 @@ offset_right = 263.0
 offset_bottom = 41.0
 texture = ExtResource("237_lw42b")
 script = ExtResource("238_jupka")
+metadata/_edit_use_anchors_ = true
 
 [node name="Sleep_Assurance_Grid" type="GridContainer" parent="GUI/Sleep_Assurance" unique_id=638745915]
 custom_minimum_size = Vector2(248, 0)
@@ -1828,6 +1835,7 @@ offset_right = 248.0
 offset_bottom = 56.0
 theme_override_constants/h_separation = 7
 columns = 8
+metadata/_edit_use_anchors_ = true
 
 [node name="Flashlight_Battery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
 offset_left = 14.0
@@ -1844,6 +1852,7 @@ office = NodePath("../../Office/Office_BG")
 batteries = NodePath("../../Office/Office_BG/Batteries")
 batteries_button = NodePath("../../Office/Office_BG/Batteries/Batteries_Button")
 batteries_cooldown = 30.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Map" type="AnimatedSprite2D" parent="GUI" unique_id=1903607990]
 position = Vector2(1174, 530)
@@ -1879,7 +1888,6 @@ offset_bottom = -46.0
 texture = ExtResource("243_0v4p3")
 
 [node name="Night_Timer" type="RichTextLabel" parent="GUI" unique_id=402580439]
-process_mode = 3
 offset_left = 1068.0
 offset_right = 1353.0
 offset_bottom = 111.0
@@ -1888,9 +1896,30 @@ theme_override_font_sizes/normal_font_size = 48
 text = "00:00.00"
 scroll_active = false
 script = ExtResource("295_0v611")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
+
+[node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
+process_mode = 3
+visible = false
+script = ExtResource("298_tt6cj")
+
+[node name="Fade" type="ColorRect" parent="Happyshroom" unique_id=191409112]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="Happyshroom" unique_id=1076113802]
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_fonts/normal_font = ExtResource("294_0v611")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Jumpscare" type="CanvasLayer" parent="." unique_id=439011563]
-process_mode = 1
+process_mode = 3
 visible = false
 script = ExtResource("208_r08i8")
 
@@ -1899,14 +1928,15 @@ sprite_frames = SubResource("SpriteFrames_3whfi")
 centered = false
 
 [node name="Go_To_Sleep" type="CanvasLayer" parent="." unique_id=605595461]
-process_mode = 1
+process_mode = 2
+visible = false
 script = ExtResource("296_45h36")
 
 [node name="Fade" type="ColorRect" parent="Go_To_Sleep" unique_id=1907996195]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Enemies" type="Node" parent="." unique_id=1986394494]
@@ -1973,7 +2003,7 @@ metadata/_custom_type_script = "uid://f0vepf3put15"
 script = ExtResource("254_1qvvp")
 office = NodePath("../../Office/Office_BG")
 sprite = NodePath("../../Office/Office_BG/Front_Window")
-spawn_timer = 3.0
+spawn_timer = 15.0
 kill_timer = 10.0
 leave_flashes = 10
 random_variance = 0.1
@@ -1994,19 +2024,10 @@ jumpscare_middle_uid = "uid://dax66f01j7667"
 jumpscare_bedroom_uid = "uid://clo6xwmvoik7q"
 metadata/_custom_type_script = "uid://bdnro702nmhg3"
 
-[node name="Happyshroom" type="Node" parent="Enemies" unique_id=1538158135]
-script = ExtResource("260_jcrtd")
-enemy_id = 7
-portrait_id = 5
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://def4na0hddbtv"
-jumpscare_bedroom_uid = "uid://ceyirmcu15e87"
-metadata/_custom_type_script = "uid://cbqp2rud0hl32"
-
-[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "icon")]
+[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("239_3whfi")
 player = NodePath("../../GUI/Map/Map_Player_Icon")
-icon = NodePath("../../GUI/Map/Fredbear_Icon")
+sprite = NodePath("../../GUI/Map/Fredbear_Icon")
 move_axis = "y"
 move_time = 2.0
 min_position = -137.0
@@ -2017,10 +2038,10 @@ jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://ds5xydebj2r1t"
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 
-[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "icon")]
+[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("239_3whfi")
 player = NodePath("../../GUI/Map/Map_Player_Icon")
-icon = NodePath("../../GUI/Map/Buster_Icon")
+sprite = NodePath("../../GUI/Map/Buster_Icon")
 move_axis = "y"
 move_time = 2.0
 min_position = -137.0
@@ -2031,10 +2052,10 @@ jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://delfuqqlobkqo"
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 
-[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "icon")]
+[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("239_3whfi")
 player = NodePath("../../GUI/Map/Map_Player_Icon")
-icon = NodePath("../../GUI/Map/Bidy_Icon")
+sprite = NodePath("../../GUI/Map/Bidy_Icon")
 move_axis = "x"
 move_time = 2.0
 min_position = -64.0
@@ -2055,6 +2076,8 @@ metadata/_custom_type_script = "uid://dp3c40drmnlof"
 
 [node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
 script = ExtResource("256_yal7k")
+spawn_timer = 2.5
+lumber_timer = 4.0
 enemy_id = 11
 portrait_id = 7
 jumpscare_sound = ExtResource("511_mhlfx")
@@ -2065,7 +2088,7 @@ metadata/_custom_type_script = "uid://qeu7nri32ca2"
 script = ExtResource("263_a818d")
 office = NodePath("../../Office/Office_BG")
 sprite = NodePath("../../Office/Office_BG/Toy")
-spawn_timer = 10.0
+spawn_timer = 30.0
 kill_timer = 10.0
 leave_timer = 3.0
 random_variance = 0.1
@@ -2104,7 +2127,7 @@ script = ExtResource("265_pqj53")
 office = NodePath("../../Office/Office_BG")
 dark_office = NodePath("../../Office/Office_BG/Dark_Office_Overlay")
 sprite = NodePath("../../Office/Camera/Phantom_Chipomat")
-attack_timer = 1.5
+attack_timer = 4.0
 enemy_id = 15
 portrait_id = 10
 jumpscare_sound = ExtResource("267_xx0gj")

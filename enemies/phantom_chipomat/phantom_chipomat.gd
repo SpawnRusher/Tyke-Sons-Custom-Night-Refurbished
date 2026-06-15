@@ -16,21 +16,25 @@ var current_attack_timer: float
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		sprite.queue_free()
+		_queue_free()
 		return
 		
 	current_attack_timer = attack_timer
 	sprite.sprite_frames = load(jumpscare_middle_uid)
 
 func _process(delta: float) -> void:
-	if dark_office.visible == true:
-		if sprite.visible == false:
-			current_attack_timer -= 1 * delta
-			if current_attack_timer <= 0:
-				phantom_attack()
+	if office.animation == "office":
+		if dark_office.visible == true:
+			if sprite.visible == false:
+				current_attack_timer -= 1 * delta
+				if current_attack_timer <= 0:
+					phantom_attack()
 	else:
 		current_attack_timer = attack_timer
+		
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
 			
 func phantom_attack():
 	sprite.self_modulate.a = 1

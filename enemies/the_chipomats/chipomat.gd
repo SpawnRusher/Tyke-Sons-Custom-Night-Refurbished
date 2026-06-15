@@ -37,8 +37,7 @@ var office_animation_direction: String
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		self.queue_free()
-		sprite.queue_free()
+		_queue_free()
 		return
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -75,6 +74,9 @@ func _process(delta: float) -> void:
 		if current_kill_timer <= 0:
 			prepare_jumpscare()
 			
+func _queue_free():
+	self.queue_free()
+	sprite.queue_free()
 			
 func visibility_checks() -> void:
 	if spawned != true:
