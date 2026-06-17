@@ -45,8 +45,9 @@ func _ready() -> void:
 		push_error("Jumpscare Sound has not yet been set for enemy ",enemy_id,"!")
 	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":
 		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
-		
-	enabled = Global.ENABLED_IDS[portrait_id]
+	
+	if portrait_id in Global.ENABLED_IDS:
+		enabled = Global.ENABLED_IDS[portrait_id]
 	
 
 

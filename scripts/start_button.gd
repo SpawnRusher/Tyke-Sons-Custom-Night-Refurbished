@@ -2,7 +2,7 @@ extends TextureButton
 
 const LOUD_BUTTON_PRESS = preload("uid://dljncvmipnl1d")
 
-@onready var fade = $"../Fade"
+@onready var fade: ColorRect = $"../Fade"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

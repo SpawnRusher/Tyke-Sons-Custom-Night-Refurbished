@@ -1,9 +1,11 @@
 extends Node
 
+
 ## VERSION VARIABLES
-var version: String = "v0.1.0"
+var version: String
 var version_val: int
 var temp_version: PackedStringArray
+var latest_version: String
 var version_verdict: String
 
 ## PASTEBIN VARIABLES
@@ -15,6 +17,8 @@ var pastebin_current_line_elements: PackedStringArray
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	version = ProjectSettings.get_setting("application/config/version")
+
 	temp_version = version.split(".")
 	version_val = (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int()
 	print("Build version: ", version, " (", version_val, ")")
@@ -53,24 +57,27 @@ func pastebin_checks(paste_text) -> void:
 				version_verdict = "outdated"
 				
 			for j in range(3,pastebin_current_line_elements.size()):
-				temp_version = pastebin_current_line_elements[j].split(".")
-				if (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int() == version_val:
+				var temp_disabled_version = pastebin_current_line_elements[j].split(".")
+				if (temp_disabled_version[0].right(1)+temp_disabled_version[1]+temp_disabled_version[2]).to_int() == version_val:
 					version_verdict = "disabled"
-		
-			version_check(version_verdict,temp_version)
+					temp_version = temp_disabled_version
+					
+			
+			latest_version = temp_version[0] + "." + temp_version[1] + "." + temp_version[2]
+			version_check(version_verdict,latest_version)
 		
 
 func version_check(version_type,pastebin_version) -> void:
 	if version_type == "disabled":
-		print("Version ", version, " is a disabled version of the game. Please launch the game on a different version.")
+		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 		return
 
 	if version_type == "dev":
-		print("Version ", version, " is a newer build than the current public release. This can mean this is a work-in-progress developer build, or I forgot to update the pastebin.")
+		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 		
 	if version_type == "current":
-		print("Version ", version, " is the most up-to-date public release.")
+		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 
 	if version_type == "outdated":
-		print("Version ", version, " is an outdated version of the game. The latest release is ", pastebin_version, ". Updating is recommended.")
+		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 	

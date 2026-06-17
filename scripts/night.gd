@@ -13,7 +13,6 @@ func _ready() -> void:
 	
 func _go_to_sleep() -> void:
 	get_tree().paused = true
-	go_to_sleep.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	var nodes = get_children()
 	for i in nodes:
 		if i is AudioStreamPlayer or i is AudioStreamPlayer2D:

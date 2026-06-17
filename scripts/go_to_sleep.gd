@@ -10,12 +10,9 @@ var happyshroom_active: bool
 
 func _ready() -> void:
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_UNPAUSED:
-		go_to_sleep()
+	SignalBus.go_to_sleep.connect(_go_to_sleep)
 		
-func go_to_sleep():
+func _go_to_sleep():
 	if happyshroom_active == false:
 		SpecialFunctions.audio(SLEEPING_FAKEOUT,1,1,0,0,0,true,true)
 	elif happyshroom_active == true:

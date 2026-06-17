@@ -2,16 +2,18 @@ extends Node
 
 ## Creates an AudioStreamPlayer (or 2D if using panning) to play an audio and delete. Volume, pitch, and panning can be changed, as well as looping the audio any number of times. Audio can be persisted through scenes if needed as well.[br]
 ## [br][param stream]: The AudioStream to play.
+## [br][param bus]: The index of the audio bus to play audio in.
 ## [br][param volume]: The volume to play the audio at. Uses linear volume instead of dBs.
 ## [br][param pitch]: The pitch to play the audio at.
 ## [br][param pan]: The panning to play the audio at.
 ## [br][param repeats]: The amount of times to repeat the audio. -1 can be used to make something repeat infinitely.
 ## [br][param persist_through_scenes]: Allows the audio to persist playing through scenes. Not recommended to use with infinite repeats.
 ## [br][param deferred]: Allows deferring the add_child process of the AudioStreamPlayer. Useful for if errors occur when trying to add the node to the tree.
-func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_delay:= 0.0, repeats:= 0, persist_through_scenes:= false, deferred:= false) -> void:
+func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_delay:= 0.0, repeats:= 0, persist_through_scenes:= false, deferred:= false) -> void:
 	assert(start_delay >= 0,"Parameter 'start_delay' must be greater than or equal to 0.")
 	assert(repeats >= -1,"Parameter 'repeats' must be greater than or equal to -1.")
-
+	
+	@warning_ignore("shadowed_variable")
 	var audio = AudioStreamPlayer.new()
 	if pan != 0:
 		audio = AudioStreamPlayer2D.new()
@@ -34,6 +36,7 @@ func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_dela
 	if pan != 0:
 		var camera = get_viewport().get_camera_2d()
 		audio.position.x = (camera.position.x+640)+(640*pan)
+	audio.bus = AudioServer.get_bus_name(bus)
 	audio.stream = stream
 	audio.volume_linear = volume
 	audio.pitch_scale = pitch
@@ -48,9 +51,9 @@ func audio(stream: AudioStream, volume:= 1.0, pitch:= 1.0, pan:= 0.0, start_dela
 	await audio.finished
 	if repeats >= 1:
 		repeats -= 1
-		SpecialFunctions.audio(stream, volume, pitch, pan, repeats, persist_through_scenes)
+		SpecialFunctions.audio(stream, bus, volume, pitch, pan, repeats, persist_through_scenes)
 	elif repeats == -1:
-		SpecialFunctions.audio(stream, volume, pitch, pan, repeats, persist_through_scenes)
+		SpecialFunctions.audio(stream, bus, volume, pitch, pan, repeats, persist_through_scenes)
 
 ## Creates a timer that calls a function after its interval expires. Can be given a start delay, a number of repeats, and a random negative or positive offset.[br]
 ## [br][param function_name]: The name of the function you want to call after the timer expires.
@@ -70,7 +73,7 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 	assert(random_offset_positive >= 0,"Parameter 'random_offset_positive' must be greater than or equal to 0.")
 	
 	
-
+	@warning_ignore("shadowed_variable")
 	var timer = Timer.new()
 	if persist_through_scenes == false:
 		if not deferred:

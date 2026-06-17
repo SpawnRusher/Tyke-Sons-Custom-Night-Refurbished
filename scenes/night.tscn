@@ -1690,7 +1690,6 @@ metadata/_edit_vertical_guides_ = [-306.0]
 
 [node name="Office" type="CanvasLayer" parent="." unique_id=381297013]
 process_mode = 1
-layer = 0
 follow_viewport_enabled = true
 script = ExtResource("1_igavh")
 
@@ -1822,8 +1821,29 @@ centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Office" unique_id=943145618]
 
+[node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
+process_mode = 3
+layer = 2
+visible = false
+script = ExtResource("298_tt6cj")
+
+[node name="Fade" type="ColorRect" parent="Happyshroom" unique_id=191409112]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="Happyshroom" unique_id=1076113802]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("294_0v611")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
 process_mode = 1
+layer = 3
 script = ExtResource("283_0f1a6")
 
 [node name="Sleep_Assurance" type="TextureRect" parent="GUI" unique_id=1275540076]
@@ -1908,27 +1928,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
 
-[node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
-process_mode = 3
-visible = false
-script = ExtResource("298_tt6cj")
-
-[node name="Fade" type="ColorRect" parent="Happyshroom" unique_id=191409112]
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Text" type="RichTextLabel" parent="Happyshroom" unique_id=1076113802]
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("294_0v611")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Jumpscare" type="CanvasLayer" parent="." unique_id=439011563]
 process_mode = 3
+layer = 4
 visible = false
 script = ExtResource("208_r08i8")
 
@@ -1938,6 +1940,7 @@ centered = false
 
 [node name="Go_To_Sleep" type="CanvasLayer" parent="." unique_id=605595461]
 process_mode = 2
+layer = 5
 visible = false
 script = ExtResource("296_45h36")
 

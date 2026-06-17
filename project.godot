@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="Tyke & Son's Custom Night: Refurbished"
+config/version="v0.1.0"
+run/main_scene="uid://boiy8q7xpj33q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,7 +23,6 @@ Global="*uid://dxxlyt06pahul"
 SignalBus="*uid://sy8ekdistfxs"
 SpecialFunctions="*uid://bwuaj8p61dfjw"
 SaveData="*uid://dnouxd2nfhm1r"
-Settings="*uid://cc84ahuhn0m27"
 
 [debug]
 
@@ -32,7 +33,7 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -53,6 +54,6 @@ Mouse_Wheel_Down={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 viewport/transparent_background=true
