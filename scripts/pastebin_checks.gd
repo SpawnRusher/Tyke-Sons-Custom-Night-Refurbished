@@ -35,6 +35,7 @@ func pastebin_get() -> void:
 func request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 		print("Failed to fetch Pastebin. Status code: ", response_code)
+		return
 	pastebin_checks(body.get_string_from_utf8())
 
 

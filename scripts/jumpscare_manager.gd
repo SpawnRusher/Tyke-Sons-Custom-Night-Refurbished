@@ -2,13 +2,17 @@ extends CanvasLayer
 
 @onready var jumpscare_sprite = $Jumpscare_Animations
 
-func _ready() -> void:
-	SignalBus.jumpscare.connect(jumpscare_start)
-	jumpscare_sprite.animation_finished.connect(jumpscare_end)
+const JUMPSCARE_WTF = preload("uid://dvfy70t3fg5oc")
 
-func jumpscare_start(enemy: Enemy, area: String) -> void:
+func _ready() -> void:
+	SignalBus.jumpscare.connect(_jumpscare_start)
+	SignalBus.happyshroom_jumpscare.connect(_happyshroom_jumpscare)
+	jumpscare_sprite.animation_finished.connect(_jumpscare_end)
+
+func _jumpscare_start(enemy: Enemy, area: String) -> void:
 	if not jumpscare_sprite.is_playing():
 		get_tree().paused = true
+		SceneManager.load_scene("res://scenes/game_over.tscn")
 		SpecialFunctions.audio(enemy.jumpscare_sound,1)
 
 		if enemy.jumpscare_middle_uid == null and enemy.jumpscare_bedroom_uid == null:
@@ -29,6 +33,19 @@ func jumpscare_start(enemy: Enemy, area: String) -> void:
 		show()
 		Global.died_to_id = enemy.enemy_id
 
+func _happyshroom_jumpscare(area: String):
+	if not jumpscare_sprite.is_playing():
+		SceneManager.load_scene("res://scenes/game_over.tscn")
+		get_tree().paused = true
+		SpecialFunctions.audio(JUMPSCARE_WTF,1)
+		if area == "middle":
+			jumpscare_sprite.sprite_frames = load("uid://def4na0hddbtv")
+		if area == "bedroom":
+			jumpscare_sprite.sprite_frames = load("uid://ceyirmcu15e87")
+			
+		jumpscare_sprite.play()
+		show()
+		Global.died_to_id = 15
 
-func jumpscare_end():
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+func _jumpscare_end():
+		SceneManager.change_to_scene("res://scenes/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)

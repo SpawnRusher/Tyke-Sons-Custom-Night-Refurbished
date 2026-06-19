@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b6cj7ldkxh614"]
 
-[ext_resource type="Texture2D" uid="uid://brh14odddgcmm" path="res://sprites/menu/portraits/the_chipomats.png" id="1_jaq2b"]
+[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://sprites/menu/portraits/chipomat_1.0.png" id="1_lagqk"]
 [ext_resource type="Script" uid="uid://cqq11s5sen8bw" path="res://enemies/enemy_portrait.gd" id="2_ufxrq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rkrv"]
-atlas = ExtResource("1_jaq2b")
+atlas = ExtResource("1_lagqk")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i38x2"]
@@ -20,7 +20,6 @@ offset_right = 296.0
 offset_bottom = 234.0
 texture = SubResource("AtlasTexture_4rkrv")
 script = ExtResource("2_ufxrq")
-id = null
 
 [node name="Portrait_Border" type="TextureButton" parent="." unique_id=1956503844]
 layout_mode = 0

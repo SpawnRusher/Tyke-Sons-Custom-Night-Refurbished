@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3eflxlutrh0a"
-path="res://.godot/imported/chipper_and_bruce.png-63db785e20a3af5cd20866d0b99d038c.ctex"
+uid="uid://c851rah3g5rvk"
+path="res://.godot/imported/fredbear.png-6499b6952b40ebd448dd2c20de81da7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/menu/portraits/chipper_and_bruce.png"
-dest_files=["res://.godot/imported/chipper_and_bruce.png-63db785e20a3af5cd20866d0b99d038c.ctex"]
+source_file="res://sprites/menu/portraits/fredbear.png"
+dest_files=["res://.godot/imported/fredbear.png-6499b6952b40ebd448dd2c20de81da7b.ctex"]
 
 [params]
 

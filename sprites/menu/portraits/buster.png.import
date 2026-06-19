@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brh14odddgcmm"
-path="res://.godot/imported/the_chipomats.png-130ca4230ef89cf656963b0c8ba8ef23.ctex"
+uid="uid://n62q7imsxula"
+path="res://.godot/imported/buster.png-3c96a1c97a35ecdd856fd9dbdf5b9ead.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/menu/portraits/the_chipomats.png"
-dest_files=["res://.godot/imported/the_chipomats.png-130ca4230ef89cf656963b0c8ba8ef23.ctex"]
+source_file="res://sprites/menu/portraits/buster.png"
+dest_files=["res://.godot/imported/buster.png-3c96a1c97a35ecdd856fd9dbdf5b9ead.ctex"]
 
 [params]
 

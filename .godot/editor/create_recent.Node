@@ -1,3 +1,9 @@
+TextureProgressBar
+ProgressBar
+RichTextLabel
+TextureRect
+GridContainer
+TextEdit
 Label
 HSlider
 Node
@@ -7,9 +13,3 @@ CanvasLayer
 Button
 ColorRect
 Sprite2D
-CanvasModulate
-RichTextLabel
-TextureRect
-AnimatedSprite2D
-TextureButton
-TextureProgressBar

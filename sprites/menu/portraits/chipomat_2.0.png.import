@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da8xxetjtnimg"
-path="res://.godot/imported/the_rockstars.png-1abcae9c363b7484a90a4c046be4dc4f.ctex"
+uid="uid://lct25gjh7tld"
+path="res://.godot/imported/chipomat_2.0.png-0a2c67477d5fd849855449835b0cddd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/menu/portraits/the_rockstars.png"
-dest_files=["res://.godot/imported/the_rockstars.png-1abcae9c363b7484a90a4c046be4dc4f.ctex"]
+source_file="res://sprites/menu/portraits/chipomat_2.0.png"
+dest_files=["res://.godot/imported/chipomat_2.0.png-0a2c67477d5fd849855449835b0cddd2.ctex"]
 
 [params]
 

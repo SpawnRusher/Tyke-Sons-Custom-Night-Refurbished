@@ -1,12 +1,12 @@
-extends TextureRect
+extends RichTextLabel
 
 const SLEEP_ASSURANCE_POINT_BORDER = preload("uid://ck5it5jq4buy4")
 const SLEEP_ASSURANCE_POINT_PROGRESS = preload("uid://irutswq3wufd")
 
-
 @onready var grid = $Sleep_Assurance_Grid
 
-var sleep_assurance_points_goal: float = 8
+var sleep_assurance_points_amount: float = 8
+var sleep_assurance_score_per_point: float = 100
 var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
 
@@ -16,12 +16,12 @@ func _ready() -> void:
 	SignalBus.enemy_defended.connect(_add_score)
 	SignalBus.remove_sleep_assurance.connect(_remove_score)
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
-	for i in sleep_assurance_points_goal:
+	for i in sleep_assurance_points_amount:
 		var temp_point = TextureProgressBar.new()
 		temp_point.texture_under = SLEEP_ASSURANCE_POINT_BORDER
 		temp_point.texture_progress = SLEEP_ASSURANCE_POINT_PROGRESS
 		temp_point.min_value = 0.0
-		temp_point.max_value = 100.0
+		temp_point.max_value = sleep_assurance_score_per_point
 		temp_point.texture_progress_offset = Vector2(6,6)
 		grid.add_child(temp_point)
 		sleep_assurance_points_array.append(temp_point)
@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 				_update_points()
 
 func _update_points():
-	SignalBus.broadcast_sleep_assurance_score.emit(sleep_assurance_current_score/sleep_assurance_points_goal)
+	SignalBus.broadcast_sleep_assurance_score.emit(sleep_assurance_current_score/sleep_assurance_points_amount/sleep_assurance_score_per_point)
 	for points in sleep_assurance_points_array:
 		var point_index = sleep_assurance_points_array.find(points)
 		points.value = sleep_assurance_current_score - (point_index*100)

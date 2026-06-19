@@ -101,7 +101,7 @@ func spawn_chipomat() -> void:
 	side = pick_side()
 	side_string = sides[side]
 	sprite.play(side_string)
-	SpecialFunctions.audio(knock_sound,1,1,side)
+	SpecialFunctions.audio(knock_sound,0,1,1,side)
 	spawned = true
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer

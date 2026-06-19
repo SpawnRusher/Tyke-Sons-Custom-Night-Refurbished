@@ -1,5 +1,8 @@
 extends Node
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 ## Creates an AudioStreamPlayer (or 2D if using panning) to play an audio and delete. Volume, pitch, and panning can be changed, as well as looping the audio any number of times. Audio can be persisted through scenes if needed as well.[br]
 ## [br][param stream]: The AudioStream to play.
 ## [br][param bus]: The index of the audio bus to play audio in.
@@ -51,9 +54,9 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	await audio.finished
 	if repeats >= 1:
 		repeats -= 1
-		SpecialFunctions.audio(stream, bus, volume, pitch, pan, repeats, persist_through_scenes)
+		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
 	elif repeats == -1:
-		SpecialFunctions.audio(stream, bus, volume, pitch, pan, repeats, persist_through_scenes)
+		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
 
 ## Creates a timer that calls a function after its interval expires. Can be given a start delay, a number of repeats, and a random negative or positive offset.[br]
 ## [br][param function_name]: The name of the function you want to call after the timer expires.
@@ -100,9 +103,9 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 	await timer.timeout
 	if repeats >= 1:
 		repeats -= 1
-		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, persist_through_scenes)
+		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, real_time, persist_through_scenes, deferred)
 	elif repeats == -1:
-		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, persist_through_scenes)
+		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, real_time, persist_through_scenes, deferred)
 		
 func in_range(value,min_value,max_value,min_exclusive:=false,max_exclusive:=false) -> bool:
 	if min_exclusive == false and value <= min_value:

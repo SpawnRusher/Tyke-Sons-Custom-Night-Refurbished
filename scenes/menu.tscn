@@ -4,22 +4,35 @@
 [ext_resource type="Script" uid="uid://dha57u0dr8m37" path="res://scripts/menu.gd" id="1_mxgkd"]
 [ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://sprites/menu/bgborder.png" id="2_mxgkd"]
 [ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://enemies/enemy_portrait.tscn" id="3_g6gyw"]
-[ext_resource type="Texture2D" uid="uid://brh14odddgcmm" path="res://sprites/menu/portraits/the_chipomats.png" id="4_3dmrc"]
 [ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://sprites/menu/portraits/fun_fungal.png" id="5_81l6r"]
 [ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://sprites/menu/portraits/springcrab.png" id="6_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://sprites/menu/portraits/chipomat_1.0.png" id="7_fy8yy"]
 [ext_resource type="Texture2D" uid="uid://slavmstc868q" path="res://sprites/menu/portraits/nightmare_chipper.png" id="7_oi1it"]
-[ext_resource type="Texture2D" uid="uid://da8xxetjtnimg" path="res://sprites/menu/portraits/the_rockstars.png" id="9_6wigr"]
+[ext_resource type="Texture2D" uid="uid://lct25gjh7tld" path="res://sprites/menu/portraits/chipomat_2.0.png" id="8_6wigr"]
+[ext_resource type="Texture2D" uid="uid://65i2x5bsnrul" path="res://sprites/menu/portraits/chipomat_3.0.png" id="9_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="10_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://bgec1wacj5fnb" path="res://sprites/menu/portraits/seabill.png" id="11_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="12_x16fv"]
 [ext_resource type="Texture2D" uid="uid://b0wrxl6h6wuxm" path="res://sprites/menu/start0.png" id="13_g54pe"]
 [ext_resource type="Texture2D" uid="uid://bdjjytloqkyhj" path="res://sprites/menu/start1.png" id="14_48ryc"]
-[ext_resource type="Script" uid="uid://0g8mq54tnne6" path="res://scripts/start_button.gd" id="15_vhsb5"]
+[ext_resource type="Texture2D" uid="uid://c851rah3g5rvk" path="res://sprites/menu/portraits/fredbear.png" id="14_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://cfpwsw7msddfh" path="res://sprites/menu/portraits/bidy.png" id="15_x16fv"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="16_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://n62q7imsxula" path="res://sprites/menu/portraits/buster.png" id="16_g54pe"]
+[ext_resource type="Texture2D" uid="uid://b20w7el3jr20g" path="res://sprites/menu/portraits/bruce.png" id="17_48ryc"]
 [ext_resource type="Script" uid="uid://cc84ahuhn0m27" path="res://scripts/settings.gd" id="17_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://sprites/menu/portraits/chipper.png" id="18_vhsb5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbbh3"]
-atlas = ExtResource("4_3dmrc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
+atlas = ExtResource("7_fy8yy")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a04p5"]
+atlas = ExtResource("8_6wigr")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5gwo"]
+atlas = ExtResource("9_lnf0i")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_negbw"]
@@ -34,23 +47,32 @@ region = Rect2(0, 0, 120, 120)
 atlas = ExtResource("7_oi1it")
 region = Rect2(0, 0, 120, 120)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7x65h"]
-atlas = ExtResource("9_6wigr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1aad"]
+atlas = ExtResource("11_ffqrc")
 region = Rect2(0, 0, 120, 120)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x5dr5"]
-load_path = "res://.godot/imported/chipper_and_bruce.png-63db785e20a3af5cd20866d0b99d038c.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x65h"]
+atlas = ExtResource("14_ffqrc")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ndyk"]
+atlas = ExtResource("15_x16fv")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qewb"]
+atlas = ExtResource("16_g54pe")
+region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i3g8"]
-atlas = SubResource("CompressedTexture2D_x5dr5")
+atlas = ExtResource("17_48ryc")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhjd8"]
+atlas = ExtResource("18_vhsb5")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b38jj"]
 atlas = ExtResource("10_lnf0i")
-region = Rect2(0, 0, 120, 120)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j1aad"]
-atlas = ExtResource("11_ffqrc")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5dr5"]
@@ -70,6 +92,14 @@ anchor_mode = 0
 texture = ExtResource("2_mxgkd")
 centered = false
 
+[node name="Fade" type="ColorRect" parent="Camera" unique_id=1632255787]
+top_level = true
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="Menu" type="CanvasLayer" parent="." unique_id=1000497276]
 layer = 0
 follow_viewport_enabled = true
@@ -79,98 +109,110 @@ texture = ExtResource("1_7jp70")
 centered = false
 
 [node name="Start_Button" type="TextureButton" parent="Menu" unique_id=857379688]
-offset_left = 290.5
-offset_top = 318.0
-offset_right = 465.5
-offset_bottom = 388.0
+offset_left = 550.0
+offset_top = 384.0
+offset_right = 725.0
+offset_bottom = 454.0
 action_mode = 0
 texture_normal = ExtResource("13_g54pe")
 texture_hover = ExtResource("14_48ryc")
-script = ExtResource("15_vhsb5")
 metadata/_edit_use_anchors_ = true
 
-[node name="Enemy_Portraits" type="Node" parent="Menu" unique_id=461896928]
+[node name="Enemy_Portraits" type="GridContainer" parent="Menu" unique_id=54844479]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 40.0
+offset_right = 480.0
+offset_bottom = 300.0
+grow_horizontal = 2
+offset_transform_position = Vector2(160, 40)
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 7
 
-[node name="The_Chipomats" parent="Menu/Enemy_Portraits" unique_id=1551062530 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 150.0
-offset_bottom = 150.0
-texture = SubResource("AtlasTexture_tbbh3")
+[node name="Chipomat_1" parent="Menu/Enemy_Portraits" unique_id=1551062530 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hwfsl")
 id = 1
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Fun_Fungal" parent="Menu/Enemy_Portraits" unique_id=1368074244 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 174.0
-offset_top = 30.0
-offset_right = 294.0
-offset_bottom = 150.0
-texture = SubResource("AtlasTexture_negbw")
+[node name="Chipomat_2" parent="Menu/Enemy_Portraits" unique_id=72126778 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a04p5")
 id = 2
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Springcrab" parent="Menu/Enemy_Portraits" unique_id=724411342 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 318.0
-offset_top = 30.0
-offset_right = 438.0
-offset_bottom = 150.0
-texture = SubResource("AtlasTexture_mg76g")
+[node name="Chipomat_3" parent="Menu/Enemy_Portraits" unique_id=1422143944 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_b5gwo")
 id = 3
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Nightmare_Chipper" parent="Menu/Enemy_Portraits" unique_id=110385668 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 462.0
-offset_top = 30.0
-offset_right = 582.0
-offset_bottom = 150.0
-texture = SubResource("AtlasTexture_1beph")
+[node name="Fun_Fungal" parent="Menu/Enemy_Portraits" unique_id=1368074244 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_negbw")
 id = 4
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "He will slowly emerge from the corners of one of the side windows. Keep your flashlight on him until he leaves."
 
-[node name="The_Rockstars" parent="Menu/Enemy_Portraits" unique_id=1501125903 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 30.0
-offset_top = 174.0
-offset_right = 150.0
-offset_bottom = 294.0
-texture = SubResource("AtlasTexture_7x65h")
+[node name="Springcrab" parent="Menu/Enemy_Portraits" unique_id=724411342 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mg76g")
+id = 5
+enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up the alternation!"
+
+[node name="Nightmare_Chipper" parent="Menu/Enemy_Portraits" unique_id=110385668 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1beph")
 id = 6
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "Not designed yet"
 
-[node name="The_Lumberers" parent="Menu/Enemy_Portraits" unique_id=339125956 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 174.0
-offset_top = 174.0
-offset_right = 294.0
-offset_bottom = 294.0
-texture = SubResource("AtlasTexture_5i3g8")
-id = 7
-metadata/_edit_use_anchors_ = true
-
-[node name="Toy" parent="Menu/Enemy_Portraits" unique_id=169010502 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 318.0
-offset_top = 174.0
-offset_right = 438.0
-offset_bottom = 294.0
-texture = SubResource("AtlasTexture_b38jj")
-id = 8
-metadata/_edit_use_anchors_ = true
-
-[node name="Seabill" parent="Menu/Enemy_Portraits" unique_id=1476772420 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 462.0
-offset_top = 174.0
-offset_right = 582.0
-offset_bottom = 294.0
+[node name="Seabill" parent="Menu/Enemy_Portraits" unique_id=1476772420 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
-id = 9
-metadata/_edit_use_anchors_ = true
+id = 7
+enemy_tooltip = "He will announce his attack ahead of time. While he is crossing the front window, keep an eye out for when he turns to look towards you. Make sure to have the lights off when he does!"
 
-[node name="Phantom_Chipomat" parent="Menu/Enemy_Portraits" unique_id=170324132 groups=["Enemy_Portraits"] instance=ExtResource("3_g6gyw")]
-offset_left = 606.0
-offset_top = 174.0
-offset_right = 726.0
-offset_bottom = 294.0
-texture = SubResource("AtlasTexture_x5dr5")
+[node name="Fredbear" parent="Menu/Enemy_Portraits" unique_id=1501125903 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7x65h")
+id = 8
+enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon. Avoid him when navigating the room."
+
+[node name="Bidy" parent="Menu/Enemy_Portraits" unique_id=500944931 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0ndyk")
+id = 9
+enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon. Avoid him when navigating the room."
+
+[node name="Buster" parent="Menu/Enemy_Portraits" unique_id=1158660989 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0qewb")
 id = 10
-metadata/_edit_use_anchors_ = true
+enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon. Avoid him when navigating the room."
+
+[node name="Bruce" parent="Menu/Enemy_Portraits" unique_id=339125956 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5i3g8")
+id = 11
+
+[node name="Chipper" parent="Menu/Enemy_Portraits" unique_id=1587528508 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mhjd8")
+id = 12
+
+[node name="Toy" parent="Menu/Enemy_Portraits" unique_id=169010502 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_b38jj")
+id = 13
+enemy_tooltip = "He will sit in the bedroom, getting up before leaving. After he leaves, shut off the lights until you hear him return upstairs."
+
+[node name="Phantom_Chipomat" parent="Menu/Enemy_Portraits" unique_id=170324132 instance=ExtResource("3_g6gyw")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_x5dr5")
+id = 14
+enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
 
 [node name="Settings_Button" type="Button" parent="Menu" unique_id=1348462967]
 offset_left = 500.0
@@ -187,14 +229,6 @@ theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "SETTINGS"
 flat = true
-
-[node name="Fade" type="ColorRect" parent="Menu" unique_id=1632255787]
-top_level = true
-offset_right = 1280.0
-offset_bottom = 720.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0
@@ -317,6 +351,7 @@ offset_bottom = 276.0
 grow_vertical = 0
 rounded = true
 
+[connection signal="pressed" from="Menu/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Menu/Settings_Button" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="Settings/Menu_Button" to="." method="_on_menu_button_button_down"]
 [connection signal="item_selected" from="Settings/Settings/fullscreen_mode" to="Settings" method="_on_option_button_item_selected" flags=18]

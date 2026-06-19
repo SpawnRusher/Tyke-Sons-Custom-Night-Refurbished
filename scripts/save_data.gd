@@ -20,6 +20,8 @@ var default_keybinds: Dictionary[String,Key] = {
 	}
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	config_file = ConfigFile.new() # Creates new ConfigFile node
 	error_check = config_file.load(FILE_PATH) # Sets a variable to the error output
 	
@@ -44,8 +46,8 @@ func change_data(group: String, setting: String, value, default):
 	_update_settings()
 	
 func _update_settings():
-	AudioServer.set_bus_volume_linear(0,config_file.get_value("settings","master_volume",default_values["master_volume"]))
-	AudioServer.set_bus_volume_linear(1,config_file.get_value("settings","jumpscare_volume",default_values["jumpscare_volume"]))
+	AudioServer.set_bus_volume_linear(0,(config_file.get_value("settings","master_volume",default_values["master_volume"])/100.0))
+	AudioServer.set_bus_volume_linear(1,(config_file.get_value("settings","jumpscare_volume",default_values["jumpscare_volume"])/100.0))
 	
 	Engine.max_fps = config_file.get_value("settings","max_fps",default_values["max_fps"])
 	DisplayServer.window_set_mode(config_file.get_value("settings","fullscreen_mode",default_values["fullscreen_mode"]))

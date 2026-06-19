@@ -1,52 +1,83 @@
-extends AnimatedSprite2D
+extends TextureRect
 
 @onready var office = $"../../Office/Office_BG"
 @onready var player = $Map_Player_Icon
 
+var default_player_position: Vector2 = Vector2(67,53)
 
-@onready var default_player_x: float = player.position.x
-@onready var default_player_y: float = player.position.y
+var window_positions: Dictionary = {
+	"l": {
+		"go":Vector2(11,53),
+		"leave":default_player_position
+		},
+	"r": {
+		"go":Vector2(121,53),
+		"leave":default_player_position
+		},
+	"f": {
+		"go":Vector2(67,11),
+		"leave":default_player_position
+		},
+	"b": {
+		"go":Vector2(67,192),
+		"leave":default_player_position
+		}
+	}
+	
+var timer_durations: Dictionary = {
+	"l": { 
+		"go":0.14, 
+		"leave":0.25 
+		},
+	"r": {
+		"go":0.14,
+		"leave":0.25
+		},
+	"f": {
+		"go":0.18,
+		"leave":0.12
+		},
+	"b": {
+		"go":0.18,
+		"leave":0.7
+		}
+	}
+
+var tween_durations: Dictionary = {
+	"l": { 
+		"go":0.85,
+		"leave":0.85
+		},
+	"r": {
+		"go":0.85,
+		"leave":0.85
+		},
+	"f": {
+		"go":0.85,
+		"leave":0.85
+		},
+	"b": {
+		"go":1.6,
+		"leave":1.4
+		}
+	}
+
+var window_direction: String
+var go_or_leave: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	office.animation_changed.connect(player_icon_tween)
-
+	player.position = default_player_position
 
 func player_icon_tween():
-	if office.animation == "go_l":
-		await get_tree().create_timer(0.14).timeout
+	window_direction = office.animation.right(1)
+	go_or_leave = office.animation.left(office.animation.length()-2)
+	if "go" in go_or_leave or "leave" in go_or_leave:
+		await get_tree().create_timer(timer_durations[window_direction][go_or_leave]).timeout
 		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:x",-63.0,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "leave_l":
-		await get_tree().create_timer(0.25).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:x",default_player_x,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "go_r":
-		await get_tree().create_timer(0.14).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:x",45.0,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "leave_r":
-		await get_tree().create_timer(0.25).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:x",default_player_x,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "go_f":
-		await get_tree().create_timer(0.18).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:y",-137,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "leave_f":
-		await get_tree().create_timer(0.12).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:y",default_player_y,0.85).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "go_b":
-		await get_tree().create_timer(0.18).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:y",41,1.6).set_trans(Tween.TRANS_LINEAR)
-	if office.animation == "leave_b":
-		await get_tree().create_timer(0.7).timeout
-		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position:y",default_player_y,1.4).set_trans(Tween.TRANS_LINEAR)
+		player_tween.tween_property(player,"position",window_positions[window_direction][go_or_leave],tween_durations[window_direction][go_or_leave]).set_trans(Tween.TRANS_LINEAR)
 
 func _activate_happyshroom():
-	player.position.x = default_player_x
-	player.position.y = default_player_y
+	player.position = default_player_position

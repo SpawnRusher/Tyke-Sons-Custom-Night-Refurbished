@@ -7,7 +7,7 @@ const FLASHLIGHT = preload("uid://b1ly4og0c82sg")
 
 func _ready() -> void:
 	SignalBus.go_to_sleep.connect(_go_to_sleep)
-	SpecialFunctions.audio(FOREST_DAWN,0.2,1,0,0,-1,false,false)
+	SpecialFunctions.audio(FOREST_DAWN,0,0.2,1,0,0,-1,false,false)
 	SpecialFunctions.audio(FLASHLIGHT)
 	SpecialFunctions.audio(FLASHLIGHT)
 	

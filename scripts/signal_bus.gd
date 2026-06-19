@@ -2,10 +2,14 @@ extends Node
 
 # warnings-disable
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 signal pastebin_version_check(version_type: String, pastebin_version: String)
 
 signal jumpscare(enemy: Enemy, area: String)
 signal phantom_jumpscare()
+signal happyshroom_jumpscare(area: String)
 
 signal save_data_loaded()
 

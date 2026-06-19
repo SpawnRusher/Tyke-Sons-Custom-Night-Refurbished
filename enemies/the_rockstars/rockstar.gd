@@ -35,7 +35,7 @@ func _ready() -> void:
 	if move_direction == -1:
 		set("icon.position."+move_axis,max_position)
 		
-	SpecialFunctions.timer(blinking,0.2,0,-1,0,0,false)
+	SpecialFunctions.timer(blinking,0.2,0,-1,0,0,false,false,true)
 	SpecialFunctions.timer(start_moving,idle_time,0,0,0,0,false,false,true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

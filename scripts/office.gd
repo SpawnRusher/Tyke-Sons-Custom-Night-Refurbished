@@ -111,7 +111,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if office.animation == "open_b" and office.frame == 1:
 		if event is InputEventKey and event.keycode == KEY_B:
-			if sleep_assurance_current_score >= 100.0:
+			if sleep_assurance_current_score >= 1:
 				SignalBus.go_to_sleep.emit()
 				
 func can_move() -> bool:

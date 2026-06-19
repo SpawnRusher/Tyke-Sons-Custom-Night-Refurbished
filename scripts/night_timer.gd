@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	time_minutes = ((time_elapsed / 1000) / 60) % 60
 	time_hours = (time_elapsed / 3600000)
 		
-	text = ("%02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
+	text = ("     %02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
 	
 	if happyshroom_intro == true:
 		text = "00:00.00"

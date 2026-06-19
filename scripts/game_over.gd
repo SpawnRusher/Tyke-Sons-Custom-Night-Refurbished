@@ -12,11 +12,14 @@ const GAMEOVER = preload("uid://yg3504dqept7")
 var DEATH_VOICELINES: Dictionary[int,Array] = {
 	5: [preload("uid://b5id48dqwf0m4"), preload("uid://ckgneeohdoe85"), preload("uid://cimbwjjv8yekq")],
 	6: [preload("uid://f253c7ggekbv"), preload("uid://cdy8jvlnt2uel"), preload("uid://exn4yf15x3em")],
-	7: [preload("uid://dc4svouk7k6ls")],
-	14: [preload("uid://brmixgfcobol8"), preload("uid://smfc84cdnkb5"), preload("uid://ccgiqqc6k6nd")]
+	13: [preload("uid://brmixgfcobol8"), preload("uid://smfc84cdnkb5"), preload("uid://ccgiqqc6k6nd")],
+	15: [preload("uid://dc4svouk7k6ls")]
 	}
 
 func _ready() -> void:
+	get_tree().paused = false
+	SceneManager.load_scene("res://scenes/menu.tscn")
+	SceneManager.load_scene("res://scenes/night.tscn")
 	SpecialFunctions.audio(GAMEOVER)
 	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false,false,true)
 	var fade_tween = get_tree().create_tween()
@@ -27,10 +30,10 @@ func _ready() -> void:
 func _input(event) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE:
-			get_tree().change_scene_to_file("res://scenes/menu.tscn")
+			SceneManager.change_to_scene("res://scenes/menu.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			get_tree().change_scene_to_file("res://scenes/night.tscn")
+			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
 func move_game_over_text() -> void:
 	text.position.x = default_x + randi_range(-3,3)

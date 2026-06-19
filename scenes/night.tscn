@@ -247,7 +247,6 @@
 [ext_resource type="Texture2D" uid="uid://mxtqwdqxbjjj" path="res://enemies/toy/toy_gone.png" id="235_umusp"]
 [ext_resource type="Texture2D" uid="uid://ddm6s4ueqmeqr" path="res://enemies/toy/toy_sitting.png" id="236_5ma6e"]
 [ext_resource type="Texture2D" uid="uid://c75j0r7wqvgcp" path="res://enemies/toy/toy_standing.png" id="237_4h87h"]
-[ext_resource type="Texture2D" uid="uid://b8n1ks6brqn6q" path="res://sprites/night/sleep_assurance/sleep_assurance.png" id="237_lw42b"]
 [ext_resource type="Texture2D" uid="uid://0y4tm8mo6ae8" path="res://enemies/seabill/sprite/staring/_9.png" id="238_c8hgn"]
 [ext_resource type="Script" uid="uid://8xxuh14e4tf8" path="res://scripts/sleep_assurance.gd" id="238_jupka"]
 [ext_resource type="Script" uid="uid://bf7ejbeuf7kaf" path="res://enemies/the_rockstars/rockstar.gd" id="239_3whfi"]
@@ -324,7 +323,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_5oh6c")
 }],
-"loop": false,
+"loop": 0,
 "name": &"closed_l",
 "speed": 22.5
 }, {
@@ -332,7 +331,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_gosoy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"closed_r",
 "speed": 5.0
 }, {
@@ -349,7 +348,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("198_gosoy")
 }],
-"loop": false,
+"loop": 0,
 "name": &"closing_l",
 "speed": 22.5
 }, {
@@ -366,7 +365,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("208_kw63b")
 }],
-"loop": false,
+"loop": 0,
 "name": &"closing_r",
 "speed": 22.5
 }, {
@@ -506,7 +505,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("46_iay34")
 }],
-"loop": false,
+"loop": 0,
 "name": &"go_b",
 "speed": 22.5
 }, {
@@ -592,7 +591,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("28_pag4h")
 }],
-"loop": false,
+"loop": 0,
 "name": &"go_f",
 "speed": 22.5
 }, {
@@ -675,7 +674,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("31_x4to0")
 }],
-"loop": false,
+"loop": 0,
 "name": &"go_l",
 "speed": 22.5
 }, {
@@ -758,7 +757,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("61_4rfrt")
 }],
-"loop": false,
+"loop": 0,
 "name": &"go_r",
 "speed": 22.5
 }, {
@@ -898,7 +897,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("150_7ydcj")
 }],
-"loop": false,
+"loop": 0,
 "name": &"leave_b",
 "speed": 22.5
 }, {
@@ -978,7 +977,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("61_7oiqe")
 }],
-"loop": false,
+"loop": 0,
 "name": &"leave_f",
 "speed": 22.5
 }, {
@@ -1064,7 +1063,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("32_3ddpl")
 }],
-"loop": false,
+"loop": 0,
 "name": &"leave_l",
 "speed": 22.5
 }, {
@@ -1150,7 +1149,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("61_7oiqe")
 }],
-"loop": false,
+"loop": 0,
 "name": &"leave_r",
 "speed": 22.5
 }, {
@@ -1161,7 +1160,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_th6wt")
 }],
-"loop": false,
+"loop": 0,
 "name": &"office",
 "speed": 0.0
 }, {
@@ -1172,7 +1171,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("182_gosoy")
 }],
-"loop": false,
+"loop": 0,
 "name": &"open_b",
 "speed": 0.0
 }, {
@@ -1186,7 +1185,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("104_paorf")
 }],
-"loop": false,
+"loop": 0,
 "name": &"open_f",
 "speed": 0.0
 }, {
@@ -1197,7 +1196,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("196_kn628")
 }],
-"loop": false,
+"loop": 0,
 "name": &"open_l",
 "speed": 0.0
 }, {
@@ -1208,7 +1207,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("198_nhhs5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"open_r",
 "speed": 0.0
 }, {
@@ -1225,7 +1224,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("204_61njc")
 }],
-"loop": false,
+"loop": 0,
 "name": &"opening_l",
 "speed": 22.5
 }, {
@@ -1242,7 +1241,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("214_pr5k5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"opening_r",
 "speed": 22.5
 }, {
@@ -1265,7 +1264,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("41_8kiro")
 }],
-"loop": false,
+"loop": 0,
 "name": &"return",
 "speed": 22.5
 }, {
@@ -1282,7 +1281,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_gl00i")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turn_b",
 "speed": 22.5
 }, {
@@ -1299,7 +1298,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_0jlnw")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turn_f",
 "speed": 22.5
 }, {
@@ -1313,7 +1312,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_brb7l")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turn_l",
 "speed": 22.5
 }, {
@@ -1327,7 +1326,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_bvi0t")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turn_r",
 "speed": 22.5
 }]
@@ -1338,7 +1337,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_th6wt")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 0.0
 }]
@@ -1349,7 +1348,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_rfwdb")
 }],
-"loop": false,
+"loop": 0,
 "name": &"f",
 "speed": 5.0
 }, {
@@ -1357,7 +1356,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("222_61njc")
 }],
-"loop": false,
+"loop": 0,
 "name": &"l",
 "speed": 0.0
 }, {
@@ -1365,7 +1364,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("223_sxt42")
 }],
-"loop": false,
+"loop": 0,
 "name": &"r",
 "speed": 0.0
 }]
@@ -1376,7 +1375,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("224_i5yv6")
 }],
-"loop": false,
+"loop": 0,
 "name": &"l",
 "speed": 0.0
 }, {
@@ -1384,7 +1383,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("225_pr5k5")
 }],
-"loop": false,
+"loop": 0,
 "name": &"r",
 "speed": 0.0
 }]
@@ -1395,7 +1394,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("224_jkh5f")
 }],
-"loop": false,
+"loop": 0,
 "name": &"l",
 "speed": 0.0
 }, {
@@ -1403,7 +1402,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("225_1rd3u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"r",
 "speed": 0.0
 }]
@@ -1414,7 +1413,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("228_cfy6u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"l",
 "speed": 0.0
 }, {
@@ -1422,7 +1421,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("229_mhlfx")
 }],
-"loop": false,
+"loop": 0,
 "name": &"r",
 "speed": 0.0
 }]
@@ -1433,7 +1432,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("230_usk82")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 0.0
 }]
@@ -1447,7 +1446,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("223_1qvvp")
 }],
-"loop": false,
+"loop": 0,
 "name": &"l",
 "speed": 0.0
 }, {
@@ -1458,7 +1457,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("225_w6qw8")
 }],
-"loop": false,
+"loop": 0,
 "name": &"r",
 "speed": 0.0
 }]
@@ -1478,7 +1477,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("235_umusp")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 0.0
 }]
@@ -1489,7 +1488,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("238_c8hgn")
 }],
-"loop": true,
+"loop": 1,
 "name": &"staring",
 "speed": 0.0
 }, {
@@ -1521,7 +1520,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("247_l0erh")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turning_stare",
 "speed": 18.9
 }, {
@@ -1553,7 +1552,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("239_j5mir")
 }],
-"loop": false,
+"loop": 0,
 "name": &"turning_walk",
 "speed": 18.9
 }, {
@@ -1612,7 +1611,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("266_s1pp0")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walking",
 "speed": 18.9
 }]
@@ -1659,26 +1658,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("280_qm66n")
 }],
-"loop": false,
+"loop": 0,
 "name": &"jumpscare",
 "speed": 27.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dfedx"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_vdi54")
-}],
-"loop": false,
-"name": &"default",
-"speed": 0.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3whfi"]
 animations = [{
 "frames": [],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 0.0
 }]
@@ -1821,9 +1809,122 @@ centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Office" unique_id=943145618]
 
+[node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
+process_mode = 1
+layer = 2
+script = ExtResource("283_0f1a6")
+
+[node name="Sleep_Assurance" type="RichTextLabel" parent="GUI" unique_id=1890374532]
+clip_contents = false
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 267.0
+offset_bottom = 45.0
+theme_override_fonts/normal_font = ExtResource("294_0v611")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Sleep Assurance:"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("238_jupka")
+
+[node name="Sleep_Assurance_Grid" type="GridContainer" parent="GUI/Sleep_Assurance" unique_id=638745915]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 41.0
+offset_right = 253.0
+offset_bottom = 66.0
+theme_override_constants/h_separation = 7
+columns = 8
+
+[node name="Map" type="TextureRect" parent="GUI" unique_id=275795702]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -181.0
+offset_top = -338.0
+offset_right = -30.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_vdi54")
+script = ExtResource("116_vcfqu")
+
+[node name="Map_Player_Icon" type="TextureRect" parent="GUI/Map" unique_id=1261073316]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 53.0
+offset_right = 84.0
+offset_bottom = 70.0
+texture = ExtResource("8_3hi2f")
+
+[node name="Fredbear_Icon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 11.0
+offset_right = 52.0
+offset_bottom = 27.0
+texture = ExtResource("241_n5ss5")
+
+[node name="Buster_Icon" type="TextureRect" parent="GUI/Map" unique_id=1164710387]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 86.0
+offset_right = 107.0
+offset_bottom = 102.0
+texture = ExtResource("242_g0ty3")
+
+[node name="Bidy_Icon" type="TextureRect" parent="GUI/Map" unique_id=921563182]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 86.0
+offset_right = 27.0
+offset_bottom = 102.0
+texture = ExtResource("243_0v4p3")
+
+[node name="Flashlight_Battery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -65.0
+offset_right = 125.0
+offset_bottom = -10.0
+grow_vertical = 0
+step = 0.0
+value = 100.0
+texture_under = ExtResource("7_ywbc3")
+texture_progress = ExtResource("8_dfedx")
+texture_progress_offset = Vector2(6, 5)
+script = ExtResource("9_ccv5v")
+office = NodePath("../../Office/Office_BG")
+batteries = NodePath("../../Office/Office_BG/Batteries")
+batteries_button = NodePath("../../Office/Office_BG/Batteries/Batteries_Button")
+batteries_cooldown = 30.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Night_Timer" type="RichTextLabel" parent="GUI" unique_id=402580439]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -285.0
+offset_bottom = 111.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("294_0v611")
+theme_override_font_sizes/normal_font_size = 48
+text = "     00:00.00"
+scroll_active = false
+script = ExtResource("295_0v611")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
+
 [node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
 process_mode = 3
-layer = 2
+layer = 3
 visible = false
 script = ExtResource("298_tt6cj")
 
@@ -1840,93 +1941,6 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("294_0v611")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
-process_mode = 1
-layer = 3
-script = ExtResource("283_0f1a6")
-
-[node name="Sleep_Assurance" type="TextureRect" parent="GUI" unique_id=1275540076]
-offset_left = 15.0
-offset_top = 12.0
-offset_right = 263.0
-offset_bottom = 41.0
-texture = ExtResource("237_lw42b")
-script = ExtResource("238_jupka")
-metadata/_edit_use_anchors_ = true
-
-[node name="Sleep_Assurance_Grid" type="GridContainer" parent="GUI/Sleep_Assurance" unique_id=638745915]
-custom_minimum_size = Vector2(248, 0)
-layout_mode = 0
-offset_top = 31.0
-offset_right = 248.0
-offset_bottom = 56.0
-theme_override_constants/h_separation = 7
-columns = 8
-metadata/_edit_use_anchors_ = true
-
-[node name="Flashlight_Battery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
-offset_left = 14.0
-offset_top = 651.0
-offset_right = 129.0
-offset_bottom = 706.0
-step = 0.0
-value = 100.0
-texture_under = ExtResource("7_ywbc3")
-texture_progress = ExtResource("8_dfedx")
-texture_progress_offset = Vector2(6, 5)
-script = ExtResource("9_ccv5v")
-office = NodePath("../../Office/Office_BG")
-batteries = NodePath("../../Office/Office_BG/Batteries")
-batteries_button = NodePath("../../Office/Office_BG/Batteries/Batteries_Button")
-batteries_cooldown = 30.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Map" type="AnimatedSprite2D" parent="GUI" unique_id=1903607990]
-position = Vector2(1174, 530)
-sprite_frames = SubResource("SpriteFrames_dfedx")
-script = ExtResource("116_vcfqu")
-
-[node name="Map_Player_Icon" type="TextureRect" parent="GUI/Map" unique_id=1261073316]
-offset_left = -9.0
-offset_top = -94.0
-offset_right = 8.0
-offset_bottom = -77.0
-texture = ExtResource("8_3hi2f")
-
-[node name="Fredbear_Icon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
-offset_left = -39.0
-offset_top = -137.0
-offset_right = -23.0
-offset_bottom = -121.0
-texture = ExtResource("241_n5ss5")
-
-[node name="Buster_Icon" type="TextureRect" parent="GUI/Map" unique_id=1164710387]
-offset_left = 16.0
-offset_top = -62.0
-offset_right = 32.0
-offset_bottom = -46.0
-texture = ExtResource("242_g0ty3")
-
-[node name="Bidy_Icon" type="TextureRect" parent="GUI/Map" unique_id=921563182]
-offset_left = -64.0
-offset_top = -62.0
-offset_right = -48.0
-offset_bottom = -46.0
-texture = ExtResource("243_0v4p3")
-
-[node name="Night_Timer" type="RichTextLabel" parent="GUI" unique_id=402580439]
-offset_left = 1068.0
-offset_right = 1353.0
-offset_bottom = 111.0
-theme_override_fonts/normal_font = ExtResource("294_0v611")
-theme_override_font_sizes/normal_font_size = 48
-text = "00:00.00"
-scroll_active = false
-script = ExtResource("295_0v611")
-metadata/_edit_use_anchors_ = true
-
-[node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
 
 [node name="Jumpscare" type="CanvasLayer" parent="." unique_id=439011563]
 process_mode = 3
@@ -1964,7 +1978,6 @@ leave_timer = 2.0
 random_variance = 0.05
 knock_sound = ExtResource("244_g0ty3")
 enemy_id = 1
-portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://hmexkiu40fv1"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -1979,7 +1992,6 @@ leave_timer = 1.5
 random_variance = 0.1
 knock_sound = ExtResource("246_0v4p3")
 enemy_id = 2
-portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://cgsw7agy1qjmd"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -1994,7 +2006,6 @@ leave_timer = 1.0
 random_variance = 0.15
 knock_sound = ExtResource("247_rh5cc")
 enemy_id = 3
-portrait_id = 1
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dnrmdge40dfkx"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
@@ -2006,7 +2017,6 @@ sprite = NodePath("../../Office/Office_BG/Fun_Fungal")
 progress_timer = 30.0
 idle_timer = 1.0
 enemy_id = 4
-portrait_id = 2
 jumpscare_sound = ExtResource("249_rh5cc")
 jumpscare_middle_uid = "uid://cshws6mtgkvy2"
 metadata/_custom_type_script = "uid://f0vepf3put15"
@@ -2022,7 +2032,6 @@ random_variance = 0.1
 kill_timer_pause_threshold = 1.0
 walking_sound = ExtResource("258_7ujts")
 enemy_id = 5
-portrait_id = 3
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://3jfdm0d3dpxy"
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
@@ -2030,87 +2039,10 @@ metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 [node name="Nightmare_Chipper" type="Node" parent="Enemies" unique_id=370165754]
 script = ExtResource("260_xuceh")
 enemy_id = 6
-portrait_id = 4
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dax66f01j7667"
 jumpscare_bedroom_uid = "uid://clo6xwmvoik7q"
 metadata/_custom_type_script = "uid://bdnro702nmhg3"
-
-[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "sprite")]
-script = ExtResource("239_3whfi")
-player = NodePath("../../GUI/Map/Map_Player_Icon")
-sprite = NodePath("../../GUI/Map/Fredbear_Icon")
-move_axis = "y"
-move_time = 2.0
-min_position = -137.0
-max_position = -62.0
-enemy_id = 8
-portrait_id = 6
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://ds5xydebj2r1t"
-metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
-
-[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "sprite")]
-script = ExtResource("239_3whfi")
-player = NodePath("../../GUI/Map/Map_Player_Icon")
-sprite = NodePath("../../GUI/Map/Buster_Icon")
-move_axis = "y"
-move_time = 2.0
-min_position = -137.0
-max_position = -62.0
-enemy_id = 9
-portrait_id = 6
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://delfuqqlobkqo"
-metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
-
-[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "sprite")]
-script = ExtResource("239_3whfi")
-player = NodePath("../../GUI/Map/Map_Player_Icon")
-sprite = NodePath("../../GUI/Map/Bidy_Icon")
-move_axis = "x"
-move_time = 2.0
-min_position = -64.0
-max_position = 48.0
-enemy_id = 10
-portrait_id = 6
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://1tnfmu8enmc0"
-metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
-
-[node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
-script = ExtResource("261_f68if")
-enemy_id = 12
-portrait_id = 7
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://q3g8sjm1h832"
-metadata/_custom_type_script = "uid://dp3c40drmnlof"
-
-[node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
-script = ExtResource("256_yal7k")
-spawn_timer = 2.5
-lumber_timer = 4.0
-enemy_id = 11
-portrait_id = 7
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://jwd0ebtcbs12"
-metadata/_custom_type_script = "uid://qeu7nri32ca2"
-
-[node name="Toy" type="Node" parent="Enemies" unique_id=1216605080 node_paths=PackedStringArray("office", "sprite")]
-script = ExtResource("263_a818d")
-office = NodePath("../../Office/Office_BG")
-sprite = NodePath("../../Office/Office_BG/Toy")
-spawn_timer = 30.0
-kill_timer = 10.0
-leave_timer = 3.0
-random_variance = 0.1
-kill_timer_pause_threshold = 1.0
-leaving_sound = ExtResource("268_5ma6e")
-enemy_id = 13
-portrait_id = 8
-jumpscare_sound = ExtResource("511_mhlfx")
-jumpscare_middle_uid = "uid://oacgoiegq16"
-metadata/_custom_type_script = "uid://ejhhd5vc7s8g"
 
 [node name="Seabill" type="Node" parent="Enemies" unique_id=1873460938 node_paths=PackedStringArray("office", "dark_office", "dark_flicker", "sprite")]
 script = ExtResource("261_gfeym")
@@ -2128,11 +2060,80 @@ random_variance = 0.1
 start_position = 600.0
 end_position = 1100.0
 stare_times = 3
-enemy_id = 14
-portrait_id = 9
+enemy_id = 7
 jumpscare_sound = ExtResource("511_mhlfx")
 jumpscare_middle_uid = "uid://dwcd7fsh2iu32"
 metadata/_custom_type_script = "uid://dv66h4165ppew"
+
+[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("239_3whfi")
+player = NodePath("../../GUI/Map/Map_Player_Icon")
+sprite = NodePath("../../GUI/Map/Fredbear_Icon")
+move_axis = "y"
+move_time = 2.0
+min_position = 11.0
+max_position = 86.0
+enemy_id = 8
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://ds5xydebj2r1t"
+metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
+
+[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("239_3whfi")
+player = NodePath("../../GUI/Map/Map_Player_Icon")
+sprite = NodePath("../../GUI/Map/Bidy_Icon")
+move_axis = "x"
+move_time = 2.0
+min_position = 11.0
+max_position = 123.0
+enemy_id = 9
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://1tnfmu8enmc0"
+metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
+
+[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("239_3whfi")
+player = NodePath("../../GUI/Map/Map_Player_Icon")
+sprite = NodePath("../../GUI/Map/Buster_Icon")
+move_axis = "y"
+move_time = 2.0
+min_position = 11.0
+max_position = 86.0
+enemy_id = 10
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://delfuqqlobkqo"
+metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
+
+[node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
+script = ExtResource("261_f68if")
+enemy_id = 11
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://q3g8sjm1h832"
+metadata/_custom_type_script = "uid://dp3c40drmnlof"
+
+[node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
+script = ExtResource("256_yal7k")
+spawn_timer = 2.5
+lumber_timer = 4.0
+enemy_id = 12
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://jwd0ebtcbs12"
+metadata/_custom_type_script = "uid://qeu7nri32ca2"
+
+[node name="Toy" type="Node" parent="Enemies" unique_id=1216605080 node_paths=PackedStringArray("office", "sprite")]
+script = ExtResource("263_a818d")
+office = NodePath("../../Office/Office_BG")
+sprite = NodePath("../../Office/Office_BG/Toy")
+spawn_timer = 30.0
+kill_timer = 10.0
+leave_timer = 3.0
+random_variance = 0.1
+kill_timer_pause_threshold = 1.0
+leaving_sound = ExtResource("268_5ma6e")
+enemy_id = 13
+jumpscare_sound = ExtResource("511_mhlfx")
+jumpscare_middle_uid = "uid://oacgoiegq16"
+metadata/_custom_type_script = "uid://ejhhd5vc7s8g"
 
 [node name="Phantom_Chipomat" type="Node" parent="Enemies" unique_id=1597117739 node_paths=PackedStringArray("office", "dark_office", "sprite")]
 script = ExtResource("265_pqj53")
@@ -2140,8 +2141,7 @@ office = NodePath("../../Office/Office_BG")
 dark_office = NodePath("../../Office/Office_BG/Dark_Office_Overlay")
 sprite = NodePath("../../Office/Camera/Phantom_Chipomat")
 attack_timer = 4.0
-enemy_id = 15
-portrait_id = 10
+enemy_id = 14
 jumpscare_sound = ExtResource("267_xx0gj")
 jumpscare_middle_uid = "uid://bdcay5wlrvx68"
 metadata/_custom_type_script = "uid://5w5286ex124e"

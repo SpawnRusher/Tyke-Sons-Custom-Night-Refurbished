@@ -1,20 +1,27 @@
 extends TextureRect
 class_name Enemy_Portrait
 
-enum PORTRAIT_IDS {
+enum ENEMY_IDS {
 	NONE,
-	THE_CHIPOMATS,
+	CHIPOMAT_1,
+	CHIPOMAT_2,
+	CHIPOMAT_3,
 	FUN_FUNGAL,
 	SPRINGCRAB,
 	NIGHTMARE_CHIPPER,
-	THE_ROCKSTARS,
-	THE_LUMBERERS,
-	TOY,
 	SEABILL,
-	PHANTOM_CHIPOMAT }
+	FREDBEAR,
+	BIDY,
+	BUSTER,
+	BRUCE,
+	CHIPPER,
+	TOY,
+	PHANTOM_CHIPOMAT,
+	HAPPYSHROOM }
 
 @export var enabled: bool
-@export var id: PORTRAIT_IDS
+@export var id: ENEMY_IDS
+@export var enemy_tooltip: String
 
 @onready var border: TextureButton = $Portrait_Border
 
