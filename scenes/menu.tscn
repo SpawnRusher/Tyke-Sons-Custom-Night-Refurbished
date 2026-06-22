@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
 [ext_resource type="Script" uid="uid://cc84ahuhn0m27" path="res://scripts/settings.gd" id="22_jamij"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://fonts/default_font_theme.tres" id="23_6wigr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")
@@ -279,36 +280,54 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="master_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=493942687 groups=["volume_settings"]]
+[node name="master_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=493942687]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 437.0
-offset_top = 908.0
+offset_top = 942.0
 offset_right = 737.0
 offset_bottom = 958.0
 grow_vertical = 0
 rounded = true
 
-[node name="jumpscare_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=404807222 groups=["volume_settings"]]
+[node name="Master Volume" type="RichTextLabel" parent="Settings/SettingsList/volume/master_volume" unique_id=130690394]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 267.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Master Volume: 50"
+vertical_alignment = 2
+
+[node name="jumpscare_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=404807222]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 437.0
-offset_top = 958.0
+offset_top = 992.0
 offset_right = 737.0
 offset_bottom = 1008.0
 grow_vertical = 0
 rounded = true
+
+[node name="Jumpscare Volume" type="RichTextLabel" parent="Settings/SettingsList/volume/jumpscare_volume" unique_id=1562110475]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 267.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Jumpscare Volume: 50"
+vertical_alignment = 2
 
 [node name="display" type="Control" parent="Settings/SettingsList" unique_id=1831348896]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="window_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1915524060 groups=["display_settings"]]
+[node name="window_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1915524060]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -326,15 +345,25 @@ popup/item_1/id = 3
 popup/item_2/text = "Exclusive"
 popup/item_2/id = 4
 
-[node name="vsync_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=554088632 groups=["display_settings"]]
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/window_mode" unique_id=2099584273]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 145.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Window Mode"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="vsync_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=554088632]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 160.0
-offset_top = 1044.0
-offset_right = 304.0
-offset_bottom = 1092.0
+offset_left = 158.0
+offset_top = 957.0
+offset_right = 302.0
+offset_bottom = 1005.0
 grow_vertical = 0
 item_count = 4
 popup/item_0/text = "Disabled"
@@ -346,36 +375,83 @@ popup/item_2/id = 2
 popup/item_3/text = "Fast"
 popup/item_3/id = 3
 
-[node name="texture_filter" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1453240696 groups=["display_settings"]]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_top = 956.0
-offset_right = 304.0
-offset_bottom = 1004.0
-grow_vertical = 0
-item_count = 2
-popup/item_0/text = "No Filter"
-popup/item_0/id = 0
-popup/item_1/text = "Smooth"
-popup/item_1/id = 1
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/vsync_mode" unique_id=615267139]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 145.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "VSync Mode"
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="max_fps" type="HSlider" parent="Settings/SettingsList/display" unique_id=1863996720 groups=["display_settings"]]
+[node name="max_fps" type="HSlider" parent="Settings/SettingsList/display" unique_id=1863996720]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 437.0
-offset_top = 1008.0
+offset_top = 1042.0
 offset_right = 737.0
 offset_bottom = 1058.0
 grow_vertical = 0
 min_value = 1.0
 max_value = 360.0
+step = 0.0
 value = 5.0
 rounded = true
+
+[node name="Max FPS" type="RichTextLabel" parent="Settings/SettingsList/display/max_fps" unique_id=2105183446]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 267.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Maximum FPS: 60"
+vertical_alignment = 2
+
+[node name="antialiasing" type="CheckBox" parent="Settings/SettingsList/display" unique_id=307177141]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 1083.0
+offset_right = 244.0
+offset_bottom = 1107.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/antialiasing" unique_id=945133695]
+layout_mode = 0
+offset_left = -119.0
+offset_top = -2.0
+offset_right = 3.0
+offset_bottom = 23.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Antialiasing"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="quality_of_life" type="Control" parent="Settings/SettingsList" unique_id=2034362305]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="auto_restart_on_death" type="CheckBox" parent="Settings/SettingsList/quality_of_life" unique_id=960540720]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 1143.0
+offset_right = 244.0
+offset_bottom = 1167.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/quality_of_life/auto_restart_on_death" unique_id=710052098]
+layout_mode = 0
+offset_left = -125.0
+offset_top = -14.0
+offset_right = 5.0
+offset_bottom = 40.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Auto restart on death"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
@@ -384,5 +460,6 @@ rounded = true
 [connection signal="value_changed" from="Settings/SettingsList/volume/jumpscare_volume" to="Settings" method="_on_slider_value_changed" flags=18]
 [connection signal="item_selected" from="Settings/SettingsList/display/window_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
 [connection signal="item_selected" from="Settings/SettingsList/display/vsync_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="item_selected" from="Settings/SettingsList/display/texture_filter" to="Settings" method="_on_option_button_item_selected" flags=18]
 [connection signal="value_changed" from="Settings/SettingsList/display/max_fps" to="Settings" method="_on_slider_value_changed" flags=18]
+[connection signal="pressed" from="Settings/SettingsList/display/antialiasing" to="Settings" method="_on_check_pressed" flags=18]
+[connection signal="pressed" from="Settings/SettingsList/quality_of_life/auto_restart_on_death" to="Settings" method="_on_check_pressed" flags=18]

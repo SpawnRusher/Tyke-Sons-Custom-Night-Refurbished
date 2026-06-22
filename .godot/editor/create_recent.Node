@@ -1,8 +1,10 @@
+CheckBox
+RichTextLabel
+CheckButton
 Control
 Happyshroom
 TextureProgressBar
 ProgressBar
-RichTextLabel
 TextureRect
 GridContainer
 TextEdit
@@ -10,5 +12,3 @@ Label
 HSlider
 Node
 OptionButton
-ItemList
-CanvasLayer

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bgtihmngvxu4w"]
+
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="1_l6pyv"]
+
+[resource]
+default_font = ExtResource("1_l6pyv")
+default_font_size = 32

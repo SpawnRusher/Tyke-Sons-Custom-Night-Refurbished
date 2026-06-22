@@ -1,82 +1,129 @@
 extends Node
 
-var file_paths: Dictionary[String,String] = {"settings":"user://tscn_settings.json","save":"user://tscn_save.json"}
-
+var file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
+enum FILE_TYPE {SETTINGS, SAVE}
 
 var default_settings_data: Dictionary = {
 	"volume": {
 		"master_volume":50,
 		"jumpscare_volume":50
-		},
+	},
 	"display": {
 		"max_fps":max(60,DisplayServer.screen_get_refresh_rate()),
 		"window_mode":DisplayServer.WINDOW_MODE_WINDOWED,
 		"vsync_mode":DisplayServer.VSYNC_DISABLED,
-		"texture_filter":get_viewport().DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
-		}
+		"antialiasing":get_viewport().DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
+	},
+	"quality_of_life": {
+		"auto_restart_on_death":false,
+	},
+	"gamejolt": {
+		"username":"",
+		"user_token":""
 	}
+}
+	
+var settings_data_to_migrate: Dictionary = {
+	"display": {
+		"texture_filter":"antialiasing"
+	}
+}
+	
+var save_data_to_migrate: Dictionary = {
+	
+}
 
 var settings_data: Dictionary = default_settings_data
 var save_data: Dictionary
 var save_data_encryption_key: String
 
 func _ready() -> void:
-	load_file("settings")
-	load_file("save")
+	load_file(FILE_TYPE.SETTINGS)
+	load_file(FILE_TYPE.SAVE)
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_C:
-			save_file("settings")
-		if event.keycode == KEY_D:
-			save_file("save")
+	if OS.is_debug_build():
+		if event is InputEventKey and event.is_pressed():
+			if event.keycode == KEY_C:
+				save_file(FILE_TYPE.SETTINGS)
+			if event.keycode == KEY_D:
+				save_file(FILE_TYPE.SAVE)
 	
-func save_file(type: String) -> void:
+func save_file(type: FILE_TYPE) -> void:
 	var path:= file_paths[type]
 	var file:= FileAccess.open(path, FileAccess.WRITE)
-	if type == "settings":
+	if type == FILE_TYPE.SETTINGS:
 		file.store_string(JSON.stringify(settings_data, "\t"))
 		_update_settings()
-	elif type == "save":
+	elif type == FILE_TYPE.SAVE:
 		file.store_string(JSON.stringify(save_data, "\t"))
-	else:
-		push_error("Incorrect type used when attempting to save!")
 
-func load_file(type: String) -> void:
+func load_file(type: FILE_TYPE) -> void:
 	var path:= file_paths[type]
 	var file:= FileAccess.open(path, FileAccess.READ)
 	var json:= JSON.new()
 	
 	if FileAccess.file_exists(path):
 		json.parse(file.get_as_text())
-		if type == "settings":
+		if type == FILE_TYPE.SETTINGS:
 			settings_data = json.data
+			await _migrate_data(FILE_TYPE.SETTINGS)
 			_update_settings()
-		elif type == "save":
+		elif type == FILE_TYPE.SAVE:
 			save_data = json.data
-		else:
-			push_error("Failed to load data as the type was incorrect.")
+			_migrate_data(FILE_TYPE.SAVE)
 
 func _update_settings() -> void:
 	AudioServer.set_bus_volume_linear(0,(settings_data["volume"]["master_volume"])/100.0)
 	AudioServer.set_bus_volume_linear(1,(settings_data["volume"]["jumpscare_volume"])/100.0)
 	
-	Engine.max_fps = settings_data["display"]["max_fps"]
-
 	DisplayServer.window_set_mode(settings_data["display"]["window_mode"])
 	DisplayServer.window_set_vsync_mode(settings_data["display"]["vsync_mode"])
 	
-	get_tree().root.canvas_item_default_texture_filter = settings_data["display"]["texture_filter"]
+	Engine.max_fps = settings_data["display"]["max_fps"]
+	
+	get_tree().root.canvas_item_default_texture_filter = settings_data["display"]["antialiasing"]
 
-## Pass an array of keys!
-func change_data(type: String, value: Variant, key1: String, key2: String) -> void:
-	if type != "settings" and type != "save":
-		push_error("Failed to change data as incorrect type was used.")
-		return
-	if type == "settings":
+func change_data(type: FILE_TYPE, value: Variant, key1: String, key2: String) -> void:
+	if type == FILE_TYPE.SETTINGS:
 		settings_data[key1][key2] = value
 		print("Settings data updated: [", key1,"][",key2,"] = " + str(value))
-	elif type == "save":
+	elif type == FILE_TYPE.SAVE:
 		save_data[key1][key2] = value
 		print("Save data updated: [", key1,"][",key2,"] = " + str(value))
 	save_file(type)
+
+## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
+## Currently only supports editing second keys.
+func _migrate_data(type: FILE_TYPE):
+	var temp_value: Variant
+	var current_data: Dictionary
+	var migrate_data: Dictionary
+	
+	# Gets the Settings and Save data dictionaries into one set of variables to not need to copy paste the same code twice
+	if type == FILE_TYPE.SETTINGS:
+		current_data = settings_data.duplicate_deep()
+		migrate_data = settings_data_to_migrate.duplicate_deep()
+	else:
+		current_data = save_data.duplicate_deep()
+		migrate_data = save_data_to_migrate.duplicate_deep()
+		
+	for first_key in migrate_data: # Loop the first-level keys (groups)
+		if first_key in current_data:
+			for second_key in migrate_data[first_key]: # Loop the second-level keys (the keys with the actual values, a.k.a. the settings or save data)
+				if second_key in current_data[first_key]:
+					temp_value = current_data[first_key][second_key] # Saves the value
+					current_data[first_key].erase(second_key) # Delete the old key
+					current_data[first_key][migrate_data[first_key][second_key]] = temp_value # Set the value on the new key. Done!
+	
+	# Update the Dictionaries for Settings and Save data
+	if type == FILE_TYPE.SETTINGS:
+		settings_data = current_data
+		settings_data_to_migrate = migrate_data
+	else:
+		save_data = current_data
+		save_data_to_migrate = migrate_data
+
+		
+		
+	
