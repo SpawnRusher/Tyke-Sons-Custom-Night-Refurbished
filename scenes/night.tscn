@@ -1493,127 +1493,127 @@ animations = [{
 "speed": 0.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("238_43wm1")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("239_uqugn")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("240_b2iwg")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("241_syl3s")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("242_15o2o")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("243_qqmqt")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("244_aknyj")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("245_o5y13")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("246_dhlwh")
 }],
 "loop": 0,
 "name": &"turning_stare",
-"speed": 18.9
+"speed": 45.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("246_dhlwh")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("245_o5y13")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("244_aknyj")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("243_qqmqt")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("242_15o2o")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("241_syl3s")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("240_b2iwg")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("239_uqugn")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("238_43wm1")
 }],
 "loop": 0,
 "name": &"turning_walk",
-"speed": 18.9
+"speed": 45.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("247_j60a1")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("248_v6ort")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("249_n5hop")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("250_bnhoh")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("251_k2qyl")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("252_u7avd")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("253_8yq8l")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("254_q4f15")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("255_26som")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("256_jm8kt")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("257_ow7i8")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("258_a7sq8")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("259_k8uga")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("260_iwia0")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("261_2m31m")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("262_jpxbs")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("263_xnv1k")
 }, {
-"duration": 1.0,
+"duration": 0.42,
 "texture": ExtResource("264_njdep")
 }],
 "loop": 1,
 "name": &"walking",
-"speed": 18.9
+"speed": 45.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r0ah"]
@@ -1751,7 +1751,7 @@ visible = false
 show_behind_parent = true
 position = Vector2(600, 260)
 sprite_frames = SubResource("SpriteFrames_fyxh2")
-animation = &"staring"
+animation = &"turning_stare"
 
 [node name="Batteries" type="TextureProgressBar" parent="Office/OfficeBackground" unique_id=8360262]
 visible = false
@@ -1864,10 +1864,10 @@ player = NodePath("PlayerIcon")
 
 [node name="PlayerIcon" type="TextureRect" parent="GUI/Map" unique_id=1261073316]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 53.0
-offset_right = 84.0
-offset_bottom = 70.0
+offset_left = 68.0
+offset_top = 54.0
+offset_right = 83.0
+offset_bottom = 69.0
 texture = ExtResource("287_3xcf7")
 
 [node name="FredbearIcon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
