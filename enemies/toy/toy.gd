@@ -4,6 +4,8 @@ class_name Toy
 
 ##The office background.
 @export var office: AnimatedSprite2D
+##The dark office overlay.
+@export var dark_overlay: AnimatedSprite2D
 ##The Enemy sprite.
 @export var sprite: AnimatedSprite2D
 ## The time it takes to reach attack stage.
@@ -28,13 +30,13 @@ var stage: int
 var spawned: bool
 var jumpscare_ready: bool
 
-@onready var dark_overlay = $"../../Office/Office_BG/Dark_Office_Overlay"
+
 
 
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 	
 	total_spawn_timer = spawn_timer
@@ -69,7 +71,7 @@ func _process(delta: float) -> void:
 		if current_leave_timer <= 0:
 			leave_toy()
 			
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 

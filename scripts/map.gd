@@ -1,7 +1,7 @@
 extends TextureRect
 
-@onready var office = $"../../Office/Office_BG"
-@onready var player = $Map_Player_Icon
+@export var office: AnimatedSprite2D
+@export var player: TextureRect
 
 var default_player_position: Vector2 = Vector2(67,53)
 
@@ -68,10 +68,10 @@ var go_or_leave: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
-	office.animation_changed.connect(player_icon_tween)
+	office.animation_changed.connect(_player_icon_tween)
 	player.position = default_player_position
 
-func player_icon_tween():
+func _player_icon_tween() -> void:
 	window_direction = office.animation.right(1)
 	go_or_leave = office.animation.left(office.animation.length()-2)
 	if "go" in go_or_leave or "leave" in go_or_leave:
@@ -79,5 +79,5 @@ func player_icon_tween():
 		var player_tween = get_tree().current_scene.create_tween()
 		player_tween.tween_property(player,"position",window_positions[window_direction][go_or_leave],tween_durations[window_direction][go_or_leave]).set_trans(Tween.TRANS_LINEAR)
 
-func _activate_happyshroom():
+func _activate_happyshroom() -> void:
 	player.position = default_player_position

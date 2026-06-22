@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://01yg82jp4lvf"
-path="res://.godot/imported/_17.png-4a4260910a7492ed1790bcc0b4af9d97.ctex"
+path="res://.godot/imported/_17.png-1f2a5bfd84ba4e544d5f31c9031affe7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/seabill/sprite/walking/_17.png"
-dest_files=["res://.godot/imported/_17.png-4a4260910a7492ed1790bcc0b4af9d97.ctex"]
+source_file="res://Enemies/seabill/sprite/walking/_17.png"
+dest_files=["res://.godot/imported/_17.png-1f2a5bfd84ba4e544d5f31c9031affe7.ctex"]
 
 [params]
 

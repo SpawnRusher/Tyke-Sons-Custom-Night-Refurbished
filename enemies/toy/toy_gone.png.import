@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mxtqwdqxbjjj"
-path="res://.godot/imported/toy_gone.png-18fe945b88659e0eff4f4098b259942a.ctex"
+path="res://.godot/imported/toy_gone.png-77607375bd9f8f0135facddb23ce3410.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/toy/toy_gone.png"
-dest_files=["res://.godot/imported/toy_gone.png-18fe945b88659e0eff4f4098b259942a.ctex"]
+source_file="res://Enemies/toy/toy_gone.png"
+dest_files=["res://.godot/imported/toy_gone.png-77607375bd9f8f0135facddb23ce3410.ctex"]
 
 [params]
 

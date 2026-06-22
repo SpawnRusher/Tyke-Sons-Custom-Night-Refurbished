@@ -1,56 +1,82 @@
 extends Node
 
-const FILE_PATH: String = "user://TS_Refurbished.ini"
-var config_file
-var error_check
+var file_paths: Dictionary[String,String] = {"settings":"user://tscn_settings.json","save":"user://tscn_save.json"}
 
-var default_values: Dictionary[String,float] = {
-	"master_volume":50,
-	"jumpscare_volume":50,
-	"fullscreen_mode":0,
-	"vsync_mode":0,
-	"msaa_quality":0,
-	"max_fps":max(DisplayServer.screen_get_refresh_rate(),60)
 
+var default_settings_data: Dictionary = {
+	"volume": {
+		"master_volume":50,
+		"jumpscare_volume":50
+		},
+	"display": {
+		"max_fps":max(60,DisplayServer.screen_get_refresh_rate()),
+		"window_mode":DisplayServer.WINDOW_MODE_WINDOWED,
+		"vsync_mode":DisplayServer.VSYNC_DISABLED,
+		"texture_filter":get_viewport().DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
+		}
 	}
 
-var default_keybinds: Dictionary[String,Key] = {
-	"return_to_menu":KEY_F2,
-	"restart_night":KEY_R
-	}
+var settings_data: Dictionary = default_settings_data
+var save_data: Dictionary
+var save_data_encryption_key: String
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	load_file("settings")
+	load_file("save")
 	
-	config_file = ConfigFile.new() # Creates new ConfigFile node
-	error_check = config_file.load(FILE_PATH) # Sets a variable to the error output
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_C:
+			save_file("settings")
+		if event.keycode == KEY_D:
+			save_file("save")
 	
-	if error_check == 7: # 7 = No file exists
-		config_file.save(FILE_PATH) # Creates file
-		error_check = config_file.load(FILE_PATH) # Sets error output again
-		
-	if error_check != OK:
-		print("An error occurred when loading save data: ", error_check)
-		
-	else: # Success!
-		SignalBus.save_data_loaded.emit()
+func save_file(type: String) -> void:
+	var path:= file_paths[type]
+	var file:= FileAccess.open(path, FileAccess.WRITE)
+	if type == "settings":
+		file.store_string(JSON.stringify(settings_data, "\t"))
 		_update_settings()
-
-func change_data(group: String, setting: String, value, default):
-	if value is String and value == "toggle":
-		config_file.set_value(group,setting,!(config_file.get_value(group,setting,default)))
+	elif type == "save":
+		file.store_string(JSON.stringify(save_data, "\t"))
 	else:
-		config_file.set_value(group,setting,value)
-	config_file.save(FILE_PATH)
-	print("Data changed: ",group,"|",setting,"|",value,"|",default)
-	_update_settings()
+		push_error("Incorrect type used when attempting to save!")
+
+func load_file(type: String) -> void:
+	var path:= file_paths[type]
+	var file:= FileAccess.open(path, FileAccess.READ)
+	var json:= JSON.new()
 	
-func _update_settings():
-	AudioServer.set_bus_volume_linear(0,(config_file.get_value("settings","master_volume",default_values["master_volume"])/100.0))
-	AudioServer.set_bus_volume_linear(1,(config_file.get_value("settings","jumpscare_volume",default_values["jumpscare_volume"])/100.0))
+	if FileAccess.file_exists(path):
+		json.parse(file.get_as_text())
+		if type == "settings":
+			settings_data = json.data
+			_update_settings()
+		elif type == "save":
+			save_data = json.data
+		else:
+			push_error("Failed to load data as the type was incorrect.")
+
+func _update_settings() -> void:
+	AudioServer.set_bus_volume_linear(0,(settings_data["volume"]["master_volume"])/100.0)
+	AudioServer.set_bus_volume_linear(1,(settings_data["volume"]["jumpscare_volume"])/100.0)
 	
-	Engine.max_fps = config_file.get_value("settings","max_fps",default_values["max_fps"])
-	DisplayServer.window_set_mode(config_file.get_value("settings","fullscreen_mode",default_values["fullscreen_mode"]))
-	DisplayServer.window_set_vsync_mode(config_file.get_value("settings","vsync_mode",default_values["vsync_mode"]))
-	RenderingServer.viewport_set_msaa_2d(get_viewport().get_viewport_rid(),config_file.get_value("settings","msaa_quality",default_values["msaa_quality"]))
+	Engine.max_fps = settings_data["display"]["max_fps"]
+
+	DisplayServer.window_set_mode(settings_data["display"]["window_mode"])
+	DisplayServer.window_set_vsync_mode(settings_data["display"]["vsync_mode"])
 	
+	get_tree().root.canvas_item_default_texture_filter = settings_data["display"]["texture_filter"]
+
+## Pass an array of keys!
+func change_data(type: String, value: Variant, key1: String, key2: String) -> void:
+	if type != "settings" and type != "save":
+		push_error("Failed to change data as incorrect type was used.")
+		return
+	if type == "settings":
+		settings_data[key1][key2] = value
+		print("Settings data updated: [", key1,"][",key2,"] = " + str(value))
+	elif type == "save":
+		save_data[key1][key2] = value
+		print("Save data updated: [", key1,"][",key2,"] = " + str(value))
+	save_file(type)

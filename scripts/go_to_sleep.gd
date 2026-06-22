@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-const SLEEPING = preload("uid://u3gc7rokd4kn")
-const SLEEPING_FAKEOUT = preload("uid://b76771chtr3et")
+const SLEEPING: AudioStream = preload("uid://u3gc7rokd4kn")
+const SLEEPING_FAKEOUT: AudioStream = preload("uid://b76771chtr3et")
 
 
-@onready var fade = $Fade
+@export var fade: ColorRect
 
 var happyshroom_active: bool
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	SignalBus.go_to_sleep.connect(_go_to_sleep)
 		
-func _go_to_sleep():
+func _go_to_sleep() -> void:
 	if Global.ENABLED_IDS[15] == true and happyshroom_active == false:
 		SpecialFunctions.audio(SLEEPING_FAKEOUT,0,1,1,0,0,0,true,true)
 	else:
@@ -27,7 +27,7 @@ func _go_to_sleep():
 	else:
 		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
 
-func _activate_happyshroom():
+func _activate_happyshroom() -> void:
 	happyshroom_active = true
 	hide()
 	fade.self_modulate.a = 0

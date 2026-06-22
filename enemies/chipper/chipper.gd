@@ -1,9 +1,9 @@
 extends Enemy
 class_name Chipper
 
-const lumber_scene = preload("res://enemies/chipper/lumber.tscn")
+const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
 
-@onready var camera = get_viewport().get_camera_2d()
+@onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 @export var spawn_timer: float 
 @export var lumber_timer: float
@@ -13,7 +13,7 @@ var current_spawn_timer: float
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 	
 	SignalBus.pickup_lumber.connect(_pickup_lumber)
@@ -32,11 +32,11 @@ func _process(delta: float) -> void:
 		_create_lumber()
 		current_spawn_timer = spawn_timer
 
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 
 func _create_lumber() -> void:
-	var lumber = lumber_scene.instantiate()
+	var lumber: TextureRect = lumber_scene.instantiate()
 	camera.add_child(lumber)
 	lumber.lumber_timer = lumber_timer
 

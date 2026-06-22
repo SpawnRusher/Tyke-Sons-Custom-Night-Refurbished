@@ -1,11 +1,11 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://hmexkiu40fv1"]
 
-[ext_resource type="Texture2D" uid="uid://fldivkyjhotl" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_0.png" id="1_b0x41"]
-[ext_resource type="Texture2D" uid="uid://dg3o4x6xk52yy" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_1.png" id="2_4y3di"]
-[ext_resource type="Texture2D" uid="uid://bhng85yq7vpsi" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_2.png" id="3_rhuv1"]
-[ext_resource type="Texture2D" uid="uid://5r8tlhlxeim" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_3.png" id="4_7c6vr"]
-[ext_resource type="Texture2D" uid="uid://stcep3exmdac" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_4.png" id="5_hokac"]
-[ext_resource type="Texture2D" uid="uid://b76bkvg22sl4f" path="res://enemies/the_chipomats/chipomat_1/jumpscare/_5.png" id="6_lqrwf"]
+[ext_resource type="Texture2D" uid="uid://fldivkyjhotl" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_0.png" id="1_b0x41"]
+[ext_resource type="Texture2D" uid="uid://dg3o4x6xk52yy" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_1.png" id="2_4y3di"]
+[ext_resource type="Texture2D" uid="uid://bhng85yq7vpsi" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_2.png" id="3_rhuv1"]
+[ext_resource type="Texture2D" uid="uid://5r8tlhlxeim" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_3.png" id="4_7c6vr"]
+[ext_resource type="Texture2D" uid="uid://stcep3exmdac" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_4.png" id="5_hokac"]
+[ext_resource type="Texture2D" uid="uid://b76bkvg22sl4f" path="res://Enemies/the_chipomats/chipomat_1/jumpscare/_5.png" id="6_lqrwf"]
 
 [resource]
 animations = [{

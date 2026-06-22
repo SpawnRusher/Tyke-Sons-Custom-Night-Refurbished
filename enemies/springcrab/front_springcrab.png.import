@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt0mv57l1vu5s"
-path="res://.godot/imported/front_springcrab.png-0af20d15dc57e86ae355cf8ad1e7e98e.ctex"
+path="res://.godot/imported/front_springcrab.png-6209a9ed6f8f06db42948582b6562fa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/springcrab/front_springcrab.png"
-dest_files=["res://.godot/imported/front_springcrab.png-0af20d15dc57e86ae355cf8ad1e7e98e.ctex"]
+source_file="res://Enemies/springcrab/front_springcrab.png"
+dest_files=["res://.godot/imported/front_springcrab.png-6209a9ed6f8f06db42948582b6562fa0.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chema75d5tbpp"
-path="res://.godot/imported/_6.png-196bf4e905de47a65dadcb6bb67491c3.ctex"
+path="res://.godot/imported/_6.png-a9eb3e3c39c9b3baee4ab2734073d380.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/seabill/sprite/turning/_6.png"
-dest_files=["res://.godot/imported/_6.png-196bf4e905de47a65dadcb6bb67491c3.ctex"]
+source_file="res://Enemies/seabill/sprite/turning/_6.png"
+dest_files=["res://.godot/imported/_6.png-a9eb3e3c39c9b3baee4ab2734073d380.ctex"]
 
 [params]
 

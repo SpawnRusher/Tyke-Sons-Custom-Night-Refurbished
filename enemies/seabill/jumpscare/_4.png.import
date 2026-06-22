@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm00ydw5pnupf"
-path="res://.godot/imported/_4.png-1aac6ab51c807b993402b476ef7a2b35.ctex"
+path="res://.godot/imported/_4.png-d878d67dea1f9f5de562d091690773ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/seabill/jumpscare/_4.png"
-dest_files=["res://.godot/imported/_4.png-1aac6ab51c807b993402b476ef7a2b35.ctex"]
+source_file="res://Enemies/seabill/jumpscare/_4.png"
+dest_files=["res://.godot/imported/_4.png-d878d67dea1f9f5de562d091690773ce.ctex"]
 
 [params]
 

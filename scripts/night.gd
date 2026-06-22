@@ -1,9 +1,9 @@
 extends Node2D
 
-const FOREST_DAWN = preload("uid://hnoau12gy4nu")
-const FLASHLIGHT = preload("uid://b1ly4og0c82sg")
+const FOREST_DAWN: AudioStream = preload("uid://hnoau12gy4nu")
+const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
 
-@onready var go_to_sleep: CanvasLayer = $Go_To_Sleep
+@export var go_to_sleep: CanvasLayer
 
 func _ready() -> void:
 	SignalBus.go_to_sleep.connect(_go_to_sleep)

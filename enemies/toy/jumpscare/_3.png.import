@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clf5ko547bcb5"
-path="res://.godot/imported/_3.png-a1bc37f6cb4c86d9e2bdafffd3ff710e.ctex"
+path="res://.godot/imported/_3.png-2f854fd53651a72d81dbeadab9a5621e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/toy/jumpscare/_3.png"
-dest_files=["res://.godot/imported/_3.png-a1bc37f6cb4c86d9e2bdafffd3ff710e.ctex"]
+source_file="res://Enemies/toy/jumpscare/_3.png"
+dest_files=["res://.godot/imported/_3.png-2f854fd53651a72d81dbeadab9a5621e.ctex"]
 
 [params]
 

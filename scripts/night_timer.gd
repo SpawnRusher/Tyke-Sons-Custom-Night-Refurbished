@@ -34,9 +34,9 @@ func _process(delta: float) -> void:
 	if happyshroom_intro == true:
 		text = "00:00.00"
 
-func _update_happyshroom_intro():
+func _update_happyshroom_intro() -> void:
 	happyshroom_intro = true
 
-func _update_happyshroom_start_time():
+func _update_happyshroom_start_time() -> void:
 	time_happyshroom_start = Time.get_ticks_msec()
 	happyshroom_intro = false

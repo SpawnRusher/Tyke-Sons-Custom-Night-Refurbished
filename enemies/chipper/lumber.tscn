@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://i1kgthfoxabk"]
 
-[ext_resource type="Script" uid="uid://ct7podfhfihc5" path="res://enemies/chipper/lumber.gd" id="1_keo0h"]
-[ext_resource type="Texture2D" uid="uid://wkwoyiyrresu" path="res://enemies/chipper/lumber_brown.png" id="1_w77jl"]
+[ext_resource type="Script" uid="uid://ct7podfhfihc5" path="res://Enemies/chipper/lumber.gd" id="1_keo0h"]
+[ext_resource type="Texture2D" uid="uid://wkwoyiyrresu" path="res://Enemies/chipper/lumber_brown.png" id="1_w77jl"]
 
 [node name="Lumber" type="TextureRect" unique_id=1125661381]
 offset_right = 144.0

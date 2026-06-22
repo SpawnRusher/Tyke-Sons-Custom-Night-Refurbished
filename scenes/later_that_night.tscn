@@ -4,8 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://drxrys54liejp" path="res://sprites/later_that_night/Active_0-0_0.png" id="2_uurvf"]
 [ext_resource type="Texture2D" uid="uid://0qbmwcbdfdcv" path="res://sprites/later_that_night/Active 3_0-0_0.png" id="3_l1iar"]
 
-[node name="Later_That_Night" type="Node2D" unique_id=1648555687]
+[node name="LaterThatNight" type="Node2D" unique_id=1648555687 node_paths=PackedStringArray("background", "text", "fade")]
 script = ExtResource("1_pkw6q")
+background = NodePath("Background")
+text = NodePath("Text")
+fade = NodePath("Fade")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=305762863]
 position = Vector2(640, 1040)

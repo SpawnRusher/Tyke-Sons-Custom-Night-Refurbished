@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://exn4yf15x3em"
-path="res://.godot/imported/nightmare_chipper_death_3.ogg-6e1505c18a38655b2968e6b7e64d3bb3.oggvorbisstr"
+path="res://.godot/imported/nightmare_chipper_death_3.ogg-c5d581157fbbe70aceb18ae6e8cf6d1d.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/nightmare_chipper/death_voicelines/nightmare_chipper_death_3.ogg"
-dest_files=["res://.godot/imported/nightmare_chipper_death_3.ogg-6e1505c18a38655b2968e6b7e64d3bb3.oggvorbisstr"]
+source_file="res://Enemies/nightmare_chipper/death_voicelines/nightmare_chipper_death_3.ogg"
+dest_files=["res://.godot/imported/nightmare_chipper_death_3.ogg-c5d581157fbbe70aceb18ae6e8cf6d1d.oggvorbisstr"]
 
 [params]
 

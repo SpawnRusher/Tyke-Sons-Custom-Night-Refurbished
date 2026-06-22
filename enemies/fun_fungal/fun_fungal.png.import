@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7u86g24282sd"
-path="res://.godot/imported/fun_fungal.png-c10b249b00ec7f83edfb0d9bbaa4f1a2.ctex"
+path="res://.godot/imported/fun_fungal.png-1f0bb42c4ae385e939fbc776e872b4f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fun_fungal/fun_fungal.png"
-dest_files=["res://.godot/imported/fun_fungal.png-c10b249b00ec7f83edfb0d9bbaa4f1a2.ctex"]
+source_file="res://Enemies/fun_fungal/fun_fungal.png"
+dest_files=["res://.godot/imported/fun_fungal.png-1f0bb42c4ae385e939fbc776e872b4f7.ctex"]
 
 [params]
 

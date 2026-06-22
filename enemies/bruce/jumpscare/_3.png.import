@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d03313g75qagy"
-path="res://.godot/imported/_3.png-1ffc991ed7eb6570255da41d31a79742.ctex"
+path="res://.godot/imported/_3.png-7d96cacb901aaf5915f7e8653e7fa2fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bruce/jumpscare/_3.png"
-dest_files=["res://.godot/imported/_3.png-1ffc991ed7eb6570255da41d31a79742.ctex"]
+source_file="res://Enemies/bruce/jumpscare/_3.png"
+dest_files=["res://.godot/imported/_3.png-7d96cacb901aaf5915f7e8653e7fa2fe.ctex"]
 
 [params]
 

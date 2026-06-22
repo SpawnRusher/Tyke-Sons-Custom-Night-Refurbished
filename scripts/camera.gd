@@ -3,7 +3,7 @@ extends Camera2D
 var goto: float = 200
 var lockpos: float = -1
 
-@onready var office = $"../Office_BG"
+@export var office: AnimatedSprite2D
 
 func _ready() -> void:
 	position.x = goto

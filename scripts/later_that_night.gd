@@ -1,10 +1,10 @@
 extends Node2D
 
-const STAIRSUP = preload("uid://c12xjq2e7f4ix")
+const STAIRSUP: AudioStream = preload("uid://c12xjq2e7f4ix")
 
-@onready var background = $Background
-@onready var text = $Text
-@onready var fade = $Fade
+@export var background: Sprite2D
+@export var text: Sprite2D
+@export var fade: ColorRect
 
 
 var enter_night: bool
@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		
 
 func _ready() -> void:
-	SceneManager.load_scene("res://scenes/night.tscn")
+	SceneManager.load_scene("res://scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(fade,"self_modulate:a",0,0.5)
 	

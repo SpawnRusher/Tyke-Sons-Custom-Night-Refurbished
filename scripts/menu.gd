@@ -1,20 +1,21 @@
 extends Node2D
 
-const LOUD_BUTTON_PRESS = preload("uid://dljncvmipnl1d")
+const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
-@onready var camera: Camera2D = $Camera/Camera
-@onready var fade: ColorRect = $Camera/Fade
+@export var fade: ColorRect
+
+@onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 func _ready() -> void:
+	SceneManager.unload_scene("res://scenes/menu.tscn")
+	SceneManager.load_scene("res://scenes/later_that_night.tscn")
 	fade.visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",0,0.5)
 
-
 func _on_settings_button_button_down() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera,"position:y",720,0.2)
-
 
 func _on_menu_button_button_down() -> void:
 	var tween = get_tree().create_tween()
@@ -25,4 +26,4 @@ func _on_start_button_pressed() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished
-	get_tree().change_scene_to_file("res://scenes/later_that_night.tscn")
+	SceneManager.change_to_scene("res://scenes/later_that_night.tscn")

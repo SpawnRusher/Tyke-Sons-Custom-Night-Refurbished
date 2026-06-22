@@ -1,8 +1,8 @@
 extends TextureProgressBar
 
-const QUIETBUTTONPRESS = preload("uid://dubq1cwtm73fs")
-const FLASHLIGHT = preload("uid://b1ly4og0c82sg")
-const FLASHLIGHT_DEAD = preload("uid://iwmdlvotnfwa")
+const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
+const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
+const FLASHLIGHT_DEAD: AudioStream = preload("uid://iwmdlvotnfwa")
 
 var using_flashlight: bool
 
@@ -61,7 +61,7 @@ func _on_batteries_button_pressed() -> void:
 		current_batteries_cooldown = 0
 		SpecialFunctions.audio(QUIETBUTTONPRESS)
 
-func visibility_checks():
+func visibility_checks() -> void:
 	if office.animation != "open_b":
 		batteries.visible = false
 	else:
@@ -70,7 +70,7 @@ func visibility_checks():
 		if office.frame == 1:
 			batteries.value = current_batteries_cooldown
 			
-func _activate_happyshroom():
+func _activate_happyshroom() -> void:
 	value = 100
 	using_flashlight = false
 	SignalBus.update_flashlight_state.emit(using_flashlight)

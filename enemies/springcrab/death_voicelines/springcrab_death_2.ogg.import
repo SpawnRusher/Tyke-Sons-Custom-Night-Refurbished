@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://ckgneeohdoe85"
-path="res://.godot/imported/springcrab_death_2.ogg-ca0f76f98ac11580a4fc8978b1341d24.oggvorbisstr"
+path="res://.godot/imported/springcrab_death_2.ogg-48a2853efe57cde286bdd4817a3aad9f.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/springcrab/death_voicelines/springcrab_death_2.ogg"
-dest_files=["res://.godot/imported/springcrab_death_2.ogg-ca0f76f98ac11580a4fc8978b1341d24.oggvorbisstr"]
+source_file="res://Enemies/springcrab/death_voicelines/springcrab_death_2.ogg"
+dest_files=["res://.godot/imported/springcrab_death_2.ogg-48a2853efe57cde286bdd4817a3aad9f.oggvorbisstr"]
 
 [params]
 

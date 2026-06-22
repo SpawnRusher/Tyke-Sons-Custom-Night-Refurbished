@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://laco0tc7l474"
-path="res://.godot/imported/chipomat_3_knocking.ogg-84cc0298032c07f49e6c15bce5d40419.oggvorbisstr"
+path="res://.godot/imported/chipomat_3_knocking.ogg-2a2dbbb74b27050882b1f6804614a467.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/the_chipomats/chipomat_3/chipomat_3_knocking.ogg"
-dest_files=["res://.godot/imported/chipomat_3_knocking.ogg-84cc0298032c07f49e6c15bce5d40419.oggvorbisstr"]
+source_file="res://Enemies/the_chipomats/chipomat_3/chipomat_3_knocking.ogg"
+dest_files=["res://.godot/imported/chipomat_3_knocking.ogg-2a2dbbb74b27050882b1f6804614a467.oggvorbisstr"]
 
 [params]
 

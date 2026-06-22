@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bukykvto7ccxo"
-path="res://.godot/imported/_6.png-c0648d800bb77df79558d755c55b5c5c.ctex"
+path="res://.godot/imported/_6.png-720bd761e9cab1ad1ce6ac9c82194263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/phantom_chipomat/jumpscare/_6.png"
-dest_files=["res://.godot/imported/_6.png-c0648d800bb77df79558d755c55b5c5c.ctex"]
+source_file="res://Enemies/phantom_chipomat/jumpscare/_6.png"
+dest_files=["res://.godot/imported/_6.png-720bd761e9cab1ad1ce6ac9c82194263.ctex"]
 
 [params]
 

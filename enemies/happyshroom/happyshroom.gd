@@ -1,13 +1,25 @@
-extends CanvasLayer
+extends Enemy
+class_name Happyshroom
 
-@onready var office_layer = $"../Office"
-@onready var office = $"../Office/Office_BG"
-@onready var office_modulate = $"../Office/CanvasModulate"
-@onready var camera = $"../Office/Camera"
-@onready var gui = $"../GUI"
-@onready var gui_modulate = $"../GUI/CanvasModulate"
-@onready var fade = $Fade
-@onready var text = $Text
+@export var enemies_list: Node
+
+@export_group("Canvas Layers")
+@export_subgroup("Office")
+@export var office_layer: CanvasLayer
+@export var office: AnimatedSprite2D
+@export var office_modulate: CanvasModulate
+@export_subgroup("GUI Layer")
+@export var gui_layer: CanvasLayer
+@export var gui_modulate: CanvasModulate
+@export_subgroup("Happyshroom Layer")
+@export var happyshroom_layer: CanvasLayer
+@export var happyshroom_fade: ColorRect
+@export var happyshroom_text: RichTextLabel
+
+@export_group("Happyshroom AI")
+@export var testvar: int
+
+@onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 const HAPPYSHROOM_BOSS_MUSIC = preload("uid://cwjw1aqycksxv")
 
@@ -19,11 +31,14 @@ var happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid:
 
 func _ready() -> void:
 	if Global.ENABLED_IDS.find(false,1) != -1:
-		queue_free()
-	else:
-		Global.ENABLED_IDS[15] = true
+		deactivate()
+		return
+	Global.ENABLED_IDS[ENEMY_IDS.HAPPYSHROOM] = true
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	SignalBus.start_happyshroom_fight.connect(start_fight)
+	
+func deactivate() -> void:
+	happyshroom_layer.queue_free()
 
 func _activate_happyshroom() -> void:
 	get_tree().paused = false
@@ -34,37 +49,34 @@ func _activate_happyshroom() -> void:
 	camera.lockpos = -1
 	gui_modulate.color = Color(1,0,0)
 	office_modulate.color = Color(4.416, 0.0, 0.0)
-	show()
+	happyshroom_layer.show()
 	intro_dialogue()
 	
-func intro_dialogue():
+func intro_dialogue() -> void:
 	for i in 4:
 		if i == 3:
 			SpecialFunctions.audio(happyshroom_laughs[3],0,0.1,0.5)
-		text.self_modulate = Color(255,255-((255/4.0)*(i+1)),255-((255/4.0)*(i+1)))
-		text.text = dialogue[i]
+		happyshroom_text.self_modulate = Color(255,255-((255/4.0)*(i+1)),255-((255/4.0)*(i+1)))
+		happyshroom_text.text = dialogue[i]
 		await get_tree().create_timer(3).timeout
 		if i == 3:
 			await get_tree().create_timer(2).timeout
 		var tween = get_tree().create_tween()
-		tween.tween_property(text,"self_modulate:a",0,3)
+		tween.tween_property(happyshroom_text,"self_modulate:a",0,3)
 		await tween.finished
 		await get_tree().create_timer(3).timeout
 		if i == 3:
 			await get_tree().create_timer(2).timeout
 	var tween = get_tree().create_tween()
-	tween.tween_property(fade,"self_modulate:a",0,2)
+	tween.tween_property(happyshroom_fade,"self_modulate:a",0,2)
 	await tween.finished
 	SignalBus.start_happyshroom_fight.emit()
-	fade.visible = false
+	happyshroom_fade.visible = false
 
-func start_fight():
+func start_fight() -> void:
 	office_layer.lock_movement = false
 	
-func deactivate_enemies():
-	var enemies = $"../Enemies".get_children()
+func deactivate_enemies() -> void:
+	var enemies = enemies_list.get_children()
 	for i in enemies:
-		i._queue_free()
-
-func _jumpscare(area:= "middle"):
-	SignalBus.happyshroom_jumpscare.emit(area)
+		i.deactivate()

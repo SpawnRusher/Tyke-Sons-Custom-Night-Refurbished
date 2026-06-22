@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnv51maqao53t"
-path="res://.godot/imported/_11.png-6df195a6a9f63e9b3b770e1e8e3fbc31.ctex"
+path="res://.godot/imported/_11.png-0bcdd578b521e02dc88efb8d89d05f8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/happyshroom/jumpscare/bedroom/_11.png"
-dest_files=["res://.godot/imported/_11.png-6df195a6a9f63e9b3b770e1e8e3fbc31.ctex"]
+source_file="res://Enemies/happyshroom/jumpscare/bedroom/_11.png"
+dest_files=["res://.godot/imported/_11.png-0bcdd578b521e02dc88efb8d89d05f8b.ctex"]
 
 [params]
 

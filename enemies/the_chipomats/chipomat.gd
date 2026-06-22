@@ -21,9 +21,7 @@ class_name Chipomat
 
 var side: int
 var side_string: String
-var sides: Dictionary[int,String] = {
-	-1: "l",
-	1: "r" }
+var sides: Dictionary[int,String] = {-1: "l", 1: "r"}
 var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
@@ -37,7 +35,7 @@ var office_animation_direction: String
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -74,7 +72,7 @@ func _process(delta: float) -> void:
 		if current_kill_timer <= 0:
 			prepare_jumpscare()
 			
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 			
@@ -91,7 +89,7 @@ func visibility_checks() -> void:
 		sprite.visible = true
 	
 func pick_side() -> int:
-	side = wrapi(randi_range(1,2),-1,2)
+	side = [-1,1].pick_random()
 	if sides[side] == office_animation_direction:
 		if "open" in office.animation or "clos" in office.animation: # "clos" to detect "close_" and "closing_"
 			return (side*-1)

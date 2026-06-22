@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cb5buwn7on0gi" path="res://scripts/loading_screen.gd" id="1_tsis2"]
 
-[node name="Game_Checks" type="Node2D" unique_id=924286489]
+[node name="GameChecks" type="Node2D" unique_id=924286489 node_paths=PackedStringArray("text")]
 script = ExtResource("1_tsis2")
+text = NodePath("Text")
 
 [node name="Text" type="RichTextLabel" parent="." unique_id=1358065877]
 offset_right = 1280.0

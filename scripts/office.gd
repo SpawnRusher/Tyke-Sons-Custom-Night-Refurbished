@@ -1,11 +1,12 @@
 extends CanvasLayer
 
-@onready var office = $Office_BG
-@onready var lamp = $Lamp_Button
-@onready var camera = $Camera
-@onready var window_bg = $Office_BG/Window_BG
-@onready var front_window = $Office_BG/Front_Window
-@onready var dark_overlay = $Office_BG/Dark_Office_Overlay
+@export var office: AnimatedSprite2D
+@export var lamp_button: Button
+@export var window_background: AnimatedSprite2D
+@export var front_window: AnimatedSprite2D
+@export var dark_overlay: AnimatedSprite2D
+
+@onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 var last_animation_played: String
 var animation_direction: String
@@ -15,12 +16,15 @@ var using_flashlight: bool
 var sleep_assurance_current_score: float
 var happyshroom_fight_active: bool
 
-const RUNNING = preload("uid://dn18i7vrgqil8")
-const STAIRS_DOWN = preload("uid://douddgjtsblw3")
-const STAIRS_UP = preload("uid://c12xjq2e7f4ix")
-const CURTAIN_CLOSING = preload("uid://dyiyvq3cj3wg1")
-const CURTAIN_OPENING = preload("uid://bh2qhxmm805wf")
-const NOSE_HONK = preload("uid://dp2sm6go3v2r4")
+#region AudioStreams
+const RUNNING: AudioStream = preload("uid://dn18i7vrgqil8")
+const STAIRS_DOWN: AudioStream = preload("uid://douddgjtsblw3")
+const STAIRS_UP: AudioStream = preload("uid://c12xjq2e7f4ix")
+const CURTAIN_CLOSING: AudioStream = preload("uid://dyiyvq3cj3wg1")
+const CURTAIN_OPENING: AudioStream = preload("uid://bh2qhxmm805wf")
+const NOSE_HONK: AudioStream = preload("uid://dp2sm6go3v2r4")
+const LAMPTOGGLE: AudioStream = preload("uid://bf8j1xugtu8dh")
+#endregion
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,6 +37,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	lamp_button.disabled = false
+	if office.animation != "office":
+		lamp_button.disabled = true
+	lamp_button.visible = !lamp_button.disabled
+	
 	if office.animation == "office":
 		turn_checks()
 			
@@ -101,7 +110,7 @@ func _process(_delta: float) -> void:
 		if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
 			if can_move() == true:
 				office.play("leave_"+animation_direction)
-				window_bg.visible = false
+				window_background.visible = false
 				if animation_direction == "b": 
 					SpecialFunctions.audio(STAIRS_DOWN)
 				else: 
@@ -117,7 +126,7 @@ func _input(event: InputEvent) -> void:
 func can_move() -> bool:
 	if lock_movement == true:
 		return false
-	if lamp.button_pressed == true:
+	if lamp_button.button_pressed == true:
 		return false
 	if "turn" in office.animation:
 		return false
@@ -140,8 +149,8 @@ func can_move() -> bool:
 func _animation_finished() -> void:
 	if last_animation_played == "return":
 		office.play("office")
-		window_bg.play("f")
-		window_bg.visible = true
+		window_background.play("f")
+		window_background.visible = true
 		
 	elif "turn" in last_animation_played:
 		camera.lockpos = 0
@@ -149,9 +158,9 @@ func _animation_finished() -> void:
 		
 	elif "go" in last_animation_played:
 		office.play("open_"+animation_direction)
-		window_bg.visible = true
+		window_background.visible = true
 		if animation_direction == "l" or animation_direction == "r":
-			window_bg.play(animation_direction)
+			window_background.play(animation_direction)
 		
 	elif "leave" in last_animation_played:
 		camera.lockpos = -1
@@ -164,7 +173,7 @@ func _animation_finished() -> void:
 	elif "closing" in last_animation_played:
 		office.play("closed_"+animation_direction)
 		
-func turn_checks():
+func turn_checks() -> void:
 	if can_move() == true:
 		if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100):
 			office.play("turn_l")
@@ -184,15 +193,18 @@ func turn_checks():
 func _update_last_animation_played() -> void:
 	last_animation_played = office.animation
 	
-func update_flashlight_state(flashlight_state) -> void:
+func update_flashlight_state(flashlight_state: bool) -> void:
 	using_flashlight = flashlight_state
 	
-func _update_sleep_assurance_score(score):
+func _update_sleep_assurance_score(score) -> void:
 	sleep_assurance_current_score = score
 	
-func _start_happyshroom_fight():
+func _start_happyshroom_fight() -> void:
 	happyshroom_fight_active = true
-
 
 func _on_nose_pressed() -> void:
 	SpecialFunctions.audio(NOSE_HONK)
+
+func _on_lamp_button_pressed(source: BaseButton) -> void:
+	SpecialFunctions.audio(LAMPTOGGLE)
+	dark_overlay.visible = source.button_pressed

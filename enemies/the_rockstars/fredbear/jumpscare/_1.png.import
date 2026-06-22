@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsau6eqyu4csm"
-path="res://.godot/imported/_1.png-4d0fecc57acbfb600c194fb2ef633b6c.ctex"
+path="res://.godot/imported/_1.png-f2106bba63697d1ae544c38fb4b8b205.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/the_rockstars/fredbear/jumpscare/_1.png"
-dest_files=["res://.godot/imported/_1.png-4d0fecc57acbfb600c194fb2ef633b6c.ctex"]
+source_file="res://Enemies/the_rockstars/fredbear/jumpscare/_1.png"
+dest_files=["res://.godot/imported/_1.png-f2106bba63697d1ae544c38fb4b8b205.ctex"]
 
 [params]
 

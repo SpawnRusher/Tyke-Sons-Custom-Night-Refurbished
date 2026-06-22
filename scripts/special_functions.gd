@@ -17,9 +17,10 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	assert(repeats >= -1,"Parameter 'repeats' must be greater than or equal to -1.")
 	
 	@warning_ignore("shadowed_variable")
-	var audio = AudioStreamPlayer.new()
-	if pan != 0:
+	var audio: Node = AudioStreamPlayer.new()
+	if pan > 0.0:
 		audio = AudioStreamPlayer2D.new()
+
 		
 		
 	if not persist_through_scenes:
@@ -37,7 +38,7 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	audio.finished.connect(audio.queue_free)
 	
 	if pan != 0:
-		var camera = get_viewport().get_camera_2d()
+		var camera: Camera2D = get_viewport().get_camera_2d()
 		audio.position.x = (camera.position.x+640)+(640*pan)
 	audio.bus = AudioServer.get_bus_name(bus)
 	audio.stream = stream
@@ -77,7 +78,7 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 	
 	
 	@warning_ignore("shadowed_variable")
-	var timer = Timer.new()
+	var timer:= Timer.new()
 	if persist_through_scenes == false:
 		if not deferred:
 			get_tree().current_scene.add_child(timer)
@@ -107,7 +108,7 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 	elif repeats == -1:
 		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, real_time, persist_through_scenes, deferred)
 		
-func in_range(value,min_value,max_value,min_exclusive:=false,max_exclusive:=false) -> bool:
+func in_range(value: float,min_value: float,max_value: float,min_exclusive:=false,max_exclusive:=false) -> bool:
 	if min_exclusive == false and value <= min_value:
 		return false
 	if min_exclusive == true and value < min_value:

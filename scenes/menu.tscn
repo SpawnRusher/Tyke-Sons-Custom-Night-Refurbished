@@ -1,86 +1,87 @@
 [gd_scene format=3 uid="uid://toc38okidr1k"]
 
-[ext_resource type="Texture2D" uid="uid://ck264h375n4j7" path="res://sprites/menu/bg.png" id="1_7jp70"]
-[ext_resource type="Script" uid="uid://dha57u0dr8m37" path="res://scripts/menu.gd" id="1_mxgkd"]
-[ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://sprites/menu/bgborder.png" id="2_mxgkd"]
-[ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://enemies/enemy_portrait.tscn" id="3_g6gyw"]
-[ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://sprites/menu/portraits/fun_fungal.png" id="5_81l6r"]
-[ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://sprites/menu/portraits/springcrab.png" id="6_rsfmq"]
-[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://sprites/menu/portraits/chipomat_1.0.png" id="7_fy8yy"]
-[ext_resource type="Texture2D" uid="uid://slavmstc868q" path="res://sprites/menu/portraits/nightmare_chipper.png" id="7_oi1it"]
-[ext_resource type="Texture2D" uid="uid://lct25gjh7tld" path="res://sprites/menu/portraits/chipomat_2.0.png" id="8_6wigr"]
-[ext_resource type="Texture2D" uid="uid://65i2x5bsnrul" path="res://sprites/menu/portraits/chipomat_3.0.png" id="9_lnf0i"]
-[ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="10_lnf0i"]
-[ext_resource type="Texture2D" uid="uid://bgec1wacj5fnb" path="res://sprites/menu/portraits/seabill.png" id="11_ffqrc"]
-[ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="12_x16fv"]
-[ext_resource type="Texture2D" uid="uid://b0wrxl6h6wuxm" path="res://sprites/menu/start0.png" id="13_g54pe"]
-[ext_resource type="Texture2D" uid="uid://bdjjytloqkyhj" path="res://sprites/menu/start1.png" id="14_48ryc"]
-[ext_resource type="Texture2D" uid="uid://c851rah3g5rvk" path="res://sprites/menu/portraits/fredbear.png" id="14_ffqrc"]
-[ext_resource type="Texture2D" uid="uid://cfpwsw7msddfh" path="res://sprites/menu/portraits/bidy.png" id="15_x16fv"]
-[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="16_g6gyw"]
-[ext_resource type="Texture2D" uid="uid://n62q7imsxula" path="res://sprites/menu/portraits/buster.png" id="16_g54pe"]
-[ext_resource type="Texture2D" uid="uid://b20w7el3jr20g" path="res://sprites/menu/portraits/bruce.png" id="17_48ryc"]
-[ext_resource type="Script" uid="uid://cc84ahuhn0m27" path="res://scripts/settings.gd" id="17_g6gyw"]
-[ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://sprites/menu/portraits/chipper.png" id="18_vhsb5"]
+[ext_resource type="Script" uid="uid://dha57u0dr8m37" path="res://scripts/menu.gd" id="1_fy8yy"]
+[ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://sprites/menu/bgborder.png" id="2_6wigr"]
+[ext_resource type="Texture2D" uid="uid://ck264h375n4j7" path="res://sprites/menu/bg.png" id="3_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://b0wrxl6h6wuxm" path="res://sprites/menu/start0.png" id="4_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://bdjjytloqkyhj" path="res://sprites/menu/start1.png" id="5_x16fv"]
+[ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://Enemies/EnemyPortrait.tscn" id="6_g54pe"]
+[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://sprites/menu/portraits/chipomat_1.0.png" id="7_48ryc"]
+[ext_resource type="Texture2D" uid="uid://lct25gjh7tld" path="res://sprites/menu/portraits/chipomat_2.0.png" id="8_vhsb5"]
+[ext_resource type="Texture2D" uid="uid://65i2x5bsnrul" path="res://sprites/menu/portraits/chipomat_3.0.png" id="9_hwfsl"]
+[ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://sprites/menu/portraits/fun_fungal.png" id="10_a04p5"]
+[ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://sprites/menu/portraits/springcrab.png" id="11_b5gwo"]
+[ext_resource type="Texture2D" uid="uid://slavmstc868q" path="res://sprites/menu/portraits/nightmare_chipper.png" id="12_0ndyk"]
+[ext_resource type="Texture2D" uid="uid://bgec1wacj5fnb" path="res://sprites/menu/portraits/seabill.png" id="13_0qewb"]
+[ext_resource type="Texture2D" uid="uid://c851rah3g5rvk" path="res://sprites/menu/portraits/fredbear.png" id="14_mhjd8"]
+[ext_resource type="Texture2D" uid="uid://cfpwsw7msddfh" path="res://sprites/menu/portraits/bidy.png" id="15_d3h35"]
+[ext_resource type="Texture2D" uid="uid://n62q7imsxula" path="res://sprites/menu/portraits/buster.png" id="16_v8lyk"]
+[ext_resource type="Texture2D" uid="uid://b20w7el3jr20g" path="res://sprites/menu/portraits/bruce.png" id="17_ruys5"]
+[ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://sprites/menu/portraits/chipper.png" id="18_jlmas"]
+[ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="19_qfcyc"]
+[ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
+[ext_resource type="Script" uid="uid://cc84ahuhn0m27" path="res://scripts/settings.gd" id="22_jamij"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
-atlas = ExtResource("7_fy8yy")
+atlas = ExtResource("7_48ryc")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a04p5"]
-atlas = ExtResource("8_6wigr")
+atlas = ExtResource("8_vhsb5")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5gwo"]
-atlas = ExtResource("9_lnf0i")
+atlas = ExtResource("9_hwfsl")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_negbw"]
-atlas = ExtResource("5_81l6r")
+atlas = ExtResource("10_a04p5")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mg76g"]
-atlas = ExtResource("6_rsfmq")
+atlas = ExtResource("11_b5gwo")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1beph"]
-atlas = ExtResource("7_oi1it")
+atlas = ExtResource("12_0ndyk")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1aad"]
-atlas = ExtResource("11_ffqrc")
+atlas = ExtResource("13_0qewb")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7x65h"]
-atlas = ExtResource("14_ffqrc")
+atlas = ExtResource("14_mhjd8")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ndyk"]
-atlas = ExtResource("15_x16fv")
+atlas = ExtResource("15_d3h35")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qewb"]
-atlas = ExtResource("16_g54pe")
+atlas = ExtResource("16_v8lyk")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i3g8"]
-atlas = ExtResource("17_48ryc")
+atlas = ExtResource("17_ruys5")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhjd8"]
-atlas = ExtResource("18_vhsb5")
+atlas = ExtResource("18_jlmas")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b38jj"]
-atlas = ExtResource("10_lnf0i")
+atlas = ExtResource("19_qfcyc")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5dr5"]
-atlas = ExtResource("12_x16fv")
+atlas = ExtResource("20_spe5f")
 region = Rect2(0, 0, 120, 120)
 
-[node name="Menu" type="Node2D" unique_id=87801377]
-script = ExtResource("1_mxgkd")
+[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade")]
+script = ExtResource("1_fy8yy")
+fade = NodePath("Camera/Fade")
 
 [node name="Camera" type="CanvasLayer" parent="." unique_id=481994971]
 follow_viewport_enabled = true
@@ -88,11 +89,12 @@ follow_viewport_enabled = true
 [node name="Camera" type="Camera2D" parent="Camera" unique_id=903196640]
 anchor_mode = 0
 
-[node name="bg_border" type="Sprite2D" parent="Camera/Camera" unique_id=1510366116]
-texture = ExtResource("2_mxgkd")
+[node name="BackgroundBorder" type="Sprite2D" parent="Camera/Camera" unique_id=1510366116]
+texture = ExtResource("2_6wigr")
 centered = false
 
 [node name="Fade" type="ColorRect" parent="Camera" unique_id=1632255787]
+visible = false
 top_level = true
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -104,21 +106,21 @@ metadata/_edit_use_anchors_ = true
 layer = 0
 follow_viewport_enabled = true
 
-[node name="bg" type="Sprite2D" parent="Menu" unique_id=2051899676]
-texture = ExtResource("1_7jp70")
+[node name="Background" type="Sprite2D" parent="Menu" unique_id=2051899676]
+texture = ExtResource("3_lnf0i")
 centered = false
 
-[node name="Start_Button" type="TextureButton" parent="Menu" unique_id=857379688]
+[node name="StartButton" type="TextureButton" parent="Menu" unique_id=857379688]
 offset_left = 550.0
 offset_top = 384.0
 offset_right = 725.0
 offset_bottom = 454.0
 action_mode = 0
-texture_normal = ExtResource("13_g54pe")
-texture_hover = ExtResource("14_48ryc")
+texture_normal = ExtResource("4_ffqrc")
+texture_hover = ExtResource("5_x16fv")
 metadata/_edit_use_anchors_ = true
 
-[node name="Enemy_Portraits" type="GridContainer" parent="Menu" unique_id=54844479]
+[node name="EnemyPortraitGrid" type="GridContainer" parent="Menu" unique_id=54844479]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -132,89 +134,91 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 7
 
-[node name="Chipomat_1" parent="Menu/Enemy_Portraits" unique_id=1551062530 instance=ExtResource("3_g6gyw")]
+[node name="Chipomat1" parent="Menu/EnemyPortraitGrid" unique_id=1551062530 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_hwfsl")
-id = 1
+enemy_id = 1
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Chipomat_2" parent="Menu/Enemy_Portraits" unique_id=72126778 instance=ExtResource("3_g6gyw")]
+[node name="Chipomat2" parent="Menu/EnemyPortraitGrid" unique_id=72126778 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a04p5")
-id = 2
+enemy_id = 2
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Chipomat_3" parent="Menu/Enemy_Portraits" unique_id=1422143944 instance=ExtResource("3_g6gyw")]
+[node name="Chipomat3" parent="Menu/EnemyPortraitGrid" unique_id=1422143944 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b5gwo")
-id = 3
+enemy_id = 3
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Fun_Fungal" parent="Menu/Enemy_Portraits" unique_id=1368074244 instance=ExtResource("3_g6gyw")]
+[node name="FunFungal" parent="Menu/EnemyPortraitGrid" unique_id=1368074244 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_negbw")
-id = 4
+enemy_id = 4
 enemy_tooltip = "He will slowly emerge from the corners of one of the side windows. Keep your flashlight on him until he leaves."
 
-[node name="Springcrab" parent="Menu/Enemy_Portraits" unique_id=724411342 instance=ExtResource("3_g6gyw")]
+[node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mg76g")
-id = 5
+enemy_id = 5
 enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up the alternation!"
 
-[node name="Nightmare_Chipper" parent="Menu/Enemy_Portraits" unique_id=110385668 instance=ExtResource("3_g6gyw")]
+[node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_1beph")
-id = 6
+enemy_id = 6
 enemy_tooltip = "Not designed yet"
 
-[node name="Seabill" parent="Menu/Enemy_Portraits" unique_id=1476772420 instance=ExtResource("3_g6gyw")]
+[node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
-id = 7
+enemy_id = 7
 enemy_tooltip = "He will announce his attack ahead of time. While he is crossing the front window, keep an eye out for when he turns to look towards you. Make sure to have the lights off when he does!"
 
-[node name="Fredbear" parent="Menu/Enemy_Portraits" unique_id=1501125903 instance=ExtResource("3_g6gyw")]
+[node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_7x65h")
-id = 8
+enemy_id = 8
 enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon. Avoid him when navigating the room."
 
-[node name="Bidy" parent="Menu/Enemy_Portraits" unique_id=500944931 instance=ExtResource("3_g6gyw")]
+[node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0ndyk")
-id = 9
+enemy_id = 9
 enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon. Avoid him when navigating the room."
 
-[node name="Buster" parent="Menu/Enemy_Portraits" unique_id=1158660989 instance=ExtResource("3_g6gyw")]
+[node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0qewb")
-id = 10
+enemy_id = 10
 enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon. Avoid him when navigating the room."
 
-[node name="Bruce" parent="Menu/Enemy_Portraits" unique_id=339125956 instance=ExtResource("3_g6gyw")]
+[node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_5i3g8")
-id = 11
+enemy_id = 11
+enemy_tooltip = "ZZZZZ buzz buzz saw"
 
-[node name="Chipper" parent="Menu/Enemy_Portraits" unique_id=1587528508 instance=ExtResource("3_g6gyw")]
+[node name="Chipper" parent="Menu/EnemyPortraitGrid" unique_id=1587528508 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mhjd8")
-id = 12
+enemy_id = 12
+enemy_tooltip = "Lumber lumber lumber"
 
-[node name="Toy" parent="Menu/Enemy_Portraits" unique_id=169010502 instance=ExtResource("3_g6gyw")]
+[node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b38jj")
-id = 13
+enemy_id = 13
 enemy_tooltip = "He will sit in the bedroom, getting up before leaving. After he leaves, shut off the lights until you hear him return upstairs."
 
-[node name="Phantom_Chipomat" parent="Menu/Enemy_Portraits" unique_id=170324132 instance=ExtResource("3_g6gyw")]
+[node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
-id = 14
+enemy_id = 13
 enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
 
-[node name="Settings_Button" type="Button" parent="Menu" unique_id=1348462967]
+[node name="SettingsButton" type="Button" parent="Menu" unique_id=1348462967]
 offset_left = 500.0
 offset_top = 640.0
 offset_right = 780.0
@@ -224,23 +228,24 @@ theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("16_g6gyw")
+theme_override_fonts/font = ExtResource("21_jcbs5")
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "SETTINGS"
 flat = true
 
-[node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
+[node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389 node_paths=PackedStringArray("settings_list")]
 layer = 0
 follow_viewport_enabled = true
-script = ExtResource("17_g6gyw")
+script = ExtResource("22_jamij")
+settings_list = NodePath("SettingsList")
 
-[node name="bg" type="Sprite2D" parent="Settings" unique_id=437575964]
+[node name="Background" type="Sprite2D" parent="Settings" unique_id=437575964]
 position = Vector2(0, 720)
-texture = ExtResource("1_7jp70")
+texture = ExtResource("3_lnf0i")
 centered = false
 
-[node name="Menu_Button" type="Button" parent="Settings" unique_id=531978215]
+[node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -254,22 +259,64 @@ theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("16_g6gyw")
+theme_override_fonts/font = ExtResource("21_jcbs5")
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "MENU"
 flat = true
 
-[node name="Settings" type="Node" parent="Settings" unique_id=460778122]
-
-[node name="fullscreen_mode" type="OptionButton" parent="Settings/Settings" unique_id=1915524060]
+[node name="SettingsList" type="Control" parent="Settings" unique_id=124095562]
+layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 128.0
-offset_right = 264.0
-offset_bottom = 176.0
+offset_top = -720.0
+offset_bottom = -720.0
+grow_vertical = 0
+
+[node name="volume" type="Control" parent="Settings/SettingsList" unique_id=891494158]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="master_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=493942687 groups=["volume_settings"]]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 437.0
+offset_top = 908.0
+offset_right = 737.0
+offset_bottom = 958.0
+grow_vertical = 0
+rounded = true
+
+[node name="jumpscare_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=404807222 groups=["volume_settings"]]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 437.0
+offset_top = 958.0
+offset_right = 737.0
+offset_bottom = 1008.0
+grow_vertical = 0
+rounded = true
+
+[node name="display" type="Control" parent="Settings/SettingsList" unique_id=1831348896]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="window_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1915524060 groups=["display_settings"]]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 860.0
+offset_right = 304.0
+offset_bottom = 908.0
 grow_vertical = 0
 item_count = 3
 popup/item_0/text = "Windowed"
@@ -279,14 +326,15 @@ popup/item_1/id = 3
 popup/item_2/text = "Exclusive"
 popup/item_2/id = 4
 
-[node name="vsync_mode" type="OptionButton" parent="Settings/Settings" unique_id=554088632]
+[node name="vsync_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=554088632 groups=["display_settings"]]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 312.0
-offset_right = 264.0
-offset_bottom = 360.0
+offset_left = 160.0
+offset_top = 1044.0
+offset_right = 304.0
+offset_bottom = 1092.0
 grow_vertical = 0
 item_count = 4
 popup/item_0/text = "Disabled"
@@ -298,65 +346,43 @@ popup/item_2/id = 2
 popup/item_3/text = "Fast"
 popup/item_3/id = 3
 
-[node name="msaa_quality" type="OptionButton" parent="Settings/Settings" unique_id=1453240696]
+[node name="texture_filter" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1453240696 groups=["display_settings"]]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 224.0
-offset_right = 264.0
-offset_bottom = 272.0
+offset_left = 160.0
+offset_top = 956.0
+offset_right = 304.0
+offset_bottom = 1004.0
 grow_vertical = 0
-item_count = 4
-popup/item_0/text = "Disabled (Fastest)"
+item_count = 2
+popup/item_0/text = "No Filter"
 popup/item_0/id = 0
-popup/item_1/text = "MSAA 2x (Slow)"
+popup/item_1/text = "Smooth"
 popup/item_1/id = 1
-popup/item_2/text = "MSAA 4x (Slower)"
-popup/item_2/id = 2
-popup/item_3/text = "MSAA 8x (Slowest)"
-popup/item_3/id = 3
 
-[node name="max_fps" type="HSlider" parent="Settings/Settings" unique_id=1863996720]
+[node name="max_fps" type="HSlider" parent="Settings/SettingsList/display" unique_id=1863996720 groups=["display_settings"]]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 397.0
-offset_top = 276.0
-offset_right = 697.0
-offset_bottom = 326.0
+offset_left = 437.0
+offset_top = 1008.0
+offset_right = 737.0
+offset_bottom = 1058.0
 grow_vertical = 0
+min_value = 1.0
 max_value = 360.0
+value = 5.0
 rounded = true
 
-[node name="master_volume" type="HSlider" parent="Settings/Settings" unique_id=493942687]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 397.0
-offset_top = 176.0
-offset_right = 697.0
-offset_bottom = 226.0
-grow_vertical = 0
-rounded = true
-
-[node name="jumpscare_volume" type="HSlider" parent="Settings/Settings" unique_id=404807222]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 397.0
-offset_top = 226.0
-offset_right = 697.0
-offset_bottom = 276.0
-grow_vertical = 0
-rounded = true
-
-[connection signal="pressed" from="Menu/Start_Button" to="." method="_on_start_button_pressed"]
-[connection signal="button_down" from="Menu/Settings_Button" to="." method="_on_settings_button_button_down"]
-[connection signal="button_down" from="Settings/Menu_Button" to="." method="_on_menu_button_button_down"]
-[connection signal="item_selected" from="Settings/Settings/fullscreen_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="item_selected" from="Settings/Settings/vsync_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="item_selected" from="Settings/Settings/msaa_quality" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="value_changed" from="Settings/Settings/max_fps" to="Settings" method="_on_slider_value_changed" flags=18]
-[connection signal="value_changed" from="Settings/Settings/master_volume" to="Settings" method="_on_slider_value_changed" flags=18]
-[connection signal="value_changed" from="Settings/Settings/jumpscare_volume" to="Settings" method="_on_slider_value_changed" flags=18]
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
+[connection signal="value_changed" from="Settings/SettingsList/volume/master_volume" to="Settings" method="_on_slider_value_changed" flags=18]
+[connection signal="value_changed" from="Settings/SettingsList/volume/jumpscare_volume" to="Settings" method="_on_slider_value_changed" flags=18]
+[connection signal="item_selected" from="Settings/SettingsList/display/window_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
+[connection signal="item_selected" from="Settings/SettingsList/display/vsync_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
+[connection signal="item_selected" from="Settings/SettingsList/display/texture_filter" to="Settings" method="_on_option_button_item_selected" flags=18]
+[connection signal="value_changed" from="Settings/SettingsList/display/max_fps" to="Settings" method="_on_slider_value_changed" flags=18]

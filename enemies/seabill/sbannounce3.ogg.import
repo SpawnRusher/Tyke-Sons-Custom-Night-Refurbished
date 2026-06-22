@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://c6c0yurye6vqp"
-path="res://.godot/imported/sbannounce3.ogg-78dba6ca52491432946beec64b1ef478.oggvorbisstr"
+path="res://.godot/imported/sbannounce3.ogg-adcefffe42376f68b2464311751efcae.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/seabill/sbannounce3.ogg"
-dest_files=["res://.godot/imported/sbannounce3.ogg-78dba6ca52491432946beec64b1ef478.oggvorbisstr"]
+source_file="res://Enemies/seabill/sbannounce3.ogg"
+dest_files=["res://.godot/imported/sbannounce3.ogg-adcefffe42376f68b2464311751efcae.oggvorbisstr"]
 
 [params]
 

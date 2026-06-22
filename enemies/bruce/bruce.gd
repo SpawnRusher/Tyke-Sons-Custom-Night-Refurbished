@@ -4,8 +4,8 @@ class_name Bruce
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()

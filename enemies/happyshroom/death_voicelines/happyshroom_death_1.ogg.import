@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://dc4svouk7k6ls"
-path="res://.godot/imported/happyshroom_death_1.ogg-f9116a247e822af91c4ede6e3f156ba3.oggvorbisstr"
+path="res://.godot/imported/happyshroom_death_1.ogg-a5eddf187718717e0d54b2ce1259a0c5.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/happyshroom/death_voicelines/happyshroom_death_1.ogg"
-dest_files=["res://.godot/imported/happyshroom_death_1.ogg-f9116a247e822af91c4ede6e3f156ba3.oggvorbisstr"]
+source_file="res://Enemies/happyshroom/death_voicelines/happyshroom_death_1.ogg"
+dest_files=["res://.godot/imported/happyshroom_death_1.ogg-a5eddf187718717e0d54b2ce1259a0c5.oggvorbisstr"]
 
 [params]
 

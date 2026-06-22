@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ocvqc3rylgqj"
-path="res://.godot/imported/_18.png-8b9e132dfd5e67e3a8b7b50b95a66570.ctex"
+path="res://.godot/imported/_18.png-f1339fb7c63c3140536dc27d97f306b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/nightmare_chipper/jumpscare/bedroom/_18.png"
-dest_files=["res://.godot/imported/_18.png-8b9e132dfd5e67e3a8b7b50b95a66570.ctex"]
+source_file="res://Enemies/nightmare_chipper/jumpscare/bedroom/_18.png"
+dest_files=["res://.godot/imported/_18.png-f1339fb7c63c3140536dc27d97f306b8.ctex"]
 
 [params]
 

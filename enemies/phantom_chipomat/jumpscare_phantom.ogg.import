@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://c6ljbstllxkrm"
-path="res://.godot/imported/jumpscare_phantom.ogg-8a8125e97f99a6443e87e981e9f372b4.oggvorbisstr"
+path="res://.godot/imported/jumpscare_phantom.ogg-59bf903175ab918fa21e7bc83f65bffe.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/phantom_chipomat/jumpscare_phantom.ogg"
-dest_files=["res://.godot/imported/jumpscare_phantom.ogg-8a8125e97f99a6443e87e981e9f372b4.oggvorbisstr"]
+source_file="res://Enemies/phantom_chipomat/jumpscare_phantom.ogg"
+dest_files=["res://.godot/imported/jumpscare_phantom.ogg-59bf903175ab918fa21e7bc83f65bffe.oggvorbisstr"]
 
 [params]
 

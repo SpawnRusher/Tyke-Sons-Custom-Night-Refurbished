@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://cfh0sbfs55bjn"
-path="res://.godot/imported/happyshroom_startle_2.ogg-1bd4a9e72926cfee7ef3ad88082a8705.oggvorbisstr"
+path="res://.godot/imported/happyshroom_startle_2.ogg-38d46ca2f8bd7b3e038a88cae7f21f10.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/happyshroom/startles/happyshroom_startle_2.ogg"
-dest_files=["res://.godot/imported/happyshroom_startle_2.ogg-1bd4a9e72926cfee7ef3ad88082a8705.oggvorbisstr"]
+source_file="res://Enemies/happyshroom/startles/happyshroom_startle_2.ogg"
+dest_files=["res://.godot/imported/happyshroom_startle_2.ogg-38d46ca2f8bd7b3e038a88cae7f21f10.oggvorbisstr"]
 
 [params]
 

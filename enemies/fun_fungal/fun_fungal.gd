@@ -20,7 +20,7 @@ var lerp_progress: float
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 
 	reset()
@@ -52,13 +52,13 @@ func _process(delta: float) -> void:
 	if current_progress >= progress_timer:
 		jumpscare()
 
-func _queue_free():
+func deactivate():
 	self.queue_free()
 	sprite.queue_free()
 
 func reset() -> void:
 	SignalBus.enemy_defended.emit(self)
-	await get_tree().create_timer(idle_timer)
+	await get_tree().create_timer(idle_timer).timeout
 	side = wrapi(randi_range(1,2),-1,2)
 	sprite.rotation_degrees = 180 - (45 * side) # 1 == 135, -1 == 255
 	current_progress = 0

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4byijicsjkpd"
-path="res://.godot/imported/_13.png-e471b4da18d10e50cfd5ab8169e71193.ctex"
+path="res://.godot/imported/_13.png-f828390ac41c68f58868c263c4e08ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/springcrab/jumpscare/_13.png"
-dest_files=["res://.godot/imported/_13.png-e471b4da18d10e50cfd5ab8169e71193.ctex"]
+source_file="res://Enemies/springcrab/jumpscare/_13.png"
+dest_files=["res://.godot/imported/_13.png-f828390ac41c68f58868c263c4e08ba1.ctex"]
 
 [params]
 

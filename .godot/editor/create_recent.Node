@@ -1,3 +1,5 @@
+Control
+Happyshroom
 TextureProgressBar
 ProgressBar
 RichTextLabel
@@ -10,6 +12,3 @@ Node
 OptionButton
 ItemList
 CanvasLayer
-Button
-ColorRect
-Sprite2D

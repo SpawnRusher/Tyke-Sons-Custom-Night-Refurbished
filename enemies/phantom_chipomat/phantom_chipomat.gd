@@ -16,7 +16,7 @@ var current_attack_timer: float
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 		
 	current_attack_timer = attack_timer
@@ -32,11 +32,11 @@ func _process(delta: float) -> void:
 	else:
 		current_attack_timer = attack_timer
 		
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 			
-func phantom_attack():
+func phantom_attack() -> void:
 	sprite.self_modulate.a = 1
 	sprite.visible = true
 	sprite.play()

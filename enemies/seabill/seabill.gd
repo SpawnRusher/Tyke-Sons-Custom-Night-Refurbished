@@ -49,7 +49,7 @@ var pause: bool
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -114,7 +114,7 @@ func _process(delta: float) -> void:
 		if current_walk_progress == 1.0:
 			leave_seabill()
 			
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 	dark_flicker.queue_free()
@@ -171,13 +171,13 @@ func prepare_jumpscare() -> void:
 func _update_last_animation_played() -> void:
 	last_animation_played = sprite.animation
 	
-func _on_animation_finished():
+func _on_animation_finished() -> void:
 	if last_animation_played == "turning_stare":
 		sprite.play("staring")
 	if last_animation_played == "turning_walk":
 		sprite.play("walking")
 
-func visibility_checks():
+func visibility_checks() -> void:
 	if office.animation == "office":
 		sprite.visible = true
 	else:

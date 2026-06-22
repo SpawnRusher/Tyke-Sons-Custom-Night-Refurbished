@@ -1,19 +1,18 @@
 extends Node2D
 
-@onready var text = $game_over
-@onready var bg = $game_over_background
-@onready var white_fade = $white_fade
+@export var game_over_background: Sprite2D
+@export var game_over_text: Sprite2D
+@export var white_fade: ColorRect
 
-@onready var default_x = text.position.x
-@onready var default_y = text.position.y
+@onready var default_text_position: Vector2 = game_over_text.position
 
-const GAMEOVER = preload("uid://yg3504dqept7")
+const GAMEOVER: AudioStream = preload("uid://yg3504dqept7")
 
 var DEATH_VOICELINES: Dictionary[int,Array] = {
-	5: [preload("uid://b5id48dqwf0m4"), preload("uid://ckgneeohdoe85"), preload("uid://cimbwjjv8yekq")],
-	6: [preload("uid://f253c7ggekbv"), preload("uid://cdy8jvlnt2uel"), preload("uid://exn4yf15x3em")],
-	13: [preload("uid://brmixgfcobol8"), preload("uid://smfc84cdnkb5"), preload("uid://ccgiqqc6k6nd")],
-	15: [preload("uid://dc4svouk7k6ls")]
+	Enemy.ENEMY_IDS.SPRINGCRAB: [preload("uid://b5id48dqwf0m4"), preload("uid://ckgneeohdoe85"), preload("uid://cimbwjjv8yekq")],
+	Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER: [preload("uid://f253c7ggekbv"), preload("uid://cdy8jvlnt2uel"), preload("uid://exn4yf15x3em")],
+	Enemy.ENEMY_IDS.SEABILL: [preload("uid://brmixgfcobol8"), preload("uid://smfc84cdnkb5"), preload("uid://ccgiqqc6k6nd")],
+	Enemy.ENEMY_IDS.HAPPYSHROOM: [preload("uid://dc4svouk7k6ls")]
 	}
 
 func _ready() -> void:
@@ -27,7 +26,7 @@ func _ready() -> void:
 	if Global.died_to_id in DEATH_VOICELINES:
 		SpecialFunctions.audio(DEATH_VOICELINES[Global.died_to_id].pick_random())
 	
-func _input(event) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE:
 			SceneManager.change_to_scene("res://scenes/menu.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
@@ -36,5 +35,5 @@ func _input(event) -> void:
 			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
 func move_game_over_text() -> void:
-	text.position.x = default_x + randi_range(-3,3)
-	text.position.y = default_y + randi_range(-3,3)
+	game_over_text.position.x = default_text_position.x + randi_range(-3,3)
+	game_over_text.position.y = default_text_position.y + randi_range(-3,3)

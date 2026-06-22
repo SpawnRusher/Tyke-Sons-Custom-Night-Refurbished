@@ -1,19 +1,21 @@
 extends Node
 
 
-## VERSION VARIABLES
+#region VERSION VARIABLES
+enum VERSION_TYPE {LATEST, OUTDATED, DISABLED, DEV}
 var version: String
 var version_val: int
 var temp_version: PackedStringArray
 var latest_version: String
-var version_verdict: String
+var version_verdict: VERSION_TYPE
+#endregion
 
-## PASTEBIN VARIABLES
+#region PASTEBIN VARIABLES
 const pastebin_id: String = "iRTnzuBH"
 var http_request_output: Error
 var pastebin_lines: PackedStringArray
 var pastebin_current_line_elements: PackedStringArray
-
+#endregion
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +27,7 @@ func _ready() -> void:
 	pastebin_get()
 
 func pastebin_get() -> void:
-	var http_request = HTTPRequest.new()
+	var http_request: HTTPRequest = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(request_completed)
 	http_request_output = http_request.request("https://pastebin.com/raw/"+pastebin_id)
@@ -39,28 +41,28 @@ func request_completed(result: int, response_code: int, _headers: PackedStringAr
 	pastebin_checks(body.get_string_from_utf8())
 
 
-func pastebin_checks(paste_text) -> void:
+func pastebin_checks(paste_text: String) -> void:
 	pastebin_lines = paste_text.split("\r\n") # Pastebin files end a line with '\r', and start a new line with '\n\. This allows detecting new lines.
 	
-	for i in pastebin_lines.size():
-		pastebin_current_line_elements = pastebin_lines[i].split("$") # Goes line by line and splits each one for use.
+	for line: int in pastebin_lines.size():
+		pastebin_current_line_elements = pastebin_lines[line].split("$") # Goes line by line and splits each one for use.
 			
-		if i == 0:
+		if line == 0:
 			temp_version = pastebin_current_line_elements[1].split(".")
 			
 			if (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int() < version_val:
-				version_verdict = "dev"
+				version_verdict = VERSION_TYPE.DEV
 					
 			if (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int() == version_val:
-				version_verdict = "current"
+				version_verdict = VERSION_TYPE.LATEST
 					
 			if (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int() > version_val:
-				version_verdict = "outdated"
+				version_verdict = VERSION_TYPE.OUTDATED
 				
-			for j in range(3,pastebin_current_line_elements.size()):
-				var temp_disabled_version = pastebin_current_line_elements[j].split(".")
+			for element: int in range(3,pastebin_current_line_elements.size()):
+				var temp_disabled_version: PackedStringArray = pastebin_current_line_elements[element].split(".")
 				if (temp_disabled_version[0].right(1)+temp_disabled_version[1]+temp_disabled_version[2]).to_int() == version_val:
-					version_verdict = "disabled"
+					version_verdict = VERSION_TYPE.DISABLED
 					temp_version = temp_disabled_version
 					
 			
@@ -68,17 +70,17 @@ func pastebin_checks(paste_text) -> void:
 			version_check(version_verdict,latest_version)
 		
 
-func version_check(version_type,pastebin_version) -> void:
-	if version_type == "disabled":
+func version_check(version_type: VERSION_TYPE, pastebin_version: String) -> void:
+	if version_type == VERSION_TYPE.DISABLED:
 		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 		return
 
-	if version_type == "dev":
+	if version_type == VERSION_TYPE.DEV:
 		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 		
-	if version_type == "current":
+	if version_type == VERSION_TYPE.LATEST:
 		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 
-	if version_type == "outdated":
+	if version_type == VERSION_TYPE.OUTDATED:
 		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 	

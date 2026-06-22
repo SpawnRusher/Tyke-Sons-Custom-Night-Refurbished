@@ -3,7 +3,7 @@ extends RichTextLabel
 const SLEEP_ASSURANCE_POINT_BORDER = preload("uid://ck5it5jq4buy4")
 const SLEEP_ASSURANCE_POINT_PROGRESS = preload("uid://irutswq3wufd")
 
-@onready var grid = $Sleep_Assurance_Grid
+@export var grid: GridContainer
 
 var sleep_assurance_points_amount: float = 8
 var sleep_assurance_score_per_point: float = 100
@@ -17,7 +17,7 @@ func _ready() -> void:
 	SignalBus.remove_sleep_assurance.connect(_remove_score)
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	for i in sleep_assurance_points_amount:
-		var temp_point = TextureProgressBar.new()
+		var temp_point: TextureProgressBar = TextureProgressBar.new()
 		temp_point.texture_under = SLEEP_ASSURANCE_POINT_BORDER
 		temp_point.texture_progress = SLEEP_ASSURANCE_POINT_PROGRESS
 		temp_point.min_value = 0.0
@@ -38,15 +38,15 @@ func _input(event: InputEvent) -> void:
 				sleep_assurance_current_score += 100
 				_update_points()
 
-func _update_points():
+func _update_points() -> void:
 	SignalBus.broadcast_sleep_assurance_score.emit(sleep_assurance_current_score/sleep_assurance_points_amount/sleep_assurance_score_per_point)
 	for points in sleep_assurance_points_array:
-		var point_index = sleep_assurance_points_array.find(points)
+		var point_index: int = sleep_assurance_points_array.find(points)
 		points.value = sleep_assurance_current_score - (point_index*100)
 
 			
-func _add_score(enemy):
-	var add_score
+func _add_score(enemy: Enemy) -> void:
+	var add_score: float
 	if enemy is Chipomat:
 		add_score = 3
 	if enemy is Fun_Fungal:
@@ -64,11 +64,11 @@ func _add_score(enemy):
 	sleep_assurance_current_score += add_score * sleep_assurance_multiplier
 	_update_points()
 
-func _remove_score(delta: float, enemy: Enemy):
+func _remove_score(delta: float, enemy: Enemy) -> void:
 	if enemy is Seabill:
 		sleep_assurance_current_score -= 10 * delta
 	_update_points()
 	
-func _activate_happyshroom():
+func _activate_happyshroom() -> void:
 	sleep_assurance_current_score = 0
 	_update_points()

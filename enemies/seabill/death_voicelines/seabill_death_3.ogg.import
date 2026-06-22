@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://ccgiqqc6k6nd"
-path="res://.godot/imported/seabill_death_3.ogg-07d7abff4a22b637edaf20e0abf7e87a.oggvorbisstr"
+path="res://.godot/imported/seabill_death_3.ogg-26a1ead12a6adaf0615099c1c2b016b2.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/seabill/death_voicelines/seabill_death_3.ogg"
-dest_files=["res://.godot/imported/seabill_death_3.ogg-07d7abff4a22b637edaf20e0abf7e87a.oggvorbisstr"]
+source_file="res://Enemies/seabill/death_voicelines/seabill_death_3.ogg"
+dest_files=["res://.godot/imported/seabill_death_3.ogg-26a1ead12a6adaf0615099c1c2b016b2.oggvorbisstr"]
 
 [params]
 

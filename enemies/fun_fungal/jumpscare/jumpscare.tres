@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cshws6mtgkvy2"]
 
-[ext_resource type="Texture2D" uid="uid://va6e1eh8umkm" path="res://enemies/fun_fungal/jumpscare/_0.png" id="1_73duv"]
+[ext_resource type="Texture2D" uid="uid://va6e1eh8umkm" path="res://Enemies/fun_fungal/jumpscare/_0.png" id="1_73duv"]
 
 [resource]
 animations = [{

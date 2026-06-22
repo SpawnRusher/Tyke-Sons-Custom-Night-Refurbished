@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qgdu4gcdhi8e"
-path="res://.godot/imported/_6.png-f003677489d064bdae9ad434f033f441.ctex"
+path="res://.godot/imported/_6.png-f6d5d9d32c6393eb25ce53261a664094.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/the_rockstars/buster/jumpscare/_6.png"
-dest_files=["res://.godot/imported/_6.png-f003677489d064bdae9ad434f033f441.ctex"]
+source_file="res://Enemies/the_rockstars/buster/jumpscare/_6.png"
+dest_files=["res://.godot/imported/_6.png-f6d5d9d32c6393eb25ce53261a664094.ctex"]
 
 [params]
 

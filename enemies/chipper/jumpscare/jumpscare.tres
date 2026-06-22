@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://jwd0ebtcbs12"]
 
-[ext_resource type="Texture2D" uid="uid://cxeoeloxsapll" path="res://enemies/chipper/jumpscare/_0.png" id="1_3bupe"]
-[ext_resource type="Texture2D" uid="uid://iumwbsbdy3jq" path="res://enemies/chipper/jumpscare/_1.png" id="2_rr32g"]
-[ext_resource type="Texture2D" uid="uid://b02dnqwvoykh4" path="res://enemies/chipper/jumpscare/_2.png" id="3_6l5ep"]
-[ext_resource type="Texture2D" uid="uid://b10o36kfyoqh" path="res://enemies/chipper/jumpscare/_3.png" id="4_r6h5u"]
-[ext_resource type="Texture2D" uid="uid://c3xtbblhmoxha" path="res://enemies/chipper/jumpscare/_4.png" id="5_tixsp"]
-[ext_resource type="Texture2D" uid="uid://d3emr6nexj4n3" path="res://enemies/chipper/jumpscare/_5.png" id="6_6ovsv"]
-[ext_resource type="Texture2D" uid="uid://dcgg2s2mvsgow" path="res://enemies/chipper/jumpscare/_6.png" id="7_cjnct"]
-[ext_resource type="Texture2D" uid="uid://6shfo684raed" path="res://enemies/chipper/jumpscare/_7.png" id="8_187bm"]
+[ext_resource type="Texture2D" uid="uid://cxeoeloxsapll" path="res://Enemies/chipper/jumpscare/_0.png" id="1_3bupe"]
+[ext_resource type="Texture2D" uid="uid://iumwbsbdy3jq" path="res://Enemies/chipper/jumpscare/_1.png" id="2_rr32g"]
+[ext_resource type="Texture2D" uid="uid://b02dnqwvoykh4" path="res://Enemies/chipper/jumpscare/_2.png" id="3_6l5ep"]
+[ext_resource type="Texture2D" uid="uid://b10o36kfyoqh" path="res://Enemies/chipper/jumpscare/_3.png" id="4_r6h5u"]
+[ext_resource type="Texture2D" uid="uid://c3xtbblhmoxha" path="res://Enemies/chipper/jumpscare/_4.png" id="5_tixsp"]
+[ext_resource type="Texture2D" uid="uid://d3emr6nexj4n3" path="res://Enemies/chipper/jumpscare/_5.png" id="6_6ovsv"]
+[ext_resource type="Texture2D" uid="uid://dcgg2s2mvsgow" path="res://Enemies/chipper/jumpscare/_6.png" id="7_cjnct"]
+[ext_resource type="Texture2D" uid="uid://6shfo684raed" path="res://Enemies/chipper/jumpscare/_7.png" id="8_187bm"]
 
 [resource]
 animations = [{

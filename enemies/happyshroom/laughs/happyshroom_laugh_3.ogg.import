@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://bm5aol3fvyr1b"
-path="res://.godot/imported/happyshroom_laugh_3.ogg-e91b5205243c0df982304f6a5f4a86d2.oggvorbisstr"
+path="res://.godot/imported/happyshroom_laugh_3.ogg-575c7c617215138951af21ec45f2ec0a.oggvorbisstr"
 
 [deps]
 
-source_file="res://enemies/happyshroom/laughs/happyshroom_laugh_3.ogg"
-dest_files=["res://.godot/imported/happyshroom_laugh_3.ogg-e91b5205243c0df982304f6a5f4a86d2.oggvorbisstr"]
+source_file="res://Enemies/happyshroom/laughs/happyshroom_laugh_3.ogg"
+dest_files=["res://.godot/imported/happyshroom_laugh_3.ogg-575c7c617215138951af21ec45f2ec0a.oggvorbisstr"]
 
 [params]
 

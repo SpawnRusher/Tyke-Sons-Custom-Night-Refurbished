@@ -20,14 +20,14 @@ class_name Rockstar
 ## Time between map icons flashing
 @export var flash_time: float = 0.08
 
-var move_direction: int = wrapi(randi_range(1,2),-1,2)
+var move_direction: int = [-1, 1].pick_random()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await super()
 	if enabled == false:
-		_queue_free()
+		deactivate()
 		return
 
 	if move_direction == 1:
@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 	if player.get_global_rect().intersects(sprite.get_global_rect()):
 		jumpscare()
 		
-func _queue_free():
+func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 	
@@ -52,12 +52,12 @@ func blinking() -> void:
 	
 func start_moving() -> void:
 	move_direction *= -1
-	var move_to = min_position
+	var move_to: float = min_position
 	if move_direction == 1:
 		move_to = max_position
 
-	var tween = get_tree().create_tween()
-	var current_move_time = move_time*(1+randf_range(-random_variance,random_variance))
+	var tween: Tween = get_tree().create_tween()
+	var current_move_time: float = move_time*(1+randf_range(-random_variance,random_variance))
 	tween.tween_property(sprite,"position:"+move_axis,move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
 	# this 'await' is required, without it, im technically calling start_moving() from inside of itself
 	await get_tree().create_timer(current_move_time).timeout
