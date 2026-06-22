@@ -285,10 +285,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 437.0
-offset_top = 942.0
-offset_right = 737.0
-offset_bottom = 958.0
+offset_left = 499.0
+offset_top = 1040.0
+offset_right = 799.0
+offset_bottom = 1056.0
 grow_vertical = 0
 rounded = true
 
@@ -306,10 +306,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 437.0
-offset_top = 992.0
-offset_right = 737.0
-offset_bottom = 1008.0
+offset_left = 499.0
+offset_top = 1090.0
+offset_right = 799.0
+offset_bottom = 1106.0
 grow_vertical = 0
 rounded = true
 
@@ -390,10 +390,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 437.0
-offset_top = 1042.0
-offset_right = 737.0
-offset_bottom = 1058.0
+offset_left = 159.0
+offset_top = 1093.0
+offset_right = 459.0
+offset_bottom = 1109.0
 grow_vertical = 0
 min_value = 1.0
 max_value = 360.0
@@ -412,10 +412,10 @@ vertical_alignment = 2
 
 [node name="antialiasing" type="CheckBox" parent="Settings/SettingsList/display" unique_id=307177141]
 layout_mode = 0
-offset_left = 220.0
-offset_top = 1083.0
-offset_right = 244.0
-offset_bottom = 1107.0
+offset_left = 276.0
+offset_top = 1070.0
+offset_right = 300.0
+offset_bottom = 1094.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/antialiasing" unique_id=945133695]
 layout_mode = 0
@@ -436,10 +436,10 @@ offset_bottom = 40.0
 
 [node name="auto_restart_on_death" type="CheckBox" parent="Settings/SettingsList/quality_of_life" unique_id=960540720]
 layout_mode = 0
-offset_left = 220.0
-offset_top = 1143.0
-offset_right = 244.0
-offset_bottom = 1167.0
+offset_left = 989.0
+offset_top = 1103.0
+offset_right = 1013.0
+offset_bottom = 1127.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/quality_of_life/auto_restart_on_death" unique_id=710052098]
 layout_mode = 0
@@ -450,6 +450,25 @@ offset_bottom = 40.0
 theme = ExtResource("23_6wigr")
 theme_override_font_sizes/normal_font_size = 20
 text = "Auto restart on death"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="skip_loading_night" type="CheckBox" parent="Settings/SettingsList/quality_of_life" unique_id=118427760]
+layout_mode = 0
+offset_left = 988.0
+offset_top = 1038.0
+offset_right = 1012.0
+offset_bottom = 1062.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/quality_of_life/skip_loading_night" unique_id=1864381501]
+layout_mode = 0
+offset_left = -144.0
+offset_top = -14.0
+offset_right = 5.0
+offset_bottom = 40.0
+theme = ExtResource("23_6wigr")
+theme_override_font_sizes/normal_font_size = 20
+text = "Skip Loading Night"
 horizontal_alignment = 1
 vertical_alignment = 2
 

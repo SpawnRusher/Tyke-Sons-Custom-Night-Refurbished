@@ -8,9 +8,9 @@ class_name Rockstar
 ## The axis the enemy moves on.
 @export_enum("x","y") var move_axis: String
 ## The time it takes for the enemy icon to move from min_position to max_position, or vice-versa.
-@export var move_time: float = 1.0
+@export var move_time: float = 1.5
 ## The time the enemy idles for before commencing movement again.
-@export var idle_time: float = 1.5
+@export var idle_time: float = 1
 ## The minimum coordinate position relative to the map the icon can go to, which is closer to the top-left of the map.
 @export var min_position: float
 ## The maximum coordinate position relative to the map the icon can go to, which is closer to the bottom-right of the map.

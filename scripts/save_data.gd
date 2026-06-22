@@ -16,11 +16,15 @@ var default_settings_data: Dictionary = {
 	},
 	"quality_of_life": {
 		"auto_restart_on_death":false,
+		"skip_loading_night":false
 	},
 	"gamejolt": {
 		"username":"",
 		"user_token":""
-	}
+	},
+}
+	
+var default_save_data: Dictionary = {
 }
 	
 var settings_data_to_migrate: Dictionary = {
@@ -34,8 +38,11 @@ var save_data_to_migrate: Dictionary = {
 }
 
 var settings_data: Dictionary = default_settings_data
-var save_data: Dictionary
+var save_data: Dictionary = default_save_data
 var save_data_encryption_key: String
+
+var settings_data_file: FileAccess
+var save_data_file: FileAccess
 
 func _ready() -> void:
 	load_file(FILE_TYPE.SETTINGS)
@@ -50,28 +57,38 @@ func _input(event: InputEvent) -> void:
 				save_file(FILE_TYPE.SAVE)
 	
 func save_file(type: FILE_TYPE) -> void:
-	var path:= file_paths[type]
-	var file:= FileAccess.open(path, FileAccess.WRITE)
 	if type == FILE_TYPE.SETTINGS:
-		file.store_string(JSON.stringify(settings_data, "\t"))
+		print("saving settings")
+		settings_data_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
+		settings_data_file.store_string(JSON.stringify(settings_data, "\t"))
 		_update_settings()
 	elif type == FILE_TYPE.SAVE:
-		file.store_string(JSON.stringify(save_data, "\t"))
+		print("saving save")
+		save_data_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
+		save_data_file.store_string(JSON.stringify(save_data, "\t"))
 
 func load_file(type: FILE_TYPE) -> void:
-	var path:= file_paths[type]
-	var file:= FileAccess.open(path, FileAccess.READ)
 	var json:= JSON.new()
 	
-	if FileAccess.file_exists(path):
-		json.parse(file.get_as_text())
-		if type == FILE_TYPE.SETTINGS:
-			settings_data = json.data
-			await _migrate_data(FILE_TYPE.SETTINGS)
-			_update_settings()
-		elif type == FILE_TYPE.SAVE:
-			save_data = json.data
-			_migrate_data(FILE_TYPE.SAVE)
+	if type == FILE_TYPE.SETTINGS:
+		print("loading settings")
+		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ)
+		json.parse(settings_data_file.get_as_text())
+		settings_data = json.data
+		await _migrate_data(FILE_TYPE.SETTINGS)
+		await _add_missing_data(FILE_TYPE.SETTINGS)
+		await _remove_extra_data(FILE_TYPE.SETTINGS)
+		_update_settings()
+	else:
+		print("loading save")
+		save_data_file = FileAccess.open(file_paths[type], FileAccess.READ)
+		json.parse(save_data_file.get_as_text())
+		save_data = json.data
+		_migrate_data(FILE_TYPE.SAVE)
+		_add_missing_data(FILE_TYPE.SAVE)
+		_remove_extra_data(FILE_TYPE.SAVE)
+
+	
 
 func _update_settings() -> void:
 	AudioServer.set_bus_volume_linear(0,(settings_data["volume"]["master_volume"])/100.0)
@@ -95,7 +112,7 @@ func change_data(type: FILE_TYPE, value: Variant, key1: String, key2: String) ->
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
 ## Currently only supports editing second keys.
-func _migrate_data(type: FILE_TYPE):
+func _migrate_data(type: FILE_TYPE) -> void:
 	var temp_value: Variant
 	var current_data: Dictionary
 	var migrate_data: Dictionary
@@ -123,7 +140,54 @@ func _migrate_data(type: FILE_TYPE):
 	else:
 		save_data = current_data
 		save_data_to_migrate = migrate_data
+	save_file(type)
 
-		
-		
+func _add_missing_data(type: FILE_TYPE) -> void:
+	var current_data: Dictionary
+	var default_data: Dictionary
 	
+	if type == FILE_TYPE.SETTINGS:
+		current_data = settings_data
+		default_data = default_settings_data
+	else:
+		current_data = save_data
+		default_data = default_save_data
+		
+	for first_key in default_data:
+		if first_key not in current_data:
+			current_data[first_key] = {}
+		if first_key in current_data:
+			for second_key in default_data[first_key]:
+				if second_key not in current_data[first_key]:
+					current_data[first_key][second_key] = default_data[first_key][second_key]
+	
+	if type == FILE_TYPE.SETTINGS:
+		settings_data = current_data
+	else:
+		save_data = current_data
+	save_file(type)
+		
+func _remove_extra_data(type: FILE_TYPE) -> void:
+	var current_data: Dictionary
+	var default_data: Dictionary
+	
+	if type == FILE_TYPE.SETTINGS:
+		current_data = settings_data
+		default_data = default_settings_data
+	else:
+		current_data = save_data
+		default_data = default_save_data
+		
+	for first_key in current_data:
+		if first_key not in default_data:
+			current_data.erase(first_key)
+		if first_key in default_data:
+			for second_key in current_data[first_key]:
+				if second_key not in default_data[first_key]:
+					current_data[first_key].erase(second_key)
+	
+	if type == FILE_TYPE.SETTINGS:
+		settings_data = current_data
+	else:
+		save_data = current_data
+	save_file(type)
