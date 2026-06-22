@@ -46,7 +46,7 @@ func _update_points() -> void:
 
 			
 func _add_score(enemy: Enemy) -> void:
-	var add_score: float
+	var add_score: float = 0
 	if enemy is Chipomat:
 		add_score = 3
 	if enemy is Fun_Fungal:
@@ -56,10 +56,9 @@ func _add_score(enemy: Enemy) -> void:
 	if enemy is Toy:
 		add_score = 10
 	if enemy is Seabill:
-		add_score = 0
+		add_score = 10
 	
-	if add_score == null: #failsafe if i forget to add score
-		add_score = 0
+	if add_score == 0:
 		print("Forgot to add score for enemy ",enemy)
 	sleep_assurance_current_score += add_score * sleep_assurance_multiplier
 	_update_points()
