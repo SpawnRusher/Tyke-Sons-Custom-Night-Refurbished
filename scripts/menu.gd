@@ -14,8 +14,7 @@ func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",0,0.5)
 	
-	for enemy_portrait in enemy_portrait_grid.get_children():
-		enemy_portrait.toggle(Global.ENABLED_IDS[enemy_portrait.enemy_id],true)
+
 
 func _on_settings_button_button_down() -> void:
 	var tween = get_tree().create_tween()

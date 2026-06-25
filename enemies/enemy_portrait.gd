@@ -13,6 +13,7 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 func _ready() -> void:
 	assert(enemy_id > Enemy.ENEMY_IDS.NONE,"Enemy ID has not been set for one of the enemy portraits!")
 	tooltip_text = enemy_tooltip
+	toggle(Global.ENABLED_IDS[enemy_id],true)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and border.is_hovered():
