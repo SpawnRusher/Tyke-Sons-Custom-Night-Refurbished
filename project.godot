@@ -49,11 +49,15 @@ return_to_menu={
 "deadzone": 0.2,
 "events": []
 }
-move_forward={
+close_curtain={
 "deadzone": 0.2,
 "events": []
 }
-move_backward={
+use_flashlight={
+"deadzone": 0.2,
+"events": []
+}
+move_forward={
 "deadzone": 0.2,
 "events": []
 }
@@ -61,15 +65,11 @@ move_left={
 "deadzone": 0.2,
 "events": []
 }
+move_backward={
+"deadzone": 0.2,
+"events": []
+}
 move_right={
-"deadzone": 0.2,
-"events": []
-}
-close_curtain={
-"deadzone": 0.2,
-"events": []
-}
-use_flashlight={
 "deadzone": 0.2,
 "events": []
 }
