@@ -142,7 +142,7 @@ func _add_settings(tab: Node) -> void:
 		#group_label.text = group.capitalize()
 		for setting in settings_types["settings"][group]:
 			if settings_types["settings"][group][setting]["type"] == "toggle":
-				var button = toggle_button.instantiate()
+				var button:= toggle_button.instantiate()
 				vbox.add_child(button)
 				var setting_label:= button.find_child("SettingLabel")
 				var state_label:= button.find_child("StateLabel")
@@ -153,9 +153,9 @@ func _add_settings(tab: Node) -> void:
 				button.pressed.connect(_on_button_toggled.bind(button, group, setting, setting_label, state_label))
 				
 			if settings_types["settings"][group][setting]["type"] == "dropdown":
-				var dropdown = dropdown_button.instantiate()
+				var dropdown:= dropdown_button.instantiate()
 				vbox.add_child(dropdown)
-				var dropdown_box = dropdown.find_child("Dropdown")
+				var dropdown_box:= dropdown.find_child("Dropdown")
 				var dropdown_label:= dropdown.find_child("DropdownLabel")
 				dropdown_label.text = setting.capitalize()
 				for option in settings_types["settings"][group][setting]["options"]:
@@ -165,11 +165,11 @@ func _add_settings(tab: Node) -> void:
 				dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, group, setting, dropdown_label))
 				
 			if settings_types["settings"][group][setting]["type"] == "slider":
-				var slider_setting = slider_button.instantiate()
+				var slider_setting:= slider_button.instantiate()
 				vbox.add_child(slider_setting)
-				var slider = slider_setting.find_child("Slider")
-				var slider_label = slider_setting.find_child("SliderLabel")
-				var slider_value_label = slider_setting.find_child("SliderValueLabel")
+				var slider:= slider_setting.find_child("Slider")
+				var slider_label:= slider_setting.find_child("SliderLabel")
+				var slider_value_label:= slider_setting.find_child("SliderValueLabel")
 				slider.min_value = settings_types["settings"][group][setting]["min_value"]
 				slider.max_value = settings_types["settings"][group][setting]["max_value"]
 				slider.value = SaveData.settings_data[group][setting]
@@ -219,9 +219,9 @@ func _add_keybinds(tab: Node) -> void:
 			my_actions_index -= 1
 	
 	for action in action_list:
-		var button = keybind_button.instantiate()
-		var action_label = button.find_child("ActionLabel")
-		var input_label = button.find_child("InputLabel")
+		var button:= keybind_button.instantiate()
+		var action_label:= button.find_child("ActionLabel")
+		var input_label:= button.find_child("InputLabel")
 		
 		action_label.text = action.capitalize()
 		

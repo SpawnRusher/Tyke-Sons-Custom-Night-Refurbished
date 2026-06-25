@@ -11,7 +11,7 @@ class_name Fun_Fungal
 @export var idle_timer: float
 
 var side: int
-var sides: Array = ["l","maybeusefront","r"]
+var sides: Array = ["l","idle","r"]
 var office_animation_direction: String
 var current_progress: float
 var lerp_progress: float
@@ -58,8 +58,9 @@ func deactivate():
 
 func reset() -> void:
 	SignalBus.enemy_defended.emit(self)
+	side = 0
 	await get_tree().create_timer(idle_timer).timeout
-	side = wrapi(randi_range(1,2),-1,2)
+	side = [-1,1].pick_random()
 	sprite.rotation_degrees = 180 - (45 * side) # 1 == 135, -1 == 255
 	current_progress = 0
 

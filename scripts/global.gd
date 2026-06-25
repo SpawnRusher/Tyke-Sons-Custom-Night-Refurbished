@@ -22,8 +22,10 @@ func _input(event: InputEvent) -> void:
 		print("returntomenu")
 	if event.is_action_pressed("restart_night"):
 		if get_tree().current_scene.scene_file_path == "res://scenes/night.tscn":
+			get_tree().paused = false
 			get_tree().reload_current_scene()
 			print("restart")
 		elif get_tree().current_scene.scene_file_path == "res://scenes/game_over.tscn":
+			get_tree().paused = false
 			get_tree().change_scene_to_file("res://scenes/night.tscn")
 			print("restart from gameover")

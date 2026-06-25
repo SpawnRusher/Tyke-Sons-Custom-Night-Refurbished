@@ -99,11 +99,11 @@ func _input(event: InputEvent) -> void:
 				_save_file(FILE_TYPE.SAVE)
 	
 func _check_for_file(type: FILE_TYPE) -> bool:
-	var temp_file = FileAccess.open(file_paths[type], FileAccess.READ)
-	if temp_file:
-		temp_file.close()
+	var check_file:= FileAccess.open(file_paths[type], FileAccess.READ)
+	if check_file:
+		check_file.close()
 		return true
-	temp_file.close()
+	check_file.close()
 	return false
 	
 func _save_file(type: FILE_TYPE) -> void:
@@ -138,7 +138,7 @@ func _load_file(type: FILE_TYPE) -> void:
 		_add_missing_data(FILE_TYPE.SAVE)
 
 func _create_file(type: FILE_TYPE) -> void:
-	var create_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
+	var create_file:= FileAccess.open(file_paths[type], FileAccess.WRITE)
 	create_file.store_string("")
 	create_file.close()
 	_load_file(type)
