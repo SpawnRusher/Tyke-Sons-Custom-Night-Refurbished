@@ -1662,12 +1662,13 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "window_background", "front_window", "dark_overlay", "sleep_assurance")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "dark_overlay", "sleep_assurance")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
 office = NodePath("OfficeBackground")
 lamp_button = NodePath("LampButton")
+nose = NodePath("OfficeBackground/Nose")
 window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")

@@ -16,6 +16,7 @@ var office_animation_direction: String
 var current_progress: float
 var lerp_progress: float
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await super()
@@ -46,7 +47,7 @@ func _process(delta: float) -> void:
 		sprite.position.x = lerpf(290,490,lerp_progress)
 		sprite.position.y = lerpf(50,250,lerp_progress)
 	
-	if current_progress < 0:
+	if current_progress < 0 and side != 0:
 		reset()
 			
 	if current_progress >= progress_timer:

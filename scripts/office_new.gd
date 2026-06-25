@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export var office: AnimatedSprite2D
 @export var lamp_button: Button
+@export var nose: Button
 @export var window_background: AnimatedSprite2D
 @export var front_window: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
@@ -31,6 +32,7 @@ func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 
 func _process(delta: float) -> void:
+	nose.disabled = (office.animation != "office")
 	lamp_button.disabled = (office.animation != "office")
 	lamp_button.visible = !lamp_button.disabled
 	_camera_lock()
