@@ -45,6 +45,11 @@ func _process(delta: float) -> void:
 		_move_player("l")
 	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680) and SaveData.settings_data["game"]["movement_mode"] != 1:
 		_move_player("r")
+		
+	if Input.is_action_pressed("use_flashlight"):
+		_use_flashlight(true, office.get_local_mouse_position())
+	if not Input.is_action_pressed("use_flashlight"):
+		_use_flashlight(false, office.get_local_mouse_position())
 
 	if Input.is_action_pressed("close_curtain"):
 		if "open_" in office.animation:
@@ -63,11 +68,7 @@ func _input(event: InputEvent) -> void:
 		_move_player("l")
 	if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
 		_move_player("r")
-	
-	if event.is_action_pressed("use_flashlight"):
-		_use_flashlight(true, office.get_local_mouse_position())
-	if event.is_action_released("use_flashlight"):
-		_use_flashlight(false, office.get_local_mouse_position())
+
 		
 	if event.is_action_pressed("toggle_lamp"):
 		if not lamp_button.disabled:
@@ -155,6 +156,8 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" in office.animation:
 		office.play("closing_"+dir)
 		SpecialFunctions.audio(CURTAIN_CLOSING)
+		if flashlight_state == true:
+			SignalBus.flashlight_off.emit()
 	
 
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
