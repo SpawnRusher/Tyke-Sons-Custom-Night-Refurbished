@@ -28,6 +28,14 @@ var default_settings_data: Dictionary = {
 			"type":"key",
 			"physical_keycode":KEY_F2
 		},
+		"toggle_lamp": {
+			"type":"key",
+			"physical_keycode":KEY_SHIFT
+			},
+		"go_to_sleep": {
+			"type":"key",
+			"physical_keycode":KEY_B
+			},
 		"close_curtain": {
 			"type":"mouse_button",
 			"button_index":1

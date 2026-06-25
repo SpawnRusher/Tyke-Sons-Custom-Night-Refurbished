@@ -75,6 +75,14 @@ var settings_types: Dictionary = {
 			"type":"key",
 			"physical_keycode":KEY_F2
 		},
+		"toggle_lamp": {
+			"type":"key",
+			"physical_keycode":KEY_SHIFT
+			},
+		"go_to_sleep": {
+			"type":"key",
+			"physical_keycode":KEY_B
+			},
 		"close_curtain": {
 			"type":"mouse_button",
 			"button_index":1
@@ -202,7 +210,7 @@ func _add_qol(tab: Node) -> void:
 		
 func _on_button_toggled(button: Button, group, setting, setting_label, state_label) -> void:
 	setting = setting.to_lower().replace(" ","_")
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,"quality_of_life",setting)
+	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group,setting)
 	state_label.text = "OFF" if button.button_pressed == false else "ON"
 
 func _add_keybinds(tab: Node) -> void:

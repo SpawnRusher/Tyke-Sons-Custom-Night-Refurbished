@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		
 	if current_progress >= 0: # this is so that when it goes below 0, i can set an await timer without any more values needed before resetting
 		if not flash_check():
-			current_progress += 1.5 * delta
+			current_progress += 1 * delta
 		else:
 			current_progress -= 10 * delta
 		

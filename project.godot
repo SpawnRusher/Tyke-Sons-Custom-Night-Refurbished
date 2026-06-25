@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tyke & Son's Custom Night: Refurbished"
-config/version="v0.1.5"
+config/version="v0.1.6"
 run/main_scene="uid://b0wod4hc5c5bx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
@@ -70,6 +70,14 @@ move_backward={
 "events": []
 }
 move_right={
+"deadzone": 0.2,
+"events": []
+}
+toggle_lamp={
+"deadzone": 0.2,
+"events": []
+}
+go_to_sleep={
 "deadzone": 0.2,
 "events": []
 }

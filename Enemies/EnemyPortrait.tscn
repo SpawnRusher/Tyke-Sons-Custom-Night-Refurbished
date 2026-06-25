@@ -27,6 +27,7 @@ offset_left = -6.0
 offset_top = -6.0
 offset_right = 126.0
 offset_bottom = 126.0
+mouse_filter = 1
 action_mode = 0
 button_mask = 0
 texture_normal = SubResource("CompressedTexture2D_i38x2")

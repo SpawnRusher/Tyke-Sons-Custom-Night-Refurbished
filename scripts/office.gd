@@ -41,6 +41,8 @@ func _process(_delta: float) -> void:
 	if office.animation != "office":
 		lamp_button.disabled = true
 	lamp_button.visible = !lamp_button.disabled
+	
+	front_window.visible = false
 			
 	if "closed" in office.animation:
 		if not Input.is_action_pressed("close_curtain"):
@@ -84,8 +86,6 @@ func _process(_delta: float) -> void:
 					if using_flashlight == false:
 						office.frame = 0
 					
-			if office.frame == 0:
-				front_window.visible = false
 			if office.frame == 1:
 				front_window.play("l")
 				front_window.visible = true
@@ -131,7 +131,6 @@ func can_move() -> bool:
 		return false
 		
 	return true
-
 
 func _animation_finished() -> void:
 	if last_animation_played == "return":

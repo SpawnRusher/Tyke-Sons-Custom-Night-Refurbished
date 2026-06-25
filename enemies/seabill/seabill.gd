@@ -53,7 +53,7 @@ func _ready() -> void:
 		return
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_timer = spawn_timer
+	current_timer = ready_timer
 	current_kill_timer = kill_timer
 	current_walk_timer = walk_timer
 	current_walk_progress = 0

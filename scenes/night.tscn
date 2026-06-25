@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0sxpquqg45q0"]
 
 [ext_resource type="Script" uid="uid://dlqq8s6hcoknw" path="res://scripts/night.gd" id="1_45h36"]
-[ext_resource type="Script" uid="uid://b4vf8qu1fhmm7" path="res://scripts/office.gd" id="2_0v611"]
+[ext_resource type="Script" uid="uid://b8eegopdrebfi" path="res://scripts/office_new.gd" id="2_0v611"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://sprites/night/windows/left/closed/window_left_closed.png" id="3_2go0w"]
 [ext_resource type="Texture2D" uid="uid://bmupht3pf77r5" path="res://sprites/night/windows/right/closed/window_right_closed.png" id="4_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://dt5y8dns3h6yr" path="res://sprites/night/windows/left/closing/window_left_closing_0.png" id="5_tt6cj"]
@@ -371,6 +371,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("206_eyrki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_m3trd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_o78ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_os6m4")
+}, {
+"duration": 1.0,
 "texture": ExtResource("13_v3m7b")
 }, {
 "duration": 1.0,
@@ -511,6 +523,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("210_li8t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_x35qe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_yly05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("213_tg7mh")
+}, {
+"duration": 1.0,
 "texture": ExtResource("58_rby36")
 }, {
 "duration": 1.0,
@@ -597,6 +621,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("214_7pu6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_dxmb4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_4aann")
+}, {
+"duration": 1.0,
 "texture": ExtResource("85_yrlo6")
 }, {
 "duration": 1.0,
@@ -679,6 +712,15 @@ animations = [{
 "speed": 22.5
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("217_yuqqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_248ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_763ms")
+}, {
 "duration": 1.0,
 "texture": ExtResource("58_rby36")
 }, {
@@ -1267,68 +1309,6 @@ animations = [{
 "loop": 0,
 "name": &"return",
 "speed": 22.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("206_eyrki")
-}, {
-"duration": 1.0,
-"texture": ExtResource("207_m3trd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("208_o78ym")
-}, {
-"duration": 1.0,
-"texture": ExtResource("209_os6m4")
-}],
-"loop": 0,
-"name": &"turn_b",
-"speed": 22.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("210_li8t2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("211_x35qe")
-}, {
-"duration": 1.0,
-"texture": ExtResource("212_yly05")
-}, {
-"duration": 1.0,
-"texture": ExtResource("213_tg7mh")
-}],
-"loop": 0,
-"name": &"turn_f",
-"speed": 22.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("214_7pu6d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("215_dxmb4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("216_4aann")
-}],
-"loop": 0,
-"name": &"turn_l",
-"speed": 22.5
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("217_yuqqc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("218_248ct")
-}, {
-"duration": 1.0,
-"texture": ExtResource("219_763ms")
-}],
-"loop": 0,
-"name": &"turn_r",
-"speed": 22.5
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c8hgn"]
@@ -1344,6 +1324,11 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jkh5f"]
 animations = [{
+"frames": [],
+"loop": 0,
+"name": &"b",
+"speed": 0.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("220_axll3")
@@ -1677,7 +1662,7 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "window_background", "front_window", "dark_overlay")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "window_background", "front_window", "dark_overlay", "sleep_assurance")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
@@ -1686,10 +1671,11 @@ lamp_button = NodePath("LampButton")
 window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
+sleep_assurance = NodePath("../GUI/SleepAssurance")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"office"
+animation = &"go_l"
 autoplay = "office"
 centered = false
 
@@ -1738,7 +1724,7 @@ sprite_frames = SubResource("SpriteFrames_knw8e")
 visible = false
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_lw42b")
-animation = &"l"
+animation = &"r"
 centered = false
 
 [node name="Toy" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1159662373]
@@ -2039,10 +2025,11 @@ jumpscare_sound = ExtResource("304_q36i8")
 jumpscare_middle_uid = "uid://cshws6mtgkvy2"
 metadata/_custom_type_script = "uid://f0vepf3put15"
 
-[node name="Springcrab" type="Node" parent="Enemies" unique_id=634580021 node_paths=PackedStringArray("office", "sprite")]
+[node name="Springcrab" type="Node" parent="Enemies" unique_id=634580021 node_paths=PackedStringArray("office", "sprite", "seabill")]
 script = ExtResource("305_38p68")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/FrontWindow")
+seabill = NodePath("../Seabill")
 spawn_timer = 15.0
 kill_timer = 10.0
 leave_flashes = 10
@@ -2180,6 +2167,7 @@ jumpscare_middle_uid = "uid://def4na0hddbtv"
 jumpscare_bedroom_uid = "uid://ceyirmcu15e87"
 metadata/_custom_type_script = "uid://d13p32mq2jeip"
 
+[connection signal="animation_finished" from="Office/OfficeBackground" to="Office" method="_on_office_animation_finished" flags=18]
 [connection signal="pressed" from="Office/OfficeBackground/Batteries/BatteriesButton" to="GUI/FlashlightBattery" method="_on_batteries_button_pressed"]
 [connection signal="pressed" from="Office/OfficeBackground/Nose" to="Office" method="_on_nose_pressed"]
 [connection signal="pressed" from="Office/LampButton" to="Office" method="_on_lamp_button_pressed" flags=18]

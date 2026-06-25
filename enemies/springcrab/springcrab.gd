@@ -5,6 +5,8 @@ class_name Springcrab
 @export var office: AnimatedSprite2D
 ##The Springcrab sprite.
 @export var sprite: AnimatedSprite2D
+## Seabill
+@export var seabill: Enemy
 ## The time it takes to appear at the window.
 @export var spawn_timer: float
 ## The time it takes to kill when sitting at the window.
@@ -52,7 +54,8 @@ func _process(delta: float) -> void:
 			spawn_springcrab()
 			
 	if spawned == true:
-		current_kill_timer -= 1 * delta
+		if seabill.spawned == false:
+			current_kill_timer -= 1 * delta
 			
 		if office.animation == "open_f" and office.frame >= 1:
 			current_kill_timer = max(current_kill_timer,kill_timer_pause_threshold)
