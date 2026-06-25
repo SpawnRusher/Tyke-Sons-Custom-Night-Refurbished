@@ -104,7 +104,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25_g2qil")
 }],
-"loop": true,
+"loop": 0,
 "name": &"default",
 "speed": 22.5
 }]
