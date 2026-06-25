@@ -80,8 +80,15 @@ var settings_data_file: FileAccess
 var save_data_file: FileAccess
 
 func _ready() -> void:
-	_load_file(FILE_TYPE.SETTINGS)
-	_load_file(FILE_TYPE.SAVE)
+	if _check_for_file(FILE_TYPE.SETTINGS):
+		_load_file(FILE_TYPE.SETTINGS)
+	else:
+		_create_file(FILE_TYPE.SETTINGS)
+
+	if _check_for_file(FILE_TYPE.SAVE):
+		_load_file(FILE_TYPE.SAVE)
+	else:
+		_create_file(FILE_TYPE.SAVE)
 	
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
@@ -90,6 +97,14 @@ func _input(event: InputEvent) -> void:
 				_save_file(FILE_TYPE.SETTINGS)
 			if event.keycode == KEY_D:
 				_save_file(FILE_TYPE.SAVE)
+	
+func _check_for_file(type: FILE_TYPE) -> bool:
+	var temp_file = FileAccess.open(file_paths[type], FileAccess.READ)
+	if temp_file:
+		temp_file.close()
+		return true
+	temp_file.close()
+	return false
 	
 func _save_file(type: FILE_TYPE) -> void:
 	if type == FILE_TYPE.SETTINGS:
@@ -106,22 +121,28 @@ func _load_file(type: FILE_TYPE) -> void:
 	var json:= JSON.new()
 	
 	if type == FILE_TYPE.SETTINGS:
-		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ)
+		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
 		json.parse(settings_data_file.get_as_text())
-		if json.data != null:
+		if json.data:
 			settings_data = json.data
 		await _migrate_data(FILE_TYPE.SETTINGS)
 		await _add_missing_data(FILE_TYPE.SETTINGS)
 		_update_settings()
 		_update_keybinds_actions()
 	else:
-		save_data_file = FileAccess.open(file_paths[type], FileAccess.READ)
+		save_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
 		json.parse(save_data_file.get_as_text())
-		if json.data != null:
+		if json.data:
 			save_data = json.data
 		_migrate_data(FILE_TYPE.SAVE)
 		_add_missing_data(FILE_TYPE.SAVE)
 
+func _create_file(type: FILE_TYPE) -> void:
+	var create_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
+	create_file.store_string("")
+	create_file.close()
+	_load_file(type)
+	
 func _update_settings() -> void:
 	AudioServer.set_bus_volume_linear(0,(settings_data["volume"]["master_volume"])/100.0)
 	AudioServer.set_bus_volume_linear(1,(settings_data["volume"]["jumpscare_volume"])/100.0)
