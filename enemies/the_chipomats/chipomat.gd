@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		current_kill_timer -= 1 * delta
 		
 		if office_animation_direction == sprite.animation:
-			if "closed" in office.animation:
+			if "clos" in office.animation:
 				current_kill_timer = max(current_kill_timer,kill_timer_pause_threshold)
 				
 				current_leave_timer -= 1 * delta 
@@ -83,13 +83,13 @@ func visibility_checks() -> void:
 		sprite.visible = false
 	elif jumpscare_ready == true:
 		if sprite.visible == true:
-			if "closed" in office.animation:
+			if "open_" in office.animation and office.frame == 0 or "clos" in office.animation or "opening_" in office.animation:
 				sprite.visible = false
 	elif jumpscare_ready == false:
 		sprite.visible = true
 	
 func pick_side() -> int:
-	side = [-1,1].pick_random()
+	side = [-1].pick_random()
 	if sides[side] == office_animation_direction:
 		if "open" in office.animation or "clos" in office.animation: # "clos" to detect "close_" and "closing_"
 			return (side*-1)

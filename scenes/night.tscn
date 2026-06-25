@@ -1676,7 +1676,7 @@ sleep_assurance = NodePath("../GUI/SleepAssurance")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"office"
+animation = &"opening_l"
 autoplay = "office"
 centered = false
 
