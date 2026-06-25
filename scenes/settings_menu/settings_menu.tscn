@@ -40,4 +40,4 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 tab_alignment = 1
 
-[connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed" flags=18]
+[connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed"]

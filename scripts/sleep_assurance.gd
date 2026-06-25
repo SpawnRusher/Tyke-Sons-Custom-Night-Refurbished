@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 				_update_points()
 
 func _update_points() -> void:
+	sleep_assurance_normal = sleep_assurance_current_score/sleep_assurance_score_per_point/sleep_assurance_points_amount
 	for points in sleep_assurance_points_array:
 		var point_index: int = sleep_assurance_points_array.find(points)
 		points.value = sleep_assurance_current_score - (point_index*100)
@@ -61,7 +62,6 @@ func _add_score(enemy: Enemy) -> void:
 	if add_score == 0:
 		print("Forgot to add score for enemy ",enemy)
 	sleep_assurance_current_score += add_score * sleep_assurance_multiplier
-	sleep_assurance_normal = sleep_assurance_current_score/sleep_assurance_score_per_point/sleep_assurance_points_amount
 	_update_points()
 
 func _remove_score(delta: float, enemy: Enemy) -> void:

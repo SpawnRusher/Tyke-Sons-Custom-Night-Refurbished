@@ -7,6 +7,7 @@ extends CanvasLayer
 @export var front_window: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
+@export var go_to_sleep_popup: TextureRect
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -14,9 +15,6 @@ var last_animation_played: String
 var office_direction: String
 var lock_movement: bool
 var flashlight_state: bool
-
-var sleep_assurance_current_score: float
-var happyshroom_fight_active: bool
 
 #region AudioStreams
 const RUNNING: AudioStream = preload("uid://dn18i7vrgqil8")
@@ -43,19 +41,14 @@ func _process(delta: float) -> void:
 	lamp_button.visible = !lamp_button.disabled
 	_camera_lock()
 	
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] != 1:
 		_move_player("f")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and SaveData.settings_data["game"]["movement_mode"] != 1:
 		_move_player("b")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] != 1:
 		_move_player("l")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1680 - SaveData.settings_data["game"]["right_screen_margin"],1680) and SaveData.settings_data["game"]["movement_mode"] != 1:
 		_move_player("r")
-		
-	if Input.is_action_pressed("use_flashlight"):
-		_use_flashlight(true, office.get_local_mouse_position())
-	if not Input.is_action_pressed("use_flashlight"):
-		_use_flashlight(false, office.get_local_mouse_position())
 
 	if Input.is_action_pressed("close_curtain"):
 		if "open_" in office.animation:
@@ -74,6 +67,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
 		_move_player("r")
 
+	if Input.is_action_pressed("use_flashlight"):
+		_use_flashlight(true, office.get_local_mouse_position())
+	if not Input.is_action_pressed("use_flashlight"):
+		_use_flashlight(false, office.get_local_mouse_position())
 		
 	if event.is_action_pressed("toggle_lamp"):
 		if not lamp_button.disabled:
@@ -81,9 +78,8 @@ func _input(event: InputEvent) -> void:
 			lamp_button.pressed.emit()
 		
 	if event.is_action_pressed("go_to_sleep"):
-		if office.animation == "open_b" and office.frame == 1:
-			if sleep_assurance.sleep_assurance_normal >= 1:
-				SignalBus.go_to_sleep.emit()
+		if go_to_sleep_popup.visible:
+			SignalBus.go_to_sleep.emit()
 
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
@@ -118,6 +114,8 @@ func _update_flashlight_state(from_state) -> void:
 func _use_flashlight(to_state: bool, mouse_pos: Vector2) -> void:
 	var dir = office.animation.right(1)
 	
+	go_to_sleep_popup.visible = _show_go_to_sleep_popup(dir)
+	
 	if "open_" not in office.animation:
 		return
 	
@@ -127,7 +125,12 @@ func _use_flashlight(to_state: bool, mouse_pos: Vector2) -> void:
 			office.frame = 0
 			return
 
-	if dir == "l" or dir == "r" or dir == "b":
+	if dir == "l" or dir == "r":
+		SignalBus.flashlight_on.emit()
+		if flashlight_state == true:
+			office.frame = 1
+		
+	if dir == "b":
 		SignalBus.flashlight_on.emit()
 		if flashlight_state == true:
 			office.frame = 1
@@ -222,3 +225,12 @@ func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: int, to_do: bool) 
 
 func get_window_occupants(which_side: int) -> Array:
 	return [window_occupants_l,window_occupants_f,window_occupants_r][which_side+1]
+
+func _show_go_to_sleep_popup(dir: String) -> bool:
+	if sleep_assurance.sleep_assurance_normal < 1:
+		return false
+	if dir != "b":
+		return false
+	if office.frame != 1:
+		return false
+	return true

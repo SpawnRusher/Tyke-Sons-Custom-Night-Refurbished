@@ -16,6 +16,10 @@ var default_settings_data: Dictionary = {
 		"auto_restart_on_death":false,
 		"skip_loading_night":false,
 		"movement_mode":0,
+		"forward_screen_margin":100,
+		"left_screen_margin":100,
+		"backward_screen_margin":100,
+		"right_screen_margin":100
 	},
 	"keybinds": {
 		"restart_night": {

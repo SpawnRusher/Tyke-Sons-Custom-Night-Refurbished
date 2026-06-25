@@ -70,6 +70,26 @@ var settings_types: Dictionary = {
 				"Both":2
 				}
 			},
+		"forward_screen_margin": {
+			"type":"slider",
+			"min_value":1,
+			"max_value":300
+			},
+		"left_screen_margin": {
+			"type":"slider",
+			"min_value":1,
+			"max_value":300
+			},
+		"backward_screen_margin": {
+			"type":"slider",
+			"min_value":1,
+			"max_value":300
+			},
+		"right_screen_margin": {
+			"type":"slider",
+			"min_value":1,
+			"max_value":300
+			}
 	},
 	"keybinds": {
 		"restart_night": {
@@ -147,7 +167,7 @@ func _create_tabs(container: TabContainer) -> void:
 		new_tab.name = tab_name.capitalize()
 		container.add_child(new_tab)
 		_add_settings(new_tab)
-
+		
 func _add_settings(tab) -> void:
 	var tab_name = tab.name.to_lower()
 	
@@ -266,6 +286,6 @@ func _serialize_input_event(event: InputEvent) -> Dictionary:
 		dict["button_index"] = event.button_index
 	
 	return dict
-	
-func _on_tab_changed(tab: int, source: TabContainer) -> void:
+
+func _on_tab_changed(tab: int) -> void:
 	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
