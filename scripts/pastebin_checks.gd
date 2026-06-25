@@ -23,7 +23,7 @@ func _ready() -> void:
 
 	temp_version = version.split(".")
 	version_val = (temp_version[0].right(1)+temp_version[1]+temp_version[2]).to_int()
-	print("Build version: ", version, " (", version_val, ")")
+	print_debug("Build version: ", version, " (", version_val, ")")
 	pastebin_get()
 
 func pastebin_get() -> void:
@@ -32,11 +32,11 @@ func pastebin_get() -> void:
 	http_request.request_completed.connect(request_completed)
 	http_request_output = http_request.request("https://pastebin.com/raw/"+pastebin_id)
 	if http_request_output != OK:
-		print("An error occurred while initiating the HTTP request: ", http_request_output) 
+		print_debug("An error occurred while initiating the HTTP request: ", http_request_output) 
 
 func request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
-		print("Failed to fetch Pastebin. Status code: ", response_code)
+		print_debug("Failed to fetch Pastebin. Status code: ", response_code)
 		return
 	pastebin_checks(body.get_string_from_utf8())
 

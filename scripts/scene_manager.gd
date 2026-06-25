@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for scene: String in scenes:
 		scenes[scene]["status"] = ResourceLoader.load_threaded_get_status(scene,scenes[scene]["progress"])
-		if scenes[scene]["load_immediately"] == true and scenes[scene]["progress"] >= 1.0:
+		if scenes[scene]["load_immediately"] == true and scenes[scene]["progress"][0] >= 1.0:
 			change_to_scene(scene)
 
 ## Loads a scene filepath with a threaded request. Supports an indefinite number of scenes at the same time.

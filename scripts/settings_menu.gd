@@ -147,6 +147,7 @@ func _add_settings(tab: Node) -> void:
 				var setting_label:= button.find_child("SettingLabel")
 				var state_label:= button.find_child("StateLabel")
 				button.button_pressed = SaveData.settings_data[group][setting]
+				#button.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
 				setting_label.text = setting.capitalize()
 				state_label.text = "OFF" if button.button_pressed == false else "ON"
 				button.pressed.connect(_on_button_toggled.bind(button, group, setting, setting_label, state_label))
@@ -159,6 +160,7 @@ func _add_settings(tab: Node) -> void:
 				dropdown_label.text = setting.capitalize()
 				for option in settings_types["settings"][group][setting]["options"]:
 					dropdown_box.add_item(option,settings_types["settings"][group][setting]["options"][option])
+				#dropdown.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
 				dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[group][setting]))
 				dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, group, setting, dropdown_label))
 				
@@ -171,10 +173,12 @@ func _add_settings(tab: Node) -> void:
 				slider.min_value = settings_types["settings"][group][setting]["min_value"]
 				slider.max_value = settings_types["settings"][group][setting]["max_value"]
 				slider.value = SaveData.settings_data[group][setting]
+				#slider_setting.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
 				slider_label.text = setting.capitalize()
 				slider_value_label.text = str(int(slider.value))
 				slider.value_changed.connect(_on_slider_value_changed.bind(slider, group, setting, slider_label, slider_value_label))
 				
+			
 				
 func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
