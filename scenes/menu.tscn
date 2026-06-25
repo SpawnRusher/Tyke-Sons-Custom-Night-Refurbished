@@ -79,9 +79,10 @@ region = Rect2(0, 0, 120, 120)
 atlas = ExtResource("20_spe5f")
 region = Rect2(0, 0, 120, 120)
 
-[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade")]
+[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid")]
 script = ExtResource("1_fy8yy")
 fade = NodePath("Camera/Fade")
+enemy_portrait_grid = NodePath("Menu/EnemyPortraitGrid")
 
 [node name="Camera" type="CanvasLayer" parent="." unique_id=481994971]
 follow_viewport_enabled = true

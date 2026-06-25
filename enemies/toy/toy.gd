@@ -1,6 +1,8 @@
 extends Enemy
 class_name Toy
 
+const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
+
 
 ##The office background.
 @export var office: AnimatedSprite2D
@@ -94,6 +96,7 @@ func spawn_toy() -> void:
 	
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
+	SpecialFunctions.audio(TOY_RUNNING)
 	spawned = false
 	
 func prepare_jumpscare() -> void:

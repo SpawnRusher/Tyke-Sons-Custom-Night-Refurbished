@@ -29,6 +29,8 @@ offset_right = 126.0
 offset_bottom = 126.0
 mouse_filter = 1
 action_mode = 0
-button_mask = 0
+button_mask = 5
 texture_normal = SubResource("CompressedTexture2D_i38x2")
 texture_hover = SubResource("CompressedTexture2D_pah85")
+
+[connection signal="pressed" from="PortraitBorder" to="." method="_on_portrait_border_pressed" flags=18]
