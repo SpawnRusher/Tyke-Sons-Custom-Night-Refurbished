@@ -4,20 +4,18 @@ var file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.j
 enum FILE_TYPE {SETTINGS, SAVE}
 
 var default_settings_data: Dictionary = {
-	"volume": {
-		"master_volume":50,
-		"jumpscare_volume":50
-	},
 	"display": {
 		"max_fps":max(60,DisplayServer.screen_get_refresh_rate()),
 		"window_mode":DisplayServer.WINDOW_MODE_WINDOWED,
 		"vsync_mode":DisplayServer.VSYNC_DISABLED,
 		"antialiasing":get_viewport().DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 	},
-	"quality_of_life": {
+	"game": {
+		"master_volume":50,
+		"jumpscare_volume":50,
 		"auto_restart_on_death":false,
 		"skip_loading_night":false,
-		"enable_moving_with_keyboard":false
+		"movement_mode":0
 	},
 	"keybinds": {
 		"restart_night": {

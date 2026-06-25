@@ -5,6 +5,7 @@ const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 @onready var tabs_container: TabContainer
 @onready var tabs_children: Array[Node]
+@onready var tab_template = preload("res://scenes/settings_menu/tab_template.tscn")
 
 @onready var slider_button = preload("res://scenes/settings_menu/slider_button.tscn")
 @onready var dropdown_button = preload("res://scenes/settings_menu/dropdown_button.tscn")
@@ -17,56 +18,57 @@ var remapping_action = null
 var remapping_button = null
 
 var settings_types: Dictionary = {
-	"settings": {
-		"volume": {
-			"master_volume": {
-				"type":"slider",
-				"min_value":0,
-				"max_value":100
-			},
-			"jumpscare_volume": {
-				"type":"slider",
-				"min_value":0,
-				"max_value":100
-			},
+	"display": {
+		"max_fps" : {
+			"type":"slider",
+			"min_value":0,
+			"max_value":360,
 		},
-		"display": {
-			"max_fps" : {
-				"type":"slider",
-				"min_value":0,
-				"max_value":360,
-			},
-			"window_mode" : {
-				"type":"dropdown",
-				"options": {
-					"Windowed":0,
-					"Borderless":3,
-					"Exclusive":4
-					},
-			},
-			"vsync_mode" : {
-				"type":"dropdown",
-				"options": {
-					"Disabled":0,
-					"Enabled":1,
-					"Adaptive":2,
-					"Fast":3
-					},
-			},
-			"antialiasing": {
-				"type":"toggle"
-			},
+		"window_mode" : {
+			"type":"dropdown",
+			"options": {
+				"Windowed":0,
+				"Borderless":3,
+				"Exclusive":4
+				},
+		},
+		"vsync_mode" : {
+			"type":"dropdown",
+			"options": {
+				"Disabled":0,
+				"Enabled":1,
+				"Adaptive":2,
+				"Fast":3
+				},
+		},
+		"antialiasing": {
+			"type":"toggle"
 		},
 	},
-	"quality_of_life": {
+	"game": {
+		"master_volume": {
+			"type":"slider",
+			"min_value":0,
+			"max_value":100
+		},
+		"jumpscare_volume": {
+			"type":"slider",
+			"min_value":0,
+			"max_value":100
+		},
 		"auto_restart_on_death": {
 			"type":"toggle"
 			},
 		"skip_loading_night": {
 			"type":"toggle"
 			},
-		"enable_moving_with_keyboard": {
-			"type":"toggle"
+		"movement_mode": {
+			"type":"dropdown",
+			"options": {
+				"Mouse":0,
+				"Keyboard":1,
+				"Both":2
+				}
 			},
 	},
 	"keybinds": {
@@ -119,15 +121,8 @@ var settings_types: Dictionary = {
 
 func _ready() -> void:
 	tabs_container = find_child("TabContainer")
-	tabs_children = tabs_container.get_children()
-	for tab in tabs_children:
-		if tab.name == "Settings":
-			_add_settings(tab)
-		if tab.name == "Quality of Life":
-			_add_qol(tab)
-		if tab.name == "Keybinds":
-			_add_keybinds(tab)
-			
+	_create_tabs(tabs_container)
+
 func _input(event: InputEvent) -> void:
 	if remapping:
 		if event is InputEventKey or event is InputEventMouseButton:
@@ -146,50 +141,59 @@ func _input(event: InputEvent) -> void:
 				
 				accept_event()
 
-func _add_settings(tab: Node) -> void:
+func _create_tabs(container: TabContainer) -> void:
+	for tab_name in settings_types:
+		var new_tab = tab_template.instantiate()
+		new_tab.name = tab_name.capitalize()
+		container.add_child(new_tab)
+		_add_settings(new_tab)
+
+func _add_settings(tab) -> void:
+	var tab_name = tab.name.to_lower()
+	
+	if tab_name == "keybinds":
+		_add_keybinds(tab)
+	if tab_name == "gamejolt":
+		return
+	
 	var vbox = tab.find_child("TabVBox")
-	for group in settings_types["settings"]:
-		#var divider = group_divider.instantiate()
-		#var group_label = divider.find_child("GroupLabel")
-		#vbox.add_child(divider)
-		#group_label.text = group.capitalize()
-		for setting in settings_types["settings"][group]:
-			if settings_types["settings"][group][setting]["type"] == "toggle":
-				var button:= toggle_button.instantiate()
-				vbox.add_child(button)
-				var setting_label:= button.find_child("SettingLabel")
-				var state_label:= button.find_child("StateLabel")
-				button.button_pressed = SaveData.settings_data[group][setting]
-				#button.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
-				setting_label.text = setting.capitalize()
-				state_label.text = "OFF" if button.button_pressed == false else "ON"
-				button.pressed.connect(_on_button_toggled.bind(button, group, setting, setting_label, state_label))
+	for setting in settings_types[tab_name]:
+		if settings_types[tab_name][setting]["type"] == "toggle":
+			var button:= toggle_button.instantiate()
+			vbox.add_child(button)
+			var setting_label:= button.find_child("SettingLabel")
+			var state_label:= button.find_child("StateLabel")
+			button.button_pressed = SaveData.settings_data[tab_name][setting]
+			#button.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
+			setting_label.text = setting.capitalize()
+			state_label.text = "OFF" if button.button_pressed == false else "ON"
+			button.pressed.connect(_on_button_toggled.bind(button, tab_name, setting, setting_label, state_label))
 				
-			if settings_types["settings"][group][setting]["type"] == "dropdown":
-				var dropdown:= dropdown_button.instantiate()
-				vbox.add_child(dropdown)
-				var dropdown_box:= dropdown.find_child("Dropdown")
-				var dropdown_label:= dropdown.find_child("DropdownLabel")
-				dropdown_label.text = setting.capitalize()
-				for option in settings_types["settings"][group][setting]["options"]:
-					dropdown_box.add_item(option,settings_types["settings"][group][setting]["options"][option])
-				#dropdown.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
-				dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[group][setting]))
-				dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, group, setting, dropdown_label))
+		if settings_types[tab_name][setting]["type"] == "dropdown":
+			var dropdown:= dropdown_button.instantiate()
+			vbox.add_child(dropdown)
+			var dropdown_box:= dropdown.find_child("Dropdown")
+			var dropdown_label:= dropdown.find_child("DropdownLabel")
+			dropdown_label.text = setting.capitalize()
+			for option in settings_types[tab_name][setting]["options"]:
+				dropdown_box.add_item(option,settings_types[tab_name][setting]["options"][option])
+			#dropdown.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
+			dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[tab_name][setting]))
+			dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, tab_name, setting, dropdown_label))
 				
-			if settings_types["settings"][group][setting]["type"] == "slider":
-				var slider_setting:= slider_button.instantiate()
-				vbox.add_child(slider_setting)
-				var slider:= slider_setting.find_child("Slider")
-				var slider_label:= slider_setting.find_child("SliderLabel")
-				var slider_value_label:= slider_setting.find_child("SliderValueLabel")
-				slider.min_value = settings_types["settings"][group][setting]["min_value"]
-				slider.max_value = settings_types["settings"][group][setting]["max_value"]
-				slider.value = SaveData.settings_data[group][setting]
-				#slider_setting.set_tooltip_text(settings_types["settings"][group][setting]["tooltip"])
-				slider_label.text = setting.capitalize()
-				slider_value_label.text = str(int(slider.value))
-				slider.value_changed.connect(_on_slider_value_changed.bind(slider, group, setting, slider_label, slider_value_label))
+		if settings_types[tab_name][setting]["type"] == "slider":
+			var slider_setting:= slider_button.instantiate()
+			vbox.add_child(slider_setting)
+			var slider:= slider_setting.find_child("Slider")
+			var slider_label:= slider_setting.find_child("SliderLabel")
+			var slider_value_label:= slider_setting.find_child("SliderValueLabel")
+			slider.min_value = settings_types[tab_name][setting]["min_value"]
+			slider.max_value = settings_types[tab_name][setting]["max_value"]
+			slider.value = SaveData.settings_data[tab_name][setting]
+			#slider_setting.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
+			slider_label.text = setting.capitalize()
+			slider_value_label.text = str(int(slider.value))
+			slider.value_changed.connect(_on_slider_value_changed.bind(slider, tab_name, setting, slider_label, slider_value_label))
 								
 func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
@@ -199,19 +203,6 @@ func _on_slider_value_changed(value, slider: Slider, group, setting, slider_labe
 func _on_dropdown_setting_selected(index, dropdown, group, setting, dropdown_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,dropdown.get_item_id(index),group,setting)
 	SpecialFunctions.audio(QUIETBUTTONPRESS)
-	
-func _add_qol(tab: Node) -> void:
-	for setting in settings_types["quality_of_life"]:
-		if settings_types["quality_of_life"][setting]["type"] == "toggle":
-			var button:= toggle_button.instantiate()
-			var setting_label:= button.find_child("SettingLabel")
-			var state_label:= button.find_child("StateLabel")
-			
-			button.button_pressed = SaveData.settings_data["quality_of_life"][setting]
-			setting_label.text = setting.capitalize()
-			state_label.text = "OFF" if button.button_pressed == false else "ON"
-			tab.find_child("TabVBox").add_child(button)
-			button.pressed.connect(_on_button_toggled.bind(button, "quality_of_life", setting, setting_label, state_label))
 		
 func _on_button_toggled(button: Button, group, setting, setting_label, state_label) -> void:
 	setting = setting.to_lower().replace(" ","_")
