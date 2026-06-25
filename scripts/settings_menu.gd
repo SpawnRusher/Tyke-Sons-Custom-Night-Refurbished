@@ -153,6 +153,7 @@ func _add_settings(tab) -> void:
 	
 	if tab_name == "keybinds":
 		_add_keybinds(tab)
+		return
 	if tab_name == "gamejolt":
 		return
 	
