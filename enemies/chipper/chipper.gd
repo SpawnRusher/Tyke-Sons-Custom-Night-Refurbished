@@ -44,4 +44,4 @@ func _pickup_lumber() -> void:
 	pass
 
 func _lumber_despawned() -> void:
-	pass
+	jumpscare()
