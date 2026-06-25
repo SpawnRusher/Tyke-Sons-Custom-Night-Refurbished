@@ -36,6 +36,16 @@ func _process(delta: float) -> void:
 	lamp_button.disabled = (office.animation != "office")
 	lamp_button.visible = !lamp_button.disabled
 	_camera_lock()
+	
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100):
+		_move_player("f")
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
+		_move_player("b")
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100):
+		_move_player("l")
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680):
+		_move_player("r")
+
 	if Input.is_action_pressed("close_curtain"):
 		if "open_" in office.animation:
 			_use_curtain(true)
@@ -45,13 +55,13 @@ func _process(delta: float) -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100) or (event.is_action_pressed("move_forward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+	if event.is_action_pressed("move_forward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true:
 		_move_player("f")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720) or (event.is_action_pressed("move_backward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+	if event.is_action_pressed("move_backward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true:
 		_move_player("b")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100) or (event.is_action_pressed("move_left", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+	if event.is_action_pressed("move_left", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true:
 		_move_player("l")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680) or (event.is_action_pressed("move_right", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+	if event.is_action_pressed("move_right", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true:
 		_move_player("r")
 	
 	if event.is_action_pressed("use_flashlight"):
