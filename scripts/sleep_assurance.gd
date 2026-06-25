@@ -45,7 +45,6 @@ func _update_points() -> void:
 		var point_index: int = sleep_assurance_points_array.find(points)
 		points.value = sleep_assurance_current_score - (point_index*100)
 
-			
 func _add_score(enemy: Enemy) -> void:
 	var add_score: float = 0
 	if enemy is Chipomat:

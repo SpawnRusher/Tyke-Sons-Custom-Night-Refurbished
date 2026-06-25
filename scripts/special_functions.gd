@@ -18,7 +18,7 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	
 	@warning_ignore("shadowed_variable")
 	var audio: Node = AudioStreamPlayer.new()
-	if pan > 0.0:
+	if pan != 0:
 		audio = AudioStreamPlayer2D.new()
 
 		
@@ -37,7 +37,7 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 
 	audio.finished.connect(audio.queue_free)
 	
-	if pan != 0:
+	if audio is AudioStreamPlayer2D:
 		var camera: Camera2D = get_viewport().get_camera_2d()
 		audio.position.x = (camera.position.x+640)+(640*pan)
 	audio.bus = AudioServer.get_bus_name(bus)
