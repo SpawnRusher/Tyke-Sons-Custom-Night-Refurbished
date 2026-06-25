@@ -1478,95 +1478,95 @@ animations = [{
 "speed": 0.0
 }, {
 "frames": [{
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("238_43wm1")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("239_uqugn")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("240_b2iwg")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("241_syl3s")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("242_15o2o")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("243_qqmqt")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("244_aknyj")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("245_o5y13")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("246_dhlwh")
 }],
 "loop": 0,
 "name": &"turning_stare",
-"speed": 45.0
+"speed": 18.9
 }, {
 "frames": [{
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("246_dhlwh")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("245_o5y13")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("244_aknyj")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("243_qqmqt")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("242_15o2o")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("241_syl3s")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("240_b2iwg")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("239_uqugn")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("238_43wm1")
 }],
 "loop": 0,
 "name": &"turning_walk",
-"speed": 45.0
+"speed": 18.9
 }, {
 "frames": [{
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("247_j60a1")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("248_v6ort")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("249_n5hop")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("250_bnhoh")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("251_k2qyl")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("252_u7avd")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("253_8yq8l")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("254_q4f15")
 }, {
-"duration": 0.42,
+"duration": 1.0,
 "texture": ExtResource("255_26som")
 }, {
 "duration": 0.42,
@@ -1598,7 +1598,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walking",
-"speed": 45.0
+"speed": 18.9
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r0ah"]
@@ -1738,7 +1738,7 @@ visible = false
 show_behind_parent = true
 position = Vector2(600, 260)
 sprite_frames = SubResource("SpriteFrames_fyxh2")
-animation = &"turning_stare"
+animation = &"walking"
 
 [node name="Batteries" type="TextureProgressBar" parent="Office/OfficeBackground" unique_id=8360262]
 visible = false
