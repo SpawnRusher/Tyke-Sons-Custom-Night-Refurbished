@@ -15,7 +15,7 @@ var default_settings_data: Dictionary = {
 		"jumpscare_volume":50,
 		"auto_restart_on_death":false,
 		"skip_loading_night":false,
-		"movement_mode":0
+		"movement_mode":0,
 	},
 	"keybinds": {
 		"restart_night": {
