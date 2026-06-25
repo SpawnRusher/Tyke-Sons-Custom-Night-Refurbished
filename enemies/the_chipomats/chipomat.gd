@@ -1,6 +1,7 @@
 extends Enemy
 class_name Chipomat
-
+##The office layer.
+@export var office_layer: CanvasLayer
 ##The office background.
 @export var office: AnimatedSprite2D
 ##The Chipomat sprite.
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	office_animation_direction = office.animation.right(1)
-	visibility_checks()
+	sprite.visible = visibility_checks()
 	if jumpscare_ready == true:
 		if office.animation == "return" or office.animation == "office":
 			jumpscare()
@@ -76,23 +77,28 @@ func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 			
-func visibility_checks() -> void:
-	if spawned != true:
-		sprite.visible = false
-	elif office_animation_direction != sprite.animation:
-		sprite.visible = false
+func visibility_checks() -> bool:
+	if spawned == false:
+		return false
+	if spawned == true:
+		if sprite.visible == false:
+			if "open_" in office.animation and office.frame == 1:
+				return false
+			if office.animation.right(1) != side_string:
+				return false
 	elif jumpscare_ready == true:
 		if sprite.visible == true:
 			if "open_" in office.animation and office.frame == 0 or "clos" in office.animation or "opening_" in office.animation:
-				sprite.visible = false
-	elif jumpscare_ready == false:
-		sprite.visible = true
+				return false
+	
+	return true
 	
 func pick_side() -> int:
-	side = [-1].pick_random()
-	if sides[side] == office_animation_direction:
-		if "open" in office.animation or "clos" in office.animation: # "clos" to detect "close_" and "closing_"
-			return (side*-1)
+	side = [-1,1].pick_random()
+	
+	if office_layer.get_window_occupants(side).size() >= 2:
+		side *= -1
+
 	return side
 
 func spawn_chipomat() -> void:
@@ -105,13 +111,14 @@ func spawn_chipomat() -> void:
 	current_kill_timer = kill_timer
 	current_leave_timer = leave_timer
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
+	office_layer.update_window_occupants(enemy_id,side,true)
 	
 func leave_chipomat() -> void:
 	SignalBus.enemy_defended.emit(self)
 	spawned = false
 	sprite.visible = false
+	office_layer.update_window_occupants(enemy_id,side,false)
 	
 func prepare_jumpscare() -> void:
 	jumpscare_ready = true
-	
 	

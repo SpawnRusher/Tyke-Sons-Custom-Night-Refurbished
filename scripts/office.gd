@@ -26,6 +26,11 @@ const NOSE_HONK: AudioStream = preload("uid://dp2sm6go3v2r4")
 const LAMPTOGGLE: AudioStream = preload("uid://bf8j1xugtu8dh")
 #endregion
 
+#region WindowArrays
+var front_window_occupants: Array[Enemy]
+var left_window_occupants: Array[Enemy]
+var right_window_occupants: Array[Enemy]
+#endregion
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

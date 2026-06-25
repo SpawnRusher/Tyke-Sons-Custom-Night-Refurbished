@@ -28,6 +28,12 @@ const NOSE_HONK: AudioStream = preload("uid://dp2sm6go3v2r4")
 const LAMPTOGGLE: AudioStream = preload("uid://bf8j1xugtu8dh")
 #endregion
 
+#region WindowArrays
+var window_occupants_l: Array[Enemy.ENEMY_IDS]
+var window_occupants_f: Array[Enemy.ENEMY_IDS]
+var window_occupants_r: Array[Enemy.ENEMY_IDS]
+#endregion
+
 func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 
@@ -58,7 +64,6 @@ func _process(delta: float) -> void:
 		if "closed_" in office.animation:
 			_use_curtain(false)
 	
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
 		_move_player("f")
@@ -79,7 +84,6 @@ func _input(event: InputEvent) -> void:
 		if office.animation == "open_b" and office.frame == 1:
 			if sleep_assurance.sleep_assurance_normal >= 1:
 				SignalBus.go_to_sleep.emit()
-
 
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
@@ -159,7 +163,6 @@ func _use_curtain(to_state: bool) -> void:
 		if flashlight_state == true:
 			SignalBus.flashlight_off.emit()
 	
-
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
 	var dir = last_animation_played.right(1)
 	if "leave_" in last_animation_played:
@@ -178,8 +181,6 @@ func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
 		office.play("open_"+dir)
 	if "closing_" in last_animation_played:
 		office.play("closed_"+dir)
-		
-
 				
 func _can_move() -> bool:
 	if dark_overlay.visible == true:
@@ -210,3 +211,14 @@ func _on_nose_pressed() -> void:
 func _on_lamp_button_pressed(source: BaseButton) -> void:
 	dark_overlay.visible = source.button_pressed
 	SpecialFunctions.audio(LAMPTOGGLE)
+
+func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: int, to_do: bool) -> void:
+	var occupants_arrays:= [window_occupants_l,window_occupants_f,window_occupants_r]
+	match to_do:
+		false:
+			occupants_arrays[which_side+1].erase(id)
+		true:
+			occupants_arrays[which_side+1].append(id)
+
+func get_window_occupants(which_side: int) -> Array:
+	return [window_occupants_l,window_occupants_f,window_occupants_r][which_side+1]

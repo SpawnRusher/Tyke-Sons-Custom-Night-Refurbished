@@ -1973,8 +1973,9 @@ color = Color(0, 0, 0, 1)
 [node name="Enemies" type="Node" parent="." unique_id=1986394494]
 process_mode = 1
 
-[node name="Chipomat1" type="Node" parent="Enemies" unique_id=1578248507 node_paths=PackedStringArray("office", "sprite")]
+[node name="Chipomat1" type="Node" parent="Enemies" unique_id=1578248507 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("298_0448k")
+office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/Chipomat1")
 spawn_timer = 20.0
@@ -1987,8 +1988,9 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_middle_uid = "uid://hmexkiu40fv1"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
-[node name="Chipomat2" type="Node" parent="Enemies" unique_id=926769504 node_paths=PackedStringArray("office", "sprite")]
+[node name="Chipomat2" type="Node" parent="Enemies" unique_id=926769504 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("298_0448k")
+office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/Chipomat2")
 spawn_timer = 16.0
@@ -2001,8 +2003,9 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_middle_uid = "uid://cgsw7agy1qjmd"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
-[node name="Chipomat3" type="Node" parent="Enemies" unique_id=924281945 node_paths=PackedStringArray("office", "sprite")]
+[node name="Chipomat3" type="Node" parent="Enemies" unique_id=924281945 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("298_0448k")
+office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/Chipomat3")
 spawn_timer = 13.0
@@ -2015,8 +2018,9 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_middle_uid = "uid://dnrmdge40dfkx"
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
-[node name="FunFungal" type="Node" parent="Enemies" unique_id=1815203350 node_paths=PackedStringArray("office", "sprite")]
+[node name="FunFungal" type="Node" parent="Enemies" unique_id=1815203350 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("303_q6cdj")
+office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/FunFungal")
 progress_timer = 30.0
@@ -2026,8 +2030,9 @@ jumpscare_sound = ExtResource("304_q36i8")
 jumpscare_middle_uid = "uid://cshws6mtgkvy2"
 metadata/_custom_type_script = "uid://f0vepf3put15"
 
-[node name="Springcrab" type="Node" parent="Enemies" unique_id=634580021 node_paths=PackedStringArray("office", "sprite", "seabill")]
+[node name="Springcrab" type="Node" parent="Enemies" unique_id=634580021 node_paths=PackedStringArray("office_layer", "office", "sprite", "seabill")]
 script = ExtResource("305_38p68")
+office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/FrontWindow")
 seabill = NodePath("../Seabill")

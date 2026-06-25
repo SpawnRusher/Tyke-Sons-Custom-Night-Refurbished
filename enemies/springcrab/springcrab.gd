@@ -1,6 +1,8 @@
 extends Enemy
 class_name Springcrab
 
+##The office layer.
+@export var office_layer: CanvasLayer
 ##The office background.
 @export var office: AnimatedSprite2D
 ##The Springcrab sprite.
@@ -74,11 +76,13 @@ func spawn_springcrab() -> void:
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
+	office_layer.update_window_occupants(enemy_id,0,true)
 	
 func leave_springcrab() -> void:
 	SignalBus.enemy_defended.emit(self)
 	spawned = false
 	last_side_flashed = ""
+	office_layer.update_window_occupants(enemy_id,0,false)
 	
 func visibility_checks() -> void:
 	if office.animation == "open_f":

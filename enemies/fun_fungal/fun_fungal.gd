@@ -1,6 +1,7 @@
 extends Enemy
 class_name Fun_Fungal
-
+##The office layer.
+@export var office_layer: CanvasLayer
 ##The office background.
 @export var office: AnimatedSprite2D
 ##The Fun Fungal sprite.
@@ -59,9 +60,11 @@ func deactivate():
 
 func reset() -> void:
 	SignalBus.enemy_defended.emit(self)
+	office_layer.update_window_occupants(enemy_id,side,false)
 	side = 0
 	await get_tree().create_timer(idle_timer).timeout
 	side = [-1,1].pick_random()
+	office_layer.update_window_occupants(enemy_id,side,true)
 	sprite.rotation_degrees = 180 - (45 * side) # 1 == 135, -1 == 255
 	current_progress = 0
 
@@ -73,4 +76,3 @@ func flash_check():
 	if office.frame == 0:
 		return false
 	return true
-	
