@@ -123,3 +123,5 @@ size_flags_vertical = 3
 [node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabScroll" unique_id=183099961]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed" flags=18]

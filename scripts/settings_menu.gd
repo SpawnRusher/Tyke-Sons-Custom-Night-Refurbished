@@ -1,5 +1,8 @@
 extends Control
 
+const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
+const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
+
 @onready var tabs_container: TabContainer
 @onready var tabs_children: Array[Node]
 
@@ -135,6 +138,8 @@ func _input(event: InputEvent) -> void:
 				InputMap.action_add_event(remapping_action, event)
 				_update_action_list(remapping_button, remapping_action, event)
 				
+				SpecialFunctions.audio(QUIETBUTTONPRESS)
+				
 				remapping = false
 				remapping_action = null
 				remapping_button = null
@@ -185,16 +190,16 @@ func _add_settings(tab: Node) -> void:
 				slider_label.text = setting.capitalize()
 				slider_value_label.text = str(int(slider.value))
 				slider.value_changed.connect(_on_slider_value_changed.bind(slider, group, setting, slider_label, slider_value_label))
-				
-			
-				
+								
 func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
 	slider_value_label.text = str(int(slider.value))
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
 	
 func _on_dropdown_setting_selected(index, dropdown, group, setting, dropdown_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,dropdown.get_item_id(index),group,setting)
-
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
+	
 func _add_qol(tab: Node) -> void:
 	for setting in settings_types["quality_of_life"]:
 		if settings_types["quality_of_life"][setting]["type"] == "toggle":
@@ -212,6 +217,7 @@ func _on_button_toggled(button: Button, group, setting, setting_label, state_lab
 	setting = setting.to_lower().replace(" ","_")
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group,setting)
 	state_label.text = "OFF" if button.button_pressed == false else "ON"
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
 
 func _add_keybinds(tab: Node) -> void:
 	var action_list = InputMap.get_actions()
@@ -248,6 +254,7 @@ func _edit_keybind(button: Button, action: String) -> void:
 		remapping_action = action
 		remapping_button = button
 		button.find_child("InputLabel").text = "Press any input..."
+		SpecialFunctions.audio(QUIETBUTTONPRESS)
 
 func _update_action_list(button: Button, action: String, event: InputEvent) -> void:
 	button.find_child("InputLabel").text = event.as_text().trim_suffix(" - Physical")
@@ -268,6 +275,5 @@ func _serialize_input_event(event: InputEvent) -> Dictionary:
 	
 	return dict
 	
-	
-	
-	
+func _on_tab_changed(tab: int, source: TabContainer) -> void:
+	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
