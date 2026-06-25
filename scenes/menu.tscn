@@ -216,7 +216,7 @@ enemy_tooltip = "He will sit in the bedroom, getting up before leaving. After he
 [node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
-enemy_id = 13
+enemy_id = 14
 enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
 
 [node name="SettingsButton" type="Button" parent="Menu" unique_id=1348462967]
