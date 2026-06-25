@@ -21,8 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="19_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
-[ext_resource type="Script" uid="uid://cc84ahuhn0m27" path="res://scripts/settings.gd" id="22_jamij"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://fonts/default_font_theme.tres" id="23_6wigr"]
+[ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")
@@ -235,26 +234,31 @@ action_mode = 0
 text = "SETTINGS"
 flat = true
 
-[node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389 node_paths=PackedStringArray("settings_list")]
+[node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0
 follow_viewport_enabled = true
-script = ExtResource("22_jamij")
-settings_list = NodePath("SettingsList")
 
 [node name="Background" type="Sprite2D" parent="Settings" unique_id=437575964]
 position = Vector2(0, 720)
 texture = ExtResource("3_lnf0i")
 centered = false
 
-[node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
-anchors_preset = 2
+[node name="SettingsMenu" parent="Settings" unique_id=131214480 instance=ExtResource("23_lnf0i")]
+anchors_preset = -1
 anchor_top = 1.0
+anchor_bottom = 2.0
+
+[node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 550.0
+offset_left = -90.0
 offset_top = 10.0
-offset_right = 730.0
+offset_right = 90.0
 offset_bottom = 80.0
-grow_vertical = 0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -266,219 +270,6 @@ action_mode = 0
 text = "MENU"
 flat = true
 
-[node name="SettingsList" type="Control" parent="Settings" unique_id=124095562]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -720.0
-offset_bottom = -720.0
-grow_vertical = 0
-
-[node name="volume" type="Control" parent="Settings/SettingsList" unique_id=891494158]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="master_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=493942687]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 499.0
-offset_top = 1040.0
-offset_right = 799.0
-offset_bottom = 1056.0
-grow_vertical = 0
-rounded = true
-
-[node name="Master Volume" type="RichTextLabel" parent="Settings/SettingsList/volume/master_volume" unique_id=130690394]
-layout_mode = 0
-offset_top = -25.0
-offset_right = 267.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Master Volume: 50"
-vertical_alignment = 2
-
-[node name="jumpscare_volume" type="HSlider" parent="Settings/SettingsList/volume" unique_id=404807222]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 499.0
-offset_top = 1090.0
-offset_right = 799.0
-offset_bottom = 1106.0
-grow_vertical = 0
-rounded = true
-
-[node name="Jumpscare Volume" type="RichTextLabel" parent="Settings/SettingsList/volume/jumpscare_volume" unique_id=1562110475]
-layout_mode = 0
-offset_top = -25.0
-offset_right = 267.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Jumpscare Volume: 50"
-vertical_alignment = 2
-
-[node name="display" type="Control" parent="Settings/SettingsList" unique_id=1831348896]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="window_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=1915524060]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 160.0
-offset_top = 860.0
-offset_right = 304.0
-offset_bottom = 908.0
-grow_vertical = 0
-item_count = 3
-popup/item_0/text = "Windowed"
-popup/item_0/id = 0
-popup/item_1/text = "Borderless"
-popup/item_1/id = 3
-popup/item_2/text = "Exclusive"
-popup/item_2/id = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/window_mode" unique_id=2099584273]
-layout_mode = 0
-offset_top = -25.0
-offset_right = 145.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Window Mode"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="vsync_mode" type="OptionButton" parent="Settings/SettingsList/display" unique_id=554088632]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 158.0
-offset_top = 957.0
-offset_right = 302.0
-offset_bottom = 1005.0
-grow_vertical = 0
-item_count = 4
-popup/item_0/text = "Disabled"
-popup/item_0/id = 0
-popup/item_1/text = "Enabled"
-popup/item_1/id = 1
-popup/item_2/text = "Adaptive"
-popup/item_2/id = 2
-popup/item_3/text = "Fast"
-popup/item_3/id = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/vsync_mode" unique_id=615267139]
-layout_mode = 0
-offset_top = -25.0
-offset_right = 145.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "VSync Mode"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="max_fps" type="HSlider" parent="Settings/SettingsList/display" unique_id=1863996720]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 159.0
-offset_top = 1093.0
-offset_right = 459.0
-offset_bottom = 1109.0
-grow_vertical = 0
-min_value = 1.0
-max_value = 360.0
-step = 0.0
-value = 5.0
-rounded = true
-
-[node name="Max FPS" type="RichTextLabel" parent="Settings/SettingsList/display/max_fps" unique_id=2105183446]
-layout_mode = 0
-offset_top = -25.0
-offset_right = 267.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Maximum FPS: 60"
-vertical_alignment = 2
-
-[node name="antialiasing" type="CheckBox" parent="Settings/SettingsList/display" unique_id=307177141]
-layout_mode = 0
-offset_left = 276.0
-offset_top = 1070.0
-offset_right = 300.0
-offset_bottom = 1094.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/display/antialiasing" unique_id=945133695]
-layout_mode = 0
-offset_left = -119.0
-offset_top = -2.0
-offset_right = 3.0
-offset_bottom = 23.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Antialiasing"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="quality_of_life" type="Control" parent="Settings/SettingsList" unique_id=2034362305]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="auto_restart_on_death" type="CheckBox" parent="Settings/SettingsList/quality_of_life" unique_id=960540720]
-layout_mode = 0
-offset_left = 989.0
-offset_top = 1103.0
-offset_right = 1013.0
-offset_bottom = 1127.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/quality_of_life/auto_restart_on_death" unique_id=710052098]
-layout_mode = 0
-offset_left = -125.0
-offset_top = -14.0
-offset_right = 5.0
-offset_bottom = 40.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Auto restart on death"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="skip_loading_night" type="CheckBox" parent="Settings/SettingsList/quality_of_life" unique_id=118427760]
-layout_mode = 0
-offset_left = 988.0
-offset_top = 1038.0
-offset_right = 1012.0
-offset_bottom = 1062.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Settings/SettingsList/quality_of_life/skip_loading_night" unique_id=1864381501]
-layout_mode = 0
-offset_left = -144.0
-offset_top = -14.0
-offset_right = 5.0
-offset_bottom = 40.0
-theme = ExtResource("23_6wigr")
-theme_override_font_sizes/normal_font_size = 20
-text = "Skip Loading Night"
-horizontal_alignment = 1
-vertical_alignment = 2
-
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
-[connection signal="value_changed" from="Settings/SettingsList/volume/master_volume" to="Settings" method="_on_slider_value_changed" flags=18]
-[connection signal="value_changed" from="Settings/SettingsList/volume/jumpscare_volume" to="Settings" method="_on_slider_value_changed" flags=18]
-[connection signal="item_selected" from="Settings/SettingsList/display/window_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="item_selected" from="Settings/SettingsList/display/vsync_mode" to="Settings" method="_on_option_button_item_selected" flags=18]
-[connection signal="value_changed" from="Settings/SettingsList/display/max_fps" to="Settings" method="_on_slider_value_changed" flags=18]
-[connection signal="pressed" from="Settings/SettingsList/display/antialiasing" to="Settings" method="_on_check_pressed" flags=18]
-[connection signal="pressed" from="Settings/SettingsList/quality_of_life/auto_restart_on_death" to="Settings" method="_on_check_pressed" flags=18]

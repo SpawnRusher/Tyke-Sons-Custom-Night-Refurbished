@@ -1769,7 +1769,7 @@ layout_mode = 0
 offset_right = 36.0
 offset_bottom = 25.0
 action_mode = 0
-button_mask = 3
+button_mask = 7
 
 [node name="Nose" type="Button" parent="Office/OfficeBackground" unique_id=96758172]
 offset_left = 586.0
@@ -1778,6 +1778,7 @@ offset_right = 610.0
 offset_bottom = 390.0
 action_mode = 0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="LampButton" type="Button" parent="Office" unique_id=578000767]
 offset_left = 1176.0
@@ -1834,6 +1835,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("284_7ov8y")
 grid = NodePath("SleepAssuranceGrid")
+metadata/_edit_use_anchors_ = true
 
 [node name="SleepAssuranceGrid" type="GridContainer" parent="GUI/SleepAssurance" unique_id=638745915]
 custom_minimum_size = Vector2(248, 0)
@@ -1844,6 +1846,7 @@ offset_right = 253.0
 offset_bottom = 66.0
 theme_override_constants/h_separation = 7
 columns = 8
+metadata/_edit_use_anchors_ = true
 
 [node name="Map" type="TextureRect" parent="GUI" unique_id=275795702 node_paths=PackedStringArray("office", "player")]
 anchors_preset = 3
@@ -1861,6 +1864,7 @@ texture = ExtResource("285_wf457")
 script = ExtResource("286_jo6ps")
 office = NodePath("../../Office/OfficeBackground")
 player = NodePath("PlayerIcon")
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerIcon" type="TextureRect" parent="GUI/Map" unique_id=1261073316]
 layout_mode = 0
@@ -1869,6 +1873,7 @@ offset_top = 54.0
 offset_right = 83.0
 offset_bottom = 69.0
 texture = ExtResource("287_3xcf7")
+metadata/_edit_use_anchors_ = true
 
 [node name="FredbearIcon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
 layout_mode = 0
@@ -1877,6 +1882,7 @@ offset_top = 11.0
 offset_right = 52.0
 offset_bottom = 27.0
 texture = ExtResource("288_axan3")
+metadata/_edit_use_anchors_ = true
 
 [node name="BusterIcon" type="TextureRect" parent="GUI/Map" unique_id=1164710387]
 layout_mode = 0
@@ -1885,6 +1891,7 @@ offset_top = 86.0
 offset_right = 107.0
 offset_bottom = 102.0
 texture = ExtResource("289_25vqt")
+metadata/_edit_use_anchors_ = true
 
 [node name="BidyIcon" type="TextureRect" parent="GUI/Map" unique_id=921563182]
 layout_mode = 0
@@ -1893,6 +1900,7 @@ offset_top = 86.0
 offset_right = 27.0
 offset_bottom = 102.0
 texture = ExtResource("290_ny5dv")
+metadata/_edit_use_anchors_ = true
 
 [node name="FlashlightBattery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
 anchors_preset = 2

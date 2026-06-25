@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c5tck8h81yxqm"]
+
+[node name="KeybindButton" type="Button" unique_id=1625416073]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+focus_mode = 0
+action_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=69840130]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=923350876]
+layout_mode = 2
+
+[node name="ActionLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1564517087]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 32
+text = "ActionLabel"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer" unique_id=817646904]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="InputLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=122809078]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 32
+text = "InputLabel"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1

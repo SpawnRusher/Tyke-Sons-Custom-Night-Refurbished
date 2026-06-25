@@ -41,35 +41,32 @@ func _process(_delta: float) -> void:
 	if office.animation != "office":
 		lamp_button.disabled = true
 	lamp_button.visible = !lamp_button.disabled
-	
-	if office.animation == "office":
-		turn_checks()
 			
 	if "closed" in office.animation:
-		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if not Input.is_action_pressed("close_curtain"):
 			office.play("opening_"+animation_direction)
 			SpecialFunctions.audio(CURTAIN_OPENING)
 			
 	if "open_" in office.animation: # underscore in name is necessary here to distinct "open_dir" from "opening_dir"
 		
 		if animation_direction == "r" or animation_direction == "l":
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if Input.is_action_pressed("use_flashlight"):
 				SignalBus.flashlight_on.emit()
 				if using_flashlight == true:
 					office.frame = 1
-			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if not Input.is_action_pressed("use_flashlight"):
 				SignalBus.flashlight_off.emit()
 				if using_flashlight == false:
 					office.frame = 0
 
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if Input.is_action_pressed("close_curtain"):
 				office.play("closing_"+animation_direction)
 				SpecialFunctions.audio(CURTAIN_CLOSING)
 				if using_flashlight == true:
 					SignalBus.flashlight_off.emit()
 				
 		if animation_direction == "f":
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if Input.is_action_pressed("use_flashlight"):
 				if using_flashlight == false:
 					if SpecialFunctions.in_range(office.get_local_mouse_position().x,60,610):
 						if SpecialFunctions.in_range(office.get_local_mouse_position().y,150,650):
@@ -81,7 +78,7 @@ func _process(_delta: float) -> void:
 							SignalBus.flashlight_on.emit()
 							if using_flashlight == true:
 								office.frame = 2
-			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if not Input.is_action_pressed("use_flashlight"):
 				if using_flashlight == true:
 					SignalBus.flashlight_off.emit()
 					if using_flashlight == false:
@@ -97,27 +94,17 @@ func _process(_delta: float) -> void:
 				front_window.visible = true
 								
 		if animation_direction == "b":
-			if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if Input.is_action_pressed("use_flashlight"):
 				SignalBus.flashlight_on.emit()
 				if using_flashlight == true:
 					office.frame = 1
-			if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			if not Input.is_action_pressed("use_flashlight"):
 				SignalBus.flashlight_off.emit()
 				if using_flashlight == false:
 					office.frame = 0
-		
-
-		if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
-			if can_move() == true:
-				office.play("leave_"+animation_direction)
-				window_background.visible = false
-				if animation_direction == "b": 
-					SpecialFunctions.audio(STAIRS_DOWN)
-				else: 
-					SpecialFunctions.audio(RUNNING)
 	
-
 func _input(event: InputEvent) -> void:
+	turn_checks(event)
 	if office.animation == "open_b" and office.frame == 1:
 		if event is InputEventKey and event.keycode == KEY_B:
 			if sleep_assurance_current_score >= 1:
@@ -173,22 +160,38 @@ func _animation_finished() -> void:
 	elif "closing" in last_animation_played:
 		office.play("closed_"+animation_direction)
 		
-func turn_checks() -> void:
+func turn_checks(event: InputEvent) -> void:
 	if can_move() == true:
-		if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100):
-			office.play("turn_l")
-			SpecialFunctions.audio(RUNNING)
-		if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680):
-			office.play("turn_r")
-			SpecialFunctions.audio(RUNNING)
-		if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100):
-			office.play("turn_f")
-			SpecialFunctions.audio(RUNNING)
-		if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720):
-			office.play("turn_b")
-			SpecialFunctions.audio(STAIRS_UP)
+		if office.animation == "office":
+			if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,100) or (event.is_action_pressed("move_left", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+				office.play("turn_l")
+				SpecialFunctions.audio(RUNNING)
+
+			if SpecialFunctions.in_range(office.get_local_mouse_position().x,1580,1680) or (event.is_action_pressed("move_right", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+				office.play("turn_r")
+				SpecialFunctions.audio(RUNNING)
+
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,100) or (event.is_action_pressed("move_forward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+				office.play("turn_f")
+				SpecialFunctions.audio(RUNNING)
+
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720) or (event.is_action_pressed("move_backward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+				office.play("turn_b")
+				SpecialFunctions.audio(STAIRS_UP)
+			
+		if "open_" in office.animation:
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,620,720) or (event.is_action_pressed("move_backward", true) and SaveData.settings_data["quality_of_life"]["enable_moving_with_keyboard"] == true):
+				office.play("leave_"+animation_direction)
+				window_background.visible = false
+				if animation_direction == "b": 
+					SpecialFunctions.audio(STAIRS_DOWN)
+				else: 
+					SpecialFunctions.audio(RUNNING)
+				return
+			
 		if office.animation != "office" and office.animation != "return": # sets animation_direction only if there is a direction
 			animation_direction = office.animation.right(1)
+			
 	
 func _update_last_animation_played() -> void:
 	last_animation_played = office.animation

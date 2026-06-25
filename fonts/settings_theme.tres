@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bfuyo1rp0fe5e"]
+
+[ext_resource type="FontFile" uid="uid://b8roedgt0e88w" path="res://fonts/Candara.ttf" id="1_g7v8k"]
+
+[resource]
+default_font = ExtResource("1_g7v8k")
+default_font_size = 32

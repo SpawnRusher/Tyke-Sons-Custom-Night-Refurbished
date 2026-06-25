@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://bnnlmjux6685y"]
+
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://fonts/settings_theme.tres" id="1_05p07"]
+[ext_resource type="Script" uid="uid://rg0leobu6t3s" path="res://scripts/settings_menu.gd" id="2_wswnh"]
+
+[node name="SettingsMenu" type="Control" unique_id=131214480]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_05p07")
+script = ExtResource("2_wswnh")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1668547593]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -341.0
+offset_top = -252.0
+offset_right = 341.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PanelMargin" type="MarginContainer" parent="Panel" unique_id=757844964]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabContainer" type="TabContainer" parent="Panel/PanelMargin" unique_id=1969351730]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Settings" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1151193671]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Settings" unique_id=1564531423]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Settings/TabMargin" unique_id=1831013508]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Settings/TabMargin/TabScroll" unique_id=1037898786]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quality of Life" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1491744118]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Quality of Life" unique_id=870188763]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Quality of Life/TabMargin" unique_id=1473285910]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Quality of Life/TabMargin/TabScroll" unique_id=675708186]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Keybinds" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1416801082]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Keybinds" unique_id=208637205]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin" unique_id=2067108452]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll" unique_id=2013385517]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=999689498]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/GameJolt" unique_id=1547852091]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin" unique_id=2093916128]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabScroll" unique_id=183099961]
+layout_mode = 2
+size_flags_horizontal = 3
