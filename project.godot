@@ -81,6 +81,10 @@ go_to_sleep={
 "deadzone": 0.2,
 "events": []
 }
+click_move={
+"deadzone": 0.2,
+"events": []
+}
 
 [physics]
 

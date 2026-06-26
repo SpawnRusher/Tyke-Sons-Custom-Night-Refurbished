@@ -42,13 +42,13 @@ func _process(delta: float) -> void:
 	lamp_button.visible = !lamp_button.disabled
 	_camera_lock()
 	
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] % 3 == 1:
 		_move_player("f")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and SaveData.settings_data["game"]["movement_mode"] % 3 == 1:
 		_move_player("b")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] % 3 == 1:
 		_move_player("l")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1680 - SaveData.settings_data["game"]["right_screen_margin"],1680) and SaveData.settings_data["game"]["movement_mode"] != 1:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().x,1680 - SaveData.settings_data["game"]["right_screen_margin"],1680) and SaveData.settings_data["game"]["movement_mode"] % 3 == 1:
 		_move_player("r")
 
 	if Input.is_action_pressed("close_curtain"):
@@ -60,13 +60,13 @@ func _process(delta: float) -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+		if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] >= 3:
 			_move_player("f")
-		if event.is_action_pressed("move_backward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+		if event.is_action_pressed("move_backward", true) and SaveData.settings_data["game"]["movement_mode"] >= 3:
 			_move_player("b")
-		if event.is_action_pressed("move_left", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+		if event.is_action_pressed("move_left", true) and SaveData.settings_data["game"]["movement_mode"] >= 3:
 			_move_player("l")
-		if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+		if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] >= 3:
 			_move_player("r")
 			
 		if event.is_action_pressed("toggle_lamp"):
@@ -79,6 +79,16 @@ func _input(event: InputEvent) -> void:
 				SignalBus.go_to_sleep.emit()
 
 	if event is InputEventMouseButton:
+		if Input.is_action_pressed("click_move"):
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] % 3 == 2:
+				_move_player("f")
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and SaveData.settings_data["game"]["movement_mode"] % 3 == 2:
+				_move_player("b")
+			if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and SaveData.settings_data["game"]["movement_mode"] % 3 == 2:
+				_move_player("l")
+			if SpecialFunctions.in_range(office.get_local_mouse_position().x,1680 - SaveData.settings_data["game"]["right_screen_margin"],1680) and SaveData.settings_data["game"]["movement_mode"] % 3 == 2:
+				_move_player("r")
+	
 		if Input.is_action_pressed("use_flashlight"):
 			_use_flashlight(true, office.get_local_mouse_position())
 		if not Input.is_action_pressed("use_flashlight"):

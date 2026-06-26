@@ -15,6 +15,7 @@ var default_settings_data: Dictionary = {
 		"jumpscare_volume":50,
 		"auto_restart_on_death":false,
 		"skip_loading_night":false,
+		"use_old_camera_scrolling":false,
 		"movement_mode":0,
 		"forward_screen_margin":100,
 		"left_screen_margin":100,

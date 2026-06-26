@@ -19,7 +19,6 @@ class_name Chipomat
 ## The sound to play when knocking at a window.
 @export var knock_sound: AudioStream
 
-
 var side: int
 var side_string: String
 var sides: Dictionary[int,String] = {-1: "l", 1: "r"}
@@ -30,8 +29,6 @@ var current_leave_timer: float
 var spawned: bool
 var jumpscare_ready: bool
 var office_animation_direction: String
-
-
 
 func _ready() -> void:
 	await super()

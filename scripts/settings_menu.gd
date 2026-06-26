@@ -62,12 +62,17 @@ var settings_types: Dictionary = {
 		"skip_loading_night": {
 			"type":"toggle"
 			},
+		"use_old_camera_scrolling": {
+			"type":"toggle"
+			},
 		"movement_mode": {
 			"type":"dropdown",
 			"options": {
-				"Mouse":0,
-				"Keyboard":1,
-				"Both":2
+				"Hover":1,
+				"Click":2,
+				"Keyboard":3,
+				"Hover+Keyboard":4,
+				"Click+Keyboard":5
 				}
 			},
 		"forward_screen_margin": {
