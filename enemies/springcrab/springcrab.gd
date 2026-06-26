@@ -44,7 +44,7 @@ func _ready() -> void:
 	current_leave_flashes = leave_flashes
 
 func _process(delta: float) -> void:
-	visibility_checks()
+	sprite.frame = frame_checks()
 	if jumpscare_ready == true:
 		if office.animation == "return" or office.animation == "office":
 			jumpscare()
@@ -84,13 +84,20 @@ func leave_springcrab() -> void:
 	last_side_flashed = ""
 	office_layer.update_window_occupants(enemy_id,0,false)
 	
-func visibility_checks() -> void:
-	if office.animation == "open_f":
-		if office.frame == 2:
-			if jumpscare_ready == false:
-				sprite.frame = spawned
-			else:
-				sprite.frame = 0
+func frame_checks() -> int:
+	if jumpscare_ready == true:
+		if office.animation == "open_f" and office.frame == 2:
+			return spawned
+		return 0
+	
+	if spawned == false:
+		return 0
+	if office.animation != "open_f":
+		return 0
+	if office.frame != 2:
+		return 0
+		
+	return spawned
 					
 func flash_springcrab(using_flashlight: bool, side: String) -> void:
 	if spawned == false and jumpscare_ready == false:

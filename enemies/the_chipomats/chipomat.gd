@@ -75,17 +75,20 @@ func deactivate() -> void:
 	sprite.queue_free()
 			
 func visibility_checks() -> bool:
+	if jumpscare_ready == true:
+		if "open_" in office.animation and office.frame == 1:
+			return true
+		return false
+		
 	if spawned == false:
 		return false
-	if "open_" in office.animation and office.frame != 1:
+	if office_animation_direction != side_string:
 		return false
-	if office.animation.right(1) != side_string:
+	if "open_" not in office.animation:
 		return false
-	if jumpscare_ready == true:
-		if sprite.visible == true:
-			if "open_" in office.animation and office.frame == 0 or "clos" in office.animation or "opening_" in office.animation:
-				return false
-	
+	if office.frame != 1:
+		return false
+		
 	return true
 	
 func pick_side() -> int:

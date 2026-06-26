@@ -1679,7 +1679,7 @@ go_to_sleep_popup = NodePath("OfficeBackground/GoToSleepPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"office"
+animation = &"open_f"
 autoplay = "office"
 centered = false
 
@@ -1755,6 +1755,7 @@ texture_under = ExtResource("265_2ppsu")
 texture_progress = ExtResource("266_2uqal")
 
 [node name="BatteriesButton" type="TextureButton" parent="Office/OfficeBackground/Batteries" unique_id=755834957]
+visible = false
 layout_mode = 0
 offset_right = 36.0
 offset_bottom = 25.0

@@ -72,10 +72,10 @@ func _leave_fungal() -> void:
 	_spawn_fungal()
 
 func flash_check():
-	if not office_animation_direction == sides[side+1]:
+	if office_animation_direction != sides[side+1]:
 		return false
-	if not "open_" in office.animation:
+	if "open_" not in office.animation:
 		return false
-	if office.frame == 0:
+	if office.frame != 1:
 		return false
 	return true
