@@ -6,6 +6,7 @@ const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 @onready var tabs_container: TabContainer
 @onready var tabs_children: Array[Node]
 @onready var tab_template = preload("res://scenes/settings_menu/tab_template.tscn")
+@onready var divider_thing = preload("res://scenes/settings_menu/divider.tscn")
 
 @onready var slider_button = preload("res://scenes/settings_menu/slider_button.tscn")
 @onready var dropdown_button = preload("res://scenes/settings_menu/dropdown_button.tscn")
@@ -30,7 +31,7 @@ var settings_types: Dictionary = {
 				"Windowed":0,
 				"Borderless":3,
 				"Exclusive":4
-				},
+			},
 		},
 		"vsync_mode" : {
 			"type":"dropdown",
@@ -39,13 +40,16 @@ var settings_types: Dictionary = {
 				"Enabled":1,
 				"Adaptive":2,
 				"Fast":3
-				},
+			},
 		},
 		"antialiasing": {
 			"type":"toggle"
 		},
 	},
 	"game": {
+		"volume": {
+			"type":"divider"
+		},
 		"master_volume": {
 			"type":"slider",
 			"min_value":0,
@@ -56,15 +60,21 @@ var settings_types: Dictionary = {
 			"min_value":0,
 			"max_value":100
 		},
+		"quality_of_life": {
+			"type":"divider"
+		},
 		"auto_restart_on_death": {
 			"type":"toggle"
-			},
+		},
 		"skip_loading_night": {
 			"type":"toggle"
-			},
+		},
 		"use_old_camera_scrolling": {
 			"type":"toggle"
-			},
+		},
+		"movement": {
+			"type":"divider"
+		},
 		"movement_mode": {
 			"type":"dropdown",
 			"options": {
@@ -73,73 +83,71 @@ var settings_types: Dictionary = {
 				"Keyboard":3,
 				"Hover+Keyboard":4,
 				"Click+Keyboard":5
-				}
-			},
+			}
+		},
 		"forward_screen_margin": {
 			"type":"slider",
 			"min_value":1,
 			"max_value":300
-			},
+		},
 		"left_screen_margin": {
 			"type":"slider",
 			"min_value":1,
 			"max_value":300
-			},
+		},
 		"backward_screen_margin": {
 			"type":"slider",
 			"min_value":1,
 			"max_value":300
-			},
+		},
 		"right_screen_margin": {
 			"type":"slider",
 			"min_value":1,
 			"max_value":300
-			}
+		}
 	},
 	"keybinds": {
+		"global": {
+			"type":"divider"
+		},
 		"restart_night": {
-			"type":"key",
-			"physical_keycode":KEY_R
+			"type":"keybind",
 		},
 		"return_to_menu": {
-			"type":"key",
-			"physical_keycode":KEY_F2
+			"type":"keybind",
+		},
+		"game": {
+			"type":"divider"
 		},
 		"toggle_lamp": {
-			"type":"key",
-			"physical_keycode":KEY_SHIFT
-			},
+			"type":"keybind",
+		},
 		"go_to_sleep": {
-			"type":"key",
-			"physical_keycode":KEY_B
-			},
+			"type":"keybind",
+		},
 		"close_curtain": {
-			"type":"mouse_button",
-			"button_index":1
+			"type":"keybind",
 		},
 		"use_flashlight": {
-			"type":"mouse_button",
-			"button_index":2
+			"type":"keybind",
+		},
+		"movement": {
+			"type":"divider"
 		},
 		"click_move": {
-			"type":"mouse_button",
-			"button_index":1
+			"type":"keybind",
 		},
 		"move_forward": {
-			"type":"key",
-			"physical_keycode":KEY_W
+			"type":"keybind",
 		},
 		"move_left": {
-			"type":"key",
-			"physical_keycode":KEY_A
+			"type":"keybind",
 		},
 		"move_backward": {
-			"type":"key",
-			"physical_keycode":KEY_S
+			"type":"keybind",
 		},
 		"move_right": {
-			"type":"key",
-			"physical_keycode":KEY_D
+			"type":"keybind",
 		},
 	},
 	"gamejolt": {
@@ -181,20 +189,25 @@ func _add_settings(tab) -> void:
 	var tab_name = tab.name.to_lower()
 	
 	if tab_name == "keybinds":
-		_add_keybinds(tab)
-		return
+		#_add_keybinds(tab)
+		pass
 	if tab_name == "gamejolt":
 		return
 	
 	var vbox = tab.find_child("TabVBox")
 	for setting in settings_types[tab_name]:
+		if settings_types[tab_name][setting]["type"] == "divider":
+			var divider:= divider_thing.instantiate()
+			vbox.add_child(divider)
+			var divider_label:= divider.find_child("DividerLabel")
+			divider_label.text = setting.capitalize().to_upper()
+		
 		if settings_types[tab_name][setting]["type"] == "toggle":
 			var button:= toggle_button.instantiate()
 			vbox.add_child(button)
 			var setting_label:= button.find_child("SettingLabel")
 			var state_label:= button.find_child("StateLabel")
 			button.button_pressed = SaveData.settings_data[tab_name][setting]
-			#button.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
 			setting_label.text = setting.capitalize()
 			state_label.text = "OFF" if button.button_pressed == false else "ON"
 			button.pressed.connect(_on_button_toggled.bind(button, tab_name, setting, setting_label, state_label))
@@ -207,7 +220,6 @@ func _add_settings(tab) -> void:
 			dropdown_label.text = setting.capitalize()
 			for option in settings_types[tab_name][setting]["options"]:
 				dropdown_box.add_item(option,settings_types[tab_name][setting]["options"][option])
-			#dropdown.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
 			dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[tab_name][setting]))
 			dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, tab_name, setting, dropdown_label))
 				
@@ -220,11 +232,26 @@ func _add_settings(tab) -> void:
 			slider.min_value = settings_types[tab_name][setting]["min_value"]
 			slider.max_value = settings_types[tab_name][setting]["max_value"]
 			slider.value = SaveData.settings_data[tab_name][setting]
-			#slider_setting.set_tooltip_text(settings_types[tab_name][setting]["tooltip"])
 			slider_label.text = setting.capitalize()
 			slider_value_label.text = str(int(slider.value))
 			slider.value_changed.connect(_on_slider_value_changed.bind(slider, tab_name, setting, slider_label, slider_value_label))
 								
+		if settings_types[tab_name][setting]["type"] == "keybind":
+			var button:= keybind_button.instantiate()
+			var action_label:= button.find_child("ActionLabel")
+			var input_label:= button.find_child("InputLabel")
+			
+			action_label.text = setting.capitalize()
+			
+			var action_events = InputMap.action_get_events(setting)
+			if action_events.size() > 0:
+				input_label.text = action_events[0].as_text().trim_suffix(" - Physical")
+			else:
+				input_label.text = "No Input Bound"
+				
+			vbox.add_child(button)
+			button.pressed.connect(_edit_keybind.bind(button, setting))
+		
 func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
 	slider_value_label.text = str(int(slider.value))
@@ -239,35 +266,6 @@ func _on_button_toggled(button: Button, group, setting, setting_label, state_lab
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group,setting)
 	state_label.text = "OFF" if button.button_pressed == false else "ON"
 	SpecialFunctions.audio(QUIETBUTTONPRESS)
-
-func _add_keybinds(tab: Node) -> void:
-	var action_list = InputMap.get_actions()
-	var my_actions_index: int = -1
-	for action in action_list:
-		if action.left(2) != "ui":
-			if my_actions_index == -1:
-				my_actions_index = action_list.find(action)
-	
-	for i in action_list.size():
-		if my_actions_index > 0:
-			action_list.remove_at(0)
-			my_actions_index -= 1
-	
-	for action in action_list:
-		var button:= keybind_button.instantiate()
-		var action_label:= button.find_child("ActionLabel")
-		var input_label:= button.find_child("InputLabel")
-		
-		action_label.text = action.capitalize()
-		
-		var action_events = InputMap.action_get_events(action)
-		if action_events.size() > 0:
-			input_label.text = action_events[0].as_text().trim_suffix(" - Physical")
-		else:
-			input_label.text = "No Input Bound"
-			
-		tab.find_child("TabVBox").add_child(button)
-		button.pressed.connect(_edit_keybind.bind(button, action))
 
 func _edit_keybind(button: Button, action: String) -> void:
 	if not remapping:

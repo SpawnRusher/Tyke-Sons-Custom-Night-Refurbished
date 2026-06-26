@@ -86,8 +86,9 @@ func leave_springcrab() -> void:
 	
 func frame_checks() -> int:
 	if jumpscare_ready == true:
-		if office.animation == "open_f" and office.frame == 2:
-			return spawned
+		if sprite.frame == 1:
+			if office.animation == "open_f" and office.frame == 2:
+				return spawned
 		return 0
 	
 	if spawned == false:

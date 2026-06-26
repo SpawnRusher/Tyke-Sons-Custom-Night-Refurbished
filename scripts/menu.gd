@@ -5,12 +5,14 @@ const BIG_BUTTON_PRESS = preload("uid://o2ay73rlokbq")
 
 @export var fade: ColorRect
 @export var enemy_portrait_grid: GridContainer
+@export var ver_string: RichTextLabel
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 func _ready() -> void:
 	SceneManager.unload_scene("res://scenes/menu.tscn")
 	SceneManager.load_scene("res://scenes/later_that_night.tscn")
+	ver_string.text = ProjectSettings.get_setting("application/config/version")
 	fade.visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",0,0.5)

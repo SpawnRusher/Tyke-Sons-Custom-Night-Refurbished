@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="19_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://fonts/default_font_theme.tres" id="22_6wigr"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
@@ -79,10 +80,11 @@ region = Rect2(0, 0, 120, 120)
 atlas = ExtResource("20_spe5f")
 region = Rect2(0, 0, 120, 120)
 
-[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid")]
+[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid", "ver_string")]
 script = ExtResource("1_fy8yy")
 fade = NodePath("Camera/Fade")
 enemy_portrait_grid = NodePath("Menu/EnemyPortraitGrid")
+ver_string = NodePath("Menu/Game Version")
 
 [node name="Camera" type="CanvasLayer" parent="." unique_id=481994971]
 follow_viewport_enabled = true
@@ -234,6 +236,16 @@ theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "SETTINGS"
 flat = true
+
+[node name="Game Version" type="RichTextLabel" parent="Menu" unique_id=1268201984]
+offset_left = 13.0
+offset_top = 669.0
+offset_right = 188.0
+offset_bottom = 709.0
+theme = ExtResource("22_6wigr")
+text = "v0.0.0"
+fit_content = true
+vertical_alignment = 2
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0

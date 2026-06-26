@@ -76,8 +76,9 @@ func deactivate() -> void:
 			
 func visibility_checks() -> bool:
 	if jumpscare_ready == true:
-		if "open_" in office.animation and office.frame == 1:
-			return true
+		if sprite.visible == true:
+			if "open_" in office.animation and office.frame == 1:
+				return true
 		return false
 		
 	if spawned == false:
