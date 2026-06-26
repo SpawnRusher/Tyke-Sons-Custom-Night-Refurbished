@@ -38,6 +38,7 @@ func _ready() -> void:
 	SignalBus.start_happyshroom_fight.connect(start_fight)
 	
 func deactivate() -> void:
+	queue_free()
 	happyshroom_layer.queue_free()
 
 func _activate_happyshroom() -> void:

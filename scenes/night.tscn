@@ -1679,7 +1679,7 @@ go_to_sleep_popup = NodePath("OfficeBackground/GoToSleepPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"office"
+animation = &"open_f"
 autoplay = "office"
 centered = false
 
@@ -2238,3 +2238,4 @@ metadata/_custom_type_script = "uid://d13p32mq2jeip"
 [connection signal="pressed" from="Office/OfficeBackground/Batteries/BatteriesButton" to="GUI/FlashlightBattery" method="_on_batteries_button_pressed"]
 [connection signal="pressed" from="Office/OfficeBackground/Nose" to="Office" method="_on_nose_pressed"]
 [connection signal="pressed" from="Office/LampButton" to="Office" method="_on_lamp_button_pressed" flags=18]
+[connection signal="value_changed" from="GUI/FlashlightBattery" to="GUI/FlashlightBattery" method="_on_value_changed"]

@@ -26,15 +26,17 @@ func _process(delta: float) -> void:
 	visibility_checks()
 	if using_flashlight == true:
 		value -= 5 * delta
-	if value == 0:
+	if current_batteries_cooldown < batteries_cooldown:
+		current_batteries_cooldown += 1 * delta
+	
+func _on_value_changed(bat: float) -> void:
+	if bat == 0:
 		if using_flashlight == true:
 			using_flashlight = false
 			SpecialFunctions.audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(false)
-	if current_batteries_cooldown < batteries_cooldown:
-		current_batteries_cooldown += 1 * delta
+			SignalBus.flashlight_dead.emit()
 	
-
 func flashlight_off() -> void:
 	if value > 0:
 		if using_flashlight == true:
@@ -53,7 +55,6 @@ func flashlight_on() -> void:
 
 func phantom_jumpscare() -> void:
 	value -= 30
-
 
 func _on_batteries_button_pressed() -> void:
 	if current_batteries_cooldown >= batteries_cooldown:

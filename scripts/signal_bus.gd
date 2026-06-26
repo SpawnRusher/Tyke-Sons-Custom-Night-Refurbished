@@ -13,7 +13,9 @@ signal save_data_loaded()
 
 signal flashlight_off()
 signal flashlight_on()
+signal flashlight_dead()
 signal update_flashlight_state(flashlight_state: bool)
+signal flash_springcrab(flashlight_state: bool, side: String)
 
 signal pickup_lumber()
 signal lumber_despawned()

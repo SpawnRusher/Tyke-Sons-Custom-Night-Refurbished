@@ -196,7 +196,6 @@ func turn_checks(event: InputEvent) -> void:
 		if office.animation != "office" and office.animation != "return": # sets animation_direction only if there is a direction
 			animation_direction = office.animation.right(1)
 			
-	
 func _update_last_animation_played() -> void:
 	last_animation_played = office.animation
 	

@@ -34,6 +34,7 @@ var window_occupants_r: Array[Enemy.ENEMY_IDS]
 
 func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
+	SignalBus.flashlight_dead.connect(_use_flashlight.bind(false))
 
 func _process(delta: float) -> void:
 	nose.disabled = (office.animation != "office")
@@ -58,28 +59,32 @@ func _process(delta: float) -> void:
 			_use_curtain(false)
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
-		_move_player("f")
-	if event.is_action_pressed("move_backward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
-		_move_player("b")
-	if event.is_action_pressed("move_left", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
-		_move_player("l")
-	if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
-		_move_player("r")
+	if event is InputEventKey:
+		if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+			_move_player("f")
+		if event.is_action_pressed("move_backward", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+			_move_player("b")
+		if event.is_action_pressed("move_left", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+			_move_player("l")
+		if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] > 0:
+			_move_player("r")
+			
+		if event.is_action_pressed("toggle_lamp"):
+			if not lamp_button.disabled:
+				lamp_button.button_pressed = !lamp_button.button_pressed
+				lamp_button.pressed.emit()
+		
+		if event.is_action_pressed("go_to_sleep"):
+			if go_to_sleep_popup.visible:
+				SignalBus.go_to_sleep.emit()
 
-	if Input.is_action_pressed("use_flashlight"):
-		_use_flashlight(true, office.get_local_mouse_position())
-	if not Input.is_action_pressed("use_flashlight"):
-		_use_flashlight(false, office.get_local_mouse_position())
+	if event is InputEventMouseButton:
+		if Input.is_action_pressed("use_flashlight"):
+			_use_flashlight(true, office.get_local_mouse_position())
+		if not Input.is_action_pressed("use_flashlight"):
+			_use_flashlight(false, office.get_local_mouse_position())
 		
-	if event.is_action_pressed("toggle_lamp"):
-		if not lamp_button.disabled:
-			lamp_button.button_pressed = !lamp_button.button_pressed
-			lamp_button.pressed.emit()
-		
-	if event.is_action_pressed("go_to_sleep"):
-		if go_to_sleep_popup.visible:
-			SignalBus.go_to_sleep.emit()
+
 
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
@@ -111,7 +116,7 @@ func _move_player(go_direction: String) -> void:
 func _update_flashlight_state(from_state) -> void:
 	flashlight_state = from_state
 
-func _use_flashlight(to_state: bool, mouse_pos: Vector2) -> void:
+func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 	var dir = office.animation.right(1)
 	
 	go_to_sleep_popup.visible = _show_go_to_sleep_popup(dir)
@@ -141,11 +146,13 @@ func _use_flashlight(to_state: bool, mouse_pos: Vector2) -> void:
 			if flashlight_state == true:
 				office.frame = 1
 				front_window.play("l")
-		if SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+				SignalBus.flash_springcrab.emit(true,front_window.animation)
+		elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 			SignalBus.flashlight_on.emit()
 			if flashlight_state == true:
 				office.frame = 2
 				front_window.play("r")
+				SignalBus.flash_springcrab.emit(true,front_window.animation)
 		
 func _use_curtain(to_state: bool) -> void:
 	var dir = office.animation.right(1)

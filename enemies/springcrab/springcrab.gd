@@ -36,7 +36,7 @@ func _ready() -> void:
 		deactivate()
 		return
 	
-	SignalBus.update_flashlight_state.connect(flash_springcrab)
+	SignalBus.flash_springcrab.connect(flash_springcrab)
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
@@ -92,18 +92,22 @@ func visibility_checks() -> void:
 			else:
 				sprite.frame = 0
 					
-func flash_springcrab(using_flashlight: bool) -> void:
+func flash_springcrab(using_flashlight: bool, side: String) -> void:
 	if spawned == false and jumpscare_ready == false:
 		return
-	if using_flashlight == false or office.animation != "open_f":
+	if using_flashlight == false:
 		return
-	if sprite.animation == last_side_flashed:
+	if office.animation != "open_f":
+		return
+
+	if side == last_side_flashed:
 		current_leave_flashes = leave_flashes
-		print(last_side_flashed,"|",current_leave_flashes)
+		print_debug("FAILED ",last_side_flashed,"|",current_leave_flashes)
 		return
 	
-	last_side_flashed = sprite.animation
 	current_leave_flashes -= 1
+	print_debug("FLASHED ",last_side_flashed,"|",current_leave_flashes)
+	last_side_flashed = sprite.animation
 		
 	if current_leave_flashes <= 0:
 		leave_springcrab()
