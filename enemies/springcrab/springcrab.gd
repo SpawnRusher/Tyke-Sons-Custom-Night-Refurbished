@@ -74,7 +74,7 @@ func spawn_springcrab() -> void:
 	SpecialFunctions.audio(walking_sound)
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
-	current_kill_timer = kill_timer * 100
+	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
 	office_layer.update_window_occupants(enemy_id,0,true)
 	

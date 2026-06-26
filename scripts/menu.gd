@@ -1,6 +1,7 @@
 extends Node2D
 
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
+const BIG_BUTTON_PRESS = preload("uid://o2ay73rlokbq")
 
 @export var fade: ColorRect
 @export var enemy_portrait_grid: GridContainer
@@ -25,7 +26,7 @@ func _on_menu_button_button_down() -> void:
 	tween.tween_property(camera,"position:y",0,0.2)
 
 func _on_start_button_pressed() -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS,0,1,1,0,0,0,true)
+	SpecialFunctions.audio(BIG_BUTTON_PRESS,0,1,1,0,0,0,true)
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished

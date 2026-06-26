@@ -121,6 +121,10 @@ var settings_types: Dictionary = {
 			"type":"mouse_button",
 			"button_index":2
 		},
+		"click_move": {
+			"type":"mouse_button",
+			"button_index":1
+		},
 		"move_forward": {
 			"type":"key",
 			"physical_keycode":KEY_W
