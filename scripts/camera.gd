@@ -22,7 +22,6 @@ func _move_camera() -> void:
 		position.x = goto
 	else:
 		var mouse_pos = get_viewport().get_mouse_position()
-		print_debug(mouse_pos)
 		if mouse_pos.x < 200:
 			var scroll_tween = get_tree().create_tween()
 			scroll_tween.tween_property(self,"position:x",max(0,position.x-18),0.02)

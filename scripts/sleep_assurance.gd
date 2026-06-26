@@ -49,21 +49,8 @@ func _update_points() -> void:
 		points.value = sleep_assurance_current_score - (point_index*100)
 
 func _add_score(enemy: Enemy) -> void:
-	var add_score: float = 0
-	if enemy is Chipomat:
-		add_score = 3
-	if enemy is Fun_Fungal:
-		add_score = 5
-	if enemy is Springcrab:
-		add_score = 10
-	if enemy is Toy:
-		add_score = 10
-	if enemy is Seabill:
-		add_score = 10
-	
-	if add_score == 0:
-		print("Forgot to add score for enemy ",enemy)
-	sleep_assurance_current_score += add_score * sleep_assurance_multiplier
+	enemy.sleep_assurance_score = max(0,enemy.sleep_assurance_score) # so I can put a warning in the Enemy class for when sleep_assurance_score is not set
+	sleep_assurance_current_score += enemy.sleep_assurance_score * sleep_assurance_multiplier
 	_update_points()
 
 func _remove_score(delta: float, enemy: Enemy) -> void:

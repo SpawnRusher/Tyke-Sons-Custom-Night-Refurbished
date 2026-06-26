@@ -8,6 +8,7 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 @export_group("Enemy Details")
 @export var enemy_id: ENEMY_IDS
 @export var enabled: bool = false
+@export var sleep_assurance_score: float = -1
 @export_group("Jumpscares")
 @export var jumpscare_sound: AudioStream
 @export var jumpscare_middle_uid: String
@@ -16,6 +17,8 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
+	if sleep_assurance_score == -1:
+		push_error("Sleep assurance score has not been set for ",enemy_id,"!")
 	if jumpscare_sound == null:
 		push_error("Jumpscare Sound has not yet been set for enemy ",enemy_id,"!")
 	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":

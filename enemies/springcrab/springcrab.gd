@@ -102,11 +102,9 @@ func flash_springcrab(using_flashlight: bool, side: String) -> void:
 
 	if side == last_side_flashed:
 		current_leave_flashes = leave_flashes
-		print_debug("FAILED ",last_side_flashed,"|",current_leave_flashes)
 		return
 	
 	current_leave_flashes -= 1
-	print_debug("FLASHED ",last_side_flashed,"|",current_leave_flashes)
 	last_side_flashed = sprite.animation
 		
 	if current_leave_flashes <= 0:
