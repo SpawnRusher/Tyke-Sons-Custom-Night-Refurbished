@@ -7,9 +7,7 @@ const SLEEP_ASSURANCE_POINT_PROGRESS = preload("uid://irutswq3wufd")
 
 var sleep_assurance_points_amount: float = 8
 var sleep_assurance_score_per_point: float = 100
-var sleep_assurance_current_score: float = 0:
-	set(value):
-		sleep_assurance_current_score = maxf(sleep_assurance_current_score,0)
+var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
 
 var sleep_assurance_normal: float = 0.0
@@ -50,12 +48,12 @@ func _update_points() -> void:
 
 func _add_score(enemy: Enemy) -> void:
 	enemy.sleep_assurance_score = max(0,enemy.sleep_assurance_score) # so I can put a warning in the Enemy class for when sleep_assurance_score is not set
-	sleep_assurance_current_score += enemy.sleep_assurance_score * sleep_assurance_multiplier
+	sleep_assurance_current_score = sleep_assurance_current_score + enemy.sleep_assurance_score * sleep_assurance_multiplier
 	_update_points()
 
 func _remove_score(delta: float, enemy: Enemy) -> void:
 	if enemy is Seabill:
-		sleep_assurance_current_score -= 10 * delta
+		sleep_assurance_current_score = max(0,sleep_assurance_current_score - 10 * delta)
 	_update_points()
 	
 func _activate_happyshroom() -> void:

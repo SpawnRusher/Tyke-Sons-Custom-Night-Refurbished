@@ -24,9 +24,9 @@ func _ready() -> void:
 	if enabled == false:
 		deactivate()
 		return
-
-	reset()
-
+	
+	_spawn_fungal()
+	
 func _process(delta: float) -> void:
 	office_animation_direction = office.animation.right(1)
 	sprite.visible = false
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		sprite.position.y = lerpf(50,250,lerp_progress)
 	
 	if current_progress < 0 and side != 0:
-		reset()
+		_leave_fungal()
 			
 	if current_progress >= progress_timer:
 		jumpscare()
@@ -57,16 +57,19 @@ func _process(delta: float) -> void:
 func deactivate():
 	self.queue_free()
 	sprite.queue_free()
-
-func reset() -> void:
-	SignalBus.enemy_defended.emit(self)
-	office_layer.update_window_occupants(enemy_id,side,false)
-	side = 0
+	
+func _spawn_fungal():
 	await get_tree().create_timer(idle_timer).timeout
 	side = [-1,1].pick_random()
 	office_layer.update_window_occupants(enemy_id,side,true)
 	sprite.rotation_degrees = 180 - (45 * side) # 1 == 135, -1 == 255
 	current_progress = 0
+
+func _leave_fungal() -> void:
+	SignalBus.enemy_defended.emit(self)
+	office_layer.update_window_occupants(enemy_id,side,false)
+	side = 0
+	_spawn_fungal()
 
 func flash_check():
 	if not office_animation_direction == sides[side+1]:
