@@ -1,24 +1,15 @@
 extends Enemy
 class_name Rockstar
 
-## The Player icon.
-@export var player: TextureRect
-## The Rockstar's icon, a TextureRect node.
-@export var sprite: TextureRect
-## The axis the enemy moves on.
-@export_enum("x","y") var move_axis: String
-## The time it takes for the enemy icon to move from min_position to max_position, or vice-versa.
-@export var move_time: float = 1.25
-## The time the enemy idles for before commencing movement again.
-@export var idle_time: float = 1
-## The minimum coordinate position relative to the map the icon can go to, which is closer to the top-left of the map.
-@export var min_position: float
-## The maximum coordinate position relative to the map the icon can go to, which is closer to the bottom-right of the map.
-@export var max_position: float
-## Adds a random variance to the movements. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
-@export var random_variance: float = 0.1
-## Time between map icons flashing
-@export var flash_time: float = 0.08
+@export var player: TextureRect ## The Player icon.
+@export var sprite: TextureRect ## The Rockstar's icon, a TextureRect node.
+@export_enum("x","y") var move_axis: String ## The axis the enemy moves on.
+@export var move_time: float = 1.25 ## The time it takes for the enemy icon to move from min_position to max_position, or vice-versa.
+@export var idle_time: float = 1 ## The time the enemy idles for before commencing movement again.
+@export var min_position: float ## The minimum coordinate position relative to the map the icon can go to, which is closer to the top-left of the map.
+@export var max_position: float ## The maximum coordinate position relative to the map the icon can go to, which is closer to the bottom-right of the map.
+@export var random_variance: float = 0.1 ## Adds a random variance to the movements. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
+@export var flash_time: float = 0.08 ## Time between map icons flashing.
 
 var move_direction: int = [-1, 1].pick_random()
 

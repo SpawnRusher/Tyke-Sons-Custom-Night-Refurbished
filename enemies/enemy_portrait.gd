@@ -5,7 +5,7 @@ class_name Enemy_Portrait
 @export var enemy_id: Enemy.ENEMY_IDS
 @export var enemy_tooltip: String
 
-@onready var border: TextureButton = $PortraitBorder
+@onready var border: TextureButton = find_child("PortraitBorder")
 
 const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 
