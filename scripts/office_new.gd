@@ -232,7 +232,11 @@ func _on_lamp_button_pressed(source: BaseButton) -> void:
 	dark_overlay.visible = source.button_pressed
 	SpecialFunctions.audio(LAMPTOGGLE)
 
-func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: int, to_do: bool) -> void:
+func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: Variant, to_do: bool) -> void:
+	if which_side is String:
+		which_side = {"l":-1,"f":0,"r":1}[which_side]
+	elif which_side is not int:
+		push_error("Can only get window occupants with an int or String!")
 	var occupants_arrays:= [window_occupants_l,window_occupants_f,window_occupants_r]
 	match to_do:
 		false:
