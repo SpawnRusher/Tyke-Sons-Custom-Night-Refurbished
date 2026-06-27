@@ -7,7 +7,7 @@ extends CanvasLayer
 @export var front_window: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
-@export var go_to_sleep_popup: TextureRect
+@export var go_to_sleep_popup: Panel
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -15,6 +15,11 @@ var last_animation_played: String
 var office_direction: String
 var lock_movement: bool
 var flashlight_state: bool
+
+var popup_labels: Dictionary = {
+	"go_to_sleep":"Press B to go to sleep!",
+	"something_got_inside":"Something got inside the room..."
+	}
 
 #region AudioStreams
 const RUNNING: AudioStream = preload("uid://dn18i7vrgqil8")

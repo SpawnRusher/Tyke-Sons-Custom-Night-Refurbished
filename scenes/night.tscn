@@ -266,10 +266,10 @@
 [ext_resource type="Texture2D" uid="uid://dgfsac1wtybvd" path="res://Enemies/seabill/sprite/walking/_18.png" id="264_njdep"]
 [ext_resource type="Texture2D" uid="uid://umf21xyrn6ku" path="res://sprites/night/batteries/batteries_0-0_1.png" id="265_2ppsu"]
 [ext_resource type="Texture2D" uid="uid://cuucopuifqe5t" path="res://sprites/night/batteries/batteries_0-0_0.png" id="266_2uqal"]
-[ext_resource type="Texture2D" uid="uid://g1p5ksmtktqh" path="res://sprites/text_prompt_background_square.png" id="267_0f1a6"]
+[ext_resource type="Theme" uid="uid://op6w1obd1vly" path="res://themes/popup_panel_theme.tres" id="267_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://dc44sh1hml5i8" path="res://sprites/night/office/lampbutton.png" id="267_s02x3"]
 [ext_resource type="Script" uid="uid://b8e20kbomhvpu" path="res://scripts/camera.gd" id="268_ksui1"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://fonts/default_font_theme.tres" id="268_tt6cj"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="268_tt6cj"]
 [ext_resource type="Texture2D" uid="uid://82ghl2lu0la2" path="res://Enemies/phantom_chipomat/jumpscare/_0.png" id="269_26d5x"]
 [ext_resource type="Texture2D" uid="uid://c7q2tapbv2y46" path="res://Enemies/phantom_chipomat/jumpscare/_1.png" id="270_477pv"]
 [ext_resource type="Texture2D" uid="uid://3ec3bbuiep2v" path="res://Enemies/phantom_chipomat/jumpscare/_2.png" id="271_65u3u"]
@@ -1675,11 +1675,11 @@ window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
-go_to_sleep_popup = NodePath("OfficeBackground/GoToSleepPopup")
+go_to_sleep_popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"open_f"
+animation = &"open_b"
 autoplay = "office"
 centered = false
 
@@ -1771,21 +1771,22 @@ action_mode = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="GoToSleepPopup" type="TextureRect" parent="Office/OfficeBackground" unique_id=1050177625]
+[node name="ScreenPopup" type="Panel" parent="Office/OfficeBackground" unique_id=731550162]
 visible = false
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("267_0f1a6")
+theme = ExtResource("267_0f1a6")
 
-[node name="Label" type="RichTextLabel" parent="Office/OfficeBackground/GoToSleepPopup" unique_id=147396292]
+[node name="Label" type="RichTextLabel" parent="Office/OfficeBackground/ScreenPopup" unique_id=147396292]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

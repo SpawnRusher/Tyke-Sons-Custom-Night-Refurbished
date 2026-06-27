@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dsh2uixifoxue"]
 
-[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://fonts/settings_theme.tres" id="1_quh6f"]
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_quh6f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r88sn"]
 bg_color = Color(0, 0, 0, 0.19607843)
@@ -11,7 +11,6 @@ corner_radius_bottom_left = 40
 
 [node name="Divider" type="Panel" unique_id=14719241]
 custom_minimum_size = Vector2(0, 80)
-anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 theme = ExtResource("1_quh6f")

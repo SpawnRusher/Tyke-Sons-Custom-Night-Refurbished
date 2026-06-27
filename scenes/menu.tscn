@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="19_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://fonts/default_font_theme.tres" id="22_6wigr"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="22_6wigr"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
@@ -114,9 +114,12 @@ texture = ExtResource("3_lnf0i")
 centered = false
 
 [node name="StartButton" type="TextureButton" parent="Menu" unique_id=857379688]
-offset_left = 550.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
 offset_top = 384.0
-offset_right = 725.0
+offset_right = 85.0
 offset_bottom = 454.0
 action_mode = 0
 texture_normal = ExtResource("4_ffqrc")
@@ -222,10 +225,15 @@ enemy_id = 14
 enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
 
 [node name="SettingsButton" type="Button" parent="Menu" unique_id=1348462967]
-offset_left = 500.0
-offset_top = 640.0
-offset_right = 780.0
-offset_bottom = 710.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -80.0
+offset_right = 140.0
+offset_bottom = -10.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
@@ -238,10 +246,14 @@ text = "SETTINGS"
 flat = true
 
 [node name="Game Version" type="RichTextLabel" parent="Menu" unique_id=1268201984]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 13.0
-offset_top = 669.0
+offset_top = -51.0
 offset_right = 188.0
-offset_bottom = 709.0
+offset_bottom = -11.0
+grow_vertical = 0
 theme = ExtResource("22_6wigr")
 text = "v0.0.0"
 fit_content = true
