@@ -1413,17 +1413,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_knw8e"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("229_wcxqu")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 0.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_lw42b"]
 animations = [{
 "frames": [{
@@ -1439,13 +1428,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("232_0koxg")
+"texture": ExtResource("233_v04ed")
 }, {
 "duration": 1.0,
-"texture": ExtResource("233_v04ed")
+"texture": ExtResource("232_0koxg")
 }],
 "loop": 0,
 "name": &"r",
+"speed": 0.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knw8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("229_wcxqu")
+}],
+"loop": 0,
+"name": &"default",
 "speed": 0.0
 }]
 
@@ -1717,19 +1717,19 @@ sprite_frames = SubResource("SpriteFrames_s6l8q")
 animation = &"l"
 centered = false
 
-[node name="FunFungal" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1843107790]
-visible = false
-show_behind_parent = true
-position = Vector2(290, 50)
-rotation = 2.3561945
-sprite_frames = SubResource("SpriteFrames_knw8e")
-
 [node name="FrontWindow" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=175880799]
 visible = false
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_lw42b")
 animation = &"r"
 centered = false
+
+[node name="FunFungal" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1843107790]
+visible = false
+show_behind_parent = true
+position = Vector2(760, 760)
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_knw8e")
 
 [node name="Toy" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1159662373]
 visible = false
@@ -2089,7 +2089,7 @@ office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/FunFungal")
 progress_timer = 30.0
-idle_timer = 1.0
+idle_timer = 5.0
 enemy_id = 4
 sleep_assurance_score = 5.0
 jumpscare_sound = ExtResource("304_q36i8")

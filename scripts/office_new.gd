@@ -240,7 +240,11 @@ func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: int, to_do: bool) 
 		true:
 			occupants_arrays[which_side+1].append(id)
 
-func get_window_occupants(which_side: int) -> Array:
+func get_window_occupants(which_side: Variant) -> Array:
+	if which_side is String:
+		which_side = {"l":-1,"f":0,"r":1}[which_side]
+	elif which_side is not int:
+		push_error("Can only get window occupants with an int or String!")
 	return [window_occupants_l,window_occupants_f,window_occupants_r][which_side+1]
 
 func _show_go_to_sleep_popup(dir: String) -> bool:

@@ -14,19 +14,34 @@ load_path = "res://.godot/imported/portraitborder1.png-d60093249ee3ae7ff187586a9
 load_path = "res://.godot/imported/portraitborder2.png-cad44123684953ee4e436f9a63b6a5b6.ctex"
 
 [node name="EnemyPortrait" type="TextureRect" unique_id=1551062530]
-offset_left = 176.0
-offset_top = 114.0
-offset_right = 296.0
-offset_bottom = 234.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_4rkrv")
 script = ExtResource("2_ufxrq")
 
 [node name="PortraitBorder" type="TextureButton" parent="." unique_id=1956503844]
-layout_mode = 0
-offset_left = -6.0
-offset_top = -6.0
-offset_right = 126.0
-offset_bottom = 126.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -66.0
+offset_right = 66.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 action_mode = 0
 button_mask = 5

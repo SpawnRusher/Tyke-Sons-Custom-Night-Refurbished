@@ -11,12 +11,35 @@ class_name Fun_Fungal
 ## Idle time
 @export var idle_timer: float
 
-var side: int
-var sides: Array = ["l","idle","r"]
 var office_animation_direction: String
-var current_progress: float
-var lerp_progress: float
-
+var current_idle_timer: float
+var current_progress_timer: float
+var current_progress_normalized: float
+var position: String = "idle"
+var front_position: String = ""
+var position_info: Dictionary = {
+	"idle":Vector2(-600,-600),
+	"l": {
+		"out":Vector2(960,35),
+		"in":Vector2(760,235),
+		"angle": 255
+	},
+	"r": {
+		"out":Vector2(290,50),
+		"in":Vector2(490,250),
+		"angle": 135
+	},
+	"fl": {
+		"out": Vector2(460,760),
+		"in": Vector2(460,510),
+		"angle": 0
+	},
+	"fr": {
+		"out":Vector2(760,760),
+		"in":Vector2(760,510),
+		"angle": 0
+	},
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,57 +48,64 @@ func _ready() -> void:
 		deactivate()
 		return
 	
-	_spawn_fungal()
+	current_idle_timer = idle_timer
 	
 func _process(delta: float) -> void:
 	office_animation_direction = office.animation.right(1)
-	sprite.visible = false
-	if office_animation_direction == sides[side+1]:
-		sprite.visible = true
-		
-	if current_progress >= 0: # this is so that when it goes below 0, i can set an await timer without any more values needed before resetting
-		if not flash_check():
-			current_progress += 1 * delta
-		else:
-			current_progress -= 10 * delta
-		
-	lerp_progress = current_progress/progress_timer
-		
-	if side == -1:
-		sprite.position.x = lerpf(960,760,lerp_progress)
-		sprite.position.y = lerpf(35,235,lerp_progress)
-	if side == 1:
-		sprite.position.x = lerpf(290,490,lerp_progress)
-		sprite.position.y = lerpf(50,250,lerp_progress)
-	
-	if current_progress < 0 and side != 0:
-		_leave_fungal()
-			
-	if current_progress >= progress_timer:
-		jumpscare()
+	sprite.visible = _visibility_checks()
+	if position == "idle":
+		current_idle_timer -= 1 * delta
+		if current_idle_timer <= 0:
+			_spawn_fungal()
+		return
 
+	if _flash_checks() == false:
+		current_progress_timer += 1 * delta
+	else:
+		current_progress_timer -= 20 * delta
+		
+	current_progress_normalized = current_progress_timer/progress_timer
+	sprite.position.x = lerpf(position_info[position]["out"].x,position_info[position]["in"].x,current_progress_normalized)
+	sprite.position.y = lerpf(position_info[position]["out"].y,position_info[position]["in"].y,current_progress_normalized)
+	
+	if current_progress_normalized >= 1:
+		jumpscare()
+	
+	if current_progress_normalized < 0:
+		_leave_fungal()
+		
 func deactivate():
 	self.queue_free()
 	sprite.queue_free()
 	
 func _spawn_fungal():
-	await get_tree().create_timer(idle_timer).timeout
-	side = [-1,1].pick_random()
-	office_layer.update_window_occupants(enemy_id,side,true)
-	sprite.rotation_degrees = 180 - (45 * side) # 1 == 135, -1 == 255
-	current_progress = 0
+	position = ["l","f","r"].pick_random()
+	if position == "f":
+		front_position = ["l","r"].pick_random()
+	office_layer.update_window_occupants(enemy_id,position,true)
+	sprite.rotation_degrees = position_info[position]["angle"]
+	current_progress_timer = 0
 
 func _leave_fungal() -> void:
 	SignalBus.enemy_defended.emit(self)
-	office_layer.update_window_occupants(enemy_id,side,false)
-	side = 0
-	_spawn_fungal()
+	office_layer.update_window_occupants(enemy_id,position,false)
+	current_idle_timer = idle_timer
+	position = "idle"
+	front_position = ""
+	sprite.position = position_info[position]
 
-func flash_check():
-	if office_animation_direction != sides[side+1]:
+func _visibility_checks() -> bool:
+	if office_animation_direction != position:
+		return false
+	return true
+	
+func _flash_checks() -> bool:
+	if office_animation_direction != position:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if office.frame != 1:
+	if position != "f" and office.frame != 1:
+		return false
+	if position == "f" and office.frame != {"l":1,"r":2}[front_position]:
 		return false
 	return true
