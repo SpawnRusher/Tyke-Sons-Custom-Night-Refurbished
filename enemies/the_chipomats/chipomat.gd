@@ -119,5 +119,6 @@ func leave_chipomat() -> void:
 	office_layer.update_window_occupants(enemy_id,side,false)
 	
 func prepare_jumpscare() -> void:
+	jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true
 	

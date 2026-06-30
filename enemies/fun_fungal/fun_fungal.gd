@@ -17,6 +17,7 @@ var current_progress_timer: float
 var current_progress_normalized: float
 var position: String = "idle"
 var front_position: String = ""
+var info_key: String = ""
 var position_info: Dictionary = {
 	"idle":Vector2(-600,-600),
 	"l": {
@@ -65,8 +66,8 @@ func _process(delta: float) -> void:
 		current_progress_timer -= 20 * delta
 		
 	current_progress_normalized = current_progress_timer/progress_timer
-	sprite.position.x = lerpf(position_info[position]["out"].x,position_info[position]["in"].x,current_progress_normalized)
-	sprite.position.y = lerpf(position_info[position]["out"].y,position_info[position]["in"].y,current_progress_normalized)
+	sprite.position.x = lerpf(position_info[info_key]["out"].x,position_info[info_key]["in"].x,current_progress_normalized)
+	sprite.position.y = lerpf(position_info[info_key]["out"].y,position_info[info_key]["in"].y,current_progress_normalized)
 	
 	if current_progress_normalized >= 1:
 		jumpscare()
@@ -82,8 +83,9 @@ func _spawn_fungal():
 	position = ["l","f","r"].pick_random()
 	if position == "f":
 		front_position = ["l","r"].pick_random()
+	info_key = position + front_position
 	office_layer.update_window_occupants(enemy_id,position,true)
-	sprite.rotation_degrees = position_info[position]["angle"]
+	sprite.rotation_degrees = position_info[info_key]["angle"]
 	current_progress_timer = 0
 
 func _leave_fungal() -> void:
@@ -92,6 +94,7 @@ func _leave_fungal() -> void:
 	current_idle_timer = idle_timer
 	position = "idle"
 	front_position = ""
+	info_key = ""
 	sprite.position = position_info[position]
 
 func _visibility_checks() -> bool:

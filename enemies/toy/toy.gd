@@ -100,4 +100,5 @@ func leave_toy() -> void:
 	spawned = false
 	
 func prepare_jumpscare() -> void:
+	jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true

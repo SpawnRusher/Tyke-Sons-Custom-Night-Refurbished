@@ -166,6 +166,7 @@ func leave_seabill() -> void:
 	dark_flicker.self_modulate.a8 = 0
 	
 func prepare_jumpscare() -> void:
+	jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true
 	
 func _update_last_animation_played() -> void:

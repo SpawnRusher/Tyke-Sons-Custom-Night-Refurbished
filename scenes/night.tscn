@@ -56,7 +56,6 @@
 [ext_resource type="Texture2D" uid="uid://dkt4i553nt6kr" path="res://sprites/night/windows/back/arrive/frame_0007.png" id="54_i2chl"]
 [ext_resource type="Texture2D" uid="uid://hn1ij2idc68i" path="res://sprites/night/windows/back/arrive/frame_0008.png" id="55_j5vid"]
 [ext_resource type="Texture2D" uid="uid://bxukj2bun75r7" path="res://sprites/night/windows/back/arrive/frame_0009.png" id="56_kyjmo"]
-[ext_resource type="Texture2D" uid="uid://0ukjm8waa8va" path="res://sprites/night/windows/back/arrive/frame_0010.png" id="57_i0p4x"]
 [ext_resource type="Texture2D" uid="uid://cidhsjmtkwc03" path="res://sprites/night/office/running2/frame_0001.png" id="58_rby36"]
 [ext_resource type="Texture2D" uid="uid://lqguvm6w445y" path="res://sprites/night/office/running2/frame_0002.png" id="59_fjp26"]
 [ext_resource type="Texture2D" uid="uid://debmwx62gamyd" path="res://sprites/night/office/running2/frame_0003.png" id="60_vi3ev"]
@@ -109,13 +108,11 @@
 [ext_resource type="Texture2D" uid="uid://bv74loftal448" path="res://sprites/night/windows/left/arrive/window_left_arrive_2.png" id="107_4m5is"]
 [ext_resource type="Texture2D" uid="uid://c8xog4kfw4j0l" path="res://sprites/night/windows/left/arrive/window_left_arrive_3.png" id="108_o0kng"]
 [ext_resource type="Texture2D" uid="uid://3lbstlftydhb" path="res://sprites/night/windows/left/arrive/window_left_arrive_4.png" id="109_16qhm"]
-[ext_resource type="Texture2D" uid="uid://dv063piu5mcke" path="res://sprites/night/windows/left/arrive/window_left_arrive_5.png" id="110_l17ip"]
 [ext_resource type="Texture2D" uid="uid://ckbyrko2dfmwq" path="res://sprites/night/windows/right/arrive/window_right_arrive_0.png" id="111_po72n"]
 [ext_resource type="Texture2D" uid="uid://b6ixtq3d5dcow" path="res://sprites/night/windows/right/arrive/window_right_arrive_1.png" id="112_or7qe"]
 [ext_resource type="Texture2D" uid="uid://5rawy6vrywyt" path="res://sprites/night/windows/right/arrive/window_right_arrive_2.png" id="113_dmhfx"]
 [ext_resource type="Texture2D" uid="uid://b5dsm2nggtylm" path="res://sprites/night/windows/right/arrive/window_right_arrive_3.png" id="114_j3hjr"]
 [ext_resource type="Texture2D" uid="uid://d3hwtpipr0qe8" path="res://sprites/night/windows/right/arrive/window_right_arrive_4.png" id="115_kre3e"]
-[ext_resource type="Texture2D" uid="uid://6wefy6du2i10" path="res://sprites/night/windows/right/arrive/window_right_arrive_5.png" id="116_gjw82"]
 [ext_resource type="Texture2D" uid="uid://01llcob3v8ai" path="res://sprites/night/windows/back/leave/frame_0001.png" id="117_vlu66"]
 [ext_resource type="Texture2D" uid="uid://d215vagquinto" path="res://sprites/night/windows/back/leave/frame_0002.png" id="118_y3rnc"]
 [ext_resource type="Texture2D" uid="uid://dk65qa2q5n8yd" path="res://sprites/night/windows/back/leave/frame_0003.png" id="119_f03g8"]
@@ -514,9 +511,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("56_kyjmo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("57_i0p4x")
 }],
 "loop": 0,
 "name": &"go_b",
@@ -704,9 +698,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("109_16qhm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("110_l17ip")
 }],
 "loop": 0,
 "name": &"go_l",
@@ -796,9 +787,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("115_kre3e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("116_gjw82")
 }],
 "loop": 0,
 "name": &"go_r",
@@ -1427,10 +1415,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("233_v04ed")
+"texture": ExtResource("232_0koxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("232_0koxg")
+"texture": ExtResource("233_v04ed")
 }],
 "loop": 0,
 "name": &"r",
@@ -1678,7 +1666,7 @@ popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"open_b"
+animation = &"return"
 autoplay = "office"
 centered = false
 
@@ -1699,7 +1687,7 @@ centered = false
 visible = false
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_p8vaa")
-animation = &"r"
+animation = &"l"
 centered = false
 
 [node name="Chipomat2" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=62098446]
@@ -1713,7 +1701,7 @@ centered = false
 visible = false
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_s6l8q")
-animation = &"l"
+animation = &"r"
 centered = false
 
 [node name="FrontWindow" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=175880799]

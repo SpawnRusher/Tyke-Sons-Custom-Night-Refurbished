@@ -119,6 +119,7 @@ func flash_springcrab(using_flashlight: bool, side: String) -> void:
 		leave_springcrab()
 		
 func prepare_jumpscare() -> void:
+	jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true
 
 	
