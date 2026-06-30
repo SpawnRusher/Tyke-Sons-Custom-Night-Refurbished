@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c3t6q2otj5hlj"]
+
+[ext_resource type="Script" uid="uid://brrjiu601qn05" path="res://scripts/reset_to_defaults_button.gd" id="1_aol00"]
+
+[node name="ResetToDefaults" type="Button" unique_id=2065030133]
+custom_minimum_size = Vector2(0, 50)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+text = "RESET TO DEFAULT"
+script = ExtResource("1_aol00")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

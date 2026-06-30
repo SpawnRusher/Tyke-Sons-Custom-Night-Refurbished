@@ -17,9 +17,9 @@ var default_settings_data: Dictionary = {
 		"skip_loading_night":false,
 		"use_old_camera_scrolling":false,
 		"movement_mode":0,
-		"forward_screen_margin":100,
+		"top_screen_margin":100,
 		"left_screen_margin":100,
-		"backward_screen_margin":100,
+		"bottom_screen_margin":100,
 		"right_screen_margin":100
 	},
 	"keybinds": {
@@ -81,7 +81,14 @@ var default_save_data: Dictionary = {
 var settings_data_to_migrate: Dictionary = {
 	"display": {
 		"texture_filter":"antialiasing"
-	}
+	},
+	"game": {
+		"forward_screen_margin":"top_screen_margin",
+		"backward_screen_margin":"bottom_screen_margin"
+	},
+	"keybinds": {
+		"Toggle Lamp":"toggle_lamp"
+	},
 }
 	
 var save_data_to_migrate: Dictionary = {
@@ -94,6 +101,9 @@ var save_data_encryption_key: String
 
 var settings_data_file: FileAccess
 var save_data_file: FileAccess
+
+signal settings_data_loaded
+signal save_data_loaded
 
 func _ready() -> void:
 	if _check_for_file(FILE_TYPE.SETTINGS):
@@ -143,6 +153,7 @@ func _load_file(type: FILE_TYPE) -> void:
 			settings_data = json.data
 		await _migrate_data(FILE_TYPE.SETTINGS)
 		await _add_missing_data(FILE_TYPE.SETTINGS)
+		settings_data_loaded.emit()
 		_update_settings()
 		_update_keybinds_actions()
 	else:
@@ -150,6 +161,7 @@ func _load_file(type: FILE_TYPE) -> void:
 		json.parse(save_data_file.get_as_text())
 		if json.data:
 			save_data = json.data
+		save_data_loaded.emit()
 		_migrate_data(FILE_TYPE.SAVE)
 		_add_missing_data(FILE_TYPE.SAVE)
 

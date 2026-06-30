@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c5tck8h81yxqm"]
 
+[ext_resource type="Script" uid="uid://c46y15exc7sh5" path="res://scripts/keybind_button.gd" id="1_nafp2"]
+
 [node name="KeybindButton" type="Button" unique_id=1625416073]
 custom_minimum_size = Vector2(0, 50)
 anchors_preset = 10
@@ -8,6 +10,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 focus_mode = 0
 action_mode = 0
+script = ExtResource("1_nafp2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=69840130]
 layout_mode = 1
@@ -24,7 +27,7 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=923350876]
 layout_mode = 2
 
-[node name="ActionLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1564517087]
+[node name="SettingLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1564517087]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 32
@@ -39,7 +42,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="InputLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=122809078]
+[node name="StateLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=122809078]
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 32
@@ -49,3 +52,5 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

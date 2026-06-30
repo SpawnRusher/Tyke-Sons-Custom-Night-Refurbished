@@ -2,7 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_05p07"]
 [ext_resource type="Script" uid="uid://rg0leobu6t3s" path="res://scripts/settings_menu.gd" id="2_wswnh"]
+[ext_resource type="PackedScene" uid="uid://nbk8g6wpfyl0" path="res://scenes/settings_menu/slider_button.tscn" id="3_5sljs"]
+[ext_resource type="PackedScene" uid="uid://c3t6q2otj5hlj" path="res://scenes/settings_menu/reset_to_defaults_button.tscn" id="3_rcdfy"]
 [ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button.tscn" id="3_vlvk0"]
+[ext_resource type="PackedScene" uid="uid://br8xrm84gnlie" path="res://scenes/settings_menu/dropdown_button.tscn" id="5_bsihy"]
+[ext_resource type="PackedScene" uid="uid://c5tck8h81yxqm" path="res://scenes/settings_menu/keybind_button.tscn" id="6_bsihy"]
 
 [node name="SettingsMenu" type="Control" unique_id=131214480 node_paths=PackedStringArray("username_vbox", "username_lineedit", "user_token_vbox", "user_token_lineedit", "login_button", "auto_login_button", "gamejolt_info_text")]
 layout_mode = 3
@@ -14,13 +18,13 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_05p07")
 script = ExtResource("2_wswnh")
-username_vbox = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UsernameVBox")
-username_lineedit = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UsernameVBox/LineEdit")
-user_token_vbox = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UserTokenVBox")
-user_token_lineedit = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UserTokenVBox/LineEdit")
-login_button = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/LoginButton")
-auto_login_button = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/AutoLoginButton")
-gamejolt_info_text = NodePath("Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/GameJoltInfoText")
+username_vbox = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UsernameVBox")
+username_lineedit = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UsernameVBox/LineEdit")
+user_token_vbox = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UserTokenVBox")
+user_token_lineedit = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UserTokenVBox/LineEdit")
+login_button = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LoginButtonHBox/LoginButton")
+auto_login_button = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/AutoLoginButton")
+gamejolt_info_text = NodePath("Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/InfoTextHBox/GameJoltInfoText")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1668547593]
 layout_mode = 1
@@ -49,11 +53,11 @@ layout_mode = 2
 tab_alignment = 1
 current_tab = 0
 
-[node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=231042463]
+[node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/GameJolt" unique_id=1546511878]
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Display" unique_id=368572435]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -61,24 +65,475 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer" unique_id=1408744782]
-layout_mode = 2
-
-[node name="SpacerT" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=921365677]
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Display/TabMargin" unique_id=1215289781]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=1701099340]
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll" unique_id=1853873325]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+tab_name = "display"
+
+[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=395995736]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="SpacerL" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=557527707]
+[node name="MaxFPS" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=810285521 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "display"
+setting_name = "max_fps"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="0" unique_id=590994961]
+text = "Max FPS"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="2" unique_id=1024995569]
+text = "0"
+
+[node name="Slider" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="3" unique_id=193667728]
+max_value = 360.0
+
+[node name="Antialiasing" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=1624645857 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "display"
+setting_name = "antialiasing"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="0" unique_id=251215606]
+text = "Antialiasing"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="WindowMode" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=1278885680 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "display"
+setting_name = "window_mode"
+setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
+dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="0" unique_id=825760219]
+text = "Window Mode"
+
+[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="2" unique_id=87337718]
+selected = 0
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless"
+popup/item_1/id = 3
+popup/item_2/text = "Exclusive"
+popup/item_2/id = 4
+
+[node name="VSync" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=644630701 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "display"
+setting_name = "vsync_mode"
+setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
+dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="0" unique_id=825760219]
+text = "VSync Mode"
+
+[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="2" unique_id=87337718]
+selected = 0
+item_count = 4
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "VSync"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Fast"
+popup/item_3/id = 3
+
+[node name="Game" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1627397997]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Game" unique_id=2000524679]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Game/TabMargin" unique_id=865111506]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll" unique_id=2030068338]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+tab_name = "game"
+
+[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1269798834]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="MasterVolume" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1858945785 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "master_volume"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="0" unique_id=590994961]
+text = "Master Volume"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="2" unique_id=1024995569]
+text = "50"
+
+[node name="JumpscareVolume" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1068303367 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "jumpscare_volume"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="0" unique_id=590994961]
+text = "Jumpscare Volume"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="2" unique_id=1024995569]
+text = "50"
+
+[node name="AutoRestartOnDeath" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1456973171 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "auto_restart_on_death"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="0" unique_id=251215606]
+text = "Auto Restart On Death"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="SkipLoadingNight" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1868348644 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "skip_loading_night"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="0" unique_id=251215606]
+text = "Skip Loading Night"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="UseOldCameraScrolling" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1108053077 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "use_old_camera_scrolling"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="0" unique_id=251215606]
+text = "Use Old Camera Scrolling"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="MovementMode" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1499132036 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "movement_mode"
+setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
+dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="0" unique_id=825760219]
+text = "MovementMode"
+
+[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="2" unique_id=87337718]
+selected = 0
+item_count = 5
+popup/item_0/text = "Hover"
+popup/item_0/id = 0
+popup/item_1/text = "Click"
+popup/item_1/id = 1
+popup/item_2/text = "Keyboard"
+popup/item_2/id = 2
+popup/item_3/text = "Hover+Keyboard"
+popup/item_3/id = 3
+popup/item_4/text = "Click+Keyboard"
+popup/item_4/id = 4
+
+[node name="TopScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=10074031 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "top_screen_margin"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="0" unique_id=590994961]
+text = "Top Screen Margin"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="2" unique_id=1024995569]
+text = "100"
+
+[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="3" unique_id=193667728]
+max_value = 300.0
+
+[node name="LeftScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=871636082 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "left_screen_margin"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="0" unique_id=590994961]
+text = "Left Screen Margin"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="2" unique_id=1024995569]
+text = "100"
+
+[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="3" unique_id=193667728]
+max_value = 300.0
+
+[node name="BottomScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=2108170838 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "bottom_screen_margin"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="0" unique_id=590994961]
+text = "Bottom Screen Margin"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="2" unique_id=1024995569]
+text = "100"
+
+[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="3" unique_id=193667728]
+max_value = 300.0
+
+[node name="RightScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1303697337 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "right_screen_margin"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+slider = NodePath("MarginContainer/HBoxContainer/Slider")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="0" unique_id=590994961]
+text = "Right Screen Margin"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="2" unique_id=1024995569]
+text = "100"
+
+[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="3" unique_id=193667728]
+max_value = 300.0
+
+[node name="Keybinds" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1504104377]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Keybinds" unique_id=443604113]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin" unique_id=1437040814]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll" unique_id=914849533]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+tab_name = "keybinds"
+
+[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1027549335]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="RestartNight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1625416073 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "restart_night"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/RestartNight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1625416073, 923350876) index="0" unique_id=1564517087]
+text = "Restart Night"
+
+[node name="ReturnToMenu" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=244291619 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "return_to_menu"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ReturnToMenu/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(244291619, 923350876) index="0" unique_id=1564517087]
+text = "Return To Menu"
+
+[node name="ToggleLamp" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2065219765 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "toggle_lamp"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ToggleLamp/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2065219765, 923350876) index="0" unique_id=1564517087]
+text = "Toggle Lamp"
+
+[node name="GoToSleep" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=210479620 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "go_to_sleep"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(210479620, 923350876) index="0" unique_id=1564517087]
+text = "Go To Sleep"
+
+[node name="CloseCurtain" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1306004482 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "close_curtain"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1306004482, 923350876) index="0" unique_id=1564517087]
+text = "Close Curtain
+"
+
+[node name="UseFlashlight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=646497533 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "use_flashlight"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(646497533, 923350876) index="0" unique_id=1564517087]
+text = "Use Flashlight
+"
+
+[node name="ClickMove" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1906188970 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "click_move"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1906188970, 923350876) index="0" unique_id=1564517087]
+text = "Click Move
+"
+
+[node name="MoveForward" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1209939523 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "move_forward"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1209939523, 923350876) index="0" unique_id=1564517087]
+text = "Move Forward"
+
+[node name="MoveLeft" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=794133684 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "move_left"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794133684, 923350876) index="0" unique_id=1564517087]
+text = "Move Left"
+
+[node name="MoveBackward" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=318653688 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "move_backward"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(318653688, 923350876) index="0" unique_id=1564517087]
+text = "Move Backward"
+
+[node name="MoveRight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1628007890 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "move_right"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1628007890, 923350876) index="0" unique_id=1564517087]
+text = "Move Right"
+
+[node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=231042463]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/GameJolt" unique_id=1546511878]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabVbox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin" unique_id=1408744782]
+layout_mode = 2
+
+[node name="SpacerT" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=921365677]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LineEditsHBox" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=1701099340]
+layout_mode = 2
+
+[node name="SpacerL" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox" unique_id=557527707]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="UsernameVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2130137196]
+[node name="UsernameVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox" unique_id=2130137196]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UsernameVBox" unique_id=652343676]
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UsernameVBox" unique_id=652343676]
 layout_mode = 2
 text = "Username"
 fit_content = true
@@ -86,21 +541,21 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UsernameVBox" unique_id=103689060]
+[node name="LineEdit" type="LineEdit" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UsernameVBox" unique_id=103689060]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 placeholder_text = "Type username here..."
 emoji_menu_enabled = false
 
-[node name="SpacerM" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=487779194]
+[node name="SpacerM" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox" unique_id=487779194]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="UserTokenVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1371897758]
+[node name="UserTokenVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox" unique_id=1371897758]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UserTokenVBox" unique_id=1300598308]
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UserTokenVBox" unique_id=1300598308]
 layout_mode = 2
 text = "User Token"
 fit_content = true
@@ -108,32 +563,51 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer/UserTokenVBox" unique_id=1336922481]
+[node name="LineEdit" type="LineEdit" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox/UserTokenVBox" unique_id=1336922481]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 placeholder_text = "Type token here..."
 emoji_menu_enabled = false
 
-[node name="SpacerR" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1944646809]
+[node name="SpacerR" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LineEditsHBox" unique_id=1944646809]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Spacerhere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=242012956]
+[node name="Spacerhere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=242012956]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="LoginButton" type="Button" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=1357710734]
+[node name="LoginButtonHBox" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=950224086]
+layout_mode = 2
+
+[node name="SpacerL" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LoginButtonHBox" unique_id=206555732]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoginButton" type="Button" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LoginButtonHBox" unique_id=1357710734]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 text = "LOGIN"
 
-[node name="Spacerthere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=871686331]
+[node name="SpacerR" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LoginButtonHBox" unique_id=1834954562]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacerthere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=871686331]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="GameJoltInfoText" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=1646175972]
+[node name="InfoTextHBox" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=1774013996]
+layout_mode = 2
+
+[node name="SpacerL" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/InfoTextHBox" unique_id=242166892]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameJoltInfoText" type="RichTextLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/InfoTextHBox" unique_id=1646175972]
 custom_minimum_size = Vector2(0, 150)
-custom_maximum_size = Vector2(900, 150)
+custom_maximum_size = Vector2(650, 150)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 text = "Log in with GameJolt here! 
@@ -142,11 +616,53 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Spacerwhere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=1166538545]
+[node name="SpacerR" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/InfoTextHBox" unique_id=915379712]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacerwhere" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=1166538545]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="AutoLoginButton" parent="Panel/PanelMargin/TabContainer/GameJolt/MarginContainer/VBoxContainer" unique_id=1624645857 instance=ExtResource("3_vlvk0")]
+[node name="AutoLoginButton" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=250579639 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
+settings_menu = NodePath("../../../../../../..")
+group_name = "gamejolt"
+setting_name = "auto_login"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/AutoLoginButton/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(250579639, 1937837762) index="0" unique_id=251215606]
+text = "Auto Login"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/AutoLoginButton/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(250579639, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
 
 [connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed"]
+
+[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS"]
+[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing"]
+[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode"]
+[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/RestartNight"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ReturnToMenu"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ToggleLamp"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight"]
+[editable path="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/AutoLoginButton"]
