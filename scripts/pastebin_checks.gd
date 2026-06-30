@@ -17,6 +17,8 @@ var pastebin_lines: PackedStringArray
 var pastebin_current_line_elements: PackedStringArray
 #endregion
 
+var http_request: HTTPRequest
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	version = ProjectSettings.get_setting("application/config/version")
@@ -27,7 +29,7 @@ func _ready() -> void:
 	pastebin_get()
 
 func pastebin_get() -> void:
-	var http_request: HTTPRequest = HTTPRequest.new()
+	http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(request_completed)
 	http_request_output = http_request.request("https://pastebin.com/raw/"+pastebin_id)
@@ -71,6 +73,7 @@ func pastebin_checks(paste_text: String) -> void:
 		
 
 func version_check(version_type: VERSION_TYPE, pastebin_version: String) -> void:
+	http_request.queue_free()
 	if version_type == VERSION_TYPE.DISABLED:
 		SignalBus.pastebin_version_check.emit(version_type, pastebin_version)
 		return

@@ -70,7 +70,8 @@ var default_settings_data: Dictionary = {
 	},
 	"gamejolt": {
 		"username":"",
-		"user_token":""
+		"user_token":"",
+		"auto_login":false
 	},
 }
 	

@@ -7,7 +7,7 @@ extends CanvasLayer
 @export var front_window: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
-@export var go_to_sleep_popup: Panel
+@export var popup: RichTextLabel
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -18,7 +18,7 @@ var flashlight_state: bool
 
 var popup_labels: Dictionary = {
 	"go_to_sleep":"Press B to go to sleep!",
-	"something_got_inside":"Something got inside the room..."
+	"something_got_inside":"Something got inside.\r\nDon't stay in the same room with it for too long!"
 	}
 
 #region AudioStreams
@@ -42,10 +42,12 @@ func _ready() -> void:
 	SignalBus.flashlight_dead.connect(_use_flashlight.bind(false))
 
 func _process(delta: float) -> void:
+	office_direction = office.animation.right(1)
 	nose.disabled = (office.animation != "office")
 	lamp_button.disabled = (office.animation != "office")
 	lamp_button.visible = !lamp_button.disabled
 	_camera_lock()
+	popup.visible = _popup_visibility()
 	
 	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 		_move_player("f")
@@ -80,7 +82,7 @@ func _input(event: InputEvent) -> void:
 				lamp_button.pressed.emit()
 		
 		if event.is_action_pressed("go_to_sleep"):
-			if go_to_sleep_popup.visible:
+			if popup.visible and popup.text == popup_labels["go_to_sleep"]:
 				SignalBus.go_to_sleep.emit()
 
 	if event is InputEventMouseButton:
@@ -134,40 +136,41 @@ func _update_flashlight_state(from_state) -> void:
 func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 	var dir = office.animation.right(1)
 	
-	go_to_sleep_popup.visible = _show_go_to_sleep_popup(dir)
-	
 	if "open_" not in office.animation:
 		return
-	
+		
 	if to_state == false:
 		SignalBus.flashlight_off.emit()
 		if flashlight_state == false:
 			office.frame = 0
-			return
 
-	if dir == "l" or dir == "r":
-		SignalBus.flashlight_on.emit()
-		if flashlight_state == true:
-			office.frame = 1
-		
-	if dir == "b":
-		SignalBus.flashlight_on.emit()
-		if flashlight_state == true:
-			office.frame = 1
-	
-	if dir == "f":
-		if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+	else:
+		if dir == "l" or dir == "r":
 			SignalBus.flashlight_on.emit()
 			if flashlight_state == true:
 				office.frame = 1
-				front_window.play("l")
-				SignalBus.flash_springcrab.emit(true,front_window.animation)
-		elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+			
+		if dir == "b":
 			SignalBus.flashlight_on.emit()
 			if flashlight_state == true:
-				office.frame = 2
-				front_window.play("r")
-				SignalBus.flash_springcrab.emit(true,front_window.animation)
+				office.frame = 1
+		
+		if dir == "f":
+			if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+				SignalBus.flashlight_on.emit()
+				if flashlight_state == true:
+					office.frame = 1
+					front_window.play("l")
+					SignalBus.flash_springcrab.emit(true,front_window.animation)
+			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+				SignalBus.flashlight_on.emit()
+				if flashlight_state == true:
+					office.frame = 2
+					front_window.play("r")
+					SignalBus.flash_springcrab.emit(true,front_window.animation)
+		
+	if _can_go_to_sleep():
+		popup.text = popup_labels["go_to_sleep"]
 		
 func _use_curtain(to_state: bool) -> void:
 	var dir = office.animation.right(1)
@@ -256,11 +259,17 @@ func get_window_occupants(which_side: Variant) -> Array:
 		push_error("Can only get window occupants with an int or String!")
 	return [window_occupants_l,window_occupants_f,window_occupants_r][which_side+1]
 
-func _show_go_to_sleep_popup(dir: String) -> bool:
+func _can_go_to_sleep() -> bool:
 	if sleep_assurance.sleep_assurance_normal < 1:
 		return false
-	if dir != "b":
+	if office.animation != "open_b":
 		return false
 	if office.frame != 1:
 		return false
 	return true
+		
+func _popup_visibility() -> bool:
+	if popup.text == popup_labels["go_to_sleep"]:
+		return _can_go_to_sleep()
+
+	return false

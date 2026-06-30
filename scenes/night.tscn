@@ -269,7 +269,6 @@
 [ext_resource type="Theme" uid="uid://op6w1obd1vly" path="res://themes/popup_panel_theme.tres" id="267_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://dc44sh1hml5i8" path="res://sprites/night/office/lampbutton.png" id="267_s02x3"]
 [ext_resource type="Script" uid="uid://b8e20kbomhvpu" path="res://scripts/camera.gd" id="268_ksui1"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="268_tt6cj"]
 [ext_resource type="Texture2D" uid="uid://82ghl2lu0la2" path="res://Enemies/phantom_chipomat/jumpscare/_0.png" id="269_26d5x"]
 [ext_resource type="Texture2D" uid="uid://c7q2tapbv2y46" path="res://Enemies/phantom_chipomat/jumpscare/_1.png" id="270_477pv"]
 [ext_resource type="Texture2D" uid="uid://3ec3bbuiep2v" path="res://Enemies/phantom_chipomat/jumpscare/_2.png" id="271_65u3u"]
@@ -1664,7 +1663,7 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "dark_overlay", "sleep_assurance", "go_to_sleep_popup")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "dark_overlay", "sleep_assurance", "popup")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
@@ -1675,7 +1674,7 @@ window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
-go_to_sleep_popup = NodePath("OfficeBackground/ScreenPopup")
+popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
@@ -1771,33 +1770,38 @@ action_mode = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="ScreenPopup" type="Panel" parent="Office/OfficeBackground" unique_id=731550162]
-visible = false
+[node name="ScreenPopup" type="RichTextLabel" parent="Office/OfficeBackground" unique_id=147396292]
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(600, 600)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -125.0
-offset_right = 125.0
-offset_bottom = 125.0
+offset_left = -128.0
+offset_top = -100.0
+offset_right = 128.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("267_0f1a6")
+bbcode_enabled = true
+text = "Press B to go to sleep!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="Office/OfficeBackground/ScreenPopup" unique_id=147396292]
+[node name="Panel" type="Panel" parent="Office/OfficeBackground/ScreenPopup" unique_id=731550162]
+show_behind_parent = true
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(800, 800)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("268_tt6cj")
-bbcode_enabled = true
-text = "Press B to go to sleep!"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme = ExtResource("267_0f1a6")
 
 [node name="LampButton" type="Button" parent="Office" unique_id=578000767]
 anchors_preset = -1
@@ -2005,6 +2009,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("283_odtfq")
+bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2230,13 +2235,15 @@ jumpscare_sound = ExtResource("315_h18a6")
 jumpscare_middle_uid = "uid://bdcay5wlrvx68"
 metadata/_custom_type_script = "uid://5w5286ex124e"
 
-[node name="Happyshroom" type="Node" parent="Enemies" unique_id=1330476963 node_paths=PackedStringArray("enemies_list", "office_layer", "office", "office_modulate", "gui_layer", "gui_modulate", "happyshroom_layer", "happyshroom_fade", "happyshroom_text")]
+[node name="Happyshroom" type="Node" parent="Enemies" unique_id=1330476963 node_paths=PackedStringArray("enemies_list", "office_layer", "office", "office_modulate", "window_background", "front_window", "gui_layer", "gui_modulate", "happyshroom_layer", "happyshroom_fade", "happyshroom_text")]
 process_mode = 3
 script = ExtResource("295_x4n37")
 enemies_list = NodePath("..")
 office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 office_modulate = NodePath("../../Office/CanvasModulate")
+window_background = NodePath("../../Office/OfficeBackground/WindowBackground")
+front_window = NodePath("../../Office/OfficeBackground/FrontWindow")
 gui_layer = NodePath("../../GUI")
 gui_modulate = NodePath("../../GUI/CanvasModulate")
 happyshroom_layer = NodePath("../../Happyshroom")

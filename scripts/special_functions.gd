@@ -107,7 +107,7 @@ func timer(function_name: Callable, interval: float, start_delay:= 0.0, repeats:
 		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, real_time, persist_through_scenes, deferred)
 	elif repeats == -1:
 		SpecialFunctions.timer(function_name, interval, 0, repeats, random_offset_negative, random_offset_positive, real_time, persist_through_scenes, deferred)
-		
+
 func in_range(value: float,min_value: float,max_value: float,min_exclusive:=false,max_exclusive:=false) -> bool:
 	if min_exclusive == false and value <= min_value:
 		return false

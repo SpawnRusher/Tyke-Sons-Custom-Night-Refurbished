@@ -4,19 +4,26 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 @onready var tabs_container: TabContainer
-@onready var tabs_children: Array[Node]
-@onready var tab_template = preload("res://scenes/settings_menu/tab_template.tscn")
-@onready var divider_thing = preload("res://scenes/settings_menu/divider.tscn")
 
-@onready var slider_button = preload("res://scenes/settings_menu/slider_button.tscn")
-@onready var dropdown_button = preload("res://scenes/settings_menu/dropdown_button.tscn")
+const DIVIDER = preload("res://scenes/settings_menu/divider.tscn")
+const DROPDOWN_BUTTON = preload("res://scenes/settings_menu/dropdown_button.tscn")
+const GAMEJOLT_TAB = preload("res://scenes/settings_menu/gamejolt_tab.tscn")
+const KEYBIND_BUTTON = preload("res://scenes/settings_menu/keybind_button.tscn")
+const SLIDER_BUTTON = preload("res://scenes/settings_menu/slider_button.tscn")
+const TAB_TEMPLATE = preload("res://scenes/settings_menu/tab_template.tscn")
+const TOGGLE_BUTTON = preload("res://scenes/settings_menu/toggle_button.tscn")
 
-@onready var toggle_button = preload("res://scenes/settings_menu/toggle_button.tscn")
-
-@onready var keybind_button = preload("res://scenes/settings_menu/keybind_button.tscn")
 var remapping = false
 var remapping_action = null
 var remapping_button = null
+
+@export var username_vbox: VBoxContainer
+@export var username_lineedit: LineEdit
+@export var user_token_vbox: VBoxContainer 
+@export var user_token_lineedit: LineEdit
+@export var login_button: Button
+@export var auto_login_button: Button
+@export var gamejolt_info_text: RichTextLabel
 
 var settings_types: Dictionary = {
 	"display": {
@@ -150,15 +157,12 @@ var settings_types: Dictionary = {
 			"type":"keybind",
 		},
 	},
-	"gamejolt": {
-		"username":"",
-		"user_token":""
-	},
 }
 
 func _ready() -> void:
 	tabs_container = find_child("TabContainer")
 	_create_tabs(tabs_container)
+	GameJoltAPI.users_auth_completed.connect(_users_auth_completed)
 
 func _input(event: InputEvent) -> void:
 	if remapping:
@@ -180,92 +184,101 @@ func _input(event: InputEvent) -> void:
 
 func _create_tabs(container: TabContainer) -> void:
 	for tab_name in settings_types:
-		var new_tab = tab_template.instantiate()
+		var new_tab = TAB_TEMPLATE.instantiate()
 		new_tab.name = tab_name.capitalize()
 		container.add_child(new_tab)
 		_add_settings(new_tab)
+	_add_settings(tabs_container.find_child("GameJolt"))
 		
 func _add_settings(tab) -> void:
 	var tab_name = tab.name.to_lower()
-	
-	if tab_name == "keybinds":
-		#_add_keybinds(tab)
-		pass
+
 	if tab_name == "gamejolt":
+		tabs_container.move_child(tab,tabs_container.get_tab_count()-1)
+		tabs_container.current_tab = 0
+		var setting_label:= auto_login_button.find_child("SettingLabel")
+		var state_label:= auto_login_button.find_child("StateLabel")
+		auto_login_button.button_pressed = SaveData.settings_data["gamejolt"]["auto_login"]
+		setting_label.text = "Auto Login"
+		state_label.text = "OFF" if auto_login_button.button_pressed == false else "ON"
+		auto_login_button.pressed.connect(_on_button_toggled.bind(auto_login_button, "gamejolt", "auto_login", setting_label, state_label))
+		login_button.pressed.connect(_gamejolt_login)
+		if SaveData.settings_data["gamejolt"]["auto_login"] == true and SaveData.settings_data["gamejolt"]["username"] != "":
+			GameJoltAPI.request_auth.emit(SaveData.settings_data["gamejolt"]["username"],SaveData.settings_data["gamejolt"]["user_token"])
+		
 		return
 	
 	var vbox = tab.find_child("TabVBox")
 	for setting in settings_types[tab_name]:
 		if settings_types[tab_name][setting]["type"] == "divider":
-			var divider:= divider_thing.instantiate()
-			vbox.add_child(divider)
-			var divider_label:= divider.find_child("DividerLabel")
-			divider_label.text = setting.capitalize().to_upper()
+			_add_divider(vbox, setting)
 		
 		if settings_types[tab_name][setting]["type"] == "toggle":
-			var button:= toggle_button.instantiate()
-			vbox.add_child(button)
-			var setting_label:= button.find_child("SettingLabel")
-			var state_label:= button.find_child("StateLabel")
-			button.button_pressed = SaveData.settings_data[tab_name][setting]
-			setting_label.text = setting.capitalize()
-			state_label.text = "OFF" if button.button_pressed == false else "ON"
-			button.pressed.connect(_on_button_toggled.bind(button, tab_name, setting, setting_label, state_label))
+			_add_toggle(vbox, tab_name, setting)
 				
 		if settings_types[tab_name][setting]["type"] == "dropdown":
-			var dropdown:= dropdown_button.instantiate()
-			vbox.add_child(dropdown)
-			var dropdown_box:= dropdown.find_child("Dropdown")
-			var dropdown_label:= dropdown.find_child("DropdownLabel")
-			dropdown_label.text = setting.capitalize()
-			for option in settings_types[tab_name][setting]["options"]:
-				dropdown_box.add_item(option,settings_types[tab_name][setting]["options"][option])
-			dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[tab_name][setting]))
-			dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, tab_name, setting, dropdown_label))
+			_add_dropdown(vbox, tab_name, setting)
 				
 		if settings_types[tab_name][setting]["type"] == "slider":
-			var slider_setting:= slider_button.instantiate()
-			vbox.add_child(slider_setting)
-			var slider:= slider_setting.find_child("Slider")
-			var slider_label:= slider_setting.find_child("SliderLabel")
-			var slider_value_label:= slider_setting.find_child("SliderValueLabel")
-			slider.min_value = settings_types[tab_name][setting]["min_value"]
-			slider.max_value = settings_types[tab_name][setting]["max_value"]
-			slider.value = SaveData.settings_data[tab_name][setting]
-			slider_label.text = setting.capitalize()
-			slider_value_label.text = str(int(slider.value))
-			slider.value_changed.connect(_on_slider_value_changed.bind(slider, tab_name, setting, slider_label, slider_value_label))
+			_add_slider(vbox, tab_name, setting)
 								
 		if settings_types[tab_name][setting]["type"] == "keybind":
-			var button:= keybind_button.instantiate()
-			var action_label:= button.find_child("ActionLabel")
-			var input_label:= button.find_child("InputLabel")
-			
-			action_label.text = setting.capitalize()
-			
-			var action_events = InputMap.action_get_events(setting)
-			if action_events.size() > 0:
-				input_label.text = action_events[0].as_text().trim_suffix(" - Physical")
-			else:
-				input_label.text = "No Input Bound"
-				
-			vbox.add_child(button)
-			button.pressed.connect(_edit_keybind.bind(button, setting))
+			_add_keybind(vbox, setting)
+
 		
-func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
-	slider_value_label.text = str(int(slider.value))
-	SpecialFunctions.audio(QUIETBUTTONPRESS)
-	
-func _on_dropdown_setting_selected(index, dropdown, group, setting, dropdown_label) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,dropdown.get_item_id(index),group,setting)
-	SpecialFunctions.audio(QUIETBUTTONPRESS)
+func _add_divider(vbox: VBoxContainer, setting: String) -> void:
+	var divider:= DIVIDER.instantiate()
+	vbox.add_child(divider)
+	divider.find_child("DividerLabel").text = setting.capitalize().to_upper()
 		
-func _on_button_toggled(button: Button, group, setting, setting_label, state_label) -> void:
-	setting = setting.to_lower().replace(" ","_")
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group,setting)
+func _add_toggle(vbox: VBoxContainer, tab_name: String, setting: String) -> void:
+	var button:= TOGGLE_BUTTON.instantiate()
+	vbox.add_child(button)
+	var setting_label:= button.find_child("SettingLabel")
+	var state_label:= button.find_child("StateLabel")
+	button.button_pressed = SaveData.settings_data[tab_name][setting]
+	setting_label.text = setting.capitalize()
 	state_label.text = "OFF" if button.button_pressed == false else "ON"
-	SpecialFunctions.audio(QUIETBUTTONPRESS)
+	button.pressed.connect(_on_button_toggled.bind(button, tab_name, setting, setting_label, state_label))
+		
+func _add_dropdown(vbox: VBoxContainer, tab_name: String, setting: String) -> void:
+	var dropdown:= DROPDOWN_BUTTON.instantiate()
+	vbox.add_child(dropdown)
+	var dropdown_box:= dropdown.find_child("Dropdown")
+	var dropdown_label:= dropdown.find_child("DropdownLabel")
+	dropdown_label.text = setting.capitalize()
+	for option in settings_types[tab_name][setting]["options"]:
+		dropdown_box.add_item(option,settings_types[tab_name][setting]["options"][option])
+	dropdown_box.select(dropdown_box.get_item_index(SaveData.settings_data[tab_name][setting]))
+	dropdown_box.item_selected.connect(_on_dropdown_setting_selected.bind(dropdown_box, tab_name, setting, dropdown_label))
+		
+func _add_slider(vbox: VBoxContainer, tab_name: String, setting: String) -> void:
+	var slider_setting:= SLIDER_BUTTON.instantiate()
+	vbox.add_child(slider_setting)
+	var slider:= slider_setting.find_child("Slider")
+	var slider_label:= slider_setting.find_child("SliderLabel")
+	var slider_value_label:= slider_setting.find_child("SliderValueLabel")
+	slider.min_value = settings_types[tab_name][setting]["min_value"]
+	slider.max_value = settings_types[tab_name][setting]["max_value"]
+	slider.value = SaveData.settings_data[tab_name][setting]
+	slider_label.text = setting.capitalize()
+	slider_value_label.text = str(int(slider.value))
+	slider.value_changed.connect(_on_slider_value_changed.bind(slider, tab_name, setting, slider_label, slider_value_label))
+
+func _add_keybind(vbox: VBoxContainer, setting: String) -> void:
+
+	var button:= KEYBIND_BUTTON.instantiate()
+	var input_label:= button.find_child("InputLabel")
+			
+	button.find_child("ActionLabel").text = setting.capitalize()
+			
+	var action_events = InputMap.action_get_events(setting)
+	input_label.text = "No Input Bound"
+	if action_events.size() > 0:
+		input_label.text = action_events[0].as_text().trim_suffix(" - Physical")
+				
+	vbox.add_child(button)
+	button.pressed.connect(_edit_keybind.bind(button, setting))
 
 func _edit_keybind(button: Button, action: String) -> void:
 	if not remapping:
@@ -294,5 +307,35 @@ func _serialize_input_event(event: InputEvent) -> Dictionary:
 	
 	return dict
 
+func _on_slider_value_changed(value, slider: Slider, group, setting, slider_label, slider_value_label) -> void:
+	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group,setting)
+	slider_value_label.text = str(int(slider.value))
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
+	
+func _on_dropdown_setting_selected(index, dropdown, group, setting, dropdown_label) -> void:
+	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,dropdown.get_item_id(index),group,setting)
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
+		
+func _on_button_toggled(button: Button, group, setting, setting_label, state_label) -> void:
+	setting = setting.to_lower().replace(" ","_")
+	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group,setting)
+	state_label.text = "OFF" if button.button_pressed == false else "ON"
+	SpecialFunctions.audio(QUIETBUTTONPRESS)
+
 func _on_tab_changed(tab: int) -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
+	SpecialFunctions.audio(LOUD_BUTTON_PRESS,0,1,1,0,0,0,false,true)
+
+func _gamejolt_login() -> void:
+	GameJoltAPI.request_auth.emit(username_lineedit.text,user_token_lineedit.text)
+
+func _users_auth_completed(result: String, username: String, user_token: String) -> void:
+	print("Auth complete signal in Settings Menu: " + result + " | " + username + " | " + user_token)
+	if result == "false":
+		gamejolt_info_text.text = "Failed to login with GameJolt. Username or user token may be incorrect."
+	else:
+		gamejolt_info_text.text = "Logged in successfully as " + username +"!"
+		#username_lineedit.text = username
+		#user_token_lineedit.text = user_token
+		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,username,"gamejolt","username")
+		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,user_token,"gamejolt","user_token")
+	
