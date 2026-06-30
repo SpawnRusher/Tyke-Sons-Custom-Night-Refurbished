@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var nose: Button
 @export var window_background: AnimatedSprite2D
 @export var front_window: AnimatedSprite2D
+@export var front_window_overlay: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
 @export var popup: RichTextLabel
@@ -160,12 +161,14 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 				if flashlight_state == true:
 					office.frame = 1
 					front_window.play("l")
+					front_window_overlay.play("l")
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
 				if flashlight_state == true:
 					office.frame = 2
 					front_window.play("r")
+					front_window_overlay.play("r")
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 		
 	if _can_go_to_sleep():
@@ -202,6 +205,7 @@ func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
 		window_background.play(dir)
 		
 	front_window.visible = (office.animation == "open_f")
+	front_window_overlay.visible = (office.animation == "open_f")
 	last_animation_played = office.animation
 	
 	if "opening_" in last_animation_played:

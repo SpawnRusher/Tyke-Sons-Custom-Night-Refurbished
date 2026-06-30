@@ -258,7 +258,9 @@
 [ext_resource type="Texture2D" uid="uid://npku372htnu8" path="res://Enemies/seabill/sprite/walking/_13.png" id="259_k8uga"]
 [ext_resource type="Texture2D" uid="uid://miqvttmrxyda" path="res://Enemies/seabill/sprite/walking/_14.png" id="260_iwia0"]
 [ext_resource type="Texture2D" uid="uid://muj21cr4kvd0" path="res://Enemies/seabill/sprite/walking/_15.png" id="261_2m31m"]
+[ext_resource type="Texture2D" uid="uid://bcj5xjwlcour7" path="res://sprites/night/windows/front/frontwindowcharactersoverlayLEFT.png" id="262_0v611"]
 [ext_resource type="Texture2D" uid="uid://otxck156vqh" path="res://Enemies/seabill/sprite/walking/_16.png" id="262_jpxbs"]
+[ext_resource type="Texture2D" uid="uid://d0cnuivtd3spr" path="res://sprites/night/windows/front/frontwindowcharactersoverlayRIGHT.png" id="263_2go0w"]
 [ext_resource type="Texture2D" uid="uid://01yg82jp4lvf" path="res://Enemies/seabill/sprite/walking/_17.png" id="263_xnv1k"]
 [ext_resource type="Texture2D" uid="uid://dgfsac1wtybvd" path="res://Enemies/seabill/sprite/walking/_18.png" id="264_njdep"]
 [ext_resource type="Texture2D" uid="uid://umf21xyrn6ku" path="res://sprites/night/batteries/batteries_0-0_1.png" id="265_2ppsu"]
@@ -1590,6 +1592,31 @@ animations = [{
 "speed": 18.9
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("230_8r5ac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("262_0v611")
+}],
+"loop": 0,
+"name": &"l",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("232_0koxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("263_2go0w")
+}],
+"loop": 2,
+"name": &"r",
+"speed": 0.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r0ah"]
 animations = [{
 "frames": [{
@@ -1651,7 +1678,7 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "dark_overlay", "sleep_assurance", "popup")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "dark_overlay", "sleep_assurance", "popup")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
@@ -1660,13 +1687,14 @@ lamp_button = NodePath("LampButton")
 nose = NodePath("OfficeBackground/Nose")
 window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
-dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
+front_window_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
+dark_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"return"
+animation = &"open_f"
 autoplay = "office"
 centered = false
 
@@ -1708,13 +1736,12 @@ centered = false
 visible = false
 show_behind_parent = true
 sprite_frames = SubResource("SpriteFrames_lw42b")
-animation = &"r"
+animation = &"l"
 centered = false
 
 [node name="FunFungal" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1843107790]
-visible = false
 show_behind_parent = true
-position = Vector2(760, 760)
+position = Vector2(760, 493.35)
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_knw8e")
 
@@ -1729,6 +1756,13 @@ show_behind_parent = true
 position = Vector2(600, 260)
 sprite_frames = SubResource("SpriteFrames_fyxh2")
 animation = &"walking"
+
+[node name="FrontWindowOverlay" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=917866821]
+visible = false
+show_behind_parent = true
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"r"
+centered = false
 
 [node name="Batteries" type="TextureProgressBar" parent="Office/OfficeBackground" unique_id=8360262]
 visible = false
