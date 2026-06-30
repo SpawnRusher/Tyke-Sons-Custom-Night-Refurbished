@@ -49,9 +49,9 @@ func _process(delta: float) -> void:
 	_camera_lock()
 	popup.visible = _popup_visibility()
 	
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["top_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
 		_move_player("f")
-	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
+	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["bottom_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
 		_move_player("b")
 	if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
 		_move_player("l")
@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 			_use_curtain(false)
 	
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey or event is InputEventMouseButton:
 		if event.is_action_pressed("move_forward", true) and SaveData.settings_data["game"]["movement_mode"] >= 2:
 			_move_player("f")
 		if event.is_action_pressed("move_backward", true) and SaveData.settings_data["game"]["movement_mode"] >= 2:
@@ -85,11 +85,10 @@ func _input(event: InputEvent) -> void:
 			if popup.visible and popup.text == popup_labels["go_to_sleep"]:
 				SignalBus.go_to_sleep.emit()
 
-	if event is InputEventMouseButton:
 		if Input.is_action_pressed("click_move"):
-			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["forward_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["top_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 				_move_player("f")
-			if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["backward_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
+			if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["bottom_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 				_move_player("b")
 			if SpecialFunctions.in_range(office.get_local_mouse_position().x,0,SaveData.settings_data["game"]["left_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 				_move_player("l")

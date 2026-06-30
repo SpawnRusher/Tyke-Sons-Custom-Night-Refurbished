@@ -236,8 +236,8 @@ func _toggle_button(button: Button, group_name: String, setting_name: String, se
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
 	SpecialFunctions.audio(QUIETBUTTONPRESS)
 
-func _gamejolt_login() -> void:
-	GameJoltAPI.request_auth.emit(username_lineedit.text,user_token_lineedit.text)
+func _on_login_button_pressed() -> void:
+	GameJoltAPI.request_users_auth.emit(username_lineedit.text,user_token_lineedit.text)
 
 func _users_auth_completed(result: String, username: String, user_token: String) -> void:
 	print("Auth complete signal in Settings Menu: " + result + " | " + username + " | " + user_token)

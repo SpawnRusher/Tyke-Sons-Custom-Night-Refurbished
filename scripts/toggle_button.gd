@@ -8,6 +8,8 @@ extends Button
 
 func _ready() -> void:
 	_update()
+	if button_pressed == true:
+		GameJoltAPI.request_users_auth.emit(SaveData.settings_data["gamejolt"]["username"],SaveData.settings_data["gamejolt"]["user_token"])
 	settings_menu.resetted_to_defaults.connect(_update)
 	
 func _update() -> void:

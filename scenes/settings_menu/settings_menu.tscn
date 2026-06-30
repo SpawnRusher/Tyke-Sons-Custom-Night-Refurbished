@@ -639,6 +639,7 @@ text = "Auto Login"
 text = "OFF"
 
 [connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed"]
+[connection signal="pressed" from="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/LoginButtonHBox/LoginButton" to="." method="_on_login_button_pressed"]
 
 [editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS"]
 [editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing"]
