@@ -172,8 +172,8 @@ func _create_file(type: FILE_TYPE) -> void:
 	_load_file(type)
 	
 func _update_settings() -> void:
-	AudioServer.set_bus_volume_linear(0,(settings_data["volume"]["master_volume"])/100.0)
-	AudioServer.set_bus_volume_linear(1,(settings_data["volume"]["jumpscare_volume"])/100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),(settings_data["game"]["master_volume"])/100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Jumpscare"),(settings_data["game"]["jumpscare_volume"])/100.0)
 	
 	DisplayServer.window_set_mode(settings_data["display"]["window_mode"])
 	DisplayServer.window_set_vsync_mode(settings_data["display"]["vsync_mode"])

@@ -45,20 +45,20 @@ var timer_durations: Dictionary = {
 
 var tween_durations: Dictionary = {
 	"l": { 
-		"go":0.85,
-		"leave":0.85
+		"go":0.6375,
+		"leave":0.6375
 		},
 	"r": {
-		"go":0.85,
-		"leave":0.85
+		"go":0.86375,
+		"leave":0.6375
 		},
 	"f": {
-		"go":0.85,
-		"leave":0.85
+		"go":0.6375,
+		"leave":0.6375
 		},
 	"b": {
-		"go":1.6,
-		"leave":1.4
+		"go":1.2,
+		"leave":1.05
 		}
 	}
 

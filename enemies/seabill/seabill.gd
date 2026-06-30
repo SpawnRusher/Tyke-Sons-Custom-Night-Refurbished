@@ -21,6 +21,7 @@ class_name Seabill
 @export var walk_timer: float
 ## The time it takes flashing Seabill to make him walk again.
 @export var flash_timer: float
+@export var sleep_assurance_grace_period: float
 ## Adds a random variance to the spawn timer. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
 @export var random_variance: float
 ## The starting x-position for Seabill to begin walking from.
@@ -38,6 +39,7 @@ var current_kill_timer: float
 var current_walk_timer: float
 var current_walk_progress: float
 var current_flash_timer: float
+var current_sleep_assurance_grace_period: float
 var spawned: bool
 var spawn_ready: bool
 var jumpscare_ready: bool
@@ -58,6 +60,7 @@ func _ready() -> void:
 	current_walk_timer = walk_timer
 	current_walk_progress = 0
 	current_flash_timer = flash_timer
+	current_sleep_assurance_grace_period = sleep_assurance_grace_period
 	
 	sprite.animation_changed.connect(_update_last_animation_played)
 	sprite.animation_finished.connect(_on_animation_finished)
@@ -98,12 +101,12 @@ func _process(delta: float) -> void:
 			
 			if dark_office.visible == false:
 				current_flash_timer -= 0.3 * delta
-				SignalBus.remove_sleep_assurance.emit(delta, self)
+				current_sleep_assurance_grace_period -= 1
+				if current_sleep_assurance_grace_period <= 0:
+					SignalBus.remove_sleep_assurance.emit(delta, self)
 			elif office.animation == "office":
 				current_kill_timer = max(current_kill_timer,kill_timer_pause_threshold)
 				current_flash_timer -= 1 * delta
-			else:
-				pass #nothing for now
 
 			if current_flash_timer <= 0:
 				walk_seabill()
@@ -135,9 +138,15 @@ func spawn_seabill() -> void:
 	current_walk_timer = walk_timer
 	current_walk_progress = 0
 	current_flash_timer = flash_timer
+	current_sleep_assurance_grace_period = sleep_assurance_grace_period
 	sprite.play("walking")
 	stare_times_array.clear()
 	
+	for i in range(1,stare_times):
+		stare_times_array.append(snappedf(1.0/stare_times * i,0.001))
+	stare_times_array.append(0.333)
+	stare_times_array.append(0.666)
+	return
 	var temp_stares = stare_times/2.0
 	var left_stares = floor(temp_stares)
 	var right_stares = floor(temp_stares)
