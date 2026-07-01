@@ -1,6 +1,9 @@
-extends Node
+@icon("res://gamejolt_icon.svg")
+extends Node 
+class_name GameJoltAPI
 
 const api_link: String = "https://api.gamejolt.com/api/game/v1_2/"
+const api_url: String = "https://api.gamejolt.com/api/game/v1_2/"
 const game_id: int = 1077734
 const game_key: String = "11de50d5fd3622d9f81394e176a81bbf"
 
@@ -9,8 +12,45 @@ var authorized_user_token: String = ""
 
 enum SESSION_STATUSES {NONE=-1,IDLE=0,ACTIVE=1}
 
+var url_endpoints: Dictionary[String,Dictionary] = {
+	"users": {
+		"auth": api_url + "users/auth/?game_id=" + str(game_id),
+		"fetch": api_url + "users/?game_id=" + str(game_id)
+	},
+	"sessions": {
+		"open": api_url + "sessions/open/?game_id=" + str(game_id),
+		"ping": api_url + "sessions/ping/?game_id=" + str(game_id),
+		"check": api_url + "sessions/check/?game_id=" + str(game_id),
+		"close": api_url + "sessions/close/?game_id=" + str(game_id)
+	},
+	"scores": {
+		"fetch": api_url + "scores/fetch/?game_id=" + str(game_id),
+		"tables": api_url + "scores/tables/?game_id=" + str(game_id),
+		"add": api_url + "scores/add/?game_id=" + str(game_id),
+		"get-rank": api_url + "scores/get-rank/?game_id=" + str(game_id)
+	},
+	"trophies": {
+		"fetch": api_url + "trophies/fetch/?game_id=" + str(game_id),
+		"add_achieved": api_url + "trophies/add_achieved/?game_id=" + str(game_id),
+		"remove_achieved": api_url + "trophies/remove_achieved/?game_id=" + str(game_id)
+	},
+	"data-store": {
+		"set": api_url + "data-store/set/?game_id=" + str(game_id),
+		"update": api_url + "data-store/update/?game_id=" + str(game_id),
+		"remove": api_url + "data-store/remove/?game_id=" + str(game_id),
+		"fetch": api_url + "data-store/fetch/?game_id=" + str(game_id),
+		"get-keys": api_url + "data-store/get-keys/?game_id=" + str(game_id),
+	},
+	"friends" : {
+		"friends": api_url + "friends/?game_id=" + str(game_id)
+	},
+	"time" : {
+		"time": api_url + "time/?game_id=" + str(game_id)
+	}
+}
+
 #region SIGNALS
-#region INCOMING_REQUESTS
+#region REQUESTS
 signal request_users_auth(username: String, user_token: String)
 signal request_users_fetch(user: Variant)
 signal request_sessions_open(username: String, user_token: String)
@@ -19,7 +59,7 @@ signal request_sessions_check(username: String, user_token: String)
 signal request_sessions_close(username: String, user_token: String)
 signal request_scores_fetch(limit: int, table_id: int, username: String, user_token: String, guest: String, better_than: int, worse_than: int)
 #endregion
-#region OUTGOING_COMPLETIONS
+#region COMPLETIONS
 signal users_auth_completed(result: bool, username: String, user_token: String)
 signal users_fetch_completed(json_body: Dictionary, user: Variant)
 signal sessions_open_completed(json_body: Dictionary, username: String, user_token: String)
@@ -29,6 +69,8 @@ signal sessions_close_completed(json_body: Dictionary, username: String, user_to
 signal scores_fetch_completed(json_body: Dictionary, username: String, user_token: String)
 #endregion
 #endregion
+
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
