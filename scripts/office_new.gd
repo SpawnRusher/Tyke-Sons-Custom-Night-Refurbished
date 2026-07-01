@@ -106,7 +106,7 @@ func _input(event: InputEvent) -> void:
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
 		return
-	
+
 	if go_direction == "b":
 		if office.animation == "office":
 			office.play("go_b")
@@ -143,6 +143,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 		SignalBus.flashlight_off.emit()
 		if flashlight_state == false:
 			office.frame = 0
+			front_window_overlay.frame = 0
 
 	else:
 		if dir == "l" or dir == "r":
@@ -162,6 +163,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 					office.frame = 1
 					front_window.play("l")
 					front_window_overlay.play("l")
+					front_window_overlay.frame = 1
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
@@ -169,6 +171,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 					office.frame = 2
 					front_window.play("r")
 					front_window_overlay.play("r")
+					front_window_overlay.frame = 1
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 		
 	if _can_go_to_sleep():

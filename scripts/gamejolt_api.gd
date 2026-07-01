@@ -34,9 +34,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		#if event.keycode == KEY_G:
 			#_users_auth("SpawnRusher","LP2dZ1")
-		if event.keycode == KEY_S:
-			_scores_fetch()
-
+		#if event.keycode == KEY_S:
+			#_scores_fetch()
+		pass
+		
 func _ready() -> void:
 	request_users_auth.connect(_users_auth)
 	request_users_fetch.connect(_users_fetch)

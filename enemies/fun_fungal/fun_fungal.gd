@@ -81,6 +81,7 @@ func deactivate():
 	
 func _spawn_fungal():
 	position = ["l","f","r"].pick_random()
+	position = "f"
 	if position == "f":
 		front_position = ["l","r"].pick_random()
 	info_key = position + front_position

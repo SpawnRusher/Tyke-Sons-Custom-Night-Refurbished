@@ -1688,13 +1688,13 @@ nose = NodePath("OfficeBackground/Nose")
 window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 front_window_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
-dark_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
+dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"open_f"
+animation = &"office"
 autoplay = "office"
 centered = false
 
