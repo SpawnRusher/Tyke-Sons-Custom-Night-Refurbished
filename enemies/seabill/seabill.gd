@@ -100,7 +100,6 @@ func _process(delta: float) -> void:
 			current_kill_timer -= 1 * delta
 			
 			if dark_office.visible == false:
-				current_flash_timer -= 0.3 * delta
 				current_sleep_assurance_grace_period -= 1
 				if current_sleep_assurance_grace_period <= 0:
 					SignalBus.remove_sleep_assurance.emit(delta, self)
@@ -129,6 +128,10 @@ func ready_seabill() -> void:
 	current_timer = spawn_timer
 	current_kill_timer = kill_timer
 	
+	stare_times_array.clear()
+	for i in stare_times:
+		stare_times_array.append(snappedf((1.0/(stare_times+1)) * (i+1),0.001))
+	
 func spawn_seabill() -> void:
 	spawn_ready = false
 	spawned = true
@@ -140,10 +143,6 @@ func spawn_seabill() -> void:
 	current_flash_timer = flash_timer
 	current_sleep_assurance_grace_period = sleep_assurance_grace_period
 	sprite.play("walking")
-	stare_times_array.clear()
-	
-	for i in range(1,stare_times):
-		stare_times_array.append(snappedf(1.0/stare_times * i,0.001))
 			
 func stare_seabill() -> void:
 	sprite.play("turning_stare")

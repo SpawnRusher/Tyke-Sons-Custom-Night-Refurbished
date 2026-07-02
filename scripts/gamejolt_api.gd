@@ -1,6 +1,5 @@
 @icon("res://gamejolt_icon.svg")
-extends Node 
-class_name GameJoltAPI
+extends Node
 
 const api_link: String = "https://api.gamejolt.com/api/game/v1_2/"
 const api_url: String = "https://api.gamejolt.com/api/game/v1_2/"
@@ -97,7 +96,6 @@ func _append_game_id() -> String:
 
 #region USERS/
 func _users_auth(username: String, user_token: String) -> void:
-	print("Attempting to auth")
 	var http = HTTPRequest.new()
 	add_child(http)
 	var http_link = api_link + "users/auth/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
@@ -110,7 +108,6 @@ func _users_fetch(user: Variant) -> void:
 	if user is not String and user is not int:
 		push_error("Parameter 'user' in _users_fetch must be either a string (username) or an int (user_id).")
 		return
-	print("Attempting to fetch")
 	var http = HTTPRequest.new()
 	add_child(http)
 	var http_link = api_link + "users/fetch/" + _append_game_id()

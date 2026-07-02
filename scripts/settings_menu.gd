@@ -166,7 +166,12 @@ func _ready() -> void:
 	slider_button.connect(_slider_button)
 	dropdown_button.connect(_dropdown_button)
 	keybind_button.connect(_keybind_button)
-
+	
+	if GameJolt.authorized_username != "":
+		_users_auth_completed("true",GameJolt.authorized_username,GameJolt.authorized_user_token)
+	elif SaveData.settings_data["gamejolt"]["auto_login"] == true:
+		GameJolt.request_users_auth.emit(SaveData.settings_data["gamejolt"]["username"],SaveData.settings_data["gamejolt"]["user_token"])
+		
 func _input(event: InputEvent) -> void:
 	if remapping:
 		if event is InputEventKey or event is InputEventMouseButton:
@@ -240,7 +245,6 @@ func _on_login_button_pressed() -> void:
 	GameJolt.request_users_auth.emit(username_lineedit.text,user_token_lineedit.text)
 
 func _users_auth_completed(result: String, username: String, user_token: String) -> void:
-	print("Auth complete signal in Settings Menu: " + result + " | " + username + " | " + user_token)
 	if result == "false":
 		gamejolt_info_text.text = "Failed to login with GameJolt. Username or user token may be incorrect."
 	else:
