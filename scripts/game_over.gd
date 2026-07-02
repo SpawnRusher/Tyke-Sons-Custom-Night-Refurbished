@@ -19,7 +19,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	SceneManager.load_scene("res://scenes/menu.tscn")
 	SceneManager.load_scene("res://scenes/night.tscn")
-	SpecialFunctions.audio(GAMEOVER)
+	SpecialFunctions.audio(GAMEOVER,0,1,1,0,0,0,false,true)
 	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false,false,true)
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)

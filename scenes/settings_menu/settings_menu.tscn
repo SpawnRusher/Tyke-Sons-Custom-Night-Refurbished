@@ -54,7 +54,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/icon_max_width = 32
 tab_alignment = 1
-current_tab = 3
+current_tab = 1
 tab_3/icon = ExtResource("3_faeuo")
 
 [node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
@@ -165,7 +165,6 @@ popup/item_3/text = "Fast"
 popup/item_3/id = 3
 
 [node name="Game" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1627397997]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -265,6 +264,20 @@ state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 text = "Use Old Camera Scrolling"
 
 [node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="UseOldFrontWindowHitbox" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=249140566 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+group_name = "game"
+setting_name = "use_old_front_window_hitbox"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="0" unique_id=251215606]
+text = "Use Old Front Window Hitbox"
+
+[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
 [node name="MovementMode" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1499132036 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
@@ -509,6 +522,7 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 text = "Move Right"
 
 [node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=231042463]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -657,6 +671,7 @@ text = "OFF"
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath"]
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight"]
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling"]
+[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox"]
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode"]
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin"]
 [editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin"]

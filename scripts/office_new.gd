@@ -6,6 +6,7 @@ extends CanvasLayer
 @export var window_background: AnimatedSprite2D
 @export var front_window: AnimatedSprite2D
 @export var front_window_overlay: AnimatedSprite2D
+@export var front_window_button: Button
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
 @export var popup: RichTextLabel
@@ -47,6 +48,8 @@ func _process(delta: float) -> void:
 	nose.disabled = (office.animation != "office")
 	lamp_button.disabled = (office.animation != "office")
 	lamp_button.visible = !lamp_button.disabled
+	front_window_button.disabled = (office.animation != "office")
+	front_window_button.visible = !front_window_button.disabled
 	_camera_lock()
 	popup.visible = _popup_visibility()
 	
@@ -77,6 +80,8 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("move_right", true) and SaveData.settings_data["game"]["movement_mode"] >= 2:
 			_move_player("r")
 			
+		
+			
 		if event.is_action_pressed("toggle_lamp"):
 			if not lamp_button.disabled:
 				lamp_button.button_pressed = !lamp_button.button_pressed
@@ -87,6 +92,10 @@ func _input(event: InputEvent) -> void:
 				SignalBus.go_to_sleep.emit()
 
 		if Input.is_action_pressed("click_move"):
+			if SpecialFunctions.in_range(office.get_local_mouse_position().x,front_window_button.global_position.x,front_window_button.global_position.x+front_window_button.size.x) and SpecialFunctions.in_range(office.get_local_mouse_position().y,front_window_button.global_position.y,front_window_button.global_position.y+front_window_button.size.y):
+				if SaveData.settings_data["game"]["use_old_front_window_hitbox"]:
+					_move_player("f")
+				
 			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["top_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 				_move_player("f")
 			if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["bottom_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:

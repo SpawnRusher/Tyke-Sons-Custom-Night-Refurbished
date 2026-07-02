@@ -1678,7 +1678,7 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "dark_overlay", "sleep_assurance", "popup")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "front_window_button", "dark_overlay", "sleep_assurance", "popup")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
@@ -1688,6 +1688,7 @@ nose = NodePath("OfficeBackground/Nose")
 window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 front_window_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
+front_window_button = NodePath("FrontWindowButton")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
@@ -1847,6 +1848,23 @@ toggle_mode = true
 action_mode = 0
 icon = ExtResource("267_s02x3")
 metadata/_edit_use_anchors_ = true
+
+[node name="FrontWindowButton" type="Button" parent="Office" unique_id=39519107]
+anchors_preset = -1
+anchor_left = 0.656
+anchor_top = 0.48000002
+anchor_right = 0.656
+anchor_bottom = 0.48000002
+offset_left = -164.68005
+offset_top = -125.600006
+offset_right = 165.31995
+offset_bottom = 124.399994
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+action_mode = 0
+button_mask = 0
+flat = true
 
 [node name="Camera" type="Camera2D" parent="Office" unique_id=1927307826 node_paths=PackedStringArray("office")]
 anchor_mode = 0
