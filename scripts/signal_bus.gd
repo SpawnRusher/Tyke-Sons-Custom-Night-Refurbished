@@ -11,6 +11,8 @@ signal phantom_jumpscare()
 
 signal save_data_loaded()
 
+signal change_camera_state(locked: bool, pos: int)
+
 signal flashlight_off()
 signal flashlight_on()
 signal flashlight_dead()

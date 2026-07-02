@@ -53,6 +53,13 @@ func _process(delta: float) -> void:
 	_camera_lock()
 	popup.visible = _popup_visibility()
 	
+	if office.animation == "office":
+		if SaveData.settings_data["game"]["use_old_camera_scrolling"] == true and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
+			if camera.position.x < 1:
+				_move_player("l")
+			elif camera.position.x > 399:
+				_move_player("r")
+	
 	if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["top_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
 		_move_player("f")
 	if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["bottom_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
@@ -239,14 +246,14 @@ func _can_move() -> bool:
 
 func _camera_lock() -> void:
 	if office.animation == "return" or office.animation == "office":
-		camera.lockpos = -1
+		SignalBus.change_camera_state.emit(false)
 	if "go_" in office.animation:
 		if office.animation.right(1) == "l" or office.animation.right(1) == "r":
 			if office.frame >= 3:
-				camera.lockpos = 0
+				SignalBus.change_camera_state.emit(true)
 		elif office.animation.right(1) == "f" or office.animation.right(1) == "b":
 			if office.frame >= 4:
-				camera.lockpos = 0
+				SignalBus.change_camera_state.emit(true)
 
 func _on_nose_pressed() -> void:
 	SpecialFunctions.audio(NOSE_HONK)
