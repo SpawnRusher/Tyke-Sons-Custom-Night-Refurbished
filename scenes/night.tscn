@@ -1756,7 +1756,7 @@ visible = false
 show_behind_parent = true
 position = Vector2(600, 260)
 sprite_frames = SubResource("SpriteFrames_fyxh2")
-animation = &"walking"
+animation = &"turning_stare"
 
 [node name="FrontWindowOverlay" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=917866821]
 visible = false
