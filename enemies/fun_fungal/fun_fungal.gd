@@ -15,6 +15,7 @@ var office_animation_direction: String
 var current_idle_timer: float
 var current_progress_timer: float
 var current_progress_normalized: float
+var flashlight_state: bool
 var position: String = "idle"
 var front_position: String = ""
 var info_key: String = ""
@@ -49,6 +50,8 @@ func _ready() -> void:
 		deactivate()
 		return
 	
+	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
+	
 	current_idle_timer = idle_timer
 	
 func _process(delta: float) -> void:
@@ -79,6 +82,10 @@ func deactivate():
 	self.queue_free()
 	sprite.queue_free()
 	
+	
+func _update_flashlight_state(state: bool) -> void:
+	flashlight_state = state
+
 func _spawn_fungal():
 	position = ["l","f","r"].pick_random()
 	position = "f"
@@ -108,7 +115,7 @@ func _flash_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if position != "f" and office.frame != 1:
+	if position != "f" and flashlight_state == false:
 		return false
 	if position == "f" and office.frame != {"l":1,"r":2}[front_position]:
 		return false

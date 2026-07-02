@@ -160,7 +160,7 @@ signal slider_button(button: Button, group_name: String, setting_name: String, s
 signal keybind_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel)
 
 func _ready() -> void:
-	GameJoltAPI.users_auth_completed.connect(_users_auth_completed)
+	GameJolt.users_auth_completed.connect(_users_auth_completed)
 	reset_to_defaults.connect(_reset_to_defaults)
 	toggle_button.connect(_toggle_button)
 	slider_button.connect(_slider_button)
@@ -237,7 +237,7 @@ func _toggle_button(button: Button, group_name: String, setting_name: String, se
 	SpecialFunctions.audio(QUIETBUTTONPRESS)
 
 func _on_login_button_pressed() -> void:
-	GameJoltAPI.request_users_auth.emit(username_lineedit.text,user_token_lineedit.text)
+	GameJolt.request_users_auth.emit(username_lineedit.text,user_token_lineedit.text)
 
 func _users_auth_completed(result: String, username: String, user_token: String) -> void:
 	print("Auth complete signal in Settings Menu: " + result + " | " + username + " | " + user_token)

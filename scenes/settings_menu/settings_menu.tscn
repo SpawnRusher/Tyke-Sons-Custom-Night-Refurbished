@@ -3,10 +3,12 @@
 [ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_05p07"]
 [ext_resource type="Script" uid="uid://rg0leobu6t3s" path="res://scripts/settings_menu.gd" id="2_wswnh"]
 [ext_resource type="PackedScene" uid="uid://nbk8g6wpfyl0" path="res://scenes/settings_menu/slider_button.tscn" id="3_5sljs"]
+[ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://sprites/gamejolt/gamejolt_icon.svg" id="3_faeuo"]
 [ext_resource type="PackedScene" uid="uid://c3t6q2otj5hlj" path="res://scenes/settings_menu/reset_to_defaults_button.tscn" id="3_rcdfy"]
 [ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button.tscn" id="3_vlvk0"]
 [ext_resource type="PackedScene" uid="uid://br8xrm84gnlie" path="res://scenes/settings_menu/dropdown_button.tscn" id="5_bsihy"]
 [ext_resource type="PackedScene" uid="uid://c5tck8h81yxqm" path="res://scenes/settings_menu/keybind_button.tscn" id="6_bsihy"]
+[ext_resource type="Texture2D" uid="uid://c6051svx83ggi" path="res://sprites/gamejolt/gamejolt_logo.svg" id="9_nsung"]
 
 [node name="SettingsMenu" type="Control" unique_id=131214480 node_paths=PackedStringArray("username_vbox", "username_lineedit", "user_token_vbox", "user_token_lineedit", "login_button", "auto_login_button", "gamejolt_info_text")]
 layout_mode = 3
@@ -50,10 +52,13 @@ theme_override_constants/margin_bottom = 5
 
 [node name="TabContainer" type="TabContainer" parent="Panel/PanelMargin" unique_id=1969351730]
 layout_mode = 2
+theme_override_constants/icon_max_width = 32
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
+tab_3/icon = ExtResource("3_faeuo")
 
 [node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -504,7 +509,6 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 text = "Move Right"
 
 [node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=231042463]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -519,9 +523,12 @@ theme_override_constants/margin_bottom = 5
 [node name="TabVbox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin" unique_id=1408744782]
 layout_mode = 2
 
-[node name="SpacerT" type="Control" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=921365677]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=260535183]
 layout_mode = 2
-size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox/HBoxContainer" unique_id=1449373387]
+layout_mode = 2
+texture = ExtResource("9_nsung")
 
 [node name="LineEditsHBox" type="HBoxContainer" parent="Panel/PanelMargin/TabContainer/GameJolt/TabMargin/TabVbox" unique_id=1701099340]
 layout_mode = 2

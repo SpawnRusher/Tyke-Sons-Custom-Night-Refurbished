@@ -9,7 +9,6 @@ var sleep_assurance_points_amount: float = 8
 var sleep_assurance_score_per_point: float = 100
 var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
-
 var sleep_assurance_normal: float = 0.0
 
 var sleep_assurance_points_array: Array[TextureProgressBar]
@@ -34,17 +33,17 @@ func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event is InputEventKey and event.is_pressed():
 			if event.keycode == KEY_I:
-				sleep_assurance_current_score -= 100
+				sleep_assurance_current_score -= sleep_assurance_score_per_point
 				_update_points()
 			if event.keycode == KEY_O:
-				sleep_assurance_current_score += 100
+				sleep_assurance_current_score += sleep_assurance_score_per_point
 				_update_points()
 
 func _update_points() -> void:
 	sleep_assurance_normal = sleep_assurance_current_score/sleep_assurance_score_per_point/sleep_assurance_points_amount
-	for points in sleep_assurance_points_array:
-		var point_index: int = sleep_assurance_points_array.find(points)
-		points.value = sleep_assurance_current_score - (point_index*100)
+	for point in sleep_assurance_points_array:
+		var point_index: int = sleep_assurance_points_array.find(point)
+		point.value = sleep_assurance_current_score - (point_index*sleep_assurance_score_per_point)
 
 func _add_score(enemy: Enemy) -> void:
 	enemy.sleep_assurance_score = max(0,enemy.sleep_assurance_score) # so I can put a warning in the Enemy class for when sleep_assurance_score is not set

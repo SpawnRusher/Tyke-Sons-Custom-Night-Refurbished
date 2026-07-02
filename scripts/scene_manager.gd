@@ -2,11 +2,7 @@ extends Node
 
 var scenes: Dictionary
 
-enum CHANGE_SCENE_BEHAVIOR {
-	FAIL,
-	AWAIT,
-	BYPASS
-	}
+enum CHANGE_SCENE_BEHAVIOR {FAIL,AWAIT,BYPASS}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

@@ -11,7 +11,8 @@ class_name Rockstar
 @export var random_variance: float = 0.1 ## Adds a random variance to the movements. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
 @export var flash_time: float = 0.08 ## Time between map icons flashing.
 
-var move_direction: int = [-1, 1].pick_random()
+enum MOVE_DIRECTION {UP_LEFT=-1,DOWN_RIGHT=1}
+var move_direction: MOVE_DIRECTION = [-1, 1].pick_random() as MOVE_DIRECTION
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,9 +22,9 @@ func _ready() -> void:
 		deactivate()
 		return
 
-	if move_direction == 1:
+	if move_direction == MOVE_DIRECTION.UP_LEFT:
 		set("icon.position."+move_axis,min_position)
-	if move_direction == -1:
+	if move_direction == MOVE_DIRECTION.DOWN_RIGHT:
 		set("icon.position."+move_axis,max_position)
 		
 	SpecialFunctions.timer(blinking,0.2,0,-1,0,0,false,false,true)
@@ -42,9 +43,9 @@ func blinking() -> void:
 	sprite.visible = !sprite.visible
 	
 func start_moving() -> void:
-	move_direction *= -1
+	move_direction = move_direction * -1 as MOVE_DIRECTION
 	var move_to: float = min_position
-	if move_direction == 1:
+	if move_direction == MOVE_DIRECTION.DOWN_RIGHT:
 		move_to = max_position
 
 	var tween: Tween = get_tree().create_tween()

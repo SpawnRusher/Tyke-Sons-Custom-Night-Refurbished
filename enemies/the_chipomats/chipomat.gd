@@ -29,6 +29,7 @@ var current_leave_timer: float
 var spawned: bool
 var jumpscare_ready: bool
 var office_animation_direction: String
+var flashlight_state: bool
 
 func _ready() -> void:
 	await super()
@@ -36,6 +37,7 @@ func _ready() -> void:
 		deactivate()
 		return
 	
+	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer
@@ -74,10 +76,13 @@ func deactivate() -> void:
 	self.queue_free()
 	sprite.queue_free()
 			
+func _update_flashlight_state(state: bool) -> void:
+	flashlight_state = state
+
 func visibility_checks() -> bool:
 	if jumpscare_ready == true:
 		if sprite.visible == true:
-			if "open_" in office.animation and office.frame == 1:
+			if "open_" in office.animation and flashlight_state == true:
 				return true
 		return false
 		
@@ -87,7 +92,7 @@ func visibility_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if office.frame != 1:
+	if flashlight_state == false:
 		return false
 		
 	return true

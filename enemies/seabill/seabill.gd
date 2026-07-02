@@ -144,22 +144,6 @@ func spawn_seabill() -> void:
 	
 	for i in range(1,stare_times):
 		stare_times_array.append(snappedf(1.0/stare_times * i,0.001))
-	stare_times_array.append(0.333)
-	stare_times_array.append(0.666)
-	return
-	var temp_stares = stare_times/2.0
-	var left_stares = floor(temp_stares)
-	var right_stares = floor(temp_stares)
-	if temp_stares is not int:
-		if randi_range(0,1) == 0:
-			left_stares += 1
-		else:
-			right_stares += 1
-		
-	for j in left_stares:
-		stare_times_array.append(snappedf(0.15 + randf_range(0.0,0.25),0.001))
-	for j in right_stares:
-		stare_times_array.append(snappedf(0.55 + randf_range(0.0,0.25),0.001))
 			
 func stare_seabill() -> void:
 	sprite.play("turning_stare")

@@ -223,7 +223,7 @@ func _can_move() -> bool:
 		return false
 	if lock_movement == true:
 		return false
-	if office.frame != 0:
+	if flashlight_state == true:
 		return false
 		
 	return true
@@ -270,7 +270,7 @@ func _can_go_to_sleep() -> bool:
 		return false
 	if office.animation != "open_b":
 		return false
-	if office.frame != 1:
+	if flashlight_state == false:
 		return false
 	return true
 		

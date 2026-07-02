@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbmyrea8wecpv"
-path="res://.godot/imported/gamejolt_icon.svg-5efd3410006e3a48a790ce3b3734c0ea.ctex"
+uid="uid://d0sb7ydk4so00"
+path="res://.godot/imported/gamejolt_icon.svg-0260170cd4e5ecf68bc2a8d3bfae9d32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gamejolt_icon.svg"
-dest_files=["res://.godot/imported/gamejolt_icon.svg-5efd3410006e3a48a790ce3b3734c0ea.ctex"]
+source_file="res://sprites/gamejolt/gamejolt_icon.svg"
+dest_files=["res://.godot/imported/gamejolt_icon.svg-0260170cd4e5ecf68bc2a8d3bfae9d32.ctex"]
 
 [params]
 
