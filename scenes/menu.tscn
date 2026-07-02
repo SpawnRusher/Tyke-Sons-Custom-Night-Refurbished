@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b0wrxl6h6wuxm" path="res://sprites/menu/start0.png" id="4_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://bdjjytloqkyhj" path="res://sprites/menu/start1.png" id="5_x16fv"]
 [ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://Enemies/EnemyPortrait.tscn" id="6_g54pe"]
+[ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://themes/enemy_tooltip_theme.tres" id="6_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://sprites/menu/portraits/chipomat_1.0.png" id="7_48ryc"]
 [ext_resource type="Texture2D" uid="uid://lct25gjh7tld" path="res://sprites/menu/portraits/chipomat_2.0.png" id="8_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://65i2x5bsnrul" path="res://sprites/menu/portraits/chipomat_3.0.png" id="9_hwfsl"]
@@ -80,10 +81,11 @@ region = Rect2(0, 0, 120, 120)
 atlas = ExtResource("20_spe5f")
 region = Rect2(0, 0, 120, 120)
 
-[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid", "ver_string")]
+[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid", "enemy_tooltip", "ver_string")]
 script = ExtResource("1_fy8yy")
 fade = NodePath("Camera/Fade")
 enemy_portrait_grid = NodePath("Menu/EnemyPortraitGrid")
+enemy_tooltip = NodePath("Menu/EnemyTooltip/EnemyTooltipText")
 ver_string = NodePath("Menu/Game Version")
 
 [node name="Camera" type="CanvasLayer" parent="." unique_id=481994971]
@@ -117,10 +119,10 @@ centered = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -90.0
-offset_top = 384.0
-offset_right = 85.0
-offset_bottom = 454.0
+offset_left = -84.0
+offset_top = 527.0
+offset_right = 91.0
+offset_bottom = 597.0
 action_mode = 0
 texture_normal = ExtResource("4_ffqrc")
 texture_hover = ExtResource("5_x16fv")
@@ -162,13 +164,13 @@ enemy_tooltip = "He will knock on one of the side windows. Close the curtain on 
 layout_mode = 2
 texture = SubResource("AtlasTexture_negbw")
 enemy_id = 4
-enemy_tooltip = "He will slowly emerge from the corners of one of the side windows. Keep your flashlight on him until he leaves."
+enemy_tooltip = "He will slowly emerge from one of the windows, sides or front. Keep your flashlight shone on him until he retreats fully."
 
 [node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mg76g")
 enemy_id = 5
-enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up the alternation!"
+enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up your alternation, or you'll have to do it again!"
 
 [node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 instance=ExtResource("6_g54pe")]
 layout_mode = 2
@@ -180,7 +182,7 @@ enemy_tooltip = "Not designed yet"
 layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
 enemy_id = 7
-enemy_tooltip = "He will announce his attack ahead of time. While he is crossing the front window, keep an eye out for when he turns to look towards you. Make sure to have the lights off when he does!"
+enemy_tooltip = "He will announce his attack ahead of time. While he is crossing, be sure to shut off your lights when he turns to stare at you. Also... don't go to the front while he's crossing."
 
 [node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 instance=ExtResource("6_g54pe")]
 layout_mode = 2
@@ -216,13 +218,43 @@ enemy_tooltip = "Lumber lumber lumber"
 layout_mode = 2
 texture = SubResource("AtlasTexture_b38jj")
 enemy_id = 13
-enemy_tooltip = "He will sit in the bedroom, getting up before leaving. After he leaves, shut off the lights until you hear him return upstairs."
+enemy_tooltip = "He will appear in the bedroom sitting down, then he will stand up and later leave. After he leaves, shut off the lights until you hear him return upstairs."
 
 [node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
 enemy_id = 14
 enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
+
+[node name="EnemyTooltip" type="Panel" parent="Menu" unique_id=886793377]
+show_behind_parent = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.0
+offset_top = -45.0
+offset_right = 205.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("6_lnf0i")
+
+[node name="EnemyTooltipText" type="RichTextLabel" parent="Menu/EnemyTooltip" unique_id=907061861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Hover over an enemy to see tips!"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="Menu" unique_id=1348462967]
 anchors_preset = -1
@@ -279,7 +311,7 @@ current_tab = 0
 [node name="Display" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="1" unique_id=1771293774]
 visible = true
 
-[node name="GameJolt" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="4" unique_id=231042463]
+[node name="Game" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="2" unique_id=1627397997]
 visible = false
 
 [node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
@@ -305,6 +337,34 @@ text = "MENU"
 flat = true
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat2" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat2" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat3" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat3" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/FunFungal" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/FunFungal" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Springcrab" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Springcrab" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/NightmareChipper" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/NightmareChipper" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Seabill" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Seabill" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Fredbear" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Fredbear" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Bidy" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Bidy" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Buster" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Buster" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Bruce" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Bruce" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipper" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipper" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_exited"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
 
@@ -318,6 +378,7 @@ flat = true
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin"]

@@ -5,6 +5,7 @@ const BIG_BUTTON_PRESS = preload("uid://o2ay73rlokbq")
 
 @export var fade: ColorRect
 @export var enemy_portrait_grid: GridContainer
+@export var enemy_tooltip: RichTextLabel
 @export var ver_string: RichTextLabel
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
@@ -33,3 +34,9 @@ func _on_start_button_pressed() -> void:
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished
 	SceneManager.change_to_scene("res://scenes/later_that_night.tscn")
+
+func _on_enemy_portrait_mouse_entered(source: Control) -> void:
+	enemy_tooltip.text = source.enemy_tooltip
+	
+func _on_enemy_portrait_mouse_exited() -> void:
+	enemy_tooltip.text = "Hover over an enemy to see tips!"

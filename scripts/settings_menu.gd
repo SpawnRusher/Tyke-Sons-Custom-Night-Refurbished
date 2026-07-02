@@ -168,9 +168,9 @@ func _ready() -> void:
 	keybind_button.connect(_keybind_button)
 	
 	if GameJolt.authorized_username != "":
-		_users_auth_completed("true",GameJolt.authorized_username,GameJolt.authorized_user_token)
+		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 	elif SaveData.settings_data["gamejolt"]["auto_login"] == true:
-		GameJolt.request_users_auth.emit(SaveData.settings_data["gamejolt"]["username"],SaveData.settings_data["gamejolt"]["user_token"])
+		GameJolt.api_request("users","auth",{"username":SaveData.settings_data["gamejolt"]["username"],"user_token":SaveData.settings_data["gamejolt"]["user_token"]})
 		
 func _input(event: InputEvent) -> void:
 	if remapping:
@@ -242,14 +242,14 @@ func _toggle_button(button: Button, group_name: String, setting_name: String, se
 	SpecialFunctions.audio(QUIETBUTTONPRESS)
 
 func _on_login_button_pressed() -> void:
-	GameJolt.request_users_auth.emit(username_lineedit.text,user_token_lineedit.text)
+	GameJolt.api_request("users","auth",{"username":username_lineedit.text,"user_token":user_token_lineedit.text})
 
-func _users_auth_completed(result: String, username: String, user_token: String) -> void:
-	if result == "false":
+func _users_auth_completed(result: Dictionary, parameters: Dictionary) -> void:
+	if result["success"] == "false":
 		gamejolt_info_text.text = "Failed to login with GameJolt. Username or user token may be incorrect."
 	else:
-		gamejolt_info_text.text = "Logged in successfully as " + username +"!"
+		gamejolt_info_text.text = "Logged in successfully as " + parameters["username"] +"!"
 		#username_lineedit.text = username
 		#user_token_lineedit.text = user_token
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,username,"gamejolt","username")
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,user_token,"gamejolt","user_token")
+		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["username"],"gamejolt","username")
+		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["user_token"],"gamejolt","user_token")

@@ -1,16 +1,16 @@
-@icon("res://gamejolt_icon.svg")
-extends Node
+@icon("res://sprites/gamejolt/gamejolt_icon.svg")
+extends Node 
 
-const api_link: String = "https://api.gamejolt.com/api/game/v1_2/"
+var fix_string_bools: bool = false
+
+var game_id: int = 1077734
+var private_key: String = "11de50d5fd3622d9f81394e176a81bbf"
+
+var authorized_username: String
+var authorized_user_token: String
+
+#region API URLs
 const api_url: String = "https://api.gamejolt.com/api/game/v1_2/"
-const game_id: int = 1077734
-const game_key: String = "11de50d5fd3622d9f81394e176a81bbf"
-
-var authorized_username: String = ""
-var authorized_user_token: String = ""
-
-enum SESSION_STATUSES {NONE=-1,IDLE=0,ACTIVE=1}
-
 var url_endpoints: Dictionary[String,Dictionary] = {
 	"users": {
 		"auth": api_url + "users/auth/?game_id=" + str(game_id),
@@ -26,7 +26,7 @@ var url_endpoints: Dictionary[String,Dictionary] = {
 		"fetch": api_url + "scores/fetch/?game_id=" + str(game_id),
 		"tables": api_url + "scores/tables/?game_id=" + str(game_id),
 		"add": api_url + "scores/add/?game_id=" + str(game_id),
-		"get-rank": api_url + "scores/get-rank/?game_id=" + str(game_id)
+		"get_rank": api_url + "scores/get-rank/?game_id=" + str(game_id)
 	},
 	"trophies": {
 		"fetch": api_url + "trophies/fetch/?game_id=" + str(game_id),
@@ -38,7 +38,7 @@ var url_endpoints: Dictionary[String,Dictionary] = {
 		"update": api_url + "data-store/update/?game_id=" + str(game_id),
 		"remove": api_url + "data-store/remove/?game_id=" + str(game_id),
 		"fetch": api_url + "data-store/fetch/?game_id=" + str(game_id),
-		"get-keys": api_url + "data-store/get-keys/?game_id=" + str(game_id),
+		"get_keys": api_url + "data-store/get-keys/?game_id=" + str(game_id),
 	},
 	"friends" : {
 		"friends": api_url + "friends/?game_id=" + str(game_id)
@@ -47,177 +47,123 @@ var url_endpoints: Dictionary[String,Dictionary] = {
 		"time": api_url + "time/?game_id=" + str(game_id)
 	}
 }
+#endregion
 
 #region SIGNALS
-#region REQUESTS
-signal request_users_auth(username: String, user_token: String)
-signal request_users_fetch(user: Variant)
-signal request_sessions_open(username: String, user_token: String)
-signal request_sessions_ping(username: String, user_token: String, status: SESSION_STATUSES)
-signal request_sessions_check(username: String, user_token: String)
-signal request_sessions_close(username: String, user_token: String)
-signal request_scores_fetch(limit: int, table_id: int, username: String, user_token: String, guest: String, better_than: int, worse_than: int)
-#endregion
-#region COMPLETIONS
-signal users_auth_completed(result: bool, username: String, user_token: String)
-signal users_fetch_completed(json_body: Dictionary, user: Variant)
-signal sessions_open_completed(json_body: Dictionary, username: String, user_token: String)
-signal sessions_ping_completed(json_body: Dictionary, username: String, user_token: String, status: SESSION_STATUSES)
-signal sessions_check_completed(json_body: Dictionary, username: String, user_token: String)
-signal sessions_close_completed(json_body: Dictionary, username: String, user_token: String)
-signal scores_fetch_completed(json_body: Dictionary, username: String, user_token: String)
-#endregion
+var signals: Dictionary = {
+	"users": {
+		"auth": users_auth_completed,
+		"fetch": users_fetch_completed
+	},
+	"sessions": {
+		"open": sessions_open_completed,
+		"ping": sessions_ping_completed,
+		"check": sessions_check_completed,
+		"close": sessions_close_completed
+	},
+	"scores": {
+		"fetch": scores_fetch_completed,
+		"tables": scores_tables_completed,
+		"add": scores_add_completed,
+		"get_rank": scores_get_rank_completed
+	},
+	"trophies": {
+		"fetch": trophies_fetch_completed,
+		"add_achieved": trophies_add_achieved_completed,
+		"remove_achieved": trophies_remove_achieved_completed
+	},
+	"data-store": {
+		"set": data_storage_set_completed,
+		"update": data_storage_update_completed,
+		"remove": data_storage_remove_completed,
+		"fetch": data_storage_fetch_completed,
+		"get_keys": data_storage_get_keys_completed,
+	},
+	"friends" : {
+		"friends": friends_friends_completed
+	},
+	"time" : {
+		"time": time_time_completed
+	}
+}
+signal users_auth_completed(response: Dictionary, parameters: Dictionary)
+signal users_fetch_completed(response: Dictionary, parameters: Dictionary)
+signal sessions_open_completed(response: Dictionary, parameters: Dictionary)
+signal sessions_ping_completed(response: Dictionary, parameters: Dictionary)
+signal sessions_check_completed(response: Dictionary, parameters: Dictionary)
+signal sessions_close_completed(response: Dictionary, parameters: Dictionary)
+signal scores_fetch_completed(response: Dictionary, parameters: Dictionary)
+signal scores_tables_completed(response: Dictionary, parameters: Dictionary)
+signal scores_add_completed(response: Dictionary, parameters: Dictionary)
+signal scores_get_rank_completed(response: Dictionary, parameters: Dictionary)
+signal trophies_fetch_completed(response: Dictionary, parameters: Dictionary)
+signal trophies_add_achieved_completed(response: Dictionary, parameters: Dictionary)
+signal trophies_remove_achieved_completed(response: Dictionary, parameters: Dictionary)
+signal data_storage_set_completed(response: Dictionary, parameters: Dictionary)
+signal data_storage_update_completed(response: Dictionary, parameters: Dictionary)
+signal data_storage_remove_completed(response: Dictionary, parameters: Dictionary)
+signal data_storage_fetch_completed(response: Dictionary, parameters: Dictionary)
+signal data_storage_get_keys_completed(response: Dictionary, parameters: Dictionary)
+signal friends_friends_completed(response: Dictionary, parameters: Dictionary)
+signal time_time_completed(response: Dictionary, parameters: Dictionary)
 #endregion
 
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		#if event.keycode == KEY_G:
-			#_users_auth("SpawnRusher","LP2dZ1")
-		#if event.keycode == KEY_S:
-			#_scores_fetch()
-		pass
-		
 func _ready() -> void:
-	request_users_auth.connect(_users_auth)
-	request_users_fetch.connect(_users_fetch)
+	users_auth_completed.connect(_users_auth_completed)
+
+## Automatically converts the URL given into its signature and returns it along with the URL signature identifier for easy use.[br][br]Syntax: [code]url += _add_signature(url)[/code]
+func _add_signature(url: String) -> String:
+	url += private_key
+	url = url.sha1_text()
+	return "&signature="+url
+
+## Simplifies the response PackedByteArray:[br][br]1. It converts it to a string before parsing it with JSON into a dictionary [br]2. It converts all string-bools into true bools (if fix_string_bools == true)[br]3. It moves all keys nested in the "response" key up one level in the dictionary for easier access and less redundancy (so you don't have to add ["response"] in every reference) [br][br]Basically this function exists to convert all finished HTTP requests into useful dictionaries.
+func _simplify_response(response: PackedByteArray) -> Dictionary:
+	var dict: Dictionary = JSON.parse_string(response.get_string_from_utf8())
 	
-	request_sessions_open.connect(_sessions_open)
-	request_sessions_ping.connect(_sessions_ping)
-	request_sessions_check.connect(_sessions_check)
-	request_sessions_close.connect(_sessions_close)
+	for item in dict["response"]:
+		if fix_string_bools == true:
+			if dict["response"][item] is String:
+				if dict["response"][item] == "false":
+					dict["response"][item] = false
+				elif dict["response"][item] == "true":
+					dict["response"][item] = true
+			
+		dict[item] = dict["response"][item]
+		
+	dict.erase("response")
+	return dict
 
-	request_scores_fetch.connect(_scores_fetch)
-	
-# This function exists instead of just adding it in every API call so that the game_id can be changed easily through one place.
-func _append_game_id() -> String:
-	return "?game_id="+str(game_id)
+## All hyphens '-' are replaced with underscores '_'
+func api_request(group: String, type: String, parameters:={}) -> void:
+	var url = url_endpoints[group][type]
+	for parameter in parameters:
+		if parameter == "user_id" and parameters[parameter] is Array:
+			url += "&user_id="
+			for id in parameters[parameter]:
+				url += id
+				if id != parameters[parameter][parameters[parameter].size()-1]:
+					url += ","
+			continue
 
-#region USERS/
-func _users_auth(username: String, user_token: String) -> void:
+		url += "&" + parameter +"=" + parameters[parameter]
+		
+	url += _add_signature(url)
+	print_debug("request URL: " + url)
 	var http = HTTPRequest.new()
 	add_child(http)
-	var http_link = api_link + "users/auth/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
-	http_link += ("&signature="+_create_signature(http_link))
-	print("Auth link: " + http_link)
-	http.request(http_link)
-	http.request_completed.connect(_users_auth_request_completed.bind(username, user_token))
+	http.request_completed.connect(api_request_completed.bind(http,group,type,parameters))
+	http.request(url)
 
-func _users_fetch(user: Variant) -> void:
-	if user is not String and user is not int:
-		push_error("Parameter 'user' in _users_fetch must be either a string (username) or an int (user_id).")
-		return
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "users/fetch/" + _append_game_id()
-	if user is String: http_link += "&username="+user
-	if user is int: http_link += "&user_id="+user
-	http_link += ("&signature="+_create_signature(http_link))
-	print("Fetch link: " + http_link)
-	http.request(http_link)
-	http.request_completed.connect(_users_fetch_request_completed.bind(user))
+func api_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, group: String, type: String, parameters: Dictionary) -> void:
+	http.queue_free()
+	print_debug("API request completed. Result: " + str(result) + ", response_code: " + str(response_code))
+	signals[group][type].emit(_simplify_response(body),parameters)
 
-func _users_auth_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, username: String, user_token: String) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	users_auth_completed.emit(json_body["response"]["success"],username,user_token)
-	if json_body["response"]["success"] == "true":
-		authorized_username = username
-		authorized_user_token = user_token
-
-func _users_fetch_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, user: Variant) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	users_fetch_completed.emit(json_body["response"]["success"],user)
-#endregion
-
-#region SESSIONS/
-func _sessions_open(username:= authorized_username, user_token:= authorized_user_token) -> void:
-	print("sessions/open/")
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "sessions/open/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
-	http_link += ("&signature="+_create_signature(http_link))
-	print("sessions/open/ link: " + http_link)
-	http.request(http_link)
-	http.request_completed.connect(_sessions_open_completed.bind(username, user_token))
-	
-func _sessions_ping(username:= authorized_username, user_token:= authorized_user_token, status:= SESSION_STATUSES.NONE) -> void:
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "sessions/ping/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
-	if status != SESSION_STATUSES.NONE: http_link += "&status=" + ["idle","active"][status]
-	http_link += ("&signature="+_create_signature(http_link))
-	http.request(http_link)
-	http.request_completed.connect(_sessions_ping_completed.bind(username, user_token, status))
-	
-func _sessions_check(username:= authorized_username, user_token:= authorized_user_token) -> void:
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "sessions/ping/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
-	http_link += ("&signature="+_create_signature(http_link))
-	http.request(http_link)
-	http.request_completed.connect(_sessions_check_completed.bind(username, user_token))
-
-func _sessions_close(username:= authorized_username, user_token:= authorized_user_token) -> void:
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "sessions/close/" + _append_game_id() + "&username=" + username + "&user_token=" + user_token
-	http_link += ("&signature="+_create_signature(http_link))
-	http.request(http_link)
-	http.request_completed.connect(_sessions_close_completed.bind(username, user_token))
-
-func _sessions_open_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, username: String, user_token: String) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	sessions_open_completed.emit(json_body, username, user_token)
-
-func _sessions_ping_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, username: String, user_token: String, status: SESSION_STATUSES) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	sessions_ping_completed.emit(json_body, username, user_token, status)
-
-func _sessions_check_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, username: String, user_token: String) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	sessions_check_completed.emit(json_body, username, user_token)
-
-func _sessions_close_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, username: String, user_token: String) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	sessions_close_completed.emit(json_body, username, user_token)
-
-#endregion
-
-#region SCORES/
-func _scores_fetch(limit:= 10, table_id:= 0, username:= "", user_token:= "", guest:= "", better_than:= 0, worse_than:= 0) -> void:
-	var http = HTTPRequest.new()
-	add_child(http)
-	var http_link = api_link + "scores/fetch/" + _append_game_id() + "&limit=" + str(limit)
-	if table_id != 0: http_link += "&table_id=" + str(table_id)
-	if username != "": http_link += "&username=" + username
-	if user_token != "": http_link += "&user_token=" + user_token
-	if guest != "": http_link += "&guest=" + guest
-	if better_than != 0: http_link += "&better_than=" + str(better_than)
-	if worse_than != 0: http_link += "&worse_than=" + str(worse_than)
-	http_link += ("&signature="+_create_signature(http_link))
-	http.request(http_link)
-	http.request_completed.connect(_scores_fetch_completed.bind())
-	
-func _scores_fetch_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	print("RESULT: " + str(result) + " | RESPONSE_CODE: " + str(response_code))
-	var json_body = JSON.parse_string(body.get_string_from_utf8())
-	print("JSON BODY: ", json_body)
-	scores_fetch_completed.emit(json_body)
-
-#endregion
-
-func _create_signature(link: String) -> String:
-	return (link+game_key).sha1_text()
+func _users_auth_completed(result: Dictionary, parameters: Dictionary) -> void:
+	if result["success"] == "true":
+		authorized_username = parameters["username"]
+		authorized_user_token = parameters["user_token"]
+		
+		
+		
