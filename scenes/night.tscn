@@ -1776,12 +1776,13 @@ texture_under = ExtResource("265_2ppsu")
 texture_progress = ExtResource("266_2uqal")
 
 [node name="BatteriesButton" type="TextureButton" parent="Office/OfficeBackground/Batteries" unique_id=755834957]
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 36.0
 offset_bottom = 25.0
 action_mode = 0
 button_mask = 7
+texture_normal = ExtResource("265_2ppsu")
 
 [node name="Nose" type="Button" parent="Office/OfficeBackground" unique_id=96758172]
 offset_left = 586.0

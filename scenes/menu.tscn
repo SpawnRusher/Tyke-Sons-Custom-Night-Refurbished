@@ -273,6 +273,15 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 2.0
 
+[node name="TabContainer" parent="Settings/SettingsMenu/Panel/PanelMargin" parent_id_path=PackedInt32Array(131214480, 757844964) index="0" unique_id=1969351730]
+current_tab = 0
+
+[node name="Display" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="1" unique_id=1771293774]
+visible = true
+
+[node name="GameJolt" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="4" unique_id=231042463]
+visible = false
+
 [node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
 anchors_preset = -1
 anchor_left = 0.5
