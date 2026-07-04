@@ -22,8 +22,10 @@ func load_scene(path: String, load_immediately:= false, free_after_use:= true, t
 		"load_immediately":load_immediately,
 		"free_after_use":free_after_use
 		}
+	print_debug("Started to load scene " + path + ": ", scenes[path])
 
 func unload_scene(path: String) -> bool:
+	print_debug("Unloaded scene " + path)
 	return scenes.erase(path)
 
 ## Returns the current loading progress of a threaded scene as a float using the scene's filepath.

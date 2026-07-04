@@ -32,6 +32,7 @@ func pastebin_get() -> void:
 	http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(request_completed)
+	print_debug("Attempting to request HTTP " + "https://pastebin.com/raw/"+pastebin_id)
 	http_request_output = http_request.request("https://pastebin.com/raw/"+pastebin_id)
 	if http_request_output != OK:
 		print_debug("An error occurred while initiating the HTTP request: ", http_request_output) 
@@ -44,6 +45,7 @@ func request_completed(result: int, response_code: int, _headers: PackedStringAr
 
 
 func pastebin_checks(paste_text: String) -> void:
+	print_debug("Comparing Pastebin")
 	pastebin_lines = paste_text.split("\r\n") # Pastebin files end a line with '\r', and start a new line with '\n\. This allows detecting new lines.
 	
 	for line: int in pastebin_lines.size():
