@@ -142,87 +142,101 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 7
 
-[node name="Chipomat1" parent="Menu/EnemyPortraitGrid" unique_id=1551062530 instance=ExtResource("6_g54pe")]
+[node name="Chipomat1" parent="Menu/EnemyPortraitGrid" unique_id=1551062530 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_hwfsl")
+border = NodePath("PortraitBorder")
 enemy_id = 1
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Chipomat2" parent="Menu/EnemyPortraitGrid" unique_id=72126778 instance=ExtResource("6_g54pe")]
+[node name="Chipomat2" parent="Menu/EnemyPortraitGrid" unique_id=72126778 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a04p5")
+border = NodePath("PortraitBorder")
 enemy_id = 2
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="Chipomat3" parent="Menu/EnemyPortraitGrid" unique_id=1422143944 instance=ExtResource("6_g54pe")]
+[node name="Chipomat3" parent="Menu/EnemyPortraitGrid" unique_id=1422143944 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b5gwo")
+border = NodePath("PortraitBorder")
 enemy_id = 3
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
-[node name="FunFungal" parent="Menu/EnemyPortraitGrid" unique_id=1368074244 instance=ExtResource("6_g54pe")]
+[node name="FunFungal" parent="Menu/EnemyPortraitGrid" unique_id=1368074244 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_negbw")
+border = NodePath("PortraitBorder")
 enemy_id = 4
 enemy_tooltip = "He will slowly emerge from one of the windows, sides or front. Keep your flashlight shone on him until he retreats fully."
 
-[node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 instance=ExtResource("6_g54pe")]
+[node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mg76g")
+border = NodePath("PortraitBorder")
 enemy_id = 5
 enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up your alternation, or you'll have to do it again!"
 
-[node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 instance=ExtResource("6_g54pe")]
+[node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_1beph")
+border = NodePath("PortraitBorder")
 enemy_id = 6
 enemy_tooltip = "Not designed yet"
 
-[node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 instance=ExtResource("6_g54pe")]
+[node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
+border = NodePath("PortraitBorder")
 enemy_id = 7
 enemy_tooltip = "He will announce his attack ahead of time. While he is crossing, be sure to shut off your lights when he turns to stare at you. Also... don't go to the front while he's crossing."
 
-[node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 instance=ExtResource("6_g54pe")]
+[node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_7x65h")
+border = NodePath("PortraitBorder")
 enemy_id = 8
 enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon. Avoid him when navigating the room."
 
-[node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 instance=ExtResource("6_g54pe")]
+[node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0ndyk")
+border = NodePath("PortraitBorder")
 enemy_id = 9
 enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon. Avoid him when navigating the room."
 
-[node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 instance=ExtResource("6_g54pe")]
+[node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0qewb")
+border = NodePath("PortraitBorder")
 enemy_id = 10
 enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon. Avoid him when navigating the room."
 
-[node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 instance=ExtResource("6_g54pe")]
+[node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_5i3g8")
+border = NodePath("PortraitBorder")
 enemy_id = 11
 enemy_tooltip = "ZZZZZ buzz buzz saw"
 
-[node name="Chipper" parent="Menu/EnemyPortraitGrid" unique_id=1587528508 instance=ExtResource("6_g54pe")]
+[node name="Chipper" parent="Menu/EnemyPortraitGrid" unique_id=1587528508 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mhjd8")
+border = NodePath("PortraitBorder")
 enemy_id = 12
 enemy_tooltip = "Lumber lumber lumber"
 
-[node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 instance=ExtResource("6_g54pe")]
+[node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b38jj")
+border = NodePath("PortraitBorder")
 enemy_id = 13
 enemy_tooltip = "He will appear in the bedroom sitting down, then he will stand up and later leave. After he leaves, shut off the lights until you hear him return upstairs."
 
-[node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 instance=ExtResource("6_g54pe")]
+[node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
+border = NodePath("PortraitBorder")
 enemy_id = 14
 enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
 
@@ -305,15 +319,6 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 2.0
 
-[node name="TabContainer" parent="Settings/SettingsMenu/Panel/PanelMargin" parent_id_path=PackedInt32Array(131214480, 757844964) index="0" unique_id=1969351730]
-current_tab = 0
-
-[node name="Display" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="1" unique_id=1771293774]
-visible = true
-
-[node name="Game" parent="Settings/SettingsMenu/Panel/PanelMargin/TabContainer" index="2" unique_id=1627397997]
-visible = false
-
 [node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
 anchors_preset = -1
 anchor_left = 0.5
@@ -368,6 +373,20 @@ flat = true
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
 
+[editable path="Menu/EnemyPortraitGrid/Chipomat1"]
+[editable path="Menu/EnemyPortraitGrid/Chipomat2"]
+[editable path="Menu/EnemyPortraitGrid/Chipomat3"]
+[editable path="Menu/EnemyPortraitGrid/FunFungal"]
+[editable path="Menu/EnemyPortraitGrid/Springcrab"]
+[editable path="Menu/EnemyPortraitGrid/NightmareChipper"]
+[editable path="Menu/EnemyPortraitGrid/Seabill"]
+[editable path="Menu/EnemyPortraitGrid/Fredbear"]
+[editable path="Menu/EnemyPortraitGrid/Bidy"]
+[editable path="Menu/EnemyPortraitGrid/Buster"]
+[editable path="Menu/EnemyPortraitGrid/Bruce"]
+[editable path="Menu/EnemyPortraitGrid/Chipper"]
+[editable path="Menu/EnemyPortraitGrid/Toy"]
+[editable path="Menu/EnemyPortraitGrid/PhantomChipomat"]
 [editable path="Settings/SettingsMenu"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing"]
@@ -390,6 +409,7 @@ flat = true
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]

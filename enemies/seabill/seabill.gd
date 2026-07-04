@@ -44,20 +44,15 @@ var stare_times_array: Array
 var last_animation_played: String
 var pause: bool
 
-var state: STATES
 enum STATES {IDLE,READY,SPAWNED,JUMPSCARE}
+var state: STATES
+enum MOVING_STATES {IDLE,WALKING,TURNING,STARING}
+var moving_state: MOVING_STATES
 
 func _ready() -> void:
 	super()
 	if not enabled: return
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_timer = ready_timer
-	current_kill_timer = kill_timer
-	current_walk_timer = walk_timer
-	current_walk_progress = 0
-	current_flash_timer = flash_timer
-	current_sleep_assurance_grace_period = sleep_assurance_grace_period
-	
+	_reset_values()
 	sprite.animation_changed.connect(_update_last_animation_played)
 	sprite.animation_finished.connect(_on_animation_finished)
 
@@ -92,7 +87,7 @@ func _process(delta: float) -> void:
 					stare_times_array.remove_at(i)
 					stare_seabill()
 
-		if sprite.animation == "staring":
+		if moving_state == MOVING_STATES.STARING:
 			current_kill_timer -= 1 * delta
 			
 			if not dark_office.visible:
@@ -117,6 +112,18 @@ func _deactivate() -> void:
 	sprite.queue_free()
 	dark_flicker.queue_free()
 			
+func _reset_values() -> void:
+	state = STATES.IDLE
+	moving_state = MOVING_STATES.IDLE
+	dark_flicker.self_modulate.a8 = 0
+	current_random_variance = 1 + randf_range(-random_variance,random_variance)
+	current_timer = ready_timer
+	current_kill_timer = kill_timer
+	current_walk_timer = walk_timer
+	current_walk_progress = 0
+	current_flash_timer = flash_timer
+	current_sleep_assurance_grace_period = sleep_assurance_grace_period
+			
 func ready_seabill() -> void:
 	SpecialFunctions.audio(SPAWN_VOICELINES.pick_random())
 	state = STATES.READY
@@ -130,27 +137,23 @@ func ready_seabill() -> void:
 	
 func spawn_seabill() -> void:
 	state = STATES.SPAWNED
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_timer = ready_timer
-	current_kill_timer = kill_timer
-	current_walk_timer = walk_timer
-	current_walk_progress = 0
-	current_flash_timer = flash_timer
-	current_sleep_assurance_grace_period = sleep_assurance_grace_period
 	sprite.play("walking")
+	moving_state = MOVING_STATES.WALKING
 			
 func stare_seabill() -> void:
 	sprite.play("turning_stare")
 	current_flash_timer = flash_timer
+	moving_state = MOVING_STATES.TURNING
 
 func walk_seabill() -> void:
 	sprite.play("turning_walk")
 	current_kill_timer = kill_timer
+	current_sleep_assurance_grace_period = sleep_assurance_grace_period
+	moving_state = MOVING_STATES.TURNING
 	
 func leave_seabill() -> void:
 	SignalBus.enemy_defended.emit(self)
-	state = STATES.IDLE
-	dark_flicker.self_modulate.a8 = 0
+	_reset_values()
 	
 func prepare_jumpscare() -> void:
 	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
@@ -162,8 +165,11 @@ func _update_last_animation_played() -> void:
 func _on_animation_finished() -> void:
 	if last_animation_played == "turning_stare":
 		sprite.play("staring")
+		moving_state = MOVING_STATES.STARING
+		
 	if last_animation_played == "turning_walk":
 		sprite.play("walking")
+		moving_state = MOVING_STATES.WALKING
 
 func visibility_checks() -> void:
 	if office.animation == "office":

@@ -2,13 +2,11 @@ extends TextureRect
 class_name Enemy_Portrait
 
 @export var enabled: bool
+@export var border: TextureButton
 @export var enemy_id: Enemy.ENEMY_IDS
 @export_multiline var enemy_tooltip: String
 
-@onready var border: TextureButton = find_child("PortraitBorder")
-
 const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
-
 
 func _ready() -> void:
 	assert(enemy_id > Enemy.ENEMY_IDS.NONE,"Enemy ID has not been set for one of the enemy portraits!")

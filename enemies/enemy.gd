@@ -7,7 +7,7 @@ enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
 
 @export_group("Enemy Details")
 @export var enemy_id: ENEMY_IDS
-@export var enabled: bool = false
+@export var enabled: bool
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscares")
 @export var jumpscare_sound: AudioStream # The enemy's jumpscare audio file.
@@ -24,7 +24,6 @@ func _ready() -> void:
 	enabled = Global.ENABLED_IDS[enemy_id]
 	if not enabled:
 		_deactivate()
-
 
 func _deactivate() -> void: 
 	self.queue_free()

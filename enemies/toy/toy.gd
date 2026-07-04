@@ -23,40 +23,30 @@ const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
 ## The sound for Toy leaving.
 @export var leaving_sound: AudioStream
 
-var total_spawn_timer: float
 var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_timer: float
+enum STAGES {IDLE,SITTING,STANDING,SPAWN,JUMPSCARE}
 var stage: STAGES
-var spawned: bool
-var jumpscare_ready: bool
-
-enum STAGES {IDLE,SITTING,STANDING,SPAWN}
-
 
 
 func _ready() -> void:
 	super()
 	if not enabled: return
-	total_spawn_timer = spawn_timer
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_spawn_timer = spawn_timer
-	current_kill_timer = kill_timer
-	current_leave_timer = leave_timer
+	_reset_values()
 
 func _process(delta: float) -> void:
-	visibility_checks()
-	if jumpscare_ready:
+	sprite.visible = visibility_checks()
+	if stage == STAGES.JUMPSCARE:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
 
-	if stage != STAGES.SPAWN:
+	if stage <= STAGES.STANDING:
 		current_spawn_timer -= 1 * delta
-		stage = lerp(0,3,min((total_spawn_timer - current_spawn_timer)/total_spawn_timer,1))
-		if stage == STAGES.SPAWN:
-			spawn_toy()
+		stage = lerp(0,3,min((spawn_timer - current_spawn_timer)/spawn_timer,1))
+		sprite.frame = stage
 			
 	if stage == STAGES.SPAWN:
 		current_kill_timer -= 1 * delta
@@ -75,28 +65,25 @@ func _deactivate() -> void:
 	super()
 	sprite.queue_free()
 
-func visibility_checks() -> void:
-	if office.animation != "open_b":
-		sprite.visible = false
-		sprite.frame = stage
-	elif office.frame != 1:
-		sprite.visible = false
-		sprite.frame = stage
-	else:
-		sprite.visible = true
-	
-func spawn_toy() -> void:
-	stage = STAGES.SPAWN
+func _reset_values() -> void:
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer
 	current_leave_timer = leave_timer
+
+func visibility_checks() -> bool:
+	if office.animation != "open_b":
+		return false
+	if office.frame != 1:
+		return false
+	return true
 	
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
 	SpecialFunctions.audio(TOY_RUNNING)
 	stage = STAGES.IDLE
+	_reset_values()
 	
 func prepare_jumpscare() -> void:
 	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
-	jumpscare_ready = true
+	stage = STAGES.JUMPSCARE

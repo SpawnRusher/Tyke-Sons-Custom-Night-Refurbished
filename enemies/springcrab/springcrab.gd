@@ -22,37 +22,33 @@ class_name Springcrab
 ## The sound for Springcrab walking up to the window.
 @export var walking_sound: AudioStream
 
+enum STAGES {IDLE,SPAWNED,JUMPSCARE}
+var stage: STAGES
 var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_flashes: float
-var spawned: bool
 var last_side_flashed: String
-var jumpscare_ready: bool
 
 func _ready() -> void:
 	super()
 	if not enabled: return
 	SignalBus.flash_springcrab.connect(flash_springcrab)
-	
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_spawn_timer = spawn_timer
-	current_kill_timer = kill_timer
-	current_leave_flashes = leave_flashes
+	_reset_values()
 
 func _process(delta: float) -> void:
-	sprite.frame = frame_checks()
-	if jumpscare_ready:
+	sprite.frame = _frame_checks()
+	if stage == STAGES.JUMPSCARE:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
 
-	if not spawned:
+	if stage == STAGES.IDLE:
 		current_spawn_timer -= 1 * delta * current_random_variance
 		if current_spawn_timer <= 0:
 			spawn_springcrab()
 			
-	if spawned:
+	if stage == STAGES.SPAWNED:
 		if seabill == null or not seabill.spawned:
 			current_kill_timer -= 1 * delta
 			
@@ -65,40 +61,43 @@ func _process(delta: float) -> void:
 func _deactivate() -> void:
 	super()
 	# Springcrab doesn't free its sprite because its sprite is used even when its disabled, for flashing front window
-
-func spawn_springcrab() -> void:
-	spawned = true
-	SpecialFunctions.audio(walking_sound)
+	
+func _reset_values() -> void:
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
+	last_side_flashed = ""
+
+func spawn_springcrab() -> void:
+	stage = STAGES.SPAWNED
+	SpecialFunctions.audio(walking_sound)
 	office_layer.update_window_occupants(enemy_id,0,true)
 	
 func leave_springcrab() -> void:
 	SignalBus.enemy_defended.emit(self)
-	spawned = false
-	last_side_flashed = ""
+	stage = STAGES.IDLE
 	office_layer.update_window_occupants(enemy_id,0,false)
+	_reset_values()
 	
-func frame_checks() -> int:
-	if jumpscare_ready:
+func _frame_checks() -> int:
+	if stage == STAGES.JUMPSCARE:
 		if sprite.frame == 1:
 			if office.animation == "open_f" and office.frame == 2:
-				return spawned
+				return 1
 		return 0
 	
-	if not spawned:
+	if stage != STAGES.SPAWNED:
 		return 0
 	if office.animation != "open_f":
 		return 0
 	if office.frame != 2:
 		return 0
 		
-	return spawned
+	return 1
 					
 func flash_springcrab(using_flashlight: bool, side: String) -> void:
-	if not spawned and not jumpscare_ready:
+	if stage != STAGES.SPAWNED:
 		return
 	if not using_flashlight:
 		return
@@ -117,6 +116,6 @@ func flash_springcrab(using_flashlight: bool, side: String) -> void:
 		
 func prepare_jumpscare() -> void:
 	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
-	jumpscare_ready = true
+	stage = STAGES.JUMPSCARE
 
 	
