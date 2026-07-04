@@ -53,11 +53,10 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/icon_max_width = 32
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 tab_3/icon = ExtResource("3_faeuo")
 
 [node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -533,6 +532,7 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 text = "Move Right"
 
 [node name="GameJolt" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=231042463]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 

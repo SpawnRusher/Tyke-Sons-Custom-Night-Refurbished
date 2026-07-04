@@ -38,7 +38,7 @@ func _on_value_changed(bat: float) -> void:
 	
 func flashlight_off() -> void:
 	if value > 0:
-		if not flashlight_state:
+		if flashlight_state:
 			flashlight_state = false
 			SpecialFunctions.audio(FLASHLIGHT)
 		SignalBus.update_flashlight_state.emit(flashlight_state)

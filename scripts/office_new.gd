@@ -115,7 +115,6 @@ func _input(event: InputEvent) -> void:
 			_use_flashlight(true, office.get_local_mouse_position())
 		if not Input.is_action_pressed("use_flashlight"):
 			_use_flashlight(false, office.get_local_mouse_position())
-		
 
 
 func _move_player(go_direction: String) -> void:
@@ -156,7 +155,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 		
 	if not to_state:
 		SignalBus.flashlight_off.emit()
-		if flashlight_state == false:
+		if not flashlight_state:
 			office.frame = 0
 			front_window_overlay.frame = 0
 
