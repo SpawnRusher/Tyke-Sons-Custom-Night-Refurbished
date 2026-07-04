@@ -33,7 +33,6 @@ var jumpscare_ready: bool
 func _ready() -> void:
 	super()
 
-	
 	SignalBus.flash_springcrab.connect(flash_springcrab)
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)

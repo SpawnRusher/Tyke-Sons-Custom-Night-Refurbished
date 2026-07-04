@@ -282,7 +282,6 @@
 [ext_resource type="Texture2D" uid="uid://f1m4gg1omyib" path="res://Enemies/phantom_chipomat/jumpscare/_10.png" id="279_adt3o"]
 [ext_resource type="Texture2D" uid="uid://dmo4v3arlj3e1" path="res://Enemies/phantom_chipomat/jumpscare/_11.png" id="280_l8bgd"]
 [ext_resource type="Texture2D" uid="uid://bj1r4hqvfls4u" path="res://Enemies/phantom_chipomat/jumpscare/_12.png" id="281_ldhqm"]
-[ext_resource type="Script" uid="uid://coyr3dg7wbjo0" path="res://scripts/gui.gd" id="282_i3ug7"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="283_odtfq"]
 [ext_resource type="Script" uid="uid://8xxuh14e4tf8" path="res://scripts/sleep_assurance.gd" id="284_7ov8y"]
 [ext_resource type="Texture2D" uid="uid://ce26bsapjttb" path="res://sprites/night/map/map.png" id="285_wf457"]
@@ -1921,7 +1920,6 @@ offset_bottom = 720.0
 [node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
 process_mode = 1
 layer = 2
-script = ExtResource("282_i3ug7")
 
 [node name="SleepAssurance" type="RichTextLabel" parent="GUI" unique_id=1890374532 node_paths=PackedStringArray("grid")]
 clip_contents = false

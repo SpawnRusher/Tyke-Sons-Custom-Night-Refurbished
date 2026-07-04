@@ -13,7 +13,6 @@ var flashlight_state: bool
 
 var current_batteries_cooldown: float
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.flashlight_off.connect(flashlight_off)
 	SignalBus.flashlight_on.connect(flashlight_on)
@@ -63,9 +62,8 @@ func _on_batteries_button_pressed() -> void:
 		SpecialFunctions.audio(QUIETBUTTONPRESS)
 
 func visibility_checks() -> void:
-	if office.animation != "open_b":
-		batteries.visible = false
-	else:
+	batteries.visible = false
+	if office.animation == "open_b":
 		batteries.visible = true
 		batteries.value = 0
 		if flashlight_state:

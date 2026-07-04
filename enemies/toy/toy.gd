@@ -28,10 +28,11 @@ var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_timer: float
-var stage: int
+var stage: STAGES
 var spawned: bool
 var jumpscare_ready: bool
 
+enum STAGES {IDLE,SITTING,STANDING,SPAWN}
 
 
 
@@ -51,13 +52,13 @@ func _process(delta: float) -> void:
 			_jumpscare()
 		return
 
-	if not spawned:
+	if stage != STAGES.SPAWN:
 		current_spawn_timer -= 1 * delta
 		stage = lerp(0,3,min((total_spawn_timer - current_spawn_timer)/total_spawn_timer,1))
-		if stage == 3:
+		if stage == STAGES.SPAWN:
 			spawn_toy()
 			
-	if spawned:
+	if stage == STAGES.SPAWN:
 		current_kill_timer -= 1 * delta
 		
 		if dark_overlay.visible:
@@ -85,7 +86,7 @@ func visibility_checks() -> void:
 		sprite.visible = true
 	
 func spawn_toy() -> void:
-	spawned = true
+	stage = STAGES.SPAWN
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
 	current_kill_timer = kill_timer
@@ -94,7 +95,7 @@ func spawn_toy() -> void:
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
 	SpecialFunctions.audio(TOY_RUNNING)
-	spawned = false
+	stage = STAGES.IDLE
 	
 func prepare_jumpscare() -> void:
 	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
