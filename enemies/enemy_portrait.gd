@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 func toggle(state: bool, quiet:= false) -> void:
 	if enabled == state:
 		return
-	if state == false:
+	if not state:
 		enabled = false
 		Global.ENABLED_IDS[enemy_id] = false
 		texture.region = Rect2(0,0,120,120)
@@ -33,5 +33,5 @@ func toggle(state: bool, quiet:= false) -> void:
 		enabled = true
 		Global.ENABLED_IDS[enemy_id] = true
 		texture.region = Rect2(120,0,120,120)
-	if quiet == false:
+	if not quiet:
 		SpecialFunctions.audio(QUIETBUTTONPRESS)

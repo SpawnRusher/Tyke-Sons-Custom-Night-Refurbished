@@ -1,7 +1,7 @@
 extends RichTextLabel
 
-const SLEEP_ASSURANCE_POINT_BORDER = preload("uid://ck5it5jq4buy4")
-const SLEEP_ASSURANCE_POINT_PROGRESS = preload("uid://irutswq3wufd")
+const SLEEP_ASSURANCE_POINT_BORDER: CompressedTexture2D = preload("uid://ck5it5jq4buy4")
+const SLEEP_ASSURANCE_POINT_PROGRESS: CompressedTexture2D = preload("uid://irutswq3wufd")
 
 @export var grid: GridContainer
 

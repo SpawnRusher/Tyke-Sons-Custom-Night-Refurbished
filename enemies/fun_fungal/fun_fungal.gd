@@ -11,6 +11,7 @@ class_name Fun_Fungal
 ## Idle time
 @export var idle_timer: float
 
+
 var office_animation_direction: String
 var current_idle_timer: float
 var current_progress_timer: float
@@ -45,13 +46,8 @@ var position_info: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
-	
+	super()
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
-	
 	current_idle_timer = idle_timer
 	
 func _process(delta: float) -> void:
@@ -63,7 +59,7 @@ func _process(delta: float) -> void:
 			_spawn_fungal()
 		return
 
-	if _flash_checks() == false:
+	if not _flash_checks():
 		current_progress_timer += 1 * delta
 	else:
 		current_progress_timer -= 20 * delta
@@ -73,13 +69,13 @@ func _process(delta: float) -> void:
 	sprite.position.y = lerpf(position_info[info_key]["out"].y,position_info[info_key]["in"].y,current_progress_normalized)
 	
 	if current_progress_normalized >= 1:
-		jumpscare()
+		_jumpscare()
 	
 	if current_progress_normalized < 0:
 		_leave_fungal()
 		
-func deactivate():
-	self.queue_free()
+func _deactivate():
+	super()
 	sprite.queue_free()
 	
 	
@@ -114,7 +110,7 @@ func _flash_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if position != "f" and flashlight_state == false:
+	if position != "f" and not flashlight_state:
 		return false
 	if position == "f" and office.frame != {"l":1,"r":2}[front_position]:
 		return false

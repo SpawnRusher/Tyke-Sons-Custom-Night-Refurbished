@@ -122,7 +122,7 @@ func _simplify_response(response: PackedByteArray) -> Dictionary:
 	var dict: Dictionary = JSON.parse_string(response.get_string_from_utf8())
 	
 	for item in dict["response"]:
-		if fix_string_bools == true:
+		if fix_string_bools:
 			if dict["response"][item] is String:
 				if dict["response"][item] == "false":
 					dict["response"][item] = false

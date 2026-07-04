@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-@onready var early_bird: Sprite2D = $"../"
+@onready var early_bird: Sprite2D = get_parent()
 
 func _ready() -> void:
 	position.x = randf_range(early_bird.position.x-(early_bird.texture.get_width()/2.0),early_bird.position.x+(early_bird.texture.get_width()/2.0))

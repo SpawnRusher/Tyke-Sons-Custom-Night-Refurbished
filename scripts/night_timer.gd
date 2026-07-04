@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		
 	text = ("     %02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
 	
-	if happyshroom_intro == true:
+	if happyshroom_intro:
 		text = "00:00.00"
 
 func _update_happyshroom_intro() -> void:

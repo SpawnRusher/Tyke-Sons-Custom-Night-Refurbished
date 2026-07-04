@@ -249,7 +249,5 @@ func _users_auth_completed(result: Dictionary, parameters: Dictionary) -> void:
 		gamejolt_info_text.text = "Failed to login with GameJolt. Username or user token may be incorrect."
 	else:
 		gamejolt_info_text.text = "Logged in successfully as " + parameters["username"] +"!"
-		#username_lineedit.text = username
-		#user_token_lineedit.text = user_token
 		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["username"],"gamejolt","username")
 		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["user_token"],"gamejolt","user_token")

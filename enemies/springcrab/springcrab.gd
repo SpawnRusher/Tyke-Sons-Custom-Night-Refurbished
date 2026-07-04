@@ -31,10 +31,8 @@ var last_side_flashed: String
 var jumpscare_ready: bool
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
+	super()
+
 	
 	SignalBus.flash_springcrab.connect(flash_springcrab)
 	
@@ -45,18 +43,18 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	sprite.frame = frame_checks()
-	if jumpscare_ready == true:
+	if jumpscare_ready:
 		if office.animation == "return" or office.animation == "office":
-			jumpscare()
+			_jumpscare()
 		return
 
-	if spawned == false:
+	if not spawned:
 		current_spawn_timer -= 1 * delta * current_random_variance
 		if current_spawn_timer <= 0:
 			spawn_springcrab()
 			
-	if spawned == true:
-		if seabill == null or seabill.spawned == false:
+	if spawned:
+		if seabill == null or not seabill.spawned:
 			current_kill_timer -= 1 * delta
 			
 		if office.animation == "open_f" and office.frame >= 1:
@@ -65,8 +63,8 @@ func _process(delta: float) -> void:
 		if current_kill_timer <= 0:
 			prepare_jumpscare()
 			
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	# Springcrab doesn't free its sprite because its sprite is used even when its disabled, for flashing front window
 
 func spawn_springcrab() -> void:
@@ -85,13 +83,13 @@ func leave_springcrab() -> void:
 	office_layer.update_window_occupants(enemy_id,0,false)
 	
 func frame_checks() -> int:
-	if jumpscare_ready == true:
+	if jumpscare_ready:
 		if sprite.frame == 1:
 			if office.animation == "open_f" and office.frame == 2:
 				return spawned
 		return 0
 	
-	if spawned == false:
+	if not spawned:
 		return 0
 	if office.animation != "open_f":
 		return 0
@@ -101,9 +99,9 @@ func frame_checks() -> int:
 	return spawned
 					
 func flash_springcrab(using_flashlight: bool, side: String) -> void:
-	if spawned == false and jumpscare_ready == false:
+	if not spawned and not jumpscare_ready:
 		return
-	if using_flashlight == false:
+	if not using_flashlight:
 		return
 	if office.animation != "open_f":
 		return
@@ -119,7 +117,7 @@ func flash_springcrab(using_flashlight: bool, side: String) -> void:
 		leave_springcrab()
 		
 func prepare_jumpscare() -> void:
-	jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true
 
 	

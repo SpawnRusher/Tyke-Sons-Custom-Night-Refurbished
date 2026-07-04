@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	popup.visible = _popup_visibility()
 	
 	if office.animation == "office":
-		if SaveData.settings_data["game"]["use_old_camera_scrolling"] == true and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
+		if SaveData.settings_data["game"]["use_old_camera_scrolling"] and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 0:
 			if camera.position.x < 1:
 				_move_player("l")
 			elif camera.position.x > 399:
@@ -153,7 +153,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 	if "open_" not in office.animation:
 		return
 		
-	if to_state == false:
+	if not to_state:
 		SignalBus.flashlight_off.emit()
 		if flashlight_state == false:
 			office.frame = 0
@@ -162,18 +162,18 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 	else:
 		if dir == "l" or dir == "r":
 			SignalBus.flashlight_on.emit()
-			if flashlight_state == true:
+			if flashlight_state:
 				office.frame = 1
 			
 		if dir == "b":
 			SignalBus.flashlight_on.emit()
-			if flashlight_state == true:
+			if flashlight_state:
 				office.frame = 1
 		
 		if dir == "f":
 			if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if flashlight_state == true:
+				if flashlight_state:
 					office.frame = 1
 					front_window.play("l")
 					front_window_overlay.play("l")
@@ -181,7 +181,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if flashlight_state == true:
+				if flashlight_state:
 					office.frame = 2
 					front_window.play("r")
 					front_window_overlay.play("r")
@@ -198,7 +198,7 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" not in office.animation and "closed_" not in office.animation:
 		return
 		
-	if to_state == false:
+	if not to_state:
 		if "closed_" in office.animation:
 			office.play("opening_"+dir)
 			SpecialFunctions.audio(CURTAIN_OPENING)
@@ -207,7 +207,7 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" in office.animation:
 		office.play("closing_"+dir)
 		SpecialFunctions.audio(CURTAIN_CLOSING)
-		if flashlight_state == true:
+		if flashlight_state:
 			SignalBus.flashlight_off.emit()
 	
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
@@ -231,13 +231,13 @@ func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
 		office.play("closed_"+dir)
 				
 func _can_move() -> bool:
-	if dark_overlay.visible == true:
+	if dark_overlay.visible:
 		return false
 	if "office" not in office.animation and "open_" not in office.animation:
 		return false
-	if lock_movement == true:
+	if lock_movement:
 		return false
-	if flashlight_state == true:
+	if flashlight_state:
 		return false
 		
 	return true
@@ -284,7 +284,7 @@ func _can_go_to_sleep() -> bool:
 		return false
 	if office.animation != "open_b":
 		return false
-	if flashlight_state == false:
+	if not flashlight_state:
 		return false
 	return true
 		

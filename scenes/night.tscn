@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dlqq8s6hcoknw" path="res://scripts/night.gd" id="1_45h36"]
 [ext_resource type="Script" uid="uid://b8eegopdrebfi" path="res://scripts/office_new.gd" id="2_0v611"]
+[ext_resource type="Shader" uid="uid://b7vkrd27auh0y" path="res://shaders/perspective.gdshader" id="3_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://sprites/night/windows/left/closed/window_left_closed.png" id="3_2go0w"]
 [ext_resource type="Texture2D" uid="uid://bmupht3pf77r5" path="res://sprites/night/windows/right/closed/window_right_closed.png" id="4_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://dt5y8dns3h6yr" path="res://sprites/night/windows/left/closing/window_left_closing_0.png" id="5_tt6cj"]
@@ -316,6 +317,8 @@
 [ext_resource type="Script" uid="uid://5w5286ex124e" path="res://Enemies/phantom_chipomat/phantom_chipomat.gd" id="314_tjsjl"]
 [ext_resource type="AudioStream" uid="uid://c6ljbstllxkrm" path="res://Enemies/phantom_chipomat/jumpscare_phantom.ogg" id="315_h18a6"]
 [ext_resource type="AudioStream" uid="uid://dvfy70t3fg5oc" path="res://sounds/jumpscares/jumpscare_wtf.ogg" id="316_0v611"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gstg7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38vnp"]
 animations = [{
@@ -1617,6 +1620,13 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f1a6"]
+shader = ExtResource("3_0f1a6")
+shader_parameter/zoom = 1.0
+shader_parameter/sharpness = 2.0
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/wrapping_mode = 0
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r0ah"]
 animations = [{
 "frames": [{
@@ -1664,6 +1674,20 @@ animations = [{
 "speed": 27.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tt6cj"]
+shader = ExtResource("3_0f1a6")
+shader_parameter/zoom = 1.0
+shader_parameter/sharpness = 2.0
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/wrapping_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("3_0f1a6")
+shader_parameter/zoom = 0.1
+shader_parameter/sharpness = 10.0
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/wrapping_mode = 0
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3whfi"]
 animations = [{
 "frames": [],
@@ -1694,6 +1718,7 @@ sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
+material = SubResource("ShaderMaterial_gstg7")
 sprite_frames = SubResource("SpriteFrames_38vnp")
 animation = &"office"
 autoplay = "office"
@@ -1866,6 +1891,7 @@ button_mask = 0
 flat = true
 
 [node name="Camera" type="Camera2D" parent="Office" unique_id=1927307826 node_paths=PackedStringArray("office")]
+material = SubResource("ShaderMaterial_0f1a6")
 anchor_mode = 0
 script = ExtResource("268_ksui1")
 office = NodePath("../OfficeBackground")
@@ -1885,6 +1911,12 @@ animation = &"jumpscare"
 centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Office" unique_id=943145618]
+material = SubResource("ShaderMaterial_tt6cj")
+
+[node name="ColorRect" type="ColorRect" parent="Office" unique_id=2015381998]
+material = SubResource("ShaderMaterial_g4v7s")
+offset_right = 1680.0
+offset_bottom = 720.0
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=24959187]
 process_mode = 1

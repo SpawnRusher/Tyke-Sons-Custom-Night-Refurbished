@@ -1,27 +1,19 @@
 extends Enemy
 class_name Chipomat
-##The office layer.
 @export var office_layer: CanvasLayer
-##The office background.
 @export var office: AnimatedSprite2D
-##The Chipomat sprite.
 @export var sprite: AnimatedSprite2D
-## The time it takes for the Chipomat to appear at a window.
 @export var spawn_timer: float
-## The time it takes for the Chipomat to kill when sitting in a window.
 @export var kill_timer: float
-## The time it takes with the curtain closed to make the Chipomat leave.
 @export var leave_timer: float
-## Adds a random variance to the spawn timer. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
 @export var random_variance: float
-## The timer amount to prevent the kill timer from going below when the curtain is closed on the Chipomat.
 @export var kill_timer_pause_threshold: float = 1.0
-## The sound to play when knocking at a window.
 @export var knock_sound: AudioStream
 
-var side: int
+enum SIDES {LEFT=-1,NONE=0,RIGHT=1}
+var side: SIDES
 var side_string: String
-var sides: Dictionary[int,String] = {-1: "l", 1: "r"}
+var sides: Dictionary[int,String] = {SIDES.LEFT: "l", SIDES.RIGHT: "r"}
 var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
@@ -32,11 +24,8 @@ var office_animation_direction: String
 var flashlight_state: bool
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
-	
+	super()
+
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer
@@ -46,17 +35,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	office_animation_direction = office.animation.right(1)
 	sprite.visible = visibility_checks()
-	if jumpscare_ready == true:
+	if jumpscare_ready:
 		if office.animation == "return" or office.animation == "office":
-			jumpscare()
+			_jumpscare()
 		return
 
-	if spawned == false:
+	if not spawned:
 		current_spawn_timer -= 1 * delta * current_random_variance
 		if current_spawn_timer <= 0:
 			spawn_chipomat()
 
-	if spawned == true:
+	if spawned:
 		current_kill_timer -= 1 * delta
 		
 		if office_animation_direction == sprite.animation:
@@ -66,42 +55,42 @@ func _process(delta: float) -> void:
 				current_leave_timer -= 1 * delta 
 	
 		if current_leave_timer <= 0:
-			if jumpscare_ready == false:
+			if not jumpscare_ready:
 				leave_chipomat()
 			
 		if current_kill_timer <= 0:
 			prepare_jumpscare()
 			
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	sprite.queue_free()
 			
 func _update_flashlight_state(state: bool) -> void:
 	flashlight_state = state
 
 func visibility_checks() -> bool:
-	if jumpscare_ready == true:
-		if sprite.visible == true:
-			if "open_" in office.animation and flashlight_state == true:
+	if jumpscare_ready:
+		if sprite.visible:
+			if "open_" in office.animation and flashlight_state:
 				return true
 		return false
 		
-	if spawned == false:
+	if not spawned:
 		return false
 	if office_animation_direction != side_string:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if flashlight_state == false:
+	if not flashlight_state:
 		return false
 		
 	return true
 	
-func pick_side() -> int:
+func pick_side() -> SIDES:
 	side = [-1,1].pick_random()
 	
 	if office_layer.get_window_occupants(side).size() >= 2:
-		side *= -1
+		side = side * -1 as SIDES
 
 	return side
 
@@ -124,6 +113,6 @@ func leave_chipomat() -> void:
 	office_layer.update_window_occupants(enemy_id,side,false)
 	
 func prepare_jumpscare() -> void:
-	jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true
 	

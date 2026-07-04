@@ -36,10 +36,7 @@ var jumpscare_ready: bool
 
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
+	super()
 	
 	total_spawn_timer = spawn_timer
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -49,21 +46,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	visibility_checks()
-	if jumpscare_ready == true:
+	if jumpscare_ready:
 		if office.animation == "return" or office.animation == "office":
-			jumpscare()
+			_jumpscare()
 		return
 
-	if spawned == false:
+	if not spawned:
 		current_spawn_timer -= 1 * delta
 		stage = lerp(0,3,min((total_spawn_timer - current_spawn_timer)/total_spawn_timer,1))
 		if stage == 3:
 			spawn_toy()
 			
-	if spawned == true:
+	if spawned:
 		current_kill_timer -= 1 * delta
 		
-		if dark_overlay.visible == true:
+		if dark_overlay.visible:
 			current_kill_timer = max(current_kill_timer,kill_timer_pause_threshold)
 			current_leave_timer -= 1 * delta
 			
@@ -73,8 +70,8 @@ func _process(delta: float) -> void:
 		if current_leave_timer <= 0:
 			leave_toy()
 			
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	sprite.queue_free()
 
 func visibility_checks() -> void:
@@ -100,5 +97,5 @@ func leave_toy() -> void:
 	spawned = false
 	
 func prepare_jumpscare() -> void:
-	jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	jumpscare_ready = true

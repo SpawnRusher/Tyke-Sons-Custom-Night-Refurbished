@@ -79,10 +79,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../..")
-tab_name = "display"
+tab = NodePath("../../../..")
 
 [node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=395995736]
 custom_minimum_size = Vector2(0, 50)
@@ -185,10 +185,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../..")
-tab_name = "game"
+tab = NodePath("../../../..")
 
 [node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1269798834]
 custom_minimum_size = Vector2(0, 50)
@@ -399,10 +399,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../..")
-tab_name = "keybinds"
+tab = NodePath("../../../..")
 
 [node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1027549335]
 custom_minimum_size = Vector2(0, 50)

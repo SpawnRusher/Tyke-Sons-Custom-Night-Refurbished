@@ -11,11 +11,8 @@ const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
 var current_spawn_timer: float
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
-	
+	super()
+
 	SignalBus.pickup_lumber.connect(_pickup_lumber)
 	SignalBus.lumber_despawned.connect(_lumber_despawned)
 	
@@ -32,9 +29,6 @@ func _process(delta: float) -> void:
 		_create_lumber()
 		current_spawn_timer = spawn_timer
 
-func deactivate() -> void:
-	self.queue_free()
-
 func _create_lumber() -> void:
 	var lumber: TextureRect = lumber_scene.instantiate()
 	camera.add_child(lumber)
@@ -44,4 +38,4 @@ func _pickup_lumber() -> void:
 	pass
 
 func _lumber_despawned() -> void:
-	jumpscare()
+	_jumpscare()

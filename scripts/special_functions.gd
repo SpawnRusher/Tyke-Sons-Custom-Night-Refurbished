@@ -19,8 +19,6 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	@warning_ignore("shadowed_variable")
 	var audio: Node = AudioStreamPlayer2D.new()
 
-		
-		
 	if not persist_through_scenes:
 		if not deferred:
 			get_tree().current_scene.add_child(audio)
@@ -32,7 +30,6 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 		else:
 			add_child.call_deferred(audio)
 	
-
 	audio.finished.connect(audio.queue_free)
 	
 	if audio is AudioStreamPlayer2D:

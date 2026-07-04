@@ -24,14 +24,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	visibility_checks()
-	if flashlight_state == true:
+	if flashlight_state:
 		value -= 5 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
 	
 func _on_value_changed(bat: float) -> void:
 	if bat == 0:
-		if flashlight_state == true:
+		if flashlight_state:
 			flashlight_state = false
 			SpecialFunctions.audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(false)
@@ -39,14 +39,14 @@ func _on_value_changed(bat: float) -> void:
 	
 func flashlight_off() -> void:
 	if value > 0:
-		if flashlight_state == true:
+		if not flashlight_state:
 			flashlight_state = false
 			SpecialFunctions.audio(FLASHLIGHT)
 		SignalBus.update_flashlight_state.emit(flashlight_state)
 	
 func flashlight_on() -> void:
 	if value > 0:
-		if flashlight_state == false:
+		if not flashlight_state:
 			flashlight_state = true
 			SpecialFunctions.audio(FLASHLIGHT)
 		SignalBus.update_flashlight_state.emit(flashlight_state)
@@ -68,7 +68,7 @@ func visibility_checks() -> void:
 	else:
 		batteries.visible = true
 		batteries.value = 0
-		if flashlight_state == true:
+		if flashlight_state:
 			batteries.value = current_batteries_cooldown
 			
 func _activate_happyshroom() -> void:

@@ -9,7 +9,7 @@ theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
-text = "RESET TO DEFAULT"
+text = "RESET TO DEFAULTS"
 script = ExtResource("1_aol00")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -17,10 +17,8 @@ var move_direction: MOVE_DIRECTION = [-1, 1].pick_random() as MOVE_DIRECTION
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
+	super()
+
 
 	if move_direction == MOVE_DIRECTION.UP_LEFT:
 		set("icon.position."+move_axis,min_position)
@@ -33,10 +31,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if player.get_global_rect().intersects(sprite.get_global_rect()):
-		jumpscare()
+		_jumpscare()
 		
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	sprite.queue_free()
 	
 func blinking() -> void:

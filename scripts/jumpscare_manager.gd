@@ -31,7 +31,7 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		Global.died_to_id = enemy.enemy_id
 
 func _jumpscare_end() -> void:
-	if SaveData.settings_data["quality_of_life"]["auto_restart_on_death"] == false:
+	if not SaveData.settings_data["quality_of_life"]["auto_restart_on_death"]:
 		SceneManager.change_to_scene("res://scenes/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	else:
 		get_tree().paused = false

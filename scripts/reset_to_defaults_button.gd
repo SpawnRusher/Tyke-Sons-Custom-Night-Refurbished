@@ -3,8 +3,8 @@ extends Button
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 @export var settings_menu: Control
-@export var tab_name: String
+@export var tab: VBoxContainer
 
 func _on_pressed() -> void:
-	settings_menu.reset_to_defaults.emit(tab_name)
+	settings_menu.reset_to_defaults.emit(tab.name)
 	SpecialFunctions.audio(LOUD_BUTTON_PRESS)

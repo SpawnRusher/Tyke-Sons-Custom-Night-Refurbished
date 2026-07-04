@@ -32,15 +32,24 @@ var happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid://
 var happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
 
 func _ready() -> void:
-	if Global.ENABLED_IDS.find(false,1) != -1:
-		deactivate()
+	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
+	if sleep_assurance_score == -1:
+		push_error("Sleep assurance score has not been set for ",enemy_id,"!")
+	if jumpscare_sound == null:
+		push_error("Jumpscare Sound has not yet been set for enemy ",enemy_id,"!")
+	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":
+		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
+		
+	if SpecialFunctions.in_range(Global.ENABLED_IDS.find(false,ENEMY_IDS.CHIPOMAT_1),ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
+		_deactivate()
 		return
+	
 	Global.ENABLED_IDS[ENEMY_IDS.HAPPYSHROOM] = true
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	SignalBus.start_happyshroom_fight.connect(start_fight)
 	
-func deactivate() -> void:
-	queue_free()
+func _deactivate() -> void:
+	super()
 	happyshroom_layer.queue_free()
 
 func _activate_happyshroom() -> void:
@@ -84,4 +93,4 @@ func deactivate_enemies() -> void:
 	var enemies = enemies_list.get_children()
 	for enemy in enemies:
 		if enemy is not Happyshroom:
-			enemy.deactivate()
+			enemy._deactivate()

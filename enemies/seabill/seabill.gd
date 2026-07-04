@@ -31,7 +31,7 @@ class_name Seabill
 ## The amount of times for Seabill to turn to stare at the player.
 @export var stare_times: int
 
-var SPAWN_VOICELINES: Array = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]
+var SPAWN_VOICELINES: Array[AudioStream] = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]
 
 var current_random_variance: float
 var current_timer: float
@@ -40,19 +40,15 @@ var current_walk_timer: float
 var current_walk_progress: float
 var current_flash_timer: float
 var current_sleep_assurance_grace_period: float
-var spawned: bool
-var spawn_ready: bool
-var jumpscare_ready: bool
 var stare_times_array: Array
 var last_animation_played: String
 var pause: bool
 
+var state: STATES
+enum STATES {IDLE,READY,SPAWNED,JUMPSCARE}
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
+	super()
 	
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_timer = ready_timer
@@ -67,27 +63,27 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	visibility_checks()
-	if jumpscare_ready == true:
+	if state == STATES.JUMPSCARE:
 		if office.animation == "return" or office.animation == "office":
-			jumpscare()
+			_jumpscare()
 		return
-	elif spawned == true and office.animation == "open_f":
-		jumpscare()
+	elif state == STATES.SPAWNED and office.animation == "open_f":
+		_jumpscare()
 		return
 		
-	if spawned == false and spawn_ready == false:
+	if state == STATES.IDLE:
 		current_timer -= 1 * delta * current_random_variance
 		if current_timer <= 0:
 			ready_seabill()
 			
-	if spawn_ready == true:
+	if state == STATES.READY:
 		current_timer -= 1 * delta * current_random_variance
 		if current_timer <= 0:
 			spawn_seabill()
 
-	if spawned == true:
+	if state == STATES.SPAWNED:
 		dark_flicker.self_modulate.a8 -= randi_range(-60,60)
-		if sprite.animation == "walking" and pause == false:
+		if sprite.animation == "walking" and not pause:
 			current_walk_timer -= 1 * delta
 			current_walk_progress = min((walk_timer-current_walk_timer)/walk_timer,1)
 			sprite.position.x = lerpf(start_position,end_position,current_walk_progress)
@@ -99,7 +95,7 @@ func _process(delta: float) -> void:
 		if sprite.animation == "staring":
 			current_kill_timer -= 1 * delta
 			
-			if dark_office.visible == false:
+			if not dark_office.visible:
 				current_sleep_assurance_grace_period -= 1
 				if current_sleep_assurance_grace_period <= 0:
 					SignalBus.remove_sleep_assurance.emit(delta, self)
@@ -116,14 +112,14 @@ func _process(delta: float) -> void:
 		if current_walk_progress == 1.0:
 			leave_seabill()
 			
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	sprite.queue_free()
 	dark_flicker.queue_free()
 			
 func ready_seabill() -> void:
 	SpecialFunctions.audio(SPAWN_VOICELINES.pick_random())
-	spawn_ready = true
+	state = STATES.READY
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_timer = spawn_timer
 	current_kill_timer = kill_timer
@@ -133,8 +129,7 @@ func ready_seabill() -> void:
 		stare_times_array.append(snappedf((1.0/(stare_times+1)) * (i+1),0.001))
 	
 func spawn_seabill() -> void:
-	spawn_ready = false
-	spawned = true
+	state = STATES.SPAWNED
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_timer = ready_timer
 	current_kill_timer = kill_timer
@@ -154,12 +149,12 @@ func walk_seabill() -> void:
 	
 func leave_seabill() -> void:
 	SignalBus.enemy_defended.emit(self)
-	spawned = false
+	state = STATES.IDLE
 	dark_flicker.self_modulate.a8 = 0
 	
 func prepare_jumpscare() -> void:
-	jumpscare() #TEMPORARY FOR TESTING PURPOSES
-	jumpscare_ready = true
+	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	state = STATES.JUMPSCARE
 	
 func _update_last_animation_played() -> void:
 	last_animation_played = sprite.animation

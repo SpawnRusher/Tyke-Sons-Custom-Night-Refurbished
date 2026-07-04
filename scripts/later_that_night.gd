@@ -11,7 +11,7 @@ var enter_night: bool
 
 func _ready() -> void:
 	SceneManager.load_scene("res://scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
-	if SaveData.settings_data["quality_of_life"]["skip_loading_night"] == true:
+	if SaveData.settings_data["quality_of_life"]["skip_loading_night"]:
 		enter_night = true
 		return
 	
@@ -35,7 +35,7 @@ func _ready() -> void:
 	enter_night = true
 
 func _process(delta: float) -> void:
-	if enter_night == true:
+	if enter_night:
 		if SceneManager.get_progress("res://scenes/night.tscn") >= 1:
 			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 

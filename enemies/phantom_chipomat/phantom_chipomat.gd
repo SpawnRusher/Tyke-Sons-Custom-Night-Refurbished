@@ -14,28 +14,32 @@ class_name Phantom_Chipomat
 var current_attack_timer: float
 
 func _ready() -> void:
-	await super()
-	if enabled == false:
-		deactivate()
-		return
+	super()
 		
 	current_attack_timer = attack_timer
 	sprite.sprite_frames = load(jumpscare_middle_uid)
 
 func _process(delta: float) -> void:
-	if office.animation == "office":
-		if dark_office.visible == true:
-			if sprite.visible == false:
-				current_attack_timer -= 1 * delta
-				if current_attack_timer <= 0:
-					phantom_attack()
-	else:
-		current_attack_timer = attack_timer
+	if _attack_checks():
+		current_attack_timer -= 1 * delta
+		if current_attack_timer <= 0:
+			phantom_attack()
+		return
+	current_attack_timer = attack_timer
 		
-func deactivate() -> void:
-	self.queue_free()
+func _deactivate() -> void:
+	super()
 	sprite.queue_free()
-			
+
+func _attack_checks() -> bool:
+	if office.animation != "office":
+		return false
+	if not dark_office.visible:
+		return false
+	if sprite.visible:
+		return false
+	return true
+	
 func phantom_attack() -> void:
 	sprite.self_modulate.a = 1
 	sprite.visible = true

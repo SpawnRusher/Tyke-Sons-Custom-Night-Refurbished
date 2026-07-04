@@ -14,7 +14,6 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 @export var jumpscare_middle_uid: String
 @export var jumpscare_bedroom_uid: String
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
 	if sleep_assurance_score == -1:
@@ -25,6 +24,11 @@ func _ready() -> void:
 		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
 	
 	enabled = Global.ENABLED_IDS[enemy_id]
+	if not enabled:
+		_deactivate()
 	
-func jumpscare(area:= JUMPSCARE_AREAS.MIDDLE) -> void:
+func _deactivate() -> void:
+	self.queue_free()
+	
+func _jumpscare(area:= JUMPSCARE_AREAS.MIDDLE) -> void:
 	SignalBus.jumpscare.emit(self, area)

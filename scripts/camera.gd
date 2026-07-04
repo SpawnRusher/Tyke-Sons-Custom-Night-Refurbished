@@ -13,10 +13,10 @@ func _process(_delta: float) -> void:
 	_move_camera()
 
 func _change_camera_state(lock: bool, pos:=0.0) -> void:
-	if lock == false:
+	if not lock:
 		if lockpos != -1:
 			lockpos = -1
-			if SaveData.settings_data["game"]["use_old_camera_scrolling"] == true:
+			if SaveData.settings_data["game"]["use_old_camera_scrolling"]:
 				position.x = 200
 		return
 	lockpos = pos
@@ -26,7 +26,7 @@ func _move_camera() -> void:
 		position.x = lockpos
 		return
 		
-	if SaveData.settings_data["game"]["use_old_camera_scrolling"] == false:
+	if not SaveData.settings_data["game"]["use_old_camera_scrolling"]:
 		goto = 200 +((office.get_local_mouse_position().x - 840) / 4.1)
 		goto = clampf(goto,0,400)
 		position.x = goto
