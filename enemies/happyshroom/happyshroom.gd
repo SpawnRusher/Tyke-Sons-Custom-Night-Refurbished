@@ -34,11 +34,11 @@ var happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid:
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
 	if sleep_assurance_score == -1:
-		push_error("Sleep assurance score has not been set for ",enemy_id,"!")
+		push_error("Sleep assurance score has not been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscare_sound == null:
-		push_error("Jumpscare Sound has not yet been set for enemy ",enemy_id,"!")
-	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":
-		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
+		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
+	if jumpscare_uids.is_empty():
+		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 		
 	if SpecialFunctions.in_range(Global.ENABLED_IDS.find(false,ENEMY_IDS.CHIPOMAT_1),ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
 		_deactivate()

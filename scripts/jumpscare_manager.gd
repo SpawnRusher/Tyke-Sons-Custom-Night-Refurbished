@@ -12,19 +12,15 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		SceneManager.load_scene("res://scenes/game_over.tscn")
 		SpecialFunctions.audio(enemy.jumpscare_sound,1)
 
-		if enemy.jumpscare_middle_uid == null and enemy.jumpscare_bedroom_uid == null:
-			push_error("No Jumpscare UIDs have been set for ",enemy,"!")
+		if enemy.jumpscare_uids.size() == 0:
+			push_error("No Jumpscare UIDs have been set for ",Enemy.ENEMY_IDS.keys()[enemy],"! Jumpscare will not start.")
+			return
+			
+		if area not in enemy.jumpscare_uids:
+			push_error("Enemy ",Enemy.ENEMY_IDS.keys()[enemy]," does not have a Jumpscare UID set for ",Enemy.JUMPSCARE_AREAS.keys()[area], "! Falling back to another UID.")
+			area = enemy.jumpscare_uids.keys().pick_random()
 
-		if area == Enemy.JUMPSCARE_AREAS.MIDDLE and enemy.jumpscare_middle_uid == null:
-			push_error("Enemy ",enemy," does not have a Jumpscare UID set for middle!")
-
-		if area == Enemy.JUMPSCARE_AREAS.BEDROOM and enemy.jumpscare_bedroom_uid == null:
-			push_error("Enemy ",enemy," does not have a Jumpscare UID set for bedroom!")
-
-		if area == Enemy.JUMPSCARE_AREAS.MIDDLE:
-			jumpscare_sprite.sprite_frames = load(enemy.jumpscare_middle_uid)
-		if area == Enemy.JUMPSCARE_AREAS.BEDROOM:
-			jumpscare_sprite.sprite_frames = load(enemy.jumpscare_bedroom_uid)
+		jumpscare_sprite.sprite_frames = load(enemy.jumpscare_uids[area])
 
 		jumpscare_sprite.play()
 		show()

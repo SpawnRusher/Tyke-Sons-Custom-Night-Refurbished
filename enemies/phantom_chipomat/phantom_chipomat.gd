@@ -17,7 +17,7 @@ func _ready() -> void:
 	super()
 	if not enabled: return
 	current_attack_timer = attack_timer
-	sprite.sprite_frames = load(jumpscare_middle_uid)
+	sprite.sprite_frames = load(jumpscare_uids[Enemy.JUMPSCARE_AREAS.DEFAULT])
 
 func _process(delta: float) -> void:
 	if _attack_checks():

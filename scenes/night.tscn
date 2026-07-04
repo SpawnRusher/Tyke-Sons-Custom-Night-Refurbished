@@ -1912,7 +1912,8 @@ centered = false
 [node name="CanvasModulate" type="CanvasModulate" parent="Office" unique_id=943145618]
 material = SubResource("ShaderMaterial_tt6cj")
 
-[node name="ColorRect" type="ColorRect" parent="Office" unique_id=2015381998]
+[node name="Perspective" type="ColorRect" parent="Office" unique_id=2015381998]
+visible = false
 material = SubResource("ShaderMaterial_g4v7s")
 offset_right = 1680.0
 offset_bottom = 720.0
@@ -2125,7 +2126,10 @@ knock_sound = ExtResource("299_4eeom")
 enemy_id = 1
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://hmexkiu40fv1"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://hmexkiu40fv1",
+1: "uid://hmexkiu40fv1"
+})
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
 [node name="Chipomat2" type="Node" parent="Enemies" unique_id=926769504 node_paths=PackedStringArray("office_layer", "office", "sprite")]
@@ -2141,7 +2145,10 @@ knock_sound = ExtResource("301_8be7k")
 enemy_id = 2
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://cgsw7agy1qjmd"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://cgsw7agy1qjmd",
+1: "uid://cgsw7agy1qjmd"
+})
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
 [node name="Chipomat3" type="Node" parent="Enemies" unique_id=924281945 node_paths=PackedStringArray("office_layer", "office", "sprite")]
@@ -2157,7 +2164,10 @@ knock_sound = ExtResource("302_1edts")
 enemy_id = 3
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://dnrmdge40dfkx"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://dnrmdge40dfkx",
+1: "uid://dnrmdge40dfkx"
+})
 metadata/_custom_type_script = "uid://dwceptw14p7m8"
 
 [node name="FunFungal" type="Node" parent="Enemies" unique_id=1815203350 node_paths=PackedStringArray("office_layer", "office", "sprite")]
@@ -2170,7 +2180,9 @@ idle_timer = 5.0
 enemy_id = 4
 sleep_assurance_score = 5.0
 jumpscare_sound = ExtResource("304_q36i8")
-jumpscare_middle_uid = "uid://cshws6mtgkvy2"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://cshws6mtgkvy2"
+})
 metadata/_custom_type_script = "uid://f0vepf3put15"
 
 [node name="Springcrab" type="Node" parent="Enemies" unique_id=634580021 node_paths=PackedStringArray("office_layer", "office", "sprite", "seabill")]
@@ -2188,15 +2200,21 @@ walking_sound = ExtResource("306_p2tem")
 enemy_id = 5
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://3jfdm0d3dpxy"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://3jfdm0d3dpxy",
+1: "uid://3jfdm0d3dpxy"
+})
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 
 [node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754]
 script = ExtResource("307_12jac")
 enemy_id = 6
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://dax66f01j7667"
-jumpscare_bedroom_uid = "uid://clo6xwmvoik7q"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://dax66f01j7667",
+1: "uid://dax66f01j7667",
+2: "uid://clo6xwmvoik7q"
+})
 metadata/_custom_type_script = "uid://bdnro702nmhg3"
 
 [node name="Seabill" type="Node" parent="Enemies" unique_id=1873460938 node_paths=PackedStringArray("office", "dark_office", "dark_flicker", "sprite")]
@@ -2219,7 +2237,10 @@ stare_times = 2
 enemy_id = 7
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://dwcd7fsh2iu32"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://dwcd7fsh2iu32",
+1: "uid://dwcd7fsh2iu32"
+})
 metadata/_custom_type_script = "uid://dv66h4165ppew"
 
 [node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "sprite")]
@@ -2232,7 +2253,10 @@ max_position = 86.0
 enemy_id = 8
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://ds5xydebj2r1t"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://ds5xydebj2r1t",
+1: "uid://ds5xydebj2r1t"
+})
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 
 [node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "sprite")]
@@ -2247,7 +2271,10 @@ max_position = 123.0
 enemy_id = 9
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://1tnfmu8enmc0"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://1tnfmu8enmc0",
+1: "uid://1tnfmu8enmc0"
+})
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 
 [node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "sprite")]
@@ -2260,14 +2287,20 @@ max_position = 86.0
 enemy_id = 10
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://delfuqqlobkqo"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://delfuqqlobkqo",
+1: "uid://delfuqqlobkqo"
+})
 metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 
 [node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
 script = ExtResource("310_asmqh")
 enemy_id = 11
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://q3g8sjm1h832"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://q3g8sjm1h832",
+1: "uid://q3g8sjm1h832"
+})
 metadata/_custom_type_script = "uid://dp3c40drmnlof"
 
 [node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
@@ -2277,7 +2310,10 @@ lumber_timer = 4.0
 enemy_id = 12
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://jwd0ebtcbs12"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://jwd0ebtcbs12",
+1: "uid://jwd0ebtcbs12"
+})
 metadata/_custom_type_script = "uid://qeu7nri32ca2"
 
 [node name="Toy" type="Node" parent="Enemies" unique_id=1216605080 node_paths=PackedStringArray("office", "dark_overlay", "sprite")]
@@ -2294,7 +2330,10 @@ leaving_sound = ExtResource("313_chpop")
 enemy_id = 13
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscare_middle_uid = "uid://oacgoiegq16"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://oacgoiegq16",
+1: "uid://oacgoiegq16"
+})
 metadata/_custom_type_script = "uid://ejhhd5vc7s8g"
 
 [node name="PhantomChipomat" type="Node" parent="Enemies" unique_id=1597117739 node_paths=PackedStringArray("office", "dark_office", "sprite")]
@@ -2306,7 +2345,9 @@ attack_timer = 4.0
 enemy_id = 14
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("315_h18a6")
-jumpscare_middle_uid = "uid://bdcay5wlrvx68"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://bdcay5wlrvx68"
+})
 metadata/_custom_type_script = "uid://5w5286ex124e"
 
 [node name="Happyshroom" type="Node" parent="Enemies" unique_id=1330476963 node_paths=PackedStringArray("enemies_list", "office_layer", "office", "office_modulate", "window_background", "front_window", "gui_layer", "gui_modulate", "happyshroom_layer", "happyshroom_fade", "happyshroom_text")]
@@ -2326,8 +2367,11 @@ happyshroom_text = NodePath("../../Happyshroom/Text")
 enemy_id = 15
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("316_0v611")
-jumpscare_middle_uid = "uid://def4na0hddbtv"
-jumpscare_bedroom_uid = "uid://ceyirmcu15e87"
+jumpscare_uids = Dictionary[int, String]({
+0: "uid://def4na0hddbtv",
+1: "uid://def4na0hddbtv",
+2: "uid://ceyirmcu15e87"
+})
 metadata/_custom_type_script = "uid://d13p32mq2jeip"
 
 [connection signal="animation_finished" from="Office/OfficeBackground" to="Office" method="_on_office_animation_finished" flags=18]
