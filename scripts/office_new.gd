@@ -96,11 +96,12 @@ func _input(event: InputEvent) -> void:
 			if popup.visible and popup.text == popup_labels["go_to_sleep"]:
 				SignalBus.go_to_sleep.emit()
 
-		if Input.is_action_pressed("click_move"):
+		if Input.is_action_pressed("click_front_window"):
 			if SpecialFunctions.in_range(office.get_local_mouse_position().x,front_window_button.global_position.x,front_window_button.global_position.x+front_window_button.size.x) and SpecialFunctions.in_range(office.get_local_mouse_position().y,front_window_button.global_position.y,front_window_button.global_position.y+front_window_button.size.y):
 				if SaveData.settings_data["game"]["use_old_front_window_hitbox"]:
 					_move_player("f")
-				
+
+		if Input.is_action_pressed("click_move"):				
 			if SpecialFunctions.in_range(office.get_local_mouse_position().y,0,SaveData.settings_data["game"]["top_screen_margin"]) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
 				_move_player("f")
 			if SpecialFunctions.in_range(office.get_local_mouse_position().y,720 - SaveData.settings_data["game"]["bottom_screen_margin"],720) and int(SaveData.settings_data["game"]["movement_mode"]) % 3 == 1:
@@ -244,14 +245,14 @@ func _can_move() -> bool:
 
 func _camera_lock() -> void:
 	if office.animation == "return" or office.animation == "office":
-		SignalBus.change_camera_state.emit(false)
+		SignalBus.change_camera_position.emit(-1)
 	if "go_" in office.animation:
 		if office.animation.right(1) == "l" or office.animation.right(1) == "r":
 			if office.frame >= 3:
-				SignalBus.change_camera_state.emit(true)
+				SignalBus.change_camera_position.emit(0)
 		elif office.animation.right(1) == "f" or office.animation.right(1) == "b":
 			if office.frame >= 4:
-				SignalBus.change_camera_state.emit(true)
+				SignalBus.change_camera_position.emit(0)
 
 func _on_nose_pressed() -> void:
 	SpecialFunctions.audio(NOSE_HONK)

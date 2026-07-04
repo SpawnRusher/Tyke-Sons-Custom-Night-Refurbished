@@ -38,7 +38,7 @@ enum STAGES {IDLE,SITTING,STANDING,SPAWN}
 
 func _ready() -> void:
 	super()
-	
+	if not enabled: return
 	total_spawn_timer = spawn_timer
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_spawn_timer = spawn_timer

@@ -18,7 +18,7 @@ var move_direction: MOVE_DIRECTION = [-1, 1].pick_random() as MOVE_DIRECTION
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-
+	if not enabled: return
 
 	if move_direction == MOVE_DIRECTION.UP_LEFT:
 		set("icon.position."+move_axis,min_position)

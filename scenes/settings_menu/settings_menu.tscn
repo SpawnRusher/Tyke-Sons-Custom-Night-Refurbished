@@ -54,7 +54,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/icon_max_width = 32
 tab_alignment = 1
-current_tab = 1
+current_tab = 2
 tab_3/icon = ExtResource("3_faeuo")
 
 [node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
@@ -165,6 +165,7 @@ popup/item_3/text = "Fast"
 popup/item_3/id = 3
 
 [node name="Game" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1627397997]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -378,7 +379,6 @@ text = "100"
 max_value = 300.0
 
 [node name="Keybinds" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1504104377]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -468,6 +468,17 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
 [node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(646497533, 923350876) index="0" unique_id=1564517087]
 text = "Use Flashlight
+"
+
+[node name="ClickFrontWindow" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1935670563 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../..")
+setting_name = "click_front_window"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1935670563, 923350876) index="0" unique_id=1564517087]
+text = "Click Front Window
 "
 
 [node name="ClickMove" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1906188970 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
@@ -683,6 +694,7 @@ text = "OFF"
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep"]
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain"]
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight"]
+[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow"]
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove"]
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward"]
 [editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]

@@ -90,6 +90,10 @@ click_move={
 "deadzone": 0.2,
 "events": []
 }
+click_front_window={
+"deadzone": 0.2,
+"events": []
+}
 
 [physics]
 

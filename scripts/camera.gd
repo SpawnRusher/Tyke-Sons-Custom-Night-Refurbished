@@ -1,25 +1,25 @@
 extends Camera2D
 
-var goto: float = 200
 var lockpos: float = -1
 
 @export var office: AnimatedSprite2D
 
 func _ready() -> void:
-	SignalBus.change_camera_state.connect(_change_camera_state)
-	position.x = goto
+	SignalBus.change_camera_position.connect(_change_camera_position)
+	position.x = 200
 
 func _process(_delta: float) -> void:
 	_move_camera()
 
-func _change_camera_state(lock: bool, pos:=0.0) -> void:
-	if not lock:
+func _change_camera_position(to_pos:=-1) -> void:
+	to_pos = max(-1,to_pos)
+	if to_pos == -1:
 		if lockpos != -1:
 			lockpos = -1
 			if SaveData.settings_data["game"]["use_old_camera_scrolling"]:
 				position.x = 200
 		return
-	lockpos = pos
+	lockpos = to_pos
 
 func _move_camera() -> void:
 	if lockpos != -1:
@@ -27,9 +27,7 @@ func _move_camera() -> void:
 		return
 		
 	if not SaveData.settings_data["game"]["use_old_camera_scrolling"]:
-		goto = 200 +((office.get_local_mouse_position().x - 840) / 4.1)
-		goto = clampf(goto,0,400)
-		position.x = goto
+		position.x = clampf(200 + ((office.get_local_mouse_position().x - 840) / 4.1), 0, 400)
 		return
 	
 	if office.animation == "office":

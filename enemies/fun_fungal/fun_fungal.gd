@@ -47,6 +47,7 @@ var position_info: Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	if not enabled: return
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 	current_idle_timer = idle_timer
 	

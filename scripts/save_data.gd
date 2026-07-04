@@ -48,6 +48,10 @@ var default_settings_data: Dictionary = {
 			"type":"mouse_button",
 			"button_index":2
 		},
+		"click_front_window": {
+			"type":"mouse_button",
+			"button_index":1
+		},
 		"click_move": {
 			"type":"mouse_button",
 			"button_index":1

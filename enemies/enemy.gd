@@ -22,12 +22,12 @@ func _ready() -> void:
 		push_error("Jumpscare Sound has not yet been set for enemy ",enemy_id,"!")
 	if jumpscare_middle_uid == "" and jumpscare_bedroom_uid == "":
 		push_error("No Jumpscare UIDs have been set for ",enemy_id,"!")
-	
 	enabled = Global.ENABLED_IDS[enemy_id]
 	if not enabled:
 		_deactivate()
-	
-func _deactivate() -> void:
+
+
+func _deactivate() -> void: 
 	self.queue_free()
 	
 func _jumpscare(area:= JUMPSCARE_AREAS.MIDDLE) -> void:

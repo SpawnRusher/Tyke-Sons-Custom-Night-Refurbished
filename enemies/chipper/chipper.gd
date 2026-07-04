@@ -12,7 +12,7 @@ var current_spawn_timer: float
 
 func _ready() -> void:
 	super()
-
+	if not enabled: return
 	SignalBus.pickup_lumber.connect(_pickup_lumber)
 	SignalBus.lumber_despawned.connect(_lumber_despawned)
 	

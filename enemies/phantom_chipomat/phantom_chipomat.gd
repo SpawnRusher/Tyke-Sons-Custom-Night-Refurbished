@@ -15,7 +15,7 @@ var current_attack_timer: float
 
 func _ready() -> void:
 	super()
-		
+	if not enabled: return
 	current_attack_timer = attack_timer
 	sprite.sprite_frames = load(jumpscare_middle_uid)
 

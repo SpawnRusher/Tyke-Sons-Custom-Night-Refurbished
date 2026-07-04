@@ -49,7 +49,7 @@ enum STATES {IDLE,READY,SPAWNED,JUMPSCARE}
 
 func _ready() -> void:
 	super()
-	
+	if not enabled: return
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
 	current_timer = ready_timer
 	current_kill_timer = kill_timer

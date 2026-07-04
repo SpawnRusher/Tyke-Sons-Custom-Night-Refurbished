@@ -59,7 +59,7 @@ func _activate_happyshroom() -> void:
 	office.play("office")
 	window_background.play("f")
 	front_window.visible = false
-	SignalBus.change_camera_state.emit(false)
+	SignalBus.change_camera_position.emit(-1)
 	gui_modulate.color = Color(1,0,0)
 	office_modulate.color = Color(4.416, 0.0, 0.0)
 	happyshroom_layer.show()
