@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dw8ei0ipedn27"]
 
-[ext_resource type="Script" uid="uid://cu1okognyni46" path="res://scripts/toggle_button.gd" id="1_2kdh3"]
+[ext_resource type="Script" uid="uid://cu1okognyni46" path="res://scenes/settings_menu/toggle_button.gd" id="1_2kdh3"]
 
 [node name="ToggleButton" type="Button" unique_id=1624645857]
 custom_minimum_size = Vector2(0, 50)
-anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2

@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://c5tck8h81yxqm"]
 
-[ext_resource type="Script" uid="uid://c46y15exc7sh5" path="res://scripts/keybind_button.gd" id="1_nafp2"]
+[ext_resource type="Script" uid="uid://c46y15exc7sh5" path="res://scenes/settings_menu/keybind_button.gd" id="1_nafp2"]
 
 [node name="KeybindButton" type="Button" unique_id=1625416073]
 custom_minimum_size = Vector2(0, 50)
-anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2

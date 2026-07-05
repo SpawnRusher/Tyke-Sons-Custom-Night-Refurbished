@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://nbk8g6wpfyl0"]
 
-[ext_resource type="Script" uid="uid://bu34ir2vj6od7" path="res://scripts/slider_button.gd" id="1_akmrj"]
+[ext_resource type="Script" uid="uid://bu34ir2vj6od7" path="res://scenes/settings_menu/slider_button.gd" id="1_akmrj"]
 
 [node name="Slider" type="Button" unique_id=810285521]
 custom_minimum_size = Vector2(0, 50)
-anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2

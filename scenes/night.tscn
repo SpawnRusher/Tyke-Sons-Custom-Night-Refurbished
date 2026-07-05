@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0sxpquqg45q0"]
 
 [ext_resource type="Script" uid="uid://dlqq8s6hcoknw" path="res://scripts/night.gd" id="1_45h36"]
-[ext_resource type="Script" uid="uid://b8eegopdrebfi" path="res://scripts/office_new.gd" id="2_0v611"]
+[ext_resource type="Script" uid="uid://b8eegopdrebfi" path="res://scripts/office.gd" id="2_0v611"]
 [ext_resource type="Shader" uid="uid://b7vkrd27auh0y" path="res://shaders/perspective.gdshader" id="3_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://sprites/night/windows/left/closed/window_left_closed.png" id="3_2go0w"]
 [ext_resource type="Texture2D" uid="uid://bmupht3pf77r5" path="res://sprites/night/windows/right/closed/window_right_closed.png" id="4_0f1a6"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3t6q2otj5hlj"]
 
-[ext_resource type="Script" uid="uid://brrjiu601qn05" path="res://scripts/reset_to_defaults_button.gd" id="1_aol00"]
+[ext_resource type="Script" uid="uid://brrjiu601qn05" path="res://scenes/settings_menu/reset_to_defaults_button.gd" id="1_aol00"]
 
 [node name="ResetToDefaults" type="Button" unique_id=2065030133]
 custom_minimum_size = Vector2(0, 50)
