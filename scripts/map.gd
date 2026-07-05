@@ -75,7 +75,6 @@ func _player_icon_tween() -> void:
 	window_direction = office.animation.right(1)
 	go_or_leave = office.animation.left(office.animation.length()-2)
 	if "go" in go_or_leave or "leave" in go_or_leave:
-		#await get_tree().create_timer(timer_durations[window_direction][go_or_leave]).timeout
 		var player_tween = get_tree().current_scene.create_tween()
 		player_tween.tween_property(player,"position",window_positions[window_direction][go_or_leave],tween_durations[window_direction][go_or_leave]+timer_durations[window_direction][go_or_leave]).set_trans(Tween.TRANS_LINEAR)
 

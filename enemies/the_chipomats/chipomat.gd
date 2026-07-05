@@ -12,9 +12,9 @@ class_name Chipomat
 @export var kill_timer_pause_threshold: float = 1.0
 @export var knock_sound: AudioStream
 
-enum SIDES {LEFT=-1,RIGHT=1}
+enum SIDES {LEFT=-1,NONE,RIGHT}
 var side: SIDES
-var side_strings: Array[String] = ["l","N/A","r"]
+var side_strings: Array[String] = ["l","none","r"]
 enum STATES {IDLE,SPAWNED,JUMPSCARE}
 var state: STATES
 
@@ -23,7 +23,7 @@ var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_timer: float
 var office_animation_direction: String
-var flashlight_state: bool
+var using_flashlight: bool
 
 func _ready() -> void:
 	super()
@@ -56,8 +56,8 @@ func _deactivate() -> void:
 	super()
 	sprite.queue_free()
 			
-func _update_flashlight_state(fstate: bool) -> void:
-	flashlight_state = fstate
+func _update_flashlight_state(flashlight_state: bool) -> void:
+	using_flashlight = flashlight_state
 
 func _reset_values() -> void:
 	current_random_variance = 1 + randf_range(-random_variance,random_variance)
@@ -68,7 +68,7 @@ func _reset_values() -> void:
 func _visibility_checks() -> bool:
 	if state == STATES.JUMPSCARE:
 		if sprite.visible:
-			if "open_" in office.animation and flashlight_state:
+			if "open_" in office.animation and using_flashlight:
 				return true
 		return false
 		
@@ -78,7 +78,7 @@ func _visibility_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if not flashlight_state:
+	if not using_flashlight:
 		return false
 		
 	return true
@@ -99,6 +99,7 @@ func _spawn_chipomat() -> void:
 	
 func _leave_chipomat() -> void:
 	SignalBus.enemy_defended.emit(self)
+	side = SIDES.NONE
 	state = STATES.IDLE
 	office_layer.update_window_occupants(enemy_id,side,false)
 	

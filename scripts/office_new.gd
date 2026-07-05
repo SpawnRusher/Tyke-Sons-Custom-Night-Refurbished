@@ -16,7 +16,7 @@ extends CanvasLayer
 var last_animation_played: String
 var office_direction: String
 var lock_movement: bool
-var flashlight_state: bool
+var using_flashlight: bool
 
 var popup_labels: Dictionary = {
 	"go_to_sleep":"Press B to go to sleep!",
@@ -144,8 +144,8 @@ func _move_player(go_direction: String) -> void:
 
 	last_animation_played = office.animation
 
-func _update_flashlight_state(from_state) -> void:
-	flashlight_state = from_state
+func _update_flashlight_state(flashlight_state) -> void:
+	using_flashlight = flashlight_state
 
 func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 	var dir = office.animation.right(1)
@@ -155,25 +155,25 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 		
 	if not to_state:
 		SignalBus.flashlight_off.emit()
-		if not flashlight_state:
+		if not using_flashlight:
 			office.frame = 0
 			front_window_overlay.frame = 0
 
 	else:
 		if dir == "l" or dir == "r":
 			SignalBus.flashlight_on.emit()
-			if flashlight_state:
+			if using_flashlight:
 				office.frame = 1
 			
 		if dir == "b":
 			SignalBus.flashlight_on.emit()
-			if flashlight_state:
+			if using_flashlight:
 				office.frame = 1
 		
 		if dir == "f":
 			if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if flashlight_state:
+				if using_flashlight:
 					office.frame = 1
 					front_window.play("l")
 					front_window_overlay.play("l")
@@ -181,7 +181,7 @@ func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
 					SignalBus.flash_springcrab.emit(true,front_window.animation)
 			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if flashlight_state:
+				if using_flashlight:
 					office.frame = 2
 					front_window.play("r")
 					front_window_overlay.play("r")
@@ -207,7 +207,7 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" in office.animation:
 		office.play("closing_"+dir)
 		SpecialFunctions.audio(CURTAIN_CLOSING)
-		if flashlight_state:
+		if using_flashlight:
 			SignalBus.flashlight_off.emit()
 	
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
@@ -237,7 +237,7 @@ func _can_move() -> bool:
 		return false
 	if lock_movement:
 		return false
-	if flashlight_state:
+	if using_flashlight:
 		return false
 		
 	return true
@@ -284,7 +284,7 @@ func _can_go_to_sleep() -> bool:
 		return false
 	if office.animation != "open_b":
 		return false
-	if not flashlight_state:
+	if not using_flashlight:
 		return false
 	return true
 		

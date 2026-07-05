@@ -4,7 +4,7 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
 const FLASHLIGHT_DEAD: AudioStream = preload("uid://iwmdlvotnfwa")
 
-var flashlight_state: bool
+var using_flashlight: bool
 
 @export var office: AnimatedSprite2D
 @export var batteries: TextureProgressBar
@@ -23,32 +23,32 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	visibility_checks()
-	if flashlight_state:
+	if using_flashlight:
 		value -= 5 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
 	
-func _on_value_changed(bat: float) -> void:
-	if bat == 0:
-		if flashlight_state:
-			flashlight_state = false
+func _on_value_changed() -> void:
+	if value == 0:
+		if using_flashlight:
+			using_flashlight = false
 			SpecialFunctions.audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(false)
 			SignalBus.flashlight_dead.emit()
 	
 func flashlight_off() -> void:
 	if value > 0:
-		if flashlight_state:
-			flashlight_state = false
+		if using_flashlight:
+			using_flashlight = false
 			SpecialFunctions.audio(FLASHLIGHT)
-		SignalBus.update_flashlight_state.emit(flashlight_state)
+			SignalBus.update_flashlight_state.emit(using_flashlight)
 	
 func flashlight_on() -> void:
 	if value > 0:
-		if not flashlight_state:
-			flashlight_state = true
+		if not using_flashlight:
+			using_flashlight = true
 			SpecialFunctions.audio(FLASHLIGHT)
-		SignalBus.update_flashlight_state.emit(flashlight_state)
+			SignalBus.update_flashlight_state.emit(using_flashlight)
 	else:
 		SpecialFunctions.audio(FLASHLIGHT_DEAD)
 
@@ -66,10 +66,10 @@ func visibility_checks() -> void:
 	if office.animation == "open_b":
 		batteries.visible = true
 		batteries.value = 0
-		if flashlight_state:
+		if using_flashlight:
 			batteries.value = current_batteries_cooldown
 			
 func _activate_happyshroom() -> void:
 	value = 100
-	flashlight_state = false
-	SignalBus.update_flashlight_state.emit(flashlight_state)
+	using_flashlight = false
+	SignalBus.update_flashlight_state.emit(using_flashlight)

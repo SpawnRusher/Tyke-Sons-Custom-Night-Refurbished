@@ -33,7 +33,7 @@ var last_side_flashed: String
 func _ready() -> void:
 	super()
 	if not enabled: return
-	SignalBus.flash_springcrab.connect(flash_springcrab)
+	SignalBus.update_flashlight_state.connect(_flash_springcrab)
 	_reset_values()
 
 func _process(delta: float) -> void:
@@ -96,7 +96,7 @@ func _frame_checks() -> int:
 		
 	return 1
 					
-func flash_springcrab(using_flashlight: bool, side: String) -> void:
+func _flash_springcrab(using_flashlight: bool) -> void:
 	if stage != STAGES.SPAWNED:
 		return
 	if not using_flashlight:
@@ -104,7 +104,7 @@ func flash_springcrab(using_flashlight: bool, side: String) -> void:
 	if office.animation != "open_f":
 		return
 
-	if side == last_side_flashed:
+	if sprite.animation == last_side_flashed:
 		current_leave_flashes = leave_flashes
 		return
 	

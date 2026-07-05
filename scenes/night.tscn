@@ -2378,4 +2378,4 @@ metadata/_custom_type_script = "uid://d13p32mq2jeip"
 [connection signal="pressed" from="Office/OfficeBackground/Batteries/BatteriesButton" to="GUI/FlashlightBattery" method="_on_batteries_button_pressed"]
 [connection signal="pressed" from="Office/OfficeBackground/Nose" to="Office" method="_on_nose_pressed"]
 [connection signal="pressed" from="Office/LampButton" to="Office" method="_on_lamp_button_pressed" flags=18]
-[connection signal="value_changed" from="GUI/FlashlightBattery" to="GUI/FlashlightBattery" method="_on_value_changed"]
+[connection signal="value_changed" from="GUI/FlashlightBattery" to="GUI/FlashlightBattery" method="_on_value_changed" unbinds=1]
