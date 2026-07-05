@@ -5,10 +5,10 @@ const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 @onready var tabs_container: TabContainer
 
-var remapping = false
-var remapping_action = null
-var remapping_button = null
-var remapping_state_label = null
+var remapping: bool
+var remapping_action: String
+var remapping_button: Button
+var remapping_state_label: RichTextLabel
 
 @export var username_vbox: VBoxContainer
 @export var username_lineedit: LineEdit
@@ -185,7 +185,7 @@ func _input(event: InputEvent) -> void:
 				SpecialFunctions.audio(QUIETBUTTONPRESS)
 				
 				remapping = false
-				remapping_action = null
+				remapping_action = ""
 				remapping_button = null
 				remapping_state_label = null
 				
