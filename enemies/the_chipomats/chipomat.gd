@@ -12,9 +12,13 @@ class_name Chipomat
 @export var kill_timer_pause_threshold: float = 1.0
 @export var knock_sound: AudioStream
 
-enum SIDES {LEFT=-1,NONE,RIGHT}
+enum SIDES {LEFT=-1,IDLE,RIGHT}
 var side: SIDES
-var side_strings: Array[String] = ["l","none","r"]
+var side_strings: Dictionary[SIDES,String] = {
+	SIDES.LEFT: "l",
+	SIDES.IDLE: "idle",
+	SIDES.RIGHT: "r"
+}
 enum STATES {IDLE,SPAWNED,JUMPSCARE}
 var state: STATES
 
@@ -84,7 +88,7 @@ func _visibility_checks() -> bool:
 	return true
 	
 func _pick_side() -> SIDES:
-	side = SIDES.keys().pick_random()
+	side = [SIDES.LEFT,SIDES.RIGHT].pick_random()
 	if office_layer.get_window_occupants(side).size() >= 2:
 		side = side * -1 as SIDES
 	return side
@@ -99,7 +103,7 @@ func _spawn_chipomat() -> void:
 	
 func _leave_chipomat() -> void:
 	SignalBus.enemy_defended.emit(self)
-	side = SIDES.NONE
+	side = SIDES.IDLE
 	state = STATES.IDLE
 	office_layer.update_window_occupants(enemy_id,side,false)
 	
