@@ -14,7 +14,7 @@ class_name Chipomat
 
 enum SIDES {LEFT=-1,IDLE,RIGHT}
 var side: SIDES
-var side_strings: Dictionary[SIDES,String] = {
+const side_strings: Dictionary[SIDES,String] = {
 	SIDES.LEFT: "l",
 	SIDES.IDLE: "idle",
 	SIDES.RIGHT: "r"

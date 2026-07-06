@@ -25,11 +25,10 @@ class_name Happyshroom
 
 const HAPPYSHROOM_BOSS_MUSIC = preload("uid://cwjw1aqycksxv")
 
+const dialogue: Array = ["You thought you could go to sleep.","You wish.","[color=red][shake rate=25 level=10]Something got inside.[/shake][/color]"]
 
-var dialogue: Array = ["You thought you could go to sleep.","You wish.","[color=red][shake rate=25 level=10]Something got inside.[/shake][/color]"]
-
-var happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid://dpj4nc1887c81"), preload("uid://bm5aol3fvyr1b"), preload("uid://memlagcty5cs")]
-var happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
+const happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid://dpj4nc1887c81"), preload("uid://bm5aol3fvyr1b"), preload("uid://memlagcty5cs")]
+const happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
 
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")

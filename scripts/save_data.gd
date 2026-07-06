@@ -1,6 +1,6 @@
 extends Node
 
-var file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
+const file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
 enum FILE_TYPE {SETTINGS, SAVE}
 
 var default_settings_data: Dictionary = {

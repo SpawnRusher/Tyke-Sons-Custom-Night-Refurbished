@@ -2,10 +2,11 @@ extends TextureRect
 class_name Lumber
 
 
-var LUMBER_COLOR_SPRITE_UIDS: Dictionary[LUMBER_COLORS,String] = {
+const LUMBER_COLOR_SPRITE_UIDS: Dictionary[LUMBER_COLORS,String] = {
 	LUMBER_COLORS.BROWN: "uid://wkwoyiyrresu",
 	LUMBER_COLORS.BLACK: "uid://7koqfbasjup3",
-	LUMBER_COLORS.RED: "uid://dpi8k1s553fm0" }
+	LUMBER_COLORS.RED: "uid://dpi8k1s553fm0" 
+}
 	
 const LUMBER_PICKUP: AudioStream = preload("uid://dbw4rno7ypmsk")
 

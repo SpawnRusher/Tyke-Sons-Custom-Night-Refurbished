@@ -3,9 +3,9 @@ extends TextureRect
 @export var office: AnimatedSprite2D
 @export var player: TextureRect
 
-var default_player_position: Vector2 = Vector2(68,54)
+const default_player_position: Vector2 = Vector2(68,54)
 
-var window_positions: Dictionary = {
+const window_positions: Dictionary = {
 	"l": {
 		"go":Vector2(11,default_player_position.y),
 		"leave":default_player_position
@@ -24,7 +24,7 @@ var window_positions: Dictionary = {
 		}
 	}
 	
-var timer_durations: Dictionary = {
+const timer_durations: Dictionary = {
 	"l": { 
 		"go":0.14, 
 		"leave":0.25 
@@ -43,7 +43,7 @@ var timer_durations: Dictionary = {
 		}
 	}
 
-var tween_durations: Dictionary = {
+const tween_durations: Dictionary = {
 	"l": { 
 		"go":0.6375,
 		"leave":0.6375

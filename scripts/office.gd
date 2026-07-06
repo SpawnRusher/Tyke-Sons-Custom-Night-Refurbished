@@ -18,7 +18,7 @@ var office_direction: String
 var lock_movement: bool
 var using_flashlight: bool
 
-var popup_labels: Dictionary = {
+const popup_labels: Dictionary = {
 	"go_to_sleep":"Press B to go to sleep!",
 	"something_got_inside":"Something got inside.\r\nDon't stay in the same room with it for too long!"
 	}

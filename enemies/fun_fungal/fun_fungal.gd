@@ -20,7 +20,7 @@ var using_flashlight: bool
 var position: String = "idle"
 var front_position: String = ""
 var info_key: String = ""
-var position_info: Dictionary = {
+const position_info: Dictionary = {
 	"idle":Vector2(-600,-600),
 	"l": {
 		"out":Vector2(960,35),

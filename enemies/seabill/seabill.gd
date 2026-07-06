@@ -31,7 +31,7 @@ class_name Seabill
 ## The amount of times for Seabill to turn to stare at the player.
 @export var stare_times: int
 
-var SPAWN_VOICELINES: Array[AudioStream] = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]
+const SPAWN_VOICELINES: Array[AudioStream] = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]
 
 var current_random_variance: float
 var current_timer: float

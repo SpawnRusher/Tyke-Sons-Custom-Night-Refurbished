@@ -8,7 +8,7 @@ extends Node2D
 
 const GAMEOVER: AudioStream = preload("uid://yg3504dqept7")
 
-var DEATH_VOICELINES: Dictionary[int,Array] = {
+const DEATH_VOICELINES: Dictionary[int,Array] = {
 	Enemy.ENEMY_IDS.SPRINGCRAB: [preload("uid://b5id48dqwf0m4"), preload("uid://ckgneeohdoe85"), preload("uid://cimbwjjv8yekq")],
 	Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER: [preload("uid://f253c7ggekbv"), preload("uid://cdy8jvlnt2uel"), preload("uid://exn4yf15x3em")],
 	Enemy.ENEMY_IDS.SEABILL: [preload("uid://brmixgfcobol8"), preload("uid://smfc84cdnkb5"), preload("uid://ccgiqqc6k6nd")],
