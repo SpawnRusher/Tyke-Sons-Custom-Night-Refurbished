@@ -41,8 +41,7 @@ const position_info: Dictionary = {
 		"out":Vector2(760,760),
 		"in":Vector2(760,510),
 		"angle": 0
-	},
-}
+	}}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

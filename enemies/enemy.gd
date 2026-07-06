@@ -10,8 +10,8 @@ enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
 @export var enabled: bool
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscares")
-@export var jumpscare_sound: AudioStream # The enemy's jumpscare audio file.
-@export var jumpscare_uids: Dictionary[JUMPSCARE_AREAS,String] # A dictionary of UIDs for the enemy's jumpscare SpriteFrames resources. An Enemy.JUMPSCARE_AREAS.DEFAULT UID can be specified as a safety fallback. If unspecified, Enemy.JUMPSCARE_AREAS.MIDDLE will be used.
+@export var jumpscare_sound: AudioStream
+@export var jumpscare_uids: Dictionary[JUMPSCARE_AREAS,String]
 
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")

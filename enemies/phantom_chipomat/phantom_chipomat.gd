@@ -1,15 +1,10 @@
 extends Enemy
 class_name Phantom_Chipomat
 
-##The office background.
 @export var office: AnimatedSprite2D
-## The dark office overlay.
 @export var dark_office: AnimatedSprite2D
-## The Enemy sprite.
 @export var sprite: AnimatedSprite2D
-## The attack timer.
 @export var attack_timer: float
-
 
 var current_attack_timer: float
 

@@ -18,7 +18,7 @@ var remapping_state_label: RichTextLabel
 @export var auto_login_button: Button
 @export var gamejolt_info_text: RichTextLabel
 
-var settings_types: Dictionary = {
+const settings_types: Dictionary = {
 	"display": {
 		"max_fps" : {
 			"type":"slider",
@@ -149,8 +149,7 @@ var settings_types: Dictionary = {
 		"move_right": {
 			"type":"keybind",
 		},
-	},
-}
+	},}
 
 signal reset_to_defaults(tab_name: String)
 signal resetted_to_defaults()

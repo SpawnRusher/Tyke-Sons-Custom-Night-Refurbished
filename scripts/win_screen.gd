@@ -10,7 +10,6 @@ const STAR = preload("uid://gut8g6qau2e3")
 
 var can_leave: bool
 
-
 func _ready() -> void:
 	get_tree().paused = false
 	_go_to_sleep()

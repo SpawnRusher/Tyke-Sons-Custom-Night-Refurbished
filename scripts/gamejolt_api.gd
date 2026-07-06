@@ -45,8 +45,7 @@ var url_endpoints: Dictionary[String,Dictionary] = {
 	},
 	"time" : {
 		"time": api_url + "time/?game_id=" + str(game_id)
-	}
-}
+	}}
 #endregion
 
 #region SIGNALS
@@ -84,8 +83,7 @@ var signals: Dictionary = {
 	},
 	"time" : {
 		"time": time_time_completed
-	}
-}
+	}}
 signal users_auth_completed(response: Dictionary, parameters: Dictionary)
 signal users_fetch_completed(response: Dictionary, parameters: Dictionary)
 signal sessions_open_completed(response: Dictionary, parameters: Dictionary)

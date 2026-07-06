@@ -17,8 +17,7 @@ var side: SIDES
 const side_strings: Dictionary[SIDES,String] = {
 	SIDES.LEFT: "l",
 	SIDES.IDLE: "idle",
-	SIDES.RIGHT: "r"
-}
+	SIDES.RIGHT: "r"}
 enum STATES {IDLE,SPAWNED,JUMPSCARE}
 var state: STATES
 

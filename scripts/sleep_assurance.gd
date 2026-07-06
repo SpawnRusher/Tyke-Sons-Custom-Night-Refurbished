@@ -10,7 +10,6 @@ var sleep_assurance_score_per_point: float = 100
 var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
 var sleep_assurance_normal: float = 0.0
-
 var sleep_assurance_points_array: Array[TextureProgressBar]
 
 func _ready() -> void:

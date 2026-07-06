@@ -77,11 +77,9 @@ var default_settings_data: Dictionary = {
 		"username":"",
 		"user_token":"",
 		"auto_login":false
-	},
-}
+	},}
 	
-var default_save_data: Dictionary = {
-}
+var default_save_data: Dictionary = {}
 	
 var settings_data_to_migrate: Dictionary = {
 	"display": {
@@ -93,12 +91,9 @@ var settings_data_to_migrate: Dictionary = {
 	},
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
-	},
-}
+	},}
 	
-var save_data_to_migrate: Dictionary = {
-	
-}
+var save_data_to_migrate: Dictionary = {}
 
 var settings_data: Dictionary = default_settings_data
 var save_data: Dictionary = default_save_data

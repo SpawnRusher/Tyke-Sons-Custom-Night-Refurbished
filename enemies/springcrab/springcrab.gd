@@ -1,25 +1,15 @@
 extends Enemy
 class_name Springcrab
 
-##The office layer.
 @export var office_layer: CanvasLayer
-##The office background.
 @export var office: AnimatedSprite2D
-##The Springcrab sprite.
 @export var sprite: AnimatedSprite2D
-## Seabill
 @export var seabill: Enemy
-## The time it takes to appear at the window.
 @export var spawn_timer: float
-## The time it takes to kill when sitting at the window.
 @export var kill_timer: float
-## The number of flashes it takes to make Springcrab leave.
 @export var leave_flashes: int
-## Adds a random variance to the spawn timer. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
 @export var random_variance: float
-## The timer amount to prevent the kill timer from going below when the flashlight is on (and on Springcrab's side)
 @export var kill_timer_pause_threshold: float
-## The sound for Springcrab walking up to the window.
 @export var walking_sound: AudioStream
 
 enum STAGES {IDLE,SPAWNED,JUMPSCARE}

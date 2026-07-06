@@ -3,7 +3,6 @@ extends CanvasLayer
 const SLEEPING: AudioStream = preload("uid://u3gc7rokd4kn")
 const SLEEPING_FAKEOUT: AudioStream = preload("uid://b76771chtr3et")
 
-
 @export var fade: ColorRect
 
 var happyshroom_active: bool

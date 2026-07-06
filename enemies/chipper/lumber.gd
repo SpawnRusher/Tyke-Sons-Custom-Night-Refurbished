@@ -1,15 +1,12 @@
 extends TextureRect
 class_name Lumber
 
+const LUMBER_PICKUP: AudioStream = preload("uid://dbw4rno7ypmsk")
 
 const LUMBER_COLOR_SPRITE_UIDS: Dictionary[LUMBER_COLORS,String] = {
 	LUMBER_COLORS.BROWN: "uid://wkwoyiyrresu",
 	LUMBER_COLORS.BLACK: "uid://7koqfbasjup3",
-	LUMBER_COLORS.RED: "uid://dpi8k1s553fm0" 
-}
-	
-const LUMBER_PICKUP: AudioStream = preload("uid://dbw4rno7ypmsk")
-
+	LUMBER_COLORS.RED: "uid://dpi8k1s553fm0" }	
 enum LUMBER_COLORS {BROWN,BLACK,RED}
 var lumber_color: LUMBER_COLORS
 var posx: float

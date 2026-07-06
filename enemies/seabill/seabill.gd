@@ -1,34 +1,20 @@
 extends Enemy
 class_name Seabill
 
-##The office background.
 @export var office: AnimatedSprite2D
-## The dark office overlay.
 @export var dark_office: AnimatedSprite2D
-## The dark flickering overlay.
 @export var dark_flicker: ColorRect
-## The Enemy sprite.
 @export var sprite: AnimatedSprite2D
-## The time it takes to reach ready stage.
 @export var ready_timer: float
-## The time it takes to spawn once readying.
 @export var spawn_timer: float
-## The time it takes to kill after reaching attack stage.
 @export var kill_timer: float
-## The time to pause the kill timer at when lights are off.
 @export var kill_timer_pause_threshold: float
-## The time it takes for Seabill to walk across the front window.
 @export var walk_timer: float
-## The time it takes flashing Seabill to make him walk again.
 @export var flash_timer: float
 @export var sleep_assurance_grace_period: float
-## Adds a random variance to the spawn timer. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
 @export var random_variance: float
-## The starting x-position for Seabill to begin walking from.
 @export var start_position: float
-## The ending x-position for Seabill to walk towards before despawning.
 @export var end_position: float
-## The amount of times for Seabill to turn to stare at the player.
 @export var stare_times: int
 
 const SPAWN_VOICELINES: Array[AudioStream] = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]

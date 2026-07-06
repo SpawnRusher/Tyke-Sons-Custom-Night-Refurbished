@@ -20,8 +20,7 @@ func load_scene(path: String, load_immediately:= false, free_after_use:= true, t
 		"status":-1,
 		"progress":[-1],
 		"load_immediately":load_immediately,
-		"free_after_use":free_after_use
-		}
+		"free_after_use":free_after_use}
 	print_debug("Started to load scene " + path + ": ", scenes[path])
 
 func unload_scene(path: String) -> bool:

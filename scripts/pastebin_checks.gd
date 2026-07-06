@@ -1,6 +1,5 @@
 extends Node
 
-
 #region VERSION VARIABLES
 enum VERSION_TYPE {LATEST, OUTDATED, DISABLED, DEV}
 var version: String
@@ -19,7 +18,6 @@ var pastebin_current_line_elements: PackedStringArray
 
 var http_request: HTTPRequest
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	version = ProjectSettings.get_setting("application/config/version")
 

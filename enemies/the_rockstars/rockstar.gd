@@ -1,21 +1,19 @@
 extends Enemy
 class_name Rockstar
 
-@export var player: TextureRect ## The Player icon.
-@export var sprite: TextureRect ## The Rockstar's icon, a TextureRect node.
-@export_enum("x","y") var move_axis: String ## The axis the enemy moves on.
-@export var move_time: float = 1.25 ## The time it takes for the enemy icon to move from min_position to max_position, or vice-versa.
-@export var idle_time: float = 1 ## The time the enemy idles for before commencing movement again.
-@export var min_position: float ## The minimum coordinate position relative to the map the icon can go to, which is closer to the top-left of the map.
-@export var max_position: float ## The maximum coordinate position relative to the map the icon can go to, which is closer to the bottom-right of the map.
-@export var random_variance: float = 0.1 ## Adds a random variance to the movements. 0.05 = 5%, 0.1 = 10%, etc. Value is applied with a random range from (-random_variance,random_variance)
-@export var blink_time: float = 0.15 ## Time between map icons flashing.
+@export var player: TextureRect
+@export var sprite: TextureRect
+@export_enum("x","y") var move_axis: String
+@export var move_time: float = 1.25
+@export var idle_time: float = 1
+@export var min_position: float
+@export var max_position: float
+@export var random_variance: float = 0.1
+@export var blink_time: float = 0.15
 
 enum MOVE_DIRECTION {UP_LEFT=-1,DOWN_RIGHT=1}
 var move_direction: MOVE_DIRECTION = [MOVE_DIRECTION.UP_LEFT, MOVE_DIRECTION.DOWN_RIGHT].pick_random()
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	if not enabled: return
