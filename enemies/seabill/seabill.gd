@@ -30,7 +30,6 @@ var current_flash_timer: float
 var current_sleep_assurance_grace_period: float
 var stare_times_array: Array
 var last_animation_played: String
-var pause: bool
 
 enum STATES {IDLE,READY,SPAWNED,JUMPSCARE}
 var state: STATES
@@ -66,7 +65,7 @@ func _process(delta: float) -> void:
 
 	if state == STATES.SPAWNED:
 		dark_flicker.self_modulate.a8 -= randi_range(-60,60)
-		if sprite.animation == "walking" and not pause:
+		if moving_state == MOVING_STATES.WALKING:
 			current_walk_timer -= 1 * delta
 			current_walk_progress = min((walk_timer-current_walk_timer)/walk_timer,1)
 			sprite.position.x = lerpf(start_position,end_position,current_walk_progress)
@@ -79,7 +78,7 @@ func _process(delta: float) -> void:
 			current_kill_timer -= 1 * delta
 			
 			if not dark_office.visible:
-				current_sleep_assurance_grace_period -= 1
+				current_sleep_assurance_grace_period -= 1 * delta
 				if current_sleep_assurance_grace_period <= 0:
 					SignalBus.remove_sleep_assurance.emit(delta, self)
 			elif office.animation == "office":
@@ -92,7 +91,7 @@ func _process(delta: float) -> void:
 			if current_kill_timer <= 0:
 				prepare_jumpscare()
 							
-		if current_walk_progress == 1.0:
+		if current_walk_progress >= 1.0:
 			leave_seabill()
 			
 func _deactivate() -> void:
