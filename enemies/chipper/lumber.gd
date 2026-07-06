@@ -1,16 +1,16 @@
 extends TextureRect
 class_name Lumber
 
-var LUMBER_COLORS: Array = ["brown","black","red"]
 
-var LUMBER_IMAGE_PATHS: Dictionary = {
-	"brown": "uid://wkwoyiyrresu",
-	"black": "uid://7koqfbasjup3",
-	"red": "uid://dpi8k1s553fm0" }
+var LUMBER_COLOR_SPRITE_UIDS: Dictionary[LUMBER_COLORS,String] = {
+	LUMBER_COLORS.BROWN: "uid://wkwoyiyrresu",
+	LUMBER_COLORS.BLACK: "uid://7koqfbasjup3",
+	LUMBER_COLORS.RED: "uid://dpi8k1s553fm0" }
 	
 const LUMBER_PICKUP: AudioStream = preload("uid://dbw4rno7ypmsk")
 
-var lumber_color: String
+enum LUMBER_COLORS {BROWN,BLACK,RED}
+var lumber_color: LUMBER_COLORS
 var posx: float
 var posy: float
 var lumber_timer: float
@@ -26,8 +26,8 @@ func _process(delta: float) -> void:
 		_despawn_lumber()
 
 func _create_lumber(lumber: Lumber) -> void:
-	lumber_color = LUMBER_COLORS.pick_random()
-	lumber.texture = load(LUMBER_IMAGE_PATHS[lumber_color])
+	lumber_color = randi_range(0,2) as LUMBER_COLORS
+	lumber.texture = load(LUMBER_COLOR_SPRITE_UIDS[lumber_color])
 	posx = randi_range(150,1130-texture.get_width())
 	posy = randi_range(150,570-texture.get_height())
 	lumber.position = Vector2(posx,posy)

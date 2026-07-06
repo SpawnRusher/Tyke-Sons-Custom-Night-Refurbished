@@ -17,11 +17,6 @@ func _ready() -> void:
 	SignalBus.lumber_despawned.connect(_lumber_despawned)
 	
 	current_spawn_timer = spawn_timer
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_L and event.is_pressed():
-			_create_lumber()
 			
 func _process(delta: float) -> void:
 	current_spawn_timer -= 1 * delta
