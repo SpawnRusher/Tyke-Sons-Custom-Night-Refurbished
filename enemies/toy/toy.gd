@@ -3,9 +3,11 @@ class_name Toy
 
 const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
 
+@export_group("Nodes")
 @export var office: AnimatedSprite2D
 @export var dark_overlay: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
+@export_group("Variables")
 @export var spawn_timer: float
 @export var kill_timer: float
 @export var leave_timer: float

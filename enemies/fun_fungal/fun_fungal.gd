@@ -1,14 +1,12 @@
 extends Enemy
 class_name Fun_Fungal
-##The office layer.
+
+@export_group("Nodes")
 @export var office_layer: CanvasLayer
-##The office background.
 @export var office: AnimatedSprite2D
-##The Fun Fungal sprite.
 @export var sprite: AnimatedSprite2D
-## The amount of time Fun Fungal needs to go unflashed for in order to kill.
+@export_group("Variables")
 @export var progress_timer: float
-## Idle time
 @export var idle_timer: float
 
 

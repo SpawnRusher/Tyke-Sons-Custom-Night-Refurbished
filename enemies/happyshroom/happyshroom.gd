@@ -3,8 +3,8 @@ class_name Happyshroom
 
 @export var enemies_list: Node
 
-@export_group("Canvas Layers")
-@export_subgroup("Office")
+@export_group("Nodes")
+@export_subgroup("Office Layer")
 @export var office_layer: CanvasLayer
 @export var office: AnimatedSprite2D
 @export var office_modulate: CanvasModulate

@@ -1,8 +1,10 @@
 extends Enemy
 class_name Rockstar
 
+@export_group("Nodes")
 @export var player: TextureRect
 @export var sprite: TextureRect
+@export_group("Variables")
 @export_enum("x","y") var move_axis: String
 @export var move_time: float = 1.25
 @export var idle_time: float = 1

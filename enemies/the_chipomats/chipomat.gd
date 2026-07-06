@@ -1,10 +1,11 @@
 extends Enemy
 class_name Chipomat
 
+@export_group("Nodes")
 @export var office_layer: CanvasLayer
 @export var office: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
-
+@export_group("Variables")
 @export var spawn_timer: float
 @export var kill_timer: float
 @export var leave_timer: float

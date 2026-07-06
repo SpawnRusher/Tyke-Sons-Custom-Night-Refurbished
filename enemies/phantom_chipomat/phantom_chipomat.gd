@@ -1,9 +1,10 @@
 extends Enemy
 class_name Phantom_Chipomat
-
+@export_group("Nodes")
 @export var office: AnimatedSprite2D
 @export var dark_office: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
+@export_group("Variables")
 @export var attack_timer: float
 
 var current_attack_timer: float

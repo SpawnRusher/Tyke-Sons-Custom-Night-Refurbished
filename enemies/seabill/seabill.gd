@@ -1,10 +1,12 @@
 extends Enemy
 class_name Seabill
 
+@export_group("Nodes")
 @export var office: AnimatedSprite2D
 @export var dark_office: AnimatedSprite2D
 @export var dark_flicker: ColorRect
 @export var sprite: AnimatedSprite2D
+@export_group("Variables")
 @export var ready_timer: float
 @export var spawn_timer: float
 @export var kill_timer: float

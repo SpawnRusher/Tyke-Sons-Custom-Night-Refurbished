@@ -20,8 +20,7 @@ var using_flashlight: bool
 
 const popup_labels: Dictionary = {
 	"go_to_sleep":"Press B to go to sleep!",
-	"something_got_inside":"Something got inside.\r\nDon't stay in the same room with it for too long!"
-	}
+	"something_got_inside":"Something got inside.\r\nDon't stay in the same room with it for too long!"}
 
 #region AudioStreams
 const RUNNING: AudioStream = preload("uid://dn18i7vrgqil8")

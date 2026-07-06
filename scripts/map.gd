@@ -1,5 +1,6 @@
 extends TextureRect
 
+@export_group("Nodes")
 @export var office: AnimatedSprite2D
 @export var player: TextureRect
 

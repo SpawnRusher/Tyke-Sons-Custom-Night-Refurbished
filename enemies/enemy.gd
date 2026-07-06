@@ -5,13 +5,15 @@ enum ENEMY_IDS {NONE, CHIPOMAT_1, CHIPOMAT_2, CHIPOMAT_3, FUN_FUNGAL, SPRINGCRAB
 	
 enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
 
+
 @export_group("Enemy Details")
 @export var enemy_id: ENEMY_IDS
-@export var enabled: bool
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscares")
 @export var jumpscare_sound: AudioStream
 @export var jumpscare_uids: Dictionary[JUMPSCARE_AREAS,String]
+
+var enabled: bool
 
 func _ready() -> void:
 	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
