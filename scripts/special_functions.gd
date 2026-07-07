@@ -17,7 +17,11 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 	assert(repeats >= -1,"Parameter 'repeats' must be greater than or equal to -1.")
 	
 	@warning_ignore("shadowed_variable")
-	var audio: Node = AudioStreamPlayer2D.new()
+	var audio: Node
+	if pan == 0.0:
+		audio = AudioStreamPlayer.new()
+	else:
+		audio = AudioStreamPlayer2D.new()
 
 	if not persist_through_scenes:
 		if not deferred:
@@ -53,10 +57,6 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
 	elif repeats == -1:
 		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
-
-func new_audio(stream: AudioStream) -> AudioStreamPlayer:
-	var player = AudioStreamPlayer.new()
-	return player
 
 ## Creates a timer that calls a function after its interval expires. Can be given a start delay, a number of repeats, and a random negative or positive offset.[br]
 ## [br][param function_name]: The name of the function you want to call after the timer expires.

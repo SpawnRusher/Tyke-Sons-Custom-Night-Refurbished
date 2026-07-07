@@ -98,13 +98,13 @@ func _spawn_chipomat() -> void:
 	sprite.play(side_strings[side])
 	SpecialFunctions.audio(knock_sound,0,1,1,side)
 	state = STATES.SPAWNED
-	_reset_values()
 	office_layer.update_window_occupants(enemy_id,side,true)
 	
 func _leave_chipomat() -> void:
 	SignalBus.enemy_defended.emit(self)
 	side = SIDES.IDLE
 	state = STATES.IDLE
+	_reset_values()
 	office_layer.update_window_occupants(enemy_id,side,false)
 	
 func _prepare_jumpscare() -> void:
