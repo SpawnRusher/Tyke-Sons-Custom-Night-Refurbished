@@ -8,15 +8,15 @@ const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
 @export var dark_overlay: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
 @export_group("Variables")
-@export var spawn_timer: float
+@export var spawn_timer_minimum: float
+@export var spawn_timer_maximum: float
 @export var kill_timer: float
 @export var leave_timer: float
-@export var random_variance: float
 @export var kill_timer_pause_threshold: float
 @export var leaving_sound: AudioStream
 
-var current_random_variance: float
 var current_spawn_timer: float
+var spawn_timer_comparison: float
 var current_kill_timer: float
 var current_leave_timer: float
 enum STAGES {IDLE,SITTING,STANDING,SPAWN,JUMPSCARE}
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 
 	if stage <= STAGES.STANDING:
 		current_spawn_timer -= 1 * delta
-		stage = lerp(0,3,min((spawn_timer - current_spawn_timer)/spawn_timer,1))
+		stage = lerp(0,3,min((spawn_timer_comparison - current_spawn_timer)/spawn_timer_comparison,1))
 		sprite.frame = stage
 			
 	if stage == STAGES.SPAWN:
@@ -57,8 +57,8 @@ func _deactivate() -> void:
 	sprite.queue_free()
 
 func _reset_values() -> void:
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_spawn_timer = spawn_timer
+	current_spawn_timer = randf_range(spawn_timer_minimum,spawn_timer_maximum)
+	spawn_timer_comparison = current_spawn_timer
 	current_kill_timer = kill_timer
 	current_leave_timer = leave_timer
 

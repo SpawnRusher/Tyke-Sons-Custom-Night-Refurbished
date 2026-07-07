@@ -6,10 +6,10 @@ class_name Chipomat
 @export var office: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
 @export_group("Variables")
-@export var spawn_timer: float
+@export var spawn_timer_mininum: float
+@export var spawn_timer_maximum: float
 @export var kill_timer: float
 @export var leave_timer: float
-@export var random_variance: float
 @export var kill_timer_pause_threshold: float = 1.0
 @export var knock_sound: AudioStream
 
@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 	sprite.visible = _visibility_checks()
 	match state:
 		STATES.IDLE:
-			current_spawn_timer -= 1 * delta * current_random_variance
+			current_spawn_timer -= 1 * delta
 			if current_spawn_timer <= 0:
 				_spawn_chipomat()
 		STATES.SPAWNED:
@@ -65,8 +65,7 @@ func _update_flashlight_state(flashlight_state: bool) -> void:
 	using_flashlight = flashlight_state
 
 func _reset_values() -> void:
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_spawn_timer = spawn_timer
+	current_spawn_timer = randf_range(spawn_timer_mininum,spawn_timer_maximum)
 	current_kill_timer = kill_timer
 	current_leave_timer = leave_timer
 

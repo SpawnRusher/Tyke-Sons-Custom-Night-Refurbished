@@ -6,11 +6,11 @@ class_name Rockstar
 @export var sprite: TextureRect
 @export_group("Variables")
 @export_enum("x","y") var move_axis: String
-@export var move_time: float = 1.25
+@export var move_time_minimum: float = 1.125
+@export var move_time_maximum: float = 1.375
 @export var idle_time: float = 1
 @export var min_position: float
 @export var max_position: float
-@export var random_variance: float = 0.1
 @export var blink_time: float = 0.15
 
 enum MOVE_DIRECTION {UP_LEFT=-1,DOWN_RIGHT=1}
@@ -46,8 +46,8 @@ func start_moving() -> void:
 	if move_direction == MOVE_DIRECTION.DOWN_RIGHT:
 		move_to = max_position
 	var tween: Tween = get_tree().create_tween()
-	var current_move_time: float = move_time*(1+randf_range(-random_variance,random_variance))
+	var current_move_time: float = randf_range(move_time_minimum,move_time_maximum)
 	tween.tween_property(sprite,"position:"+move_axis,move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
 	# this 'await' is required, without it, im technically calling start_moving() from inside of itself
-	await get_tree().create_timer(current_move_time).timeout
+	await tween.finished
 	SpecialFunctions.timer(start_moving,idle_time,0,0,0,0,false)

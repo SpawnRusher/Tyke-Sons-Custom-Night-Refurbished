@@ -7,16 +7,15 @@ class_name Springcrab
 @export var sprite: AnimatedSprite2D
 @export var seabill: Enemy
 @export_group("Variables")
-@export var spawn_timer: float
+@export var spawn_timer_mininum: float
+@export var spawn_timer_maximum: float
 @export var kill_timer: float
 @export var leave_flashes: int
-@export var random_variance: float
 @export var kill_timer_pause_threshold: float
 @export var walking_sound: AudioStream
 
 enum STAGES {IDLE,SPAWNED,JUMPSCARE}
 var stage: STAGES
-var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_flashes: float
@@ -36,7 +35,7 @@ func _process(delta: float) -> void:
 		return
 
 	if stage == STAGES.IDLE:
-		current_spawn_timer -= 1 * delta * current_random_variance
+		current_spawn_timer -= 1 * delta
 		if current_spawn_timer <= 0:
 			spawn_springcrab()
 			
@@ -55,8 +54,7 @@ func _deactivate() -> void:
 	# Springcrab doesn't free its sprite because its sprite is used even when its disabled, for flashing front window
 	
 func _reset_values() -> void:
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_spawn_timer = spawn_timer
+	current_spawn_timer = randf_range(spawn_timer_mininum,spawn_timer_maximum)
 	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
 	last_side_flashed = ""

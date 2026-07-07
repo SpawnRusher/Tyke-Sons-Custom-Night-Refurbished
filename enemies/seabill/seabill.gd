@@ -7,21 +7,21 @@ class_name Seabill
 @export var dark_flicker: ColorRect
 @export var sprite: AnimatedSprite2D
 @export_group("Variables")
-@export var ready_timer: float
-@export var spawn_timer: float
+@export var ready_timer_minimum: float
+@export var ready_timer_maximum: float
+@export var spawn_timer_minimum: float
+@export var spawn_timer_maximum: float
 @export var kill_timer: float
 @export var kill_timer_pause_threshold: float
 @export var walk_timer: float
 @export var flash_timer: float
 @export var sleep_assurance_grace_period: float
-@export var random_variance: float
 @export var start_position: float
 @export var end_position: float
 @export var stare_times: int
 
 const SPAWN_VOICELINES: Array[AudioStream] = [preload("uid://dttftglmbprym"), preload("uid://dlvfr07ppj45c"), preload("uid://c6c0yurye6vqp")]
 
-var current_random_variance: float
 var current_timer: float
 var current_kill_timer: float
 var current_walk_timer: float
@@ -54,12 +54,12 @@ func _process(delta: float) -> void:
 		return
 		
 	if state == STATES.IDLE:
-		current_timer -= 1 * delta * current_random_variance
+		current_timer -= 1 * delta
 		if current_timer <= 0:
 			ready_seabill()
 			
 	if state == STATES.READY:
-		current_timer -= 1 * delta * current_random_variance
+		current_timer -= 1 * delta
 		if current_timer <= 0:
 			spawn_seabill()
 
@@ -103,8 +103,7 @@ func _reset_values() -> void:
 	state = STATES.IDLE
 	moving_state = MOVING_STATES.IDLE
 	dark_flicker.self_modulate.a8 = 0
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_timer = ready_timer
+	current_timer = randf_range(ready_timer_minimum,ready_timer_maximum)
 	current_kill_timer = kill_timer
 	current_walk_timer = walk_timer
 	current_walk_progress = 0
@@ -114,8 +113,7 @@ func _reset_values() -> void:
 func ready_seabill() -> void:
 	SpecialFunctions.audio(SPAWN_VOICELINES.pick_random())
 	state = STATES.READY
-	current_random_variance = 1 + randf_range(-random_variance,random_variance)
-	current_timer = spawn_timer
+	current_timer = randf_range(spawn_timer_minimum,spawn_timer_maximum)
 	current_kill_timer = kill_timer
 	
 	stare_times_array.clear()
