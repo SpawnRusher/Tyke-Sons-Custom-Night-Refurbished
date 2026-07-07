@@ -2209,6 +2209,7 @@ metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 [node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754]
 script = ExtResource("307_12jac")
 enemy_id = 6
+sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Dictionary[int, String]({
 0: "uid://dax66f01j7667",
@@ -2296,6 +2297,7 @@ metadata/_custom_type_script = "uid://bf7ejbeuf7kaf"
 [node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
 script = ExtResource("310_asmqh")
 enemy_id = 11
+sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Dictionary[int, String]({
 0: "uid://q3g8sjm1h832",

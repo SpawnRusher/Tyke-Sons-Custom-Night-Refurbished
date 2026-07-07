@@ -13,14 +13,15 @@ class_name Chipomat
 @export var kill_timer_pause_threshold: float = 1.0
 @export var knock_sound: AudioStream
 
+
+enum STATES {IDLE,SPAWNED,JUMPSCARE}
+var state: STATES
 enum SIDES {LEFT=-1,IDLE,RIGHT}
 var side: SIDES
 const side_strings: Dictionary[SIDES,String] = {
 	SIDES.LEFT: "l",
 	SIDES.IDLE: "idle",
 	SIDES.RIGHT: "r"}
-enum STATES {IDLE,SPAWNED,JUMPSCARE}
-var state: STATES
 
 var current_random_variance: float
 var current_spawn_timer: float

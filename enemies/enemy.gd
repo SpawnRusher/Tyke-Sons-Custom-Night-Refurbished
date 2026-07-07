@@ -9,7 +9,7 @@ enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
 @export_group("Enemy Details")
 @export var enemy_id: ENEMY_IDS
 @export var sleep_assurance_score: float = -1
-@export_group("Jumpscares")
+@export_group("Jumpscare Details")
 @export var jumpscare_sound: AudioStream
 @export var jumpscare_uids: Dictionary[JUMPSCARE_AREAS,String]
 
