@@ -7,10 +7,8 @@ class_name Seabill
 @export var dark_flicker: ColorRect
 @export var sprite: AnimatedSprite2D
 @export_group("Variables")
-@export var ready_timer_minimum: float
-@export var ready_timer_maximum: float
-@export var spawn_timer_minimum: float
-@export var spawn_timer_maximum: float
+@export var ready_timer: Vector2 # Vector2 is used due to lack of official Tuples. x = lower bound, y = higher bound.
+@export var spawn_timer: Vector2 # Vector2 is used due to lack of official Tuples. x = lower bound, y = higher bound.
 @export var kill_timer: float
 @export var kill_timer_pause_threshold: float
 @export var walk_timer: float
@@ -103,7 +101,7 @@ func _reset_values() -> void:
 	state = STATES.IDLE
 	moving_state = MOVING_STATES.IDLE
 	dark_flicker.self_modulate.a8 = 0
-	current_timer = randf_range(ready_timer_minimum,ready_timer_maximum)
+	current_timer = randf_range(ready_timer.x,ready_timer.y)
 	current_kill_timer = kill_timer
 	current_walk_timer = walk_timer
 	current_walk_progress = 0
@@ -113,7 +111,7 @@ func _reset_values() -> void:
 func ready_seabill() -> void:
 	SpecialFunctions.audio(SPAWN_VOICELINES.pick_random())
 	state = STATES.READY
-	current_timer = randf_range(spawn_timer_minimum,spawn_timer_maximum)
+	current_timer = randf_range(spawn_timer.x,spawn_timer.y)
 	current_kill_timer = kill_timer
 	
 	stare_times_array.clear()

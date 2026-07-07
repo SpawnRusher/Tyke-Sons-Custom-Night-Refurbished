@@ -19,7 +19,7 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		if area not in enemy.jumpscare_uids:
 			push_error("Enemy ",Enemy.ENEMY_IDS.keys()[enemy]," does not have a Jumpscare UID set for ",Enemy.JUMPSCARE_AREAS.keys()[area], "! Falling back to another UID.")
 			area = enemy.jumpscare_uids.keys().pick_random()
-
+		
 		jumpscare_sprite.sprite_frames = load(enemy.jumpscare_uids[area])
 
 		jumpscare_sprite.play()

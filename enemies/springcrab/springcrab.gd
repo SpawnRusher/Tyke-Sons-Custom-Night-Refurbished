@@ -7,8 +7,7 @@ class_name Springcrab
 @export var sprite: AnimatedSprite2D
 @export var seabill: Enemy
 @export_group("Variables")
-@export var spawn_timer_mininum: float
-@export var spawn_timer_maximum: float
+@export var spawn_timer: Vector2 # Vector2 is used due to lack of official Tuples. x = lower bound, y = higher bound.
 @export var kill_timer: float
 @export var leave_flashes: int
 @export var kill_timer_pause_threshold: float
@@ -54,7 +53,7 @@ func _deactivate() -> void:
 	# Springcrab doesn't free its sprite because its sprite is used even when its disabled, for flashing front window
 	
 func _reset_values() -> void:
-	current_spawn_timer = randf_range(spawn_timer_mininum,spawn_timer_maximum)
+	current_spawn_timer = randf_range(spawn_timer.x,spawn_timer.y)
 	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
 	last_side_flashed = ""

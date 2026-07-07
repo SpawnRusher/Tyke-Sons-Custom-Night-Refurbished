@@ -3,7 +3,7 @@ class_name Enemy
 
 enum ENEMY_IDS {NONE, CHIPOMAT_1, CHIPOMAT_2, CHIPOMAT_3, FUN_FUNGAL, SPRINGCRAB, NIGHTMARE_CHIPPER, SEABILL, FREDBEAR, BIDY, BUSTER, BRUCE, CHIPPER, TOY, PHANTOM_CHIPOMAT, HAPPYSHROOM}
 	
-enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
+enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 
 
 @export_group("Enemy Details")
@@ -11,7 +11,7 @@ enum JUMPSCARE_AREAS {DEFAULT, MIDDLE, BEDROOM}
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscare Details")
 @export var jumpscare_sound: AudioStream
-@export var jumpscare_uids: Dictionary[JUMPSCARE_AREAS,String]
+@export_file var jumpscare_uids: Array[String]
 
 var enabled: bool
 
@@ -30,5 +30,5 @@ func _ready() -> void:
 func _deactivate() -> void: 
 	self.queue_free()
 	
-func _jumpscare(area:= JUMPSCARE_AREAS.DEFAULT) -> void:
+func _jumpscare(area:= JUMPSCARE_AREAS.MIDDLE) -> void:
 	SignalBus.jumpscare.emit(self, area)
