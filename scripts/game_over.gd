@@ -34,5 +34,4 @@ func _input(event: InputEvent) -> void:
 			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
 func move_game_over_text() -> void:
-	game_over_text.position.x = default_text_position.x + randi_range(-3,3)
-	game_over_text.position.y = default_text_position.y + randi_range(-3,3)
+	game_over_text.position = default_text_position + Vector2(randi_range(-3,3),randi_range(-3,3))
