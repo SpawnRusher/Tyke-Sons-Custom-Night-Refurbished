@@ -20,8 +20,6 @@ func _process(delta: float) -> void:
 		current_attack_timer -= 1 * delta
 		if current_attack_timer <= 0:
 			phantom_attack()
-		return
-	current_attack_timer = attack_timer
 		
 func _deactivate() -> void:
 	super()
@@ -29,6 +27,7 @@ func _deactivate() -> void:
 
 func _attack_checks() -> bool:
 	if office.animation != "office":
+		current_attack_timer = attack_timer
 		return false
 	if not dark_office.visible:
 		return false
