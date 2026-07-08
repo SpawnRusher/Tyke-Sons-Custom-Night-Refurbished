@@ -92,7 +92,7 @@ func _input(event: InputEvent) -> void:
 				lamp_button.pressed.emit()
 		
 		if event.is_action_pressed("go_to_sleep"):
-			if popup.visible and popup.text == popup_labels["go_to_sleep"]:
+			if office.animation == "open_b" and using_flashlight and sleep_assurance.sleep_assurance_normal >= 1:
 				SignalBus.go_to_sleep.emit()
 
 		if Input.is_action_pressed("click_front_window"):
