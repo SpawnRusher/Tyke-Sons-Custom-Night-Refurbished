@@ -1766,7 +1766,7 @@ centered = false
 
 [node name="FunFungal" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1843107790]
 show_behind_parent = true
-position = Vector2(760, 493.35)
+position = Vector2(963.94, 495)
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_knw8e")
 
@@ -1819,6 +1819,7 @@ flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="ScreenPopup" type="RichTextLabel" parent="Office/OfficeBackground" unique_id=147396292]
+visible = false
 custom_minimum_size = Vector2(200, 200)
 custom_maximum_size = Vector2(600, 600)
 anchors_preset = 8

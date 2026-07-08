@@ -31,13 +31,13 @@ const position_info: Dictionary = {
 		"angle": 135
 	},
 	"fl": {
-		"out": Vector2(460,760),
-		"in": Vector2(460,510),
+		"out": Vector2(460,745),
+		"in": Vector2(460,495),
 		"angle": 0
 	},
 	"fr": {
-		"out":Vector2(760,760),
-		"in":Vector2(760,510),
+		"out":Vector2(760,745),
+		"in":Vector2(760,495),
 		"angle": 0
 	}}
 
