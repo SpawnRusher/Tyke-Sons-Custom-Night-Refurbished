@@ -11,7 +11,7 @@ const STAR = preload("uid://gut8g6qau2e3")
 var can_leave: bool
 
 func _ready() -> void:
-	get_tree().paused = false
+	PauseManager.unpause()
 	_go_to_sleep()
 	wake_up.animation_finished.connect(_wake_up_loop)
 

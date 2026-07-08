@@ -54,7 +54,7 @@ func _deactivate() -> void:
 	happyshroom_layer.queue_free()
 
 func _activate_happyshroom() -> void:
-	get_tree().paused = false
+	PauseManager.unpause()
 	deactivate_enemies()
 	office_layer.lock_movement = true
 	office.play("office")

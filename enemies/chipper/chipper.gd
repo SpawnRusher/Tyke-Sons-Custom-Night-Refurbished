@@ -4,6 +4,7 @@ class_name Chipper
 const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
+@export var gui_layer: CanvasLayer
 @export_group("Variables")
 @export var spawn_timer: float 
 @export var lumber_timer: float
@@ -26,7 +27,7 @@ func _process(delta: float) -> void:
 
 func _create_lumber() -> void:
 	var lumber: TextureRect = lumber_scene.instantiate()
-	camera.add_child(lumber)
+	gui_layer.add_child(lumber)
 	lumber.lumber_timer = lumber_timer
 
 func _pickup_lumber() -> void:

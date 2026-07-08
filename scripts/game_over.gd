@@ -15,7 +15,7 @@ const DEATH_VOICELINES: Dictionary[int,Array] = {
 	Enemy.ENEMY_IDS.HAPPYSHROOM: [preload("uid://dc4svouk7k6ls")] }
 
 func _ready() -> void:
-	get_tree().paused = false
+	PauseManager.unpause()
 	SceneManager.load_scene("res://scenes/menu.tscn")
 	SceneManager.load_scene("res://scenes/night.tscn")
 	SpecialFunctions.audio(GAMEOVER,0,1,1,0,0,0,false,true)

@@ -2308,8 +2308,9 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://dp3c40drmnlof"])
 metadata/_custom_type_script = "uid://dp3c40drmnlof"
 
-[node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756]
+[node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756 node_paths=PackedStringArray("gui_layer")]
 script = ExtResource("311_7kd1d")
+gui_layer = NodePath("../../GUI")
 spawn_timer = 2.5
 lumber_timer = 4.0
 enemy_id = 12

@@ -36,7 +36,6 @@ func _deactivate() -> void:
 	sprite.queue_free()
 	
 func _area_entered(body: Node2D) -> void:
-	print(self," body entered")
 	if body == player_area_2d:
 		_jumpscare()
 	

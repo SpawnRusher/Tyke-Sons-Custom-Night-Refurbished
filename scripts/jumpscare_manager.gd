@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 	if not jumpscare_sprite.is_playing():
-		get_tree().paused = true
+		PauseManager.pause()
 		SceneManager.load_scene("res://scenes/game_over.tscn")
 		SpecialFunctions.audio(enemy.jumpscare_sound,1)
 
@@ -30,5 +30,5 @@ func _jumpscare_end() -> void:
 	if not SaveData.settings_data["game"]["auto_restart_on_death"]:
 		SceneManager.change_to_scene("res://scenes/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	else:
-		get_tree().paused = false
+		PauseManager.unpause()
 		get_tree().reload_current_scene()
