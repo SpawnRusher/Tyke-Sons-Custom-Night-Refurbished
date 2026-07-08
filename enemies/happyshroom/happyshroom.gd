@@ -38,10 +38,12 @@ func _ready() -> void:
 		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscare_uids.is_empty():
 		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
-		
-	if SpecialFunctions.in_range(Global.ENABLED_IDS.find(false,ENEMY_IDS.CHIPOMAT_1),ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
-		_deactivate()
-		return
+	
+	
+	for i in range(ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
+		if Global.ENABLED_IDS[i] == false:
+			_deactivate()
+			return
 	
 	Global.ENABLED_IDS[ENEMY_IDS.HAPPYSHROOM] = true
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
