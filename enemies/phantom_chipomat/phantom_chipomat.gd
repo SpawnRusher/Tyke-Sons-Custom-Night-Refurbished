@@ -39,7 +39,7 @@ func phantom_attack() -> void:
 	sprite.self_modulate.a = 1
 	sprite.visible = true
 	sprite.play()
-	SpecialFunctions.audio(jumpscare_sound)
+	SpecialFunctions.audio(jumpscare_sound,1)
 	await sprite.animation_finished
 	SignalBus.phantom_jumpscare.emit()
 	var tween = get_tree().create_tween()

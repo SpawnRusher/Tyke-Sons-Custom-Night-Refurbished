@@ -8,6 +8,7 @@ var version_type: PastebinChecks.VERSION_TYPE
 var pastebin_version: String
 
 func _ready() -> void:
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	ENABLED_IDS.resize(16)
 	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
