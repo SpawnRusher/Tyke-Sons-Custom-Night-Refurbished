@@ -3,7 +3,9 @@ class_name Rockstar
 
 @export_group("Nodes")
 @export var player: TextureRect
+@export var player_area_2d: Area2D
 @export var sprite: TextureRect
+@export var sprite_area_2d: Area2D
 @export_group("Variables")
 @export_enum("x","y") var move_axis: String
 @export var move_timer: Vector2 # Vector2 is used due to lack of official Tuples. x = lower bound, y = higher bound.
@@ -19,6 +21,8 @@ func _ready() -> void:
 	super()
 	if not enabled: return
 
+	sprite_area_2d.area_entered.connect(_area_entered)
+
 	if move_direction == MOVE_DIRECTION.UP_LEFT:
 		set("icon.position."+move_axis,min_position)
 	if move_direction == MOVE_DIRECTION.DOWN_RIGHT:
@@ -27,14 +31,14 @@ func _ready() -> void:
 	SpecialFunctions.timer(blinking,blink_time,0,-1,0,0,false,false,true)
 	SpecialFunctions.timer(start_moving,idle_time,0,0,0,0,false,false,true)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if player.get_global_rect().intersects(sprite.get_global_rect()):
-		_jumpscare()
-		
 func _deactivate() -> void:
 	super()
 	sprite.queue_free()
+	
+func _area_entered(body: Node2D) -> void:
+	print(self," body entered")
+	if body == player_area_2d:
+		_jumpscare()
 	
 func blinking() -> void:
 	sprite.visible = !sprite.visible

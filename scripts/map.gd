@@ -66,7 +66,6 @@ const tween_durations: Dictionary = {
 var window_direction: String
 var go_or_leave: String
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	office.animation_changed.connect(_player_icon_tween)

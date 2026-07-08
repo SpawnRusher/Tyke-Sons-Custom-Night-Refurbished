@@ -1687,6 +1687,12 @@ shader_parameter/sharpness = 10.0
 shader_parameter/direction = Vector2(1, 0)
 shader_parameter/wrapping_mode = 0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(15, 15)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_g4v7s"]
+points = PackedVector2Array(-8, 6, -8, 8, 8, 8, 8, 6, 1, -8, -1, -8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3whfi"]
 animations = [{
 "frames": [],
@@ -1983,6 +1989,14 @@ grow_vertical = 2
 texture = ExtResource("287_3xcf7")
 metadata/_edit_use_anchors_ = true
 
+[node name="Area2D" type="Area2D" parent="GUI/Map/PlayerIcon" unique_id=2078038982]
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/PlayerIcon/Area2D" unique_id=1261512970]
+position = Vector2(7.5, 7.5)
+shape = SubResource("RectangleShape2D_g4v7s")
+
 [node name="FredbearIcon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
 layout_mode = 1
 anchors_preset = -1
@@ -1997,6 +2011,14 @@ offset_bottom = -121.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("288_axan3")
+
+[node name="Area2D" type="Area2D" parent="GUI/Map/FredbearIcon" unique_id=427868085]
+position = Vector2(8, 8)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/FredbearIcon/Area2D" unique_id=82023744]
+shape = SubResource("ConvexPolygonShape2D_g4v7s")
 
 [node name="BusterIcon" type="TextureRect" parent="GUI/Map" unique_id=1164710387]
 layout_mode = 1
@@ -2014,6 +2036,14 @@ grow_vertical = 2
 texture = ExtResource("289_25vqt")
 metadata/_edit_use_anchors_ = true
 
+[node name="Area2D" type="Area2D" parent="GUI/Map/BusterIcon" unique_id=567690868]
+position = Vector2(8, 8)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/BusterIcon/Area2D" unique_id=1778266697]
+shape = SubResource("ConvexPolygonShape2D_g4v7s")
+
 [node name="BidyIcon" type="TextureRect" parent="GUI/Map" unique_id=921563182]
 layout_mode = 1
 anchors_preset = -1
@@ -2029,6 +2059,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("290_ny5dv")
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="GUI/Map/BidyIcon" unique_id=1175235940]
+position = Vector2(8, 8)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/BidyIcon/Area2D" unique_id=896866965]
+shape = SubResource("ConvexPolygonShape2D_g4v7s")
 
 [node name="FlashlightBattery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
 anchors_preset = 2
@@ -2216,10 +2254,12 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://dwcd7fsh2iu32"])
 metadata/_custom_type_script = "uid://dv66h4165ppew"
 
-[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "sprite")]
+[node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
 script = ExtResource("309_ic733")
 player = NodePath("../../GUI/Map/PlayerIcon")
+player_area_2d = NodePath("../../GUI/Map/PlayerIcon/Area2D")
 sprite = NodePath("../../GUI/Map/FredbearIcon")
+sprite_area_2d = NodePath("../../GUI/Map/FredbearIcon/Area2D")
 move_axis = "y"
 move_timer = Vector2(1.125, 1.375)
 min_position = 11.0
@@ -2229,10 +2269,12 @@ sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://ds5xydebj2r1t"])
 
-[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "sprite")]
+[node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
 script = ExtResource("309_ic733")
 player = NodePath("../../GUI/Map/PlayerIcon")
+player_area_2d = NodePath("../../GUI/Map/PlayerIcon/Area2D")
 sprite = NodePath("../../GUI/Map/BidyIcon")
+sprite_area_2d = NodePath("../../GUI/Map/BidyIcon/Area2D")
 move_axis = "x"
 move_timer = Vector2(1.35, 1.65)
 idle_time = 1.1
@@ -2243,10 +2285,12 @@ sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://1tnfmu8enmc0"])
 
-[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "sprite")]
+[node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
 script = ExtResource("309_ic733")
 player = NodePath("../../GUI/Map/PlayerIcon")
+player_area_2d = NodePath("../../GUI/Map/PlayerIcon/Area2D")
 sprite = NodePath("../../GUI/Map/BusterIcon")
+sprite_area_2d = NodePath("../../GUI/Map/BusterIcon/Area2D")
 move_axis = "y"
 move_timer = Vector2(1.125, 1.375)
 min_position = 11.0
