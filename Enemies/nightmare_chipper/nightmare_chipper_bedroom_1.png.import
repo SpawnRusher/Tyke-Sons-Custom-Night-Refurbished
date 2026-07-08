@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mxtqwdqxbjjj"
-path="res://.godot/imported/toy_gone.png-77607375bd9f8f0135facddb23ce3410.ctex"
+uid="uid://ceqp4nev03ejd"
+path="res://.godot/imported/nightmare_chipper_bedroom_1.png-417bbf45224385b2fd7d6662e4585d50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/toy/toy_gone.png"
-dest_files=["res://.godot/imported/toy_gone.png-77607375bd9f8f0135facddb23ce3410.ctex"]
+source_file="res://Enemies/nightmare_chipper/nightmare_chipper_bedroom_1.png"
+dest_files=["res://.godot/imported/nightmare_chipper_bedroom_1.png-417bbf45224385b2fd7d6662e4585d50.ctex"]
 
 [params]
 

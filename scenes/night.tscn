@@ -228,8 +228,10 @@
 [ext_resource type="Texture2D" uid="uid://3gs7x50l0n68" path="res://Enemies/chipomat/chipomat_1/window/chipomat_1_right.png" id="228_q0ko7"]
 [ext_resource type="Texture2D" uid="uid://b7u86g24282sd" path="res://Enemies/fun_fungal/fun_fungal.png" id="229_wcxqu"]
 [ext_resource type="Texture2D" uid="uid://1t6dr0wlmmcc" path="res://sprites/night/windows/front/front_left_empty.png" id="230_8r5ac"]
+[ext_resource type="Texture2D" uid="uid://8acqamhv4v4m" path="res://Enemies/nightmare_chipper/nightmare_chipper_bedroom_0.png" id="231_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://c4d7ys60vx1b6" path="res://Enemies/nightmare_chipper/front_nightmare_chipper.png" id="231_7vdcc"]
 [ext_resource type="Texture2D" uid="uid://b3jlxehws7n3b" path="res://sprites/night/windows/front/front_right_empty.png" id="232_0koxg"]
+[ext_resource type="Texture2D" uid="uid://ceqp4nev03ejd" path="res://Enemies/nightmare_chipper/nightmare_chipper_bedroom_1.png" id="232_tt6cj"]
 [ext_resource type="Texture2D" uid="uid://dt0mv57l1vu5s" path="res://Enemies/springcrab/front_springcrab.png" id="233_v04ed"]
 [ext_resource type="Texture2D" uid="uid://mxtqwdqxbjjj" path="res://Enemies/toy/toy_gone.png" id="234_l8om2"]
 [ext_resource type="Texture2D" uid="uid://ddm6s4ueqmeqr" path="res://Enemies/toy/toy_sitting.png" id="235_1bhbq"]
@@ -316,8 +318,6 @@
 [ext_resource type="Script" uid="uid://5w5286ex124e" path="res://Enemies/phantom_chipomat/phantom_chipomat.gd" id="314_tjsjl"]
 [ext_resource type="AudioStream" uid="uid://c6ljbstllxkrm" path="res://Enemies/phantom_chipomat/jumpscare_phantom.ogg" id="315_h18a6"]
 [ext_resource type="AudioStream" uid="uid://dvfy70t3fg5oc" path="res://sounds/jumpscares/jumpscare_wtf.ogg" id="316_0v611"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gstg7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38vnp"]
 animations = [{
@@ -1201,10 +1201,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("183_gosoy")
+"texture": ExtResource("184_j7t0e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("184_j7t0e")
+"texture": ExtResource("183_gosoy")
 }],
 "loop": 0,
 "name": &"open_b",
@@ -1434,6 +1434,20 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("229_wcxqu")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yf5fn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("231_0f1a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("232_tt6cj")
 }],
 "loop": 0,
 "name": &"default",
@@ -1723,9 +1737,8 @@ sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
 
 [node name="OfficeBackground" type="AnimatedSprite2D" parent="Office" unique_id=1036237839]
-material = SubResource("ShaderMaterial_gstg7")
 sprite_frames = SubResource("SpriteFrames_38vnp")
-animation = &"office"
+animation = &"open_b"
 autoplay = "office"
 centered = false
 
@@ -1776,8 +1789,11 @@ position = Vector2(963.94, 495)
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_knw8e")
 
+[node name="NightmareChipperBedroom" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1856867700]
+position = Vector2(628, 360)
+sprite_frames = SubResource("SpriteFrames_yf5fn")
+
 [node name="Toy" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1159662373]
-visible = false
 sprite_frames = SubResource("SpriteFrames_uqrpi")
 centered = false
 

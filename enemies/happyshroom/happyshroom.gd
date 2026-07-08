@@ -39,7 +39,6 @@ func _ready() -> void:
 	if jumpscare_uids.is_empty():
 		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	
-	
 	for i in range(ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
 		if Global.ENABLED_IDS[i] == false:
 			_deactivate()
