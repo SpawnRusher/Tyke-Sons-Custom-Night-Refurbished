@@ -8,10 +8,15 @@ var version_type: PastebinChecks.VERSION_TYPE
 var pastebin_version: String
 
 func _ready() -> void:
-	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	ENABLED_IDS.resize(16)
 	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
+	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_UNPAUSED:
+		print_debug("Game Unpaused")
+	if what == NOTIFICATION_PAUSED:
+		print_debug("Game Paused")
 	
 func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> void:
 	version_type = vt
