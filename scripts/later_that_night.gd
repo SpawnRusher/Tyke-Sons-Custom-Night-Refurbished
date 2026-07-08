@@ -11,7 +11,8 @@ var enter_night: bool
 
 func _ready() -> void:
 	SceneManager.load_scene("res://scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
-	if SaveData.settings_data["quality_of_life"]["skip_loading_night"]:
+	if SaveData.settings_data["game"]["skip_loading_night"]:
+		print("skip load")
 		enter_night = true
 		return
 	
