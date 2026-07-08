@@ -24,7 +24,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	visibility_checks()
 	if using_flashlight:
-		value -= 5 * delta
+		value -= 15 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
 	
