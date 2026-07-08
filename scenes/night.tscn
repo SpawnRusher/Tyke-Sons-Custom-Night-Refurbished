@@ -1790,8 +1790,8 @@ scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_knw8e")
 
 [node name="NightmareChipperBedroom" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1856867700]
-position = Vector2(628, 360)
 sprite_frames = SubResource("SpriteFrames_yf5fn")
+centered = false
 
 [node name="Toy" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1159662373]
 sprite_frames = SubResource("SpriteFrames_uqrpi")
@@ -2293,7 +2293,7 @@ sprite = NodePath("../../GUI/Map/BidyIcon")
 sprite_area_2d = NodePath("../../GUI/Map/BidyIcon/Area2D")
 move_axis = "x"
 move_timer = Vector2(1.35, 1.65)
-idle_time = 1.1
+idle_time = 1.2
 min_position = 11.0
 max_position = 123.0
 enemy_id = 9

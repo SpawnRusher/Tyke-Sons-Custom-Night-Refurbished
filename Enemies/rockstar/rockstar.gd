@@ -9,7 +9,7 @@ class_name Rockstar
 @export_group("Variables")
 @export_enum("x","y") var move_axis: String
 @export var move_timer: Vector2 # Vector2 is used due to lack of official Tuples. x = lower bound, y = higher bound.
-@export var idle_time: float = 1
+@export var idle_time: float = 1.1
 @export var min_position: float
 @export var max_position: float
 @export var blink_time: float = 0.15
