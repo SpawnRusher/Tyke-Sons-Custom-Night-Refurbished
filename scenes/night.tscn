@@ -1724,7 +1724,7 @@ script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
 metadata/_edit_vertical_guides_ = [-306.0]
 
-[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "front_window_button", "dark_overlay", "sleep_assurance", "popup")]
+[node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "front_window_button", "nightmare_chipper", "dark_overlay", "sleep_assurance", "popup")]
 process_mode = 1
 follow_viewport_enabled = true
 script = ExtResource("2_0v611")
@@ -1735,6 +1735,7 @@ window_background = NodePath("OfficeBackground/WindowBackground")
 front_window = NodePath("OfficeBackground/FrontWindow")
 front_window_overlay = NodePath("OfficeBackground/FrontWindowOverlay")
 front_window_button = NodePath("FrontWindowButton")
+nightmare_chipper = NodePath("../Enemies/NightmareChipper")
 dark_overlay = NodePath("OfficeBackground/DarkOfficeOverlay")
 sleep_assurance = NodePath("../GUI/SleepAssurance")
 popup = NodePath("OfficeBackground/ScreenPopup")
@@ -1797,6 +1798,7 @@ sprite_frames = SubResource("SpriteFrames_yf5fn")
 centered = false
 
 [node name="Toy" type="AnimatedSprite2D" parent="Office/OfficeBackground" unique_id=1159662373]
+visible = false
 sprite_frames = SubResource("SpriteFrames_uqrpi")
 centered = false
 
@@ -2243,11 +2245,12 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://3jfdm0d3dpxy"])
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 
-[node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754 node_paths=PackedStringArray("office_layer", "office", "sprite")]
+[node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754 node_paths=PackedStringArray("office_layer", "office", "sprite", "sleep_assurance")]
 script = ExtResource("307_12jac")
 office_layer = NodePath("../../Office")
 office = NodePath("../../Office/OfficeBackground")
 sprite = NodePath("../../Office/OfficeBackground/NightmareChipperBedroom")
+sleep_assurance = NodePath("../../GUI/SleepAssurance")
 flash_timer = 0.5
 kill_timer = 0.3
 enemy_id = 6

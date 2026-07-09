@@ -5,6 +5,7 @@ class_name Nightmare_Chipper
 @export var office_layer: CanvasLayer
 @export var office: AnimatedSprite2D
 @export var sprite: AnimatedSprite2D
+@export var sleep_assurance: RichTextLabel
 @export_group("Variables")
 @export var flash_timer: float
 @export var kill_timer: float
@@ -55,6 +56,8 @@ func _spawn_nightmare_chipper() -> void:
 	if office.animation == "open_b":
 		state = randi_range(0,1) as STATES
 		current_timer = [kill_timer,flash_timer][state]
+		if sleep_assurance.sleep_assurance_normal >= 1:
+			state = STATES.OPEN
 		
 func _leave_nightmare_chipper() -> void:
 	state = STATES.IDLE

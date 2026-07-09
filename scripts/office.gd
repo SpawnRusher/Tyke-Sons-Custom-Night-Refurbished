@@ -7,6 +7,7 @@ extends CanvasLayer
 @export var front_window: AnimatedSprite2D
 @export var front_window_overlay: AnimatedSprite2D
 @export var front_window_button: Button
+@export var nightmare_chipper: Enemy
 @export var dark_overlay: AnimatedSprite2D
 @export var sleep_assurance: RichTextLabel
 @export var popup: RichTextLabel
@@ -101,6 +102,9 @@ func _input(event: InputEvent) -> void:
 				lamp_button.pressed.emit()
 		
 		if event.is_action_pressed("go_to_sleep"):
+			if nightmare_chipper.sprite.frame > 0:
+				nightmare_chipper._jumpscare(Enemy.JUMPSCARE_AREAS.BEDROOM)
+				return
 			if office.animation == "open_b" and flashlight_state == Global.FLASHLIGHT_STATES.ON and sleep_assurance.sleep_assurance_normal >= 1:
 				SignalBus.go_to_sleep.emit()
 
@@ -300,6 +304,7 @@ func _can_go_to_sleep() -> bool:
 		
 func _popup_visibility() -> bool:
 	if popup.text == popup_labels["go_to_sleep"]:
-		return _can_go_to_sleep()
+		if nightmare_chipper.sprite.frame == 0:
+			return _can_go_to_sleep()
 
 	return false
