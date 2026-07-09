@@ -24,6 +24,10 @@
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
 [ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="22_6wigr"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://sprites/menu/minus_0-0_0.png" id="24_48ryc"]
+[ext_resource type="Texture2D" uid="uid://rl232h6kj0fv" path="res://sprites/menu/minus_1-0_0.png" id="25_vhsb5"]
+[ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://sprites/menu/plus_0-0_0.png" id="26_hwfsl"]
+[ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://sprites/menu/plus_1-0_0.png" id="27_a04p5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")
@@ -246,9 +250,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -205.0
+offset_left = 75.0
 offset_top = -45.0
-offset_right = 205.0
+offset_right = 485.0
 offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -303,6 +307,37 @@ theme = ExtResource("22_6wigr")
 text = "v0.0.0"
 fit_content = true
 vertical_alignment = 2
+
+[node name="PresetControls" type="HBoxContainer" parent="Menu" unique_id=618954355]
+anchors_preset = -1
+anchor_left = 0.12200001
+anchor_top = 0.44000003
+anchor_right = 0.12200001
+anchor_bottom = 0.44000003
+offset_left = -0.16000366
+offset_top = 27.199982
+offset_right = 547.83997
+offset_bottom = 77.19998
+
+[node name="PresetButtonLeft" type="TextureButton" parent="Menu/PresetControls" unique_id=1404654020]
+layout_mode = 2
+texture_normal = ExtResource("24_48ryc")
+texture_hover = ExtResource("25_vhsb5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/PresetControls" unique_id=363426685]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("22_6wigr")
+text = "Max Mode"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PresetButtonRight" type="TextureButton" parent="Menu/PresetControls" unique_id=2138640104]
+layout_mode = 2
+texture_normal = ExtResource("26_hwfsl")
+texture_hover = ExtResource("27_a04p5")
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0

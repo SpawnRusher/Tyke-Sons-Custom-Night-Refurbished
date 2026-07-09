@@ -12,6 +12,7 @@ var lumber_color: LUMBER_COLORS
 var posx: float
 var posy: float
 var lumber_timer: float
+var active: bool = true
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 	_create_lumber(self)
 	
 func _process(delta: float) -> void:
-	lumber_timer -= 1 * delta
+	lumber_timer -= (active as int) * delta
 	if lumber_timer <= 0:
 		_despawn_lumber()
 
@@ -34,6 +35,7 @@ func _on_mouse_entered() -> void:
 	_pickup_lumber()
 	
 func _pickup_lumber() -> void:
+	active = false
 	SpecialFunctions.audio(LUMBER_PICKUP)
 	SignalBus.pickup_lumber.emit()
 	var fade_tween = get_tree().create_tween()
