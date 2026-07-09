@@ -6,5 +6,5 @@ const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 @export var tab: VBoxContainer
 
 func _on_pressed() -> void:
-	settings_menu.reset_to_defaults.emit(tab.name)
+	settings_menu.reset_to_defaults.emit(tab.name.to_lower())
 	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
