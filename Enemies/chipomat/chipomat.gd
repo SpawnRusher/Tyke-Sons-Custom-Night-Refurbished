@@ -27,7 +27,7 @@ var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_timer: float
 var office_animation_direction: String
-var using_flashlight: bool
+var flashlight_state: Global.FLASHLIGHT_STATES
 
 func _ready() -> void:
 	super()
@@ -60,8 +60,8 @@ func _deactivate() -> void:
 	super()
 	sprite.queue_free()
 			
-func _update_flashlight_state(flashlight_state: bool) -> void:
-	using_flashlight = flashlight_state
+func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+	flashlight_state = new_state
 
 func _reset_values() -> void:
 	current_spawn_timer = randf_range(spawn_timer.x,spawn_timer.y)
@@ -71,7 +71,7 @@ func _reset_values() -> void:
 func _visibility_checks() -> bool:
 	if state == STATES.JUMPSCARE:
 		if sprite.visible:
-			if "open_" in office.animation and using_flashlight:
+			if "open_" in office.animation and flashlight_state == Global.FLASHLIGHT_STATES.ON:
 				return true
 		return false
 		
@@ -81,7 +81,7 @@ func _visibility_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if not using_flashlight:
+	if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
 		return false
 		
 	return true

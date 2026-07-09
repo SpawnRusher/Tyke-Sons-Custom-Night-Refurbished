@@ -16,7 +16,14 @@ extends CanvasLayer
 var last_animation_played: String
 var office_direction: String
 var lock_movement: bool
-var using_flashlight: bool
+var flashlight_state: Global.FLASHLIGHT_STATES:
+	set(new_value):
+		flashlight_state = new_value
+		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
+			dead_flashlight_sound_check = false
+		if flashlight_state == Global.FLASHLIGHT_STATES.DEAD:
+			_use_flashlight(Global.FLASHLIGHT_STATES.OFF)
+var dead_flashlight_sound_check: bool
 
 const popup_labels: Dictionary = {
 	"go_to_sleep":"Press B to go to sleep!",
@@ -40,7 +47,6 @@ var window_occupants_r: Array[Enemy.ENEMY_IDS]
 
 func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
-	SignalBus.flashlight_dead.connect(_use_flashlight.bind(false))
 
 func _process(delta: float) -> void:
 	office_direction = office.animation.right(1)
@@ -92,7 +98,7 @@ func _input(event: InputEvent) -> void:
 				lamp_button.pressed.emit()
 		
 		if event.is_action_pressed("go_to_sleep"):
-			if office.animation == "open_b" and using_flashlight and sleep_assurance.sleep_assurance_normal >= 1:
+			if office.animation == "open_b" and flashlight_state == Global.FLASHLIGHT_STATES.ON and sleep_assurance.sleep_assurance_normal >= 1:
 				SignalBus.go_to_sleep.emit()
 
 		if Input.is_action_pressed("click_front_window"):
@@ -111,9 +117,9 @@ func _input(event: InputEvent) -> void:
 				_move_player("r")
 	
 		if Input.is_action_pressed("use_flashlight"):
-			_use_flashlight(true, office.get_local_mouse_position())
+			_use_flashlight(Global.FLASHLIGHT_STATES.ON, office.get_local_mouse_position())
 		if not Input.is_action_pressed("use_flashlight"):
-			_use_flashlight(false, office.get_local_mouse_position())
+			_use_flashlight(Global.FLASHLIGHT_STATES.OFF, office.get_local_mouse_position())
 
 
 func _move_player(go_direction: String) -> void:
@@ -143,49 +149,51 @@ func _move_player(go_direction: String) -> void:
 
 	last_animation_played = office.animation
 
-func _update_flashlight_state(flashlight_state) -> void:
-	using_flashlight = flashlight_state
+func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+	flashlight_state = new_state
 
-func _use_flashlight(to_state: bool, mouse_pos:= Vector2(0,0)) -> void:
+func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0)) -> void:
 	var dir = office.animation.right(1)
 	
 	if "open_" not in office.animation:
 		return
 		
-	if not to_state:
+	if to_state == Global.FLASHLIGHT_STATES.OFF:
 		SignalBus.flashlight_off.emit()
-		if not using_flashlight:
+		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
 			office.frame = 0
 			front_window_overlay.frame = 0
 
-	else:
+	elif dead_flashlight_sound_check == false:
+		dead_flashlight_sound_check = true
 		if dir == "l" or dir == "r":
 			SignalBus.flashlight_on.emit()
-			if using_flashlight:
+			if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 				office.frame = 1
 			
 		if dir == "b":
 			SignalBus.flashlight_on.emit()
-			if using_flashlight:
+			if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 				office.frame = 1
 		
 		if dir == "f":
 			if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if using_flashlight:
+				if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 					office.frame = 1
 					front_window.play("l")
 					front_window_overlay.play("l")
 					front_window_overlay.frame = 1
-					SignalBus.flash_springcrab.emit(true,front_window.animation)
 			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
 				SignalBus.flashlight_on.emit()
-				if using_flashlight:
+				if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 					office.frame = 2
 					front_window.play("r")
 					front_window_overlay.play("r")
-					front_window_overlay.frame = 1
-					SignalBus.flash_springcrab.emit(true,front_window.animation)
+					front_window_overlay.frame = 1		
+		
+	else:
+		dead_flashlight_sound_check = false
 		
 	if _can_go_to_sleep():
 		popup.text = popup_labels["go_to_sleep"]
@@ -206,7 +214,7 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" in office.animation:
 		office.play("closing_"+dir)
 		SpecialFunctions.audio(CURTAIN_CLOSING)
-		if using_flashlight:
+		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			SignalBus.flashlight_off.emit()
 	
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
@@ -236,7 +244,7 @@ func _can_move() -> bool:
 		return false
 	if lock_movement:
 		return false
-	if using_flashlight:
+	if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 		return false
 		
 	return true
@@ -283,7 +291,7 @@ func _can_go_to_sleep() -> bool:
 		return false
 	if office.animation != "open_b":
 		return false
-	if not using_flashlight:
+	if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
 		return false
 	return true
 		

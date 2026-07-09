@@ -7,6 +7,8 @@ var died_to_id: Enemy.ENEMY_IDS
 var version_type: PastebinChecks.VERSION_TYPE
 var pastebin_version: String
 
+enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	ENABLED_IDS.resize(16)

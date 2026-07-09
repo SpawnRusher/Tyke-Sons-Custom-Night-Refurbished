@@ -1201,10 +1201,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("184_j7t0e")
+"texture": ExtResource("183_gosoy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("183_gosoy")
+"texture": ExtResource("184_j7t0e")
 }],
 "loop": 0,
 "name": &"open_b",
@@ -2349,7 +2349,7 @@ office = NodePath("../../Office/OfficeBackground")
 dark_overlay = NodePath("../../Office/OfficeBackground/DarkOfficeOverlay")
 sprite = NodePath("../../Office/OfficeBackground/Toy")
 spawn_timer = Vector2(25.5, 34.5)
-kill_timer = 12.5
+kill_timer = 15.0
 leave_timer = 2.5
 kill_timer_pause_threshold = 1.0
 leaving_sound = ExtResource("313_chpop")

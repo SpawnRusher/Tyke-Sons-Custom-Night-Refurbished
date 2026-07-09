@@ -4,7 +4,7 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
 const FLASHLIGHT_DEAD: AudioStream = preload("uid://iwmdlvotnfwa")
 
-var using_flashlight: bool
+var flashlight_state: Global.FLASHLIGHT_STATES
 
 @export var office: AnimatedSprite2D
 @export var batteries: TextureProgressBar
@@ -23,32 +23,31 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	visibility_checks()
-	if using_flashlight:
+	if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 		value -= 15 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
 	
 func _on_value_changed() -> void:
 	if value == 0:
-		if using_flashlight:
-			using_flashlight = false
+		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+			flashlight_state = Global.FLASHLIGHT_STATES.OFF
 			SpecialFunctions.audio(FLASHLIGHT_DEAD)
-			SignalBus.update_flashlight_state.emit(false)
-			SignalBus.flashlight_dead.emit()
+			SignalBus.update_flashlight_state.emit(Global.FLASHLIGHT_STATES.DEAD)
 	
 func flashlight_off() -> void:
 	if value > 0:
-		if using_flashlight:
-			using_flashlight = false
+		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+			flashlight_state = Global.FLASHLIGHT_STATES.OFF
 			SpecialFunctions.audio(FLASHLIGHT)
-			SignalBus.update_flashlight_state.emit(using_flashlight)
+			SignalBus.update_flashlight_state.emit(flashlight_state)
 	
 func flashlight_on() -> void:
 	if value > 0:
-		if not using_flashlight:
-			using_flashlight = true
+		if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
+			flashlight_state = Global.FLASHLIGHT_STATES.ON
 			SpecialFunctions.audio(FLASHLIGHT)
-			SignalBus.update_flashlight_state.emit(using_flashlight)
+			SignalBus.update_flashlight_state.emit(flashlight_state)
 	else:
 		SpecialFunctions.audio(FLASHLIGHT_DEAD)
 
@@ -57,6 +56,8 @@ func phantom_jumpscare() -> void:
 
 func _on_batteries_button_pressed() -> void:
 	if current_batteries_cooldown >= batteries_cooldown:
+		flashlight_state = Global.FLASHLIGHT_STATES.OFF
+		SignalBus.update_flashlight_state.emit(flashlight_state)
 		value = 100.0
 		current_batteries_cooldown = 0
 		SpecialFunctions.audio(QUIETBUTTONPRESS)
@@ -66,10 +67,10 @@ func visibility_checks() -> void:
 	if office.animation == "open_b":
 		batteries.visible = true
 		batteries.value = 0
-		if using_flashlight:
+		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			batteries.value = current_batteries_cooldown
 			
 func _activate_happyshroom() -> void:
 	value = 100
-	using_flashlight = false
-	SignalBus.update_flashlight_state.emit(using_flashlight)
+	flashlight_state = Global.FLASHLIGHT_STATES.OFF
+	SignalBus.update_flashlight_state.emit(flashlight_state)

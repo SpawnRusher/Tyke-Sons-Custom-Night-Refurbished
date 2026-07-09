@@ -12,7 +12,7 @@ class_name Nightmare_Chipper
 enum STATES {IDLE,CLOSED,OPEN}
 var state: STATES
 var current_timer: float
-var using_flashlight: bool
+var flashlight_state: Global.FLASHLIGHT_STATES
 
 func _ready() -> void:
 	super()
@@ -22,7 +22,7 @@ func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 
 func _process(delta: float) -> void:
-	if office.animation == "open_b" and using_flashlight:
+	if office.animation == "open_b" and flashlight_state == Global.FLASHLIGHT_STATES.ON:
 		current_timer -= 1 * delta
 	
 	if current_timer <= 0:
@@ -43,5 +43,5 @@ func _spawn_nightmare_chipper() -> void:
 func _leave_nightmare_chipper() -> void:
 	pass
 		
-func _update_flashlight_state(flashlight_state) -> void:
-	using_flashlight = flashlight_state
+func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+	flashlight_state = new_state

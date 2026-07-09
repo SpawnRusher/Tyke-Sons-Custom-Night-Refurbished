@@ -15,9 +15,7 @@ signal change_camera_position(pos: int)
 
 signal flashlight_off()
 signal flashlight_on()
-signal flashlight_dead()
-signal update_flashlight_state(flashlight_state: bool)
-signal flash_springcrab(flashlight_state: bool, side: String)
+signal update_flashlight_state(state: Global.FLASHLIGHT_STATES)
 
 signal pickup_lumber()
 signal lumber_despawned()
