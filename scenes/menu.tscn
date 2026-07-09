@@ -25,9 +25,11 @@
 [ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="22_6wigr"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://sprites/menu/minus_0-0_0.png" id="24_48ryc"]
+[ext_resource type="Script" uid="uid://dv4jm5hofvke8" path="res://scripts/preset_controls.gd" id="24_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://rl232h6kj0fv" path="res://sprites/menu/minus_1-0_0.png" id="25_vhsb5"]
 [ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://sprites/menu/plus_0-0_0.png" id="26_hwfsl"]
 [ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://sprites/menu/plus_1-0_0.png" id="27_a04p5"]
+[ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scripts/preset.gd" id="29_hwfsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")
@@ -308,36 +310,56 @@ text = "v0.0.0"
 fit_content = true
 vertical_alignment = 2
 
-[node name="PresetControls" type="HBoxContainer" parent="Menu" unique_id=618954355]
-anchors_preset = -1
-anchor_left = 0.12200001
-anchor_top = 0.44000003
-anchor_right = 0.12200001
-anchor_bottom = 0.44000003
-offset_left = -0.16000366
-offset_top = 27.199982
-offset_right = 547.83997
-offset_bottom = 77.19998
+[node name="PresetControls" type="Panel" parent="Menu" unique_id=134214408 node_paths=PackedStringArray("text", "presets", "left_button", "right_button")]
+offset_left = 160.0
+offset_top = 350.0
+offset_right = 712.0
+offset_bottom = 399.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("24_vhsb5")
+text = NodePath("HBoxContainer/RichTextLabel")
+presets = NodePath("../Presets")
+left_button = NodePath("HBoxContainer/PresetButtonLeft")
+right_button = NodePath("HBoxContainer/PresetButtonRight")
 
-[node name="PresetButtonLeft" type="TextureButton" parent="Menu/PresetControls" unique_id=1404654020]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/PresetControls" unique_id=618954355]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="PresetButtonLeft" type="TextureButton" parent="Menu/PresetControls/HBoxContainer" unique_id=1404654020]
 layout_mode = 2
 texture_normal = ExtResource("24_48ryc")
 texture_hover = ExtResource("25_vhsb5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu/PresetControls" unique_id=363426685]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/PresetControls/HBoxContainer" unique_id=363426685]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("22_6wigr")
-text = "Max Mode"
+text = "Preset Name"
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PresetButtonRight" type="TextureButton" parent="Menu/PresetControls" unique_id=2138640104]
+[node name="PresetButtonRight" type="TextureButton" parent="Menu/PresetControls/HBoxContainer" unique_id=2138640104]
 layout_mode = 2
 texture_normal = ExtResource("26_hwfsl")
 texture_hover = ExtResource("27_a04p5")
+
+[node name="Presets" type="Node" parent="Menu" unique_id=1880380593]
+
+[node name="MaxMode" type="Node" parent="Menu/Presets" unique_id=1435786425]
+script = ExtResource("29_hwfsl")
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0
@@ -405,6 +427,8 @@ flat = true
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_exited"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="pressed" from="Menu/PresetControls/HBoxContainer/PresetButtonLeft" to="Menu/PresetControls" method="_on_preset_button_left_pressed"]
+[connection signal="pressed" from="Menu/PresetControls/HBoxContainer/PresetButtonRight" to="Menu/PresetControls" method="_on_preset_button_right_pressed"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
 
 [editable path="Menu/EnemyPortraitGrid/Chipomat1"]

@@ -1,5 +1,6 @@
 extends Node
 
+var current_preset: int = -1
 var ENABLED_IDS: Array[bool]
 
 var died_to_id: Enemy.ENEMY_IDS = Enemy.ENEMY_IDS.NOT_SET
