@@ -182,35 +182,35 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_1beph")
 border = NodePath("PortraitBorder")
 enemy_id = 6
-enemy_tooltip = "He will appear on the bed when you visit the bedroom. If his mouth is shut, avoid flashing him too long. If his mouth is open, flash him until he disappears."
+enemy_tooltip = "He will appear on the bed when you visit the bedroom. If his mouth is shut, avoid shining the flashlight on him too long. If his mouth is open, shine the flashlight on him until he disappears."
 
 [node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
 border = NodePath("PortraitBorder")
 enemy_id = 7
-enemy_tooltip = "He will announce his attack ahead of time. While he is crossing, be sure to shut off your lights when he turns to stare at you. Also... don't go to the front while he's crossing."
+enemy_tooltip = "He will announce his attack ahead of time. You can move around the room freely while he is crossing, except going to the front... While he is crossing, be sure to shut off your lights when he turns to stare at you!"
 
 [node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_7x65h")
 border = NodePath("PortraitBorder")
 enemy_id = 8
-enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon. Avoid him when navigating the room."
+enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon on the map. Avoid him when navigating the room."
 
 [node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0ndyk")
 border = NodePath("PortraitBorder")
 enemy_id = 9
-enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon. Avoid him when navigating the room."
+enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon on the map. Avoid him when navigating the room."
 
 [node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0qewb")
 border = NodePath("PortraitBorder")
 enemy_id = 10
-enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon. Avoid him when navigating the room."
+enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon on the map. Avoid him when navigating the room."
 
 [node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
@@ -231,14 +231,14 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_b38jj")
 border = NodePath("PortraitBorder")
 enemy_id = 13
-enemy_tooltip = "He will appear in the bedroom sitting down, then he will stand up and later leave. After he leaves, shut off the lights until you hear him return upstairs."
+enemy_tooltip = "He will remain in the bedroom until getting up to leave. After he leaves, shut off the lights until you hear him run back upstairs."
 
 [node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
 border = NodePath("PortraitBorder")
 enemy_id = 14
-enemy_tooltip = "He will manifest if you reside in the dark for too long, and drain some of your flashlight battery."
+enemy_tooltip = "He will appear and jumpscare you if you have the lights turned off for too long, and will drain some of your flashlight's battery."
 
 [node name="EnemyTooltip" type="Panel" parent="Menu" unique_id=886793377]
 show_behind_parent = true
