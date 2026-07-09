@@ -1444,6 +1444,9 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
 "texture": ExtResource("231_0f1a6")
 }, {
 "duration": 1.0,
@@ -2006,11 +2009,11 @@ texture = ExtResource("287_3xcf7")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="GUI/Map/PlayerIcon" unique_id=2078038982]
+position = Vector2(7.5, 7.5)
 input_pickable = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/PlayerIcon/Area2D" unique_id=1261512970]
-position = Vector2(7.5, 7.5)
 shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="FredbearIcon" type="TextureRect" parent="GUI/Map" unique_id=910740120]
@@ -2240,8 +2243,13 @@ jumpscare_sound = ExtResource("300_bo7y1")
 jumpscare_uids = Array[String](["uid://3jfdm0d3dpxy"])
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 
-[node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754]
+[node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("307_12jac")
+office_layer = NodePath("../../Office")
+office = NodePath("../../Office/OfficeBackground")
+sprite = NodePath("../../Office/OfficeBackground/NightmareChipperBedroom")
+flash_timer = 0.5
+kill_timer = 0.3
 enemy_id = 6
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
