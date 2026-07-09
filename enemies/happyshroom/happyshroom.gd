@@ -31,7 +31,7 @@ const happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid:
 const happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
 
 func _ready() -> void:
-	assert(enemy_id > ENEMY_IDS.NONE, "An Enemy ID has not been set for one of the enemies!")
+	assert(enemy_id > ENEMY_IDS.NOT_SET, "An Enemy ID has not been set for one of the enemies!")
 	if sleep_assurance_score == -1:
 		push_error("Sleep assurance score has not been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscare_sound == null:

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Preset" format=3 uid="uid://c4ek1m2ma1a2h"]
+
+[ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scripts/preset.gd" id="1_2a8sh"]
+
+[resource]
+script = ExtResource("1_2a8sh")
+enabled_enemies = Dictionary[int, bool]({
+0: true,
+1: true,
+2: true,
+3: true,
+4: true,
+5: true,
+6: true,
+7: true,
+8: true,
+9: true,
+10: true,
+11: true,
+12: true,
+13: true
+})
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"

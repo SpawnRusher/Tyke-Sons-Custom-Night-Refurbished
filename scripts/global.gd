@@ -2,7 +2,7 @@ extends Node
 
 var ENABLED_IDS: Array[bool]
 
-var died_to_id: Enemy.ENEMY_IDS
+var died_to_id: Enemy.ENEMY_IDS = Enemy.ENEMY_IDS.NOT_SET
 
 var version_type: PastebinChecks.VERSION_TYPE
 var pastebin_version: String
@@ -11,7 +11,7 @@ enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	ENABLED_IDS.resize(16)
+	ENABLED_IDS.resize(15)
 	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
 
 func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> void:

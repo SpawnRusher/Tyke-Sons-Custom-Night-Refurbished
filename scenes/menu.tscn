@@ -146,98 +146,97 @@ columns = 7
 layout_mode = 2
 texture = SubResource("AtlasTexture_hwfsl")
 border = NodePath("PortraitBorder")
-enemy_id = 1
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
 [node name="Chipomat2" parent="Menu/EnemyPortraitGrid" unique_id=72126778 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_a04p5")
 border = NodePath("PortraitBorder")
-enemy_id = 2
+enemy_id = 1
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
 [node name="Chipomat3" parent="Menu/EnemyPortraitGrid" unique_id=1422143944 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b5gwo")
 border = NodePath("PortraitBorder")
-enemy_id = 3
+enemy_id = 2
 enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
 
 [node name="FunFungal" parent="Menu/EnemyPortraitGrid" unique_id=1368074244 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_negbw")
 border = NodePath("PortraitBorder")
-enemy_id = 4
+enemy_id = 3
 enemy_tooltip = "He will slowly emerge from one of the windows, sides or front. Keep your flashlight shone on him until he retreats fully."
 
 [node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mg76g")
 border = NodePath("PortraitBorder")
-enemy_id = 5
+enemy_id = 4
 enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up your alternation, or you'll have to do it again!"
 
 [node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_1beph")
 border = NodePath("PortraitBorder")
-enemy_id = 6
+enemy_id = 5
 enemy_tooltip = "He will appear on the bed when you visit the bedroom. If his mouth is shut, avoid shining the flashlight on him too long. If his mouth is open, shine the flashlight on him until he disappears."
 
 [node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_j1aad")
 border = NodePath("PortraitBorder")
-enemy_id = 7
+enemy_id = 6
 enemy_tooltip = "He will announce his attack ahead of time. You can move around the room freely while he is crossing, except going to the front... While he is crossing, be sure to shut off your lights when he turns to stare at you!"
 
 [node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_7x65h")
 border = NodePath("PortraitBorder")
-enemy_id = 8
+enemy_id = 7
 enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon on the map. Avoid him when navigating the room."
 
 [node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0ndyk")
 border = NodePath("PortraitBorder")
-enemy_id = 9
+enemy_id = 8
 enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon on the map. Avoid him when navigating the room."
 
 [node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0qewb")
 border = NodePath("PortraitBorder")
-enemy_id = 10
+enemy_id = 9
 enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon on the map. Avoid him when navigating the room."
 
 [node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_5i3g8")
 border = NodePath("PortraitBorder")
-enemy_id = 11
+enemy_id = 10
 enemy_tooltip = "ZZZZZ buzz buzz saw"
 
 [node name="Chipper" parent="Menu/EnemyPortraitGrid" unique_id=1587528508 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_mhjd8")
 border = NodePath("PortraitBorder")
-enemy_id = 12
+enemy_id = 11
 enemy_tooltip = "Lumber lumber lumber"
 
 [node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_b38jj")
 border = NodePath("PortraitBorder")
-enemy_id = 13
+enemy_id = 12
 enemy_tooltip = "He will remain in the bedroom until getting up to leave. After he leaves, shut off the lights until you hear him run back upstairs."
 
 [node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
 texture = SubResource("AtlasTexture_x5dr5")
 border = NodePath("PortraitBorder")
-enemy_id = 14
+enemy_id = 13
 enemy_tooltip = "He will appear and jumpscare you if you have the lights turned off for too long, and will drain some of your flashlight's battery."
 
 [node name="EnemyTooltip" type="Panel" parent="Menu" unique_id=886793377]

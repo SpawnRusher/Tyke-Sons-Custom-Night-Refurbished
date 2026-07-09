@@ -9,7 +9,7 @@ class_name Enemy_Portrait
 const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 
 func _ready() -> void:
-	assert(enemy_id > Enemy.ENEMY_IDS.NONE,"Enemy ID has not been set for one of the enemy portraits!")
+	assert(enemy_id > Enemy.ENEMY_IDS.NOT_SET,"Enemy ID has not been set for one of the enemy portraits!")
 	toggle(Global.ENABLED_IDS[enemy_id],true)
 
 func _input(event: InputEvent) -> void:
