@@ -11,7 +11,7 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscare Details")
 @export var jumpscare_sound: AudioStream
-@export_file var jumpscare_uids: Array[String]
+@export var jumpscares: Array[SpriteFrames]
 
 var enabled: bool
 
@@ -21,8 +21,8 @@ func _ready() -> void:
 		push_error("Sleep assurance score has not been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscare_sound == null:
 		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
-	if jumpscare_uids.is_empty():
-		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
+	if jumpscares.is_empty():
+		push_error("No jumpscares have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	enabled = Global.ENABLED_IDS[enemy_id]
 	if not enabled:
 		_deactivate()

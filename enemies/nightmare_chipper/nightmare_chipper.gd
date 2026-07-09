@@ -78,5 +78,4 @@ func _frame_checks() -> int:
 	return state+1
 
 func _prepare_jumpscare() -> void:
-	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	state = STATES.JUMPSCARE

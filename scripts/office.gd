@@ -304,7 +304,7 @@ func _can_go_to_sleep() -> bool:
 		
 func _popup_visibility() -> bool:
 	if popup.text == popup_labels["go_to_sleep"]:
-		if nightmare_chipper.sprite.frame == 0:
+		if nightmare_chipper == null or nightmare_chipper.sprite.frame == 0:
 			return _can_go_to_sleep()
 
 	return false

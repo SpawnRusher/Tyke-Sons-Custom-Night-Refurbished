@@ -28,7 +28,8 @@ func _process(delta: float) -> void:
 		value -= 15 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
-	enable_cooldown -= 1 * delta
+	if enable_cooldown > 0:
+		enable_cooldown -= 1 * delta
 	
 func _on_value_changed() -> void:
 	if value == 0:

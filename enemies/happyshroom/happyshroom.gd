@@ -36,7 +36,7 @@ func _ready() -> void:
 		push_error("Sleep assurance score has not been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscare_sound == null:
 		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
-	if jumpscare_uids.is_empty():
+	if jumpscares.is_empty():
 		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	
 	for i in range(ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
