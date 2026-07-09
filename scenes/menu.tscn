@@ -260,283 +260,287 @@ offset_bottom = 114.839966
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=456587967]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PresetManager" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
+[node name="PresetManager" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("24_vhsb5")
-presets = NodePath("../../../Presets")
-enemy_portrait_grid = NodePath("../../../EnemyPortraitGrid")
-sleep_assurance_grid = NodePath("../SleepAssuranceGrid")
-text = NodePath("HBoxContainer/RichTextLabel")
-left_button = NodePath("HBoxContainer/PresetButtonLeft")
-right_button = NodePath("HBoxContainer/PresetButtonRight")
+presets = NodePath("../../Presets")
+enemy_portrait_grid = NodePath("../../EnemyPortraitGrid")
+sleep_assurance_grid = NodePath("VBoxContainer/SleepAssuranceGrid")
+text = NodePath("VBoxContainer/HBoxContainer/PresetLabel")
+left_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonLeft")
+right_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonRight")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager" unique_id=618954355]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager" unique_id=456587967]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -25.0
-offset_bottom = 25.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=618954355]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PresetButtonLeft" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager/HBoxContainer" unique_id=1404654020]
+[node name="PresetButtonLeft" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=1404654020]
 layout_mode = 2
 texture_normal = ExtResource("24_48ryc")
 texture_hover = ExtResource("25_vhsb5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager/HBoxContainer" unique_id=363426685]
+[node name="PresetLabel" type="RichTextLabel" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=363426685]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("22_6wigr")
+text = "PresetLabel"
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PresetButtonRight" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager/HBoxContainer" unique_id=2138640104]
+[node name="PresetButtonRight" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=2138640104]
 layout_mode = 2
 texture_normal = ExtResource("26_hwfsl")
 texture_hover = ExtResource("27_a04p5")
 
-[node name="SleepAssuranceGrid" type="GridContainer" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer" unique_id=750174912]
+[node name="SleepAssuranceGrid" type="GridContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=750174912]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/h_separation = 7
 theme_override_constants/v_separation = 7
 columns = 16
 
-[node name="TextureProgressBar1" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1487321306]
+[node name="TextureProgressBar1" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1487321306]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=437824345]
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=437824345]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar3" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1970799290]
+[node name="TextureProgressBar3" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1970799290]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar4" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1964566504]
+[node name="TextureProgressBar4" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1964566504]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar5" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=441334889]
+[node name="TextureProgressBar5" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=441334889]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar6" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=322955235]
+[node name="TextureProgressBar6" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=322955235]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar7" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1005060850]
+[node name="TextureProgressBar7" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1005060850]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar8" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=2011754069]
+[node name="TextureProgressBar8" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=2011754069]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar9" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=841834604]
+[node name="TextureProgressBar9" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=841834604]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar10" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=122093106]
+[node name="TextureProgressBar10" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=122093106]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar11" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=597959032]
+[node name="TextureProgressBar11" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=597959032]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar12" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=2136101177]
+[node name="TextureProgressBar12" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=2136101177]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar13" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=782856030]
+[node name="TextureProgressBar13" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=782856030]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar14" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1696975793]
+[node name="TextureProgressBar14" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1696975793]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar15" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=698442523]
+[node name="TextureProgressBar15" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=698442523]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar16" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1262748709]
+[node name="TextureProgressBar16" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1262748709]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar17" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=243489680]
+[node name="TextureProgressBar17" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=243489680]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar18" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1041175912]
+[node name="TextureProgressBar18" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1041175912]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar19" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1678396904]
+[node name="TextureProgressBar19" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1678396904]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar20" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=888648173]
+[node name="TextureProgressBar20" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=888648173]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar21" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1995633078]
+[node name="TextureProgressBar21" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1995633078]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar22" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=853268492]
+[node name="TextureProgressBar22" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=853268492]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar23" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1971231404]
+[node name="TextureProgressBar23" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1971231404]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar24" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1305869228]
+[node name="TextureProgressBar24" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1305869228]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar25" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=926676100]
+[node name="TextureProgressBar25" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=926676100]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar26" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=319598312]
+[node name="TextureProgressBar26" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=319598312]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar27" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=835648452]
+[node name="TextureProgressBar27" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=835648452]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar28" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=865314958]
+[node name="TextureProgressBar28" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=865314958]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar29" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=481541711]
+[node name="TextureProgressBar29" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=481541711]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar30" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1135676131]
+[node name="TextureProgressBar30" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1135676131]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar31" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1004335694]
+[node name="TextureProgressBar31" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1004335694]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
 
-[node name="TextureProgressBar32" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" unique_id=1571739367]
+[node name="TextureProgressBar32" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1571739367]
 layout_mode = 2
 max_value = 1.0
 texture_under = ExtResource("21_b5gwo")
 texture_progress = ExtResource("22_0ndyk")
 texture_progress_offset = Vector2(6, 6)
+
+[node name="Control" type="Control" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=25061280]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="EnemyTooltip" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=886793377]
 show_behind_parent = true
@@ -721,10 +725,10 @@ flat = true
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_exited"]
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_exited"]
-[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager/HBoxContainer/PresetButtonLeft" to="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager" method="_on_preset_button_left_pressed"]
-[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager/HBoxContainer/PresetButtonRight" to="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager" method="_on_preset_button_right_pressed"]
-[connection signal="mouse_entered" from="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/VBoxContainer/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
+[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer/PresetButtonLeft" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_preset_button_left_pressed"]
+[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer/PresetButtonRight" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_preset_button_right_pressed"]
+[connection signal="mouse_entered" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
 
