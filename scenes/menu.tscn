@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://sprites/menu/portraits/chipper.png" id="18_jlmas"]
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://sprites/menu/portraits/toy.png" id="19_qfcyc"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://sprites/menu/portraits/phantom_chipomat.png" id="20_spe5f"]
+[ext_resource type="Texture2D" uid="uid://ck5it5jq4buy4" path="res://sprites/night/sleep_assurance/sleep_assurance_point_border.png" id="21_b5gwo"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://fonts/angltrr.ttf" id="21_jcbs5"]
+[ext_resource type="Texture2D" uid="uid://irutswq3wufd" path="res://sprites/night/sleep_assurance/sleep_assurance_point_progress.png" id="22_0ndyk"]
 [ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="22_6wigr"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="23_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://sprites/menu/minus_0-0_0.png" id="24_48ryc"]
@@ -245,6 +247,239 @@ border = NodePath("PortraitBorder")
 enemy_id = 13
 enemy_tooltip = "He will appear and jumpscare you if you have the lights turned off for too long, and will drain some of your flashlight's battery."
 
+[node name="SleepAssuranceGrid" type="GridContainer" parent="Menu" unique_id=750174912]
+offset_left = 177.0
+offset_top = 372.0
+offset_right = 682.0
+offset_bottom = 429.0
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
+columns = 16
+
+[node name="TextureProgressBar1" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1487321306]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=437824345]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar3" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1970799290]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar4" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1964566504]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar5" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=441334889]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar6" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=322955235]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar7" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1005060850]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar8" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=2011754069]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar9" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=841834604]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar10" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=122093106]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar11" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=597959032]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar12" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=2136101177]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar13" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=782856030]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar14" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1696975793]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar15" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=698442523]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar16" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1262748709]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar17" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=243489680]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar18" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1041175912]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar19" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1678396904]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar20" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=888648173]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar21" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1995633078]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar22" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=853268492]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar23" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1971231404]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar24" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1305869228]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar25" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=926676100]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar26" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=319598312]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar27" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=835648452]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar28" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=865314958]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar29" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=481541711]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar30" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1135676131]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar31" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1004335694]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar32" type="TextureProgressBar" parent="Menu/SleepAssuranceGrid" unique_id=1571739367]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("21_b5gwo")
+texture_progress = ExtResource("22_0ndyk")
+texture_progress_offset = Vector2(6, 6)
+
 [node name="EnemyTooltip" type="Panel" parent="Menu" unique_id=886793377]
 show_behind_parent = true
 anchors_preset = 8
@@ -310,16 +545,17 @@ text = "v0.0.0"
 fit_content = true
 vertical_alignment = 2
 
-[node name="PresetManager" type="Panel" parent="Menu" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "text", "left_button", "right_button")]
-offset_left = 160.0
+[node name="PresetManager" type="Panel" parent="Menu" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
+offset_left = 157.0
 offset_top = 315.0
-offset_right = 712.0
+offset_right = 705.0
 offset_bottom = 364.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("24_vhsb5")
 presets = NodePath("../Presets")
 enemy_portrait_grid = NodePath("../EnemyPortraitGrid")
+sleep_assurance_grid = NodePath("../SleepAssuranceGrid")
 text = NodePath("HBoxContainer/RichTextLabel")
 left_button = NodePath("HBoxContainer/PresetButtonLeft")
 right_button = NodePath("HBoxContainer/PresetButtonRight")
@@ -372,6 +608,7 @@ bidy = true
 buster = true
 toy = true
 phantom_chipomat = true
+sleep_assurance_points = 12
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="TopRow" type="Node" parent="Menu/Presets" unique_id=1865242925]
@@ -383,6 +620,7 @@ fun_fungal = true
 springcrab = true
 nightmare_chipper = true
 seabill = true
+sleep_assurance_points = 4
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="BottomRow" type="Node" parent="Menu/Presets" unique_id=965749338]
@@ -394,6 +632,7 @@ bruce = true
 chipper = true
 toy = true
 phantom_chipomat = true
+sleep_assurance_points = 2
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="SleepInsomnia" type="Node" parent="Menu/Presets" unique_id=1435786425]
@@ -412,6 +651,7 @@ bruce = true
 chipper = true
 toy = true
 phantom_chipomat = true
+sleep_assurance_points = 16
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
@@ -479,6 +719,8 @@ flat = true
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_exited"]
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/SleepAssuranceGrid" to="Menu/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/SleepAssuranceGrid" to="Menu/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="pressed" from="Menu/PresetManager/HBoxContainer/PresetButtonLeft" to="Menu/PresetManager" method="_on_preset_button_left_pressed"]
 [connection signal="pressed" from="Menu/PresetManager/HBoxContainer/PresetButtonRight" to="Menu/PresetManager" method="_on_preset_button_right_pressed"]

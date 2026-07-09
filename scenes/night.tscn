@@ -1984,12 +1984,14 @@ grid = NodePath("SleepAssuranceGrid")
 
 [node name="SleepAssuranceGrid" type="GridContainer" parent="GUI/SleepAssurance" unique_id=638745915]
 custom_minimum_size = Vector2(248, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 offset_left = 5.0
 offset_top = 41.0
 offset_right = 253.0
-offset_bottom = 66.0
+offset_bottom = 153.0
 theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
 columns = 8
 metadata/_edit_use_anchors_ = true
 
