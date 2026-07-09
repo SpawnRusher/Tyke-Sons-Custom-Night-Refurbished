@@ -12,6 +12,7 @@ var flashlight_state: Global.FLASHLIGHT_STATES
 @export var batteries_cooldown: float
 
 var current_batteries_cooldown: float
+var enable_cooldown: float
 
 func _ready() -> void:
 	SignalBus.flashlight_off.connect(flashlight_off)
@@ -27,6 +28,7 @@ func _process(delta: float) -> void:
 		value -= 15 * delta
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
+	enable_cooldown -= 1 * delta
 	
 func _on_value_changed() -> void:
 	if value == 0:
@@ -35,15 +37,16 @@ func _on_value_changed() -> void:
 			SpecialFunctions.audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(Global.FLASHLIGHT_STATES.DEAD)
 	
-func flashlight_off() -> void:
+func flashlight_off(cooldown:= 0.0) -> void:
 	if value > 0:
 		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+			enable_cooldown = cooldown
 			flashlight_state = Global.FLASHLIGHT_STATES.OFF
 			SpecialFunctions.audio(FLASHLIGHT)
 			SignalBus.update_flashlight_state.emit(flashlight_state)
 	
 func flashlight_on() -> void:
-	if value > 0:
+	if value > 0 and enable_cooldown <= 0:
 		if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
 			flashlight_state = Global.FLASHLIGHT_STATES.ON
 			SpecialFunctions.audio(FLASHLIGHT)

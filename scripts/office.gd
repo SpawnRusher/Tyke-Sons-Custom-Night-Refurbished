@@ -17,8 +17,11 @@ var last_animation_played: String
 var office_direction: String
 var lock_movement: bool
 var flashlight_state: Global.FLASHLIGHT_STATES:
-	set(new_value):
-		flashlight_state = new_value
+	set(new_state):
+		if new_state == Global.FLASHLIGHT_STATES.OFF and new_state != flashlight_state:
+			office.frame = 0
+			front_window_overlay.frame = 0
+		flashlight_state = new_state
 		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
 			dead_flashlight_sound_check = false
 		if flashlight_state == Global.FLASHLIGHT_STATES.DEAD:
