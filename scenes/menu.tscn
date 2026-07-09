@@ -182,7 +182,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_1beph")
 border = NodePath("PortraitBorder")
 enemy_id = 6
-enemy_tooltip = "Not designed yet"
+enemy_tooltip = "He will appear on the bed when you visit the bedroom. If his mouth is shut, avoid flashing him too long. If his mouth is open, flash him until he disappears."
 
 [node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 node_paths=PackedStringArray("border") instance=ExtResource("6_g54pe")]
 layout_mode = 2
