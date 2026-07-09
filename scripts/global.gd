@@ -12,7 +12,7 @@ enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	ENABLED_IDS.resize(15)
+	ENABLED_IDS.resize(14)
 	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
 
 func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> void:

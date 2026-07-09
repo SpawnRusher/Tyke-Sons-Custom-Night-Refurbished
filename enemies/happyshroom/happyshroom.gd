@@ -31,20 +31,9 @@ const happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid:
 const happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
 
 func _ready() -> void:
-	assert(enemy_id > ENEMY_IDS.NOT_SET, "An Enemy ID has not been set for one of the enemies!")
-	if sleep_assurance_score == -1:
-		push_error("Sleep assurance score has not been set for ",ENEMY_IDS.keys()[enemy_id],"!")
-	if jumpscare_sound == null:
-		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
-	if jumpscares.is_empty():
-		push_error("No jumpscare UIDs have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
+	super()
+	if not enabled: return
 	
-	for i in range(ENEMY_IDS.CHIPOMAT_1,ENEMY_IDS.PHANTOM_CHIPOMAT):
-		if Global.ENABLED_IDS[i] == false:
-			_deactivate()
-			return
-	
-	Global.ENABLED_IDS[ENEMY_IDS.HAPPYSHROOM] = true
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	SignalBus.start_happyshroom_fight.connect(start_fight)
 	

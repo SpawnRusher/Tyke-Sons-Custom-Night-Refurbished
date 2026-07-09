@@ -1983,6 +1983,7 @@ script = ExtResource("284_7ov8y")
 grid = NodePath("SleepAssuranceGrid")
 
 [node name="SleepAssuranceGrid" type="GridContainer" parent="GUI/SleepAssurance" unique_id=638745915]
+visible = false
 custom_minimum_size = Vector2(248, 0)
 layout_mode = 0
 offset_left = 5.0

@@ -6,6 +6,8 @@ func _ready() -> void:
 @warning_ignore_start("unused_signal")
 signal pastebin_version_check(version_type: PastebinChecks.VERSION_TYPE, pastebin_version: String)
 
+signal enemy_portrait_toggled(enemy_portrait: Enemy_Portrait)
+
 signal jumpscare(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS)
 signal phantom_jumpscare()
 

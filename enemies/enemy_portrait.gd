@@ -10,7 +10,6 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 
 func _ready() -> void:
 	assert(enemy_id > Enemy.ENEMY_IDS.NOT_SET,"Enemy ID has not been set for one of the enemy portraits!")
-	toggle(Global.ENABLED_IDS[enemy_id],true)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and border.is_hovered():
@@ -25,11 +24,10 @@ func toggle(state: bool, quiet:= false) -> void:
 		return
 	if not state:
 		enabled = false
-		Global.ENABLED_IDS[enemy_id] = false
 		texture.region = Rect2(0,0,120,120)
 	else:
 		enabled = true
-		Global.ENABLED_IDS[enemy_id] = true
 		texture.region = Rect2(120,0,120,120)
 	if not quiet:
 		SpecialFunctions.audio(QUIETBUTTONPRESS)
+	SignalBus.enemy_portrait_toggled.emit(self)
