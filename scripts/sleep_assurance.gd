@@ -16,6 +16,7 @@ func _ready() -> void:
 	SignalBus.enemy_defended.connect(_add_score)
 	SignalBus.remove_sleep_assurance.connect(_remove_score)
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
+	sleep_assurance_points_amount = Global.sleep_assurance_points
 	for i in sleep_assurance_points_amount:
 		var temp_point: TextureProgressBar = TextureProgressBar.new()
 		temp_point.texture_under = SLEEP_ASSURANCE_POINT_BORDER
