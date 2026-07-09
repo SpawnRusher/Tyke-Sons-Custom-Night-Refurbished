@@ -288,7 +288,7 @@ setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
 dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
 
 [node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="0" unique_id=825760219]
-text = "MovementMode"
+text = "Movement Mode"
 
 [node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="2" unique_id=87337718]
 selected = 0
