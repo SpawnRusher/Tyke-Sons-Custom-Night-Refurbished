@@ -16,6 +16,8 @@ class_name Preset
 @export var chipper: bool
 @export var toy: bool
 @export var phantom_chipomat: bool
+@export_group("Sleep Assurance")
+@export var points: int
 
 
 var enabled_ids: Array[bool]

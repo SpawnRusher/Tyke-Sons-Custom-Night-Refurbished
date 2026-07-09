@@ -1,9 +1,11 @@
 extends Node
 
-var current_preset: int = -1
 var ENABLED_IDS: Array[bool]
+var sleep_assurance_points: int
 
-var died_to_id: Enemy.ENEMY_IDS = Enemy.ENEMY_IDS.NOT_SET
+var dead_enemy_id: Enemy.ENEMY_IDS = Enemy.ENEMY_IDS.NOT_SET
+var dead_sleep_assurance: float
+var dead_time: int
 
 var version_type: PastebinChecks.VERSION_TYPE
 var pastebin_version: String

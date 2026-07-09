@@ -312,9 +312,9 @@ vertical_alignment = 2
 
 [node name="PresetManager" type="Panel" parent="Menu" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "text", "left_button", "right_button")]
 offset_left = 160.0
-offset_top = 350.0
+offset_top = 315.0
 offset_right = 712.0
-offset_bottom = 399.0
+offset_bottom = 364.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("24_vhsb5")
@@ -358,11 +358,20 @@ texture_hover = ExtResource("27_a04p5")
 
 [node name="Presets" type="Node" parent="Menu" unique_id=1880380593]
 
-[node name="TheChipomats" type="Node" parent="Menu/Presets" unique_id=933311323]
+[node name="CurrentFinishedCharacters" type="Node" parent="Menu/Presets" unique_id=933311323]
 script = ExtResource("29_hwfsl")
 chipomat_1 = true
 chipomat_2 = true
 chipomat_3 = true
+fun_fungal = true
+springcrab = true
+nightmare_chipper = true
+seabill = true
+fredbear = true
+bidy = true
+buster = true
+toy = true
+phantom_chipomat = true
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="TopRow" type="Node" parent="Menu/Presets" unique_id=1865242925]
@@ -387,7 +396,7 @@ toy = true
 phantom_chipomat = true
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
-[node name="MaxMode" type="Node" parent="Menu/Presets" unique_id=1435786425]
+[node name="SleepInsomnia" type="Node" parent="Menu/Presets" unique_id=1435786425]
 script = ExtResource("29_hwfsl")
 chipomat_1 = true
 chipomat_2 = true

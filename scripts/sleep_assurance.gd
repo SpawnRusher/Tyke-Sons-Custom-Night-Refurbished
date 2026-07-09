@@ -5,8 +5,8 @@ const SLEEP_ASSURANCE_POINT_PROGRESS: CompressedTexture2D = preload("uid://iruts
 
 @export var grid: GridContainer
 
-var sleep_assurance_points_amount: float = 8
-var sleep_assurance_score_per_point: float = 100
+var sleep_assurance_points_amount: float = 16
+var sleep_assurance_score_per_point: float = 50
 var sleep_assurance_current_score: float = 0
 var sleep_assurance_multiplier: float = 1.0
 var sleep_assurance_normal: float = 0.0

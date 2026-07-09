@@ -27,7 +27,7 @@ func _ready() -> void:
 	if jumpscares.is_empty():
 		push_error("No jumpscares have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	# This whole chunk is so that I can detect if all 14 characters are active and enable happyshroom, otherwise disable happyshroom, without affecting Global.ENABLED_IDS.
-	var enabled_ids = Global.ENABLED_IDS
+	var enabled_ids: Array[bool] = Global.ENABLED_IDS.duplicate()
 	if false not in enabled_ids:
 		enabled_ids.append(true)
 	else:

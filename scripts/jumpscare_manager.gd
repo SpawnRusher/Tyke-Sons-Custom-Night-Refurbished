@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @export var jumpscare_sprite: AnimatedSprite2D
+@export var sleep_assurance: RichTextLabel
+@export var night_timer: RichTextLabel
 
 func _ready() -> void:
 	SignalBus.jumpscare.connect(jumpscare_start)
@@ -9,6 +11,9 @@ func _ready() -> void:
 func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 	if not jumpscare_sprite.is_playing():
 		PauseManager.pause()
+		Global.dead_enemy_id = enemy.enemy_id
+		Global.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
+		Global.dead_time = night_timer.time_elapsed
 		SceneManager.load_scene("res://scenes/game_over.tscn")
 		SpecialFunctions.audio(enemy.jumpscare_sound,1)
 
@@ -23,7 +28,6 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		jumpscare_sprite.sprite_frames = enemy.jumpscares[area]
 		jumpscare_sprite.play()
 		show()
-		Global.died_to_id = enemy.enemy_id
 
 func _jumpscare_end() -> void:
 	if not SaveData.settings_data["game"]["auto_restart_on_death"]:

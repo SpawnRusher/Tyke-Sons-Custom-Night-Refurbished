@@ -3,6 +3,8 @@ extends Node2D
 @export var game_over_background: Sprite2D
 @export var game_over_text: Sprite2D
 @export var white_fade: ColorRect
+@export var night_timer: RichTextLabel
+@export var sleep_assurance: RichTextLabel
 
 @onready var default_text_position: Vector2 = game_over_text.position
 
@@ -20,10 +22,16 @@ func _ready() -> void:
 	SceneManager.load_scene("res://scenes/night.tscn")
 	SpecialFunctions.audio(GAMEOVER,0,1,1,0,0,0,false,true)
 	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false,false,true)
+	@warning_ignore_start("integer_division")
+	var time_milliseconds = (Global.dead_time % 1000) / 10
+	var time_seconds = (Global.dead_time / 1000) % 60
+	var time_minutes = ((Global.dead_time / 1000) / 60) % 60
+	night_timer.text = ("Time: " + "%02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
+	sleep_assurance.text = "Sleep Assurance: " + str(snappedf(Global.dead_sleep_assurance*100,0.01))+"%"
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
-	if Global.died_to_id in DEATH_VOICELINES:
-		SpecialFunctions.audio(DEATH_VOICELINES[Global.died_to_id].pick_random())
+	if Global.dead_enemy_id in DEATH_VOICELINES:
+		SpecialFunctions.audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random())
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
