@@ -4,7 +4,7 @@ extends Node
 var fix_string_bools: bool = false
 
 var game_id: int = 1077734
-var private_key: String = "11de50d5fd3622d9f81394e176a81bbf"
+var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
 
 var authorized_username: String
 var authorized_user_token: String
@@ -144,7 +144,7 @@ func api_request(group: String, type: String, parameters:={}) -> void:
 					url += ","
 			continue
 
-		url += "&" + parameter +"=" + parameters[parameter]
+		url += "&" + parameter + "=" + parameters[parameter]
 		
 	url += _add_signature(url)
 	print_debug("request URL: " + url)

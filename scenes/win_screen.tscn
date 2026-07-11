@@ -49,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dddwv5ok67q6f" path="res://sprites/win_screen/wake_up/_37.png" id="47_smsdw"]
 [ext_resource type="Texture2D" uid="uid://dh1iwcauru835" path="res://sprites/win_screen/wake_up/_38.png" id="48_retvi"]
 [ext_resource type="Texture2D" uid="uid://bo3laj022ebel" path="res://sprites/win_screen/early_bird.png" id="49_ndgog"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://themes/default_font_theme.tres" id="50_8mujy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3mpqp"]
 animations = [{
@@ -257,3 +258,9 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
+
+[node name="NightTimer" type="RichTextLabel" parent="." unique_id=303891565]
+offset_right = 698.0
+offset_bottom = 40.0
+theme = ExtResource("50_8mujy")
+text = "Time taken:"

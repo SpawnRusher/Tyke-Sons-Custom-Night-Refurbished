@@ -7,6 +7,7 @@ const STAR = preload("uid://gut8g6qau2e3")
 @export var wake_up: AnimatedSprite2D
 @export var early_bird: Sprite2D
 @export var fade: ColorRect
+@export var night_timer: RichTextLabel
 
 var can_leave: bool
 
@@ -14,6 +15,14 @@ func _ready() -> void:
 	PauseManager.unpause()
 	_go_to_sleep()
 	wake_up.animation_finished.connect(_wake_up_loop)
+	_add_gamejolt_scores()
+	_achieve_gamejolt_trophies()
+	
+	@warning_ignore_start("integer_division")
+	var time_milliseconds = (Global.win_time % 1000) / 10
+	var time_seconds = (Global.win_time / 1000) % 60
+	var time_minutes = ((Global.win_time / 1000) / 60) % 60
+	night_timer.text = "Time taken: " + "%02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds]
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
@@ -44,3 +53,14 @@ func _leave() -> void:
 	
 func _wake_up_loop() -> void:
 	wake_up.play("loop")
+
+func _add_gamejolt_scores() -> void:
+	pass
+	
+func _achieve_gamejolt_trophies() -> void:
+	if Global.current_preset_name == "Sleep Insomnia":
+		GameJolt.api_request("trophies","add_achieved",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"trophy_id":"0"})
+	
+	
+	
+	

@@ -10,7 +10,7 @@ script = ExtResource("1_tbwuq")
 game_over_background = NodePath("GameOverBackground")
 game_over_text = NodePath("GameOverText")
 white_fade = NodePath("WhiteFade")
-night_timer = NodePath("NightTime")
+night_timer = NodePath("NightTimer")
 sleep_assurance = NodePath("SleepAssurance")
 
 [node name="GameOverBackground" type="Sprite2D" parent="." unique_id=843305970]
@@ -31,7 +31,7 @@ visible = false
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="NightTime" type="RichTextLabel" parent="." unique_id=1039592225]
+[node name="NightTimer" type="RichTextLabel" parent="." unique_id=1039592225]
 offset_right = 441.0
 offset_bottom = 42.0
 theme = ExtResource("4_racf3")
@@ -42,4 +42,4 @@ offset_top = 43.0
 offset_right = 441.0
 offset_bottom = 85.0
 theme = ExtResource("4_racf3")
-text = "Time:"
+text = "Sleep Assurance:"

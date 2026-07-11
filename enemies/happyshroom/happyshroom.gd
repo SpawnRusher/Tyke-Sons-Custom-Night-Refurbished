@@ -19,7 +19,6 @@ class_name Happyshroom
 @export var happyshroom_text: RichTextLabel
 
 @export_group("Happyshroom AI")
-@export var testvar: int
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
@@ -29,6 +28,9 @@ const dialogue: Array = ["You thought you could go to sleep.","You wish.","[colo
 
 const happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid://dpj4nc1887c81"), preload("uid://bm5aol3fvyr1b"), preload("uid://memlagcty5cs")]
 const happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
+
+enum STATES {IDLE,INTRO,ACTIVE}
+var state: STATES
 
 func _ready() -> void:
 	super()
@@ -42,6 +44,7 @@ func _deactivate() -> void:
 	happyshroom_layer.queue_free()
 
 func _activate_happyshroom() -> void:
+	state = STATES.INTRO
 	PauseManager.unpause()
 	deactivate_enemies()
 	office_layer.lock_movement = true
@@ -76,6 +79,7 @@ func intro_dialogue() -> void:
 	happyshroom_fade.visible = false
 
 func start_fight() -> void:
+	state = STATES.ACTIVE
 	office_layer.lock_movement = false
 	
 func deactivate_enemies() -> void:

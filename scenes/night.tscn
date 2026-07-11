@@ -1989,11 +1989,10 @@ anchors_preset = -1
 offset_left = 5.0
 offset_top = 41.0
 offset_right = 253.0
-offset_bottom = 153.0
+offset_bottom = 41.0
 theme_override_constants/h_separation = 7
 theme_override_constants/v_separation = 7
 columns = 8
-metadata/_edit_use_anchors_ = true
 
 [node name="Map" type="TextureRect" parent="GUI" unique_id=275795702 node_paths=PackedStringArray("office", "player")]
 anchors_preset = 3
@@ -2128,7 +2127,7 @@ batteries = NodePath("../../Office/OfficeBackground/Batteries")
 batteries_button = NodePath("../../Office/OfficeBackground/Batteries/BatteriesButton")
 batteries_cooldown = 30.0
 
-[node name="NightTimer" type="RichTextLabel" parent="GUI" unique_id=402580439]
+[node name="NightTimer" type="RichTextLabel" parent="GUI" unique_id=402580439 node_paths=PackedStringArray("happyshroom")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -2140,6 +2139,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "     00:00.00"
 scroll_active = false
 script = ExtResource("294_0lqbv")
+happyshroom = NodePath("../../Enemies/Happyshroom")
 metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
@@ -2177,12 +2177,13 @@ night_timer = NodePath("../GUI/NightTimer")
 sprite_frames = SubResource("SpriteFrames_3whfi")
 centered = false
 
-[node name="GoToSleep" type="CanvasLayer" parent="." unique_id=605595461 node_paths=PackedStringArray("fade")]
+[node name="GoToSleep" type="CanvasLayer" parent="." unique_id=605595461 node_paths=PackedStringArray("fade", "happyshroom")]
 process_mode = 2
 layer = 5
 visible = false
 script = ExtResource("297_jkwoo")
 fade = NodePath("Fade")
+happyshroom = NodePath("../Enemies/Happyshroom")
 
 [node name="Fade" type="ColorRect" parent="GoToSleep" unique_id=1907996195]
 self_modulate = Color(1, 1, 1, 0)

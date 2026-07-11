@@ -79,6 +79,7 @@ func _preset_match() -> void:
 		text.text = "Custom Night"
 	else:
 		text.text = preset_list[current_preset].name.capitalize()
+	Global.current_preset_name = text.text
 
 func _on_sleep_assurance_grid_mouse_entered() -> void:
 	hovering_sleep_assurance = true
