@@ -16,7 +16,7 @@ class_name Rockstar
 
 enum MOVE_DIRECTION {UP_LEFT,DOWN_RIGHT}
 var move_direction: MOVE_DIRECTION = MOVE_DIRECTION.values().pick_random()
-var positions: Array = [min_position,max_position]
+@onready var positions: Array = [min_position,max_position]
 
 func _ready() -> void:
 	super()
