@@ -26,13 +26,10 @@ func _ready() -> void:
 		push_error("Jumpscare Sound has not yet been set for enemy ",ENEMY_IDS.keys()[enemy_id],"!")
 	if jumpscares.is_empty():
 		push_error("No jumpscares have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
-	# This whole chunk is so that I can detect if all 14 characters are active and enable happyshroom, otherwise disable happyshroom, without affecting Global.ENABLED_IDS.
-	var enabled_ids: Array[bool] = Global.ENABLED_IDS.duplicate()
-	if false not in enabled_ids:
-		enabled_ids.append(true)
+	if enemy_id != ENEMY_IDS.HAPPYSHROOM:
+		enabled = Global.ENABLED_IDS[enemy_id]
 	else:
-		enabled_ids.append(false)
-	enabled = enabled_ids[enemy_id]
+		enabled = false not in Global.ENABLED_IDS
 	if not enabled:
 		_deactivate()
 

@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://sprites/menu/plus_0-0_0.png" id="26_hwfsl"]
 [ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://sprites/menu/plus_1-0_0.png" id="27_a04p5"]
 [ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scripts/preset.gd" id="29_hwfsl"]
+[ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://sprites/gamejolt/gamejolt_icon.svg" id="32_0ndyk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")
@@ -660,6 +661,13 @@ phantom_chipomat = true
 sleep_assurance_points = 16
 metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
+[node name="GamejoltButton" type="TextureButton" parent="Menu" unique_id=357387411]
+offset_left = 1176.0
+offset_top = 608.0
+offset_right = 1261.0
+offset_bottom = 698.0
+texture_normal = ExtResource("32_0ndyk")
+
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0
 follow_viewport_enabled = true
@@ -730,6 +738,7 @@ flat = true
 [connection signal="mouse_entered" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="pressed" from="Menu/GamejoltButton" to="." method="_on_gamejolt_button_pressed"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
 
 [editable path="Menu/EnemyPortraitGrid/Chipomat1"]

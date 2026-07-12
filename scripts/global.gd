@@ -26,10 +26,10 @@ func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> v
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("return_to_menu"):
 		PauseManager.unpause()
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		SceneManager.change_to_scene("res://scenes/menu.tscn")
 	if event.is_action_pressed("restart_night"):
 		PauseManager.unpause()
 		if get_tree().current_scene.scene_file_path == "res://scenes/night.tscn":
 			get_tree().reload_current_scene()
 		elif get_tree().current_scene.scene_file_path == "res://scenes/game_over.tscn":
-			get_tree().change_scene_to_file("res://scenes/night.tscn")
+			SceneManager.change_to_scene("res://scenes/night.tscn")

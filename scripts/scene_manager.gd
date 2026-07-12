@@ -4,6 +4,9 @@ var scenes: Dictionary
 
 enum CHANGE_SCENE_BEHAVIOR {FAIL,AWAIT,BYPASS}
 
+signal scene_changed
+signal scene_reloaded
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -33,15 +36,24 @@ func get_progress(path: String) -> float:
 	
 ## Custom scene changer function to work with the script. Checks if the scene is finished loading before changing, otherwise nothing happens.
 func change_to_scene(path: String, behavior:= CHANGE_SCENE_BEHAVIOR.AWAIT) -> void:
+	if path not in scenes:
+		get_tree().change_scene_to_file(path)
+		scene_changed.emit()
+		return
 	if scenes[path]["progress"][0] < 1 and behavior == CHANGE_SCENE_BEHAVIOR.FAIL:
 		push_error("Attempted changing to scene before it finished loading. CHANGE_SCENE_BEHAVIOR.FAIL")
 	elif behavior == CHANGE_SCENE_BEHAVIOR.AWAIT and get_progress(path) < 1.0:
 		scenes[path]["load_immediately"] = true
 	else:
 		get_tree().change_scene_to_file(path)
+		scene_changed.emit()
 		if scenes[path]["free_after_use"]:
 			ResourceLoader.load_threaded_get(path)
 		unload_scene(path)
+
+func reload_scene(path: String) -> void:
+	get_tree().reload_current_scene()
+	scene_reloaded.emit()
 
 ## Check for how many scenes are pre-loaded in the scene manager.[br]
 ## [param start]: The index to start at when printing the dictionary entries.

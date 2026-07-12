@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ctp3qf7xwe3v3"]
+
+[ext_resource type="Script" uid="uid://cutp1a2inw5g" path="res://scenes/gamejolt_menu.gd" id="1_0v1sh"]
+[ext_resource type="Texture2D" uid="uid://c6051svx83ggi" path="res://sprites/gamejolt/gamejolt_logo.svg" id="1_6x5vi"]
+
+[node name="GamejoltMenu" type="Control" unique_id=331925881]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0v1sh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2133735237]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=766304789]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -410.0
+offset_top = 16.0
+offset_right = 410.0
+offset_bottom = 106.0
+grow_horizontal = 2
+texture = ExtResource("1_6x5vi")

@@ -129,7 +129,6 @@ func _check_for_file(type: FILE_TYPE) -> bool:
 	if check_file:
 		check_file.close()
 		return true
-	check_file.close()
 	return false
 	
 func _save_file(type: FILE_TYPE) -> void:

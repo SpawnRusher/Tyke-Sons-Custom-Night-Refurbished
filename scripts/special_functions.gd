@@ -1,5 +1,7 @@
 extends Node
 
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -57,6 +59,36 @@ func audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pan:= 0.0, s
 		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
 	elif repeats == -1:
 		SpecialFunctions.audio(stream, bus, volume, pitch, pan, 0, repeats, persist_through_scenes, deferred)
+
+func start_timer(function_name: Callable, interval: float, repeats:= 0, autostart:= false, persist_through_scenes:= false, process_callback:= Timer.TimerProcessCallback.TIMER_PROCESS_IDLE, ignore_time_scale:= false) -> Timer:
+	assert(interval > 0,"Parameter 'interval' must be greater than 0. Don't want no mem leaks.")
+	
+	var timer:= Timer.new()
+	timer.timeout.connect(function_name)
+	timer.one_shot = true
+	timer.autostart = autostart
+	timer.wait_time = interval
+	timer.process_callback = process_callback
+	timer.ignore_time_scale = ignore_time_scale
+	timer.timeout.connect(_repeat_timer.bind(function_name,timer,repeats))
+	
+	if not persist_through_scenes: 
+		SceneManager.scene_changed.connect(timer.queue_free)
+		SceneManager.scene_reloaded.connect(timer.queue_free)
+	
+	return timer
+
+func _repeat_timer(function_name: Callable, timer: Timer, repeats: int)	-> void:
+	timer.timeout.disconnect(_repeat_timer)
+	if repeats == 0:
+		timer.queue_free()
+		return
+	timer.start()
+	repeats -= 1
+	if repeats != 0:
+		timer.timeout.connect(_repeat_timer.bind(function_name,timer,repeats))
+
+
 
 ## Creates a timer that calls a function after its interval expires. Can be given a start delay, a number of repeats, and a random negative or positive offset.[br]
 ## [br][param function_name]: The name of the function you want to call after the timer expires.
