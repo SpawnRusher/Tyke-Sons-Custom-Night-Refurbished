@@ -10,8 +10,10 @@ class_name Nightmare_Chipper
 @export var flash_timer: float
 @export var kill_timer: float
 
-enum STATES {IDLE=-1,CLOSED,OPEN,JUMPSCARE}
+enum STATES {IDLE=-1,ACTIVE,JUMPSCARE}
+enum ATTACK_STATES {CLOSED, OPEN}
 var state: STATES = STATES.IDLE
+var attack_state: ATTACK_STATES
 var current_timer: float
 var flashlight_state: Global.FLASHLIGHT_STATES
 
@@ -37,10 +39,10 @@ func _process(delta: float) -> void:
 		current_timer -= 1 * delta
 	
 	if current_timer <= 0:
-		match state:
-			STATES.CLOSED:
+		match attack_state:
+			ATTACK_STATES.CLOSED:
 				_jumpscare(JUMPSCARE_AREAS.BEDROOM)
-			STATES.OPEN:
+			ATTACK_STATES.OPEN:
 				_leave_nightmare_chipper()
 
 func _deactivate() -> void:
@@ -49,15 +51,16 @@ func _deactivate() -> void:
 
 func _office_animation_changed() -> void:
 	if office.animation == "leave_b":
-		if state == STATES.OPEN:
+		if attack_state == ATTACK_STATES.OPEN:
 			_prepare_jumpscare()
 
 func _spawn_nightmare_chipper() -> void:
 	if office.animation == "open_b":
-		state = randi_range(0,1) as STATES
-		current_timer = [kill_timer,flash_timer][state]
+		state = STATES.ACTIVE
+		attack_state = ATTACK_STATES.values().pick_random()
+		current_timer = [kill_timer,flash_timer][attack_state]
 		if sleep_assurance.sleep_assurance_normal >= 1:
-			state = STATES.OPEN
+			attack_state = ATTACK_STATES.OPEN
 		
 func _leave_nightmare_chipper() -> void:
 	state = STATES.IDLE
@@ -75,7 +78,7 @@ func _frame_checks() -> int:
 		return 0
 	if flashlight_state != Global.FLASHLIGHT_STATES.ON:
 		return 0
-	return state+1
+	return attack_state+1
 
 func _prepare_jumpscare() -> void:
 	state = STATES.JUMPSCARE

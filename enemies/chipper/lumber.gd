@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		_despawn_lumber()
 
 func _create_lumber(lumber: Lumber) -> void:
-	lumber_color = randi_range(0,2) as LUMBER_COLORS
+	lumber_color = LUMBER_COLORS.values().pick_random()
 	lumber.texture = load(LUMBER_COLOR_SPRITE_UIDS[lumber_color])
 	posx = randi_range(150,1130-texture.get_width())
 	posy = randi_range(150,570-texture.get_height())
