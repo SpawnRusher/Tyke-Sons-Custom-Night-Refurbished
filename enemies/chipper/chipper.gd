@@ -1,5 +1,4 @@
-extends Enemy
-class_name Chipper
+class_name Chipper extends Enemy
 
 const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
 

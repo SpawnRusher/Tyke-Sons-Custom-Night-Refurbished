@@ -3,7 +3,6 @@ extends Node2D
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 const BIG_BUTTON_PRESS: AudioStream = preload("uid://o2ay73rlokbq")
 
-
 @export var fade: ColorRect
 @export var enemy_portrait_grid: GridContainer
 @export var enemy_tooltip: RichTextLabel

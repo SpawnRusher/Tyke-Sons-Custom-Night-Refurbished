@@ -1,5 +1,4 @@
-extends Enemy
-class_name Chipomat
+class_name Chipomat extends Enemy
 
 @export_group("Nodes")
 @export var office_layer: CanvasLayer

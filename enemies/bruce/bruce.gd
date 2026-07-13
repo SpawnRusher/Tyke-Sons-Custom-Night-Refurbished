@@ -1,2 +1,1 @@
-extends Enemy
-class_name Bruce
+class_name Bruce extends Enemy

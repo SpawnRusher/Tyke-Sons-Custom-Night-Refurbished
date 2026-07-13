@@ -1,5 +1,4 @@
-extends Enemy
-class_name Happyshroom
+class_name Happyshroom extends Enemy
 
 @export var enemies_list: Node
 

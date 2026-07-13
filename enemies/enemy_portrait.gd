@@ -1,5 +1,4 @@
-extends TextureRect
-class_name Enemy_Portrait
+class_name Enemy_Portrait extends TextureRect
 
 @export var enabled: bool
 @export var border: TextureButton

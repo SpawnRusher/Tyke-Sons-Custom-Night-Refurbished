@@ -1,5 +1,4 @@
-extends Enemy
-class_name Toy
+class_name Toy extends Enemy
 
 const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
 

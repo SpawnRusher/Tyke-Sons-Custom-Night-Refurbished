@@ -2,6 +2,7 @@
 extends Node 
 
 var fix_string_bools: bool = false
+var auto_login: bool = true
 
 var game_id: int = 1077734
 var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
@@ -108,6 +109,9 @@ signal time_time_completed(response: Dictionary, parameters: Dictionary)
 
 func _ready() -> void:
 	users_auth_completed.connect(_users_auth_completed)
+	if auto_login:
+		if SaveData.settings_data["gamejolt"]["username"] != "" and SaveData.settings_data["gamejolt"]["user_token"] != "":
+			api_request("users","auth",{"username":SaveData.settings_data["gamejolt"]["username"],"user_token":SaveData.settings_data["gamejolt"]["user_token"]})
 
 ## Automatically converts the URL given into its signature and returns it along with the URL signature identifier for easy use.[br][br]Syntax: [code]url += _add_signature(url)[/code]
 func _add_signature(url: String) -> String:
@@ -159,9 +163,8 @@ func api_request_completed(result: int, response_code: int, headers: PackedStrin
 	signals[group][type].emit(_simplify_response(body),parameters)
 
 func _users_auth_completed(result: Dictionary, parameters: Dictionary) -> void:
-	if result["success"] == "true":
-		authorized_username = parameters["username"]
-		authorized_user_token = parameters["user_token"]
+	authorized_username = parameters["username"] if result["success"] == "true" else ""
+	authorized_user_token = parameters["user_token"] if result["success"] == "true" else ""
 		
 		
 		

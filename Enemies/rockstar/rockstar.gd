@@ -1,5 +1,4 @@
-extends Enemy
-class_name Rockstar
+class_name Rockstar extends Enemy
 
 @export_group("Nodes")
 @export var player: TextureRect

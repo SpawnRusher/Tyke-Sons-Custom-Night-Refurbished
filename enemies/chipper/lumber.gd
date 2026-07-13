@@ -1,5 +1,4 @@
-extends TextureRect
-class_name Lumber
+class_name Lumber extends TextureRect
 
 const LUMBER_PICKUP: AudioStream = preload("uid://dbw4rno7ypmsk")
 

@@ -2,8 +2,31 @@
 
 [ext_resource type="Script" uid="uid://cutp1a2inw5g" path="res://scenes/gamejolt_menu.gd" id="1_0v1sh"]
 [ext_resource type="Texture2D" uid="uid://c6051svx83ggi" path="res://sprites/gamejolt/gamejolt_logo.svg" id="1_6x5vi"]
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="3_oj565"]
+[ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button.tscn" id="4_f44it"]
 
-[node name="GamejoltMenu" type="Control" unique_id=331925881]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.12225223, 0.12225223, 0.12225223, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4v7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f44it"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.5058824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[node name="GamejoltMenu" type="Control" unique_id=331925881 node_paths=PackedStringArray("username_line_edit", "user_token_line_edit", "login_info")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +34,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0v1sh")
+username_line_edit = NodePath("MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/Username/UsernameLineEdit")
+user_token_line_edit = NodePath("MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/UserToken/UserTokenLineEdit")
+login_info = NodePath("MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/LoginInfo")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2133735237]
 layout_mode = 1
@@ -21,14 +47,186 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=766304789]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2106310549]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -410.0
-offset_top = 16.0
-offset_right = 410.0
-offset_bottom = 106.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1309815915]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1896360200]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=766304789]
+layout_mode = 2
 texture = ExtResource("1_6x5vi")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=587423244]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=1513255750]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel" unique_id=414858328]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1640257468]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_oj565")
+theme_override_constants/side_margin = 16
+theme_override_styles/panel = SubResource("StyleBoxEmpty_g4v7s")
+current_tab = 0
+
+[node name="Login" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer" unique_id=2049037828]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/_tab_index = 0
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login" unique_id=1356580715]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_f44it")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel" unique_id=357299127]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Login" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer" unique_id=1994419294]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=277413402]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=134041246]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer" unique_id=246431969]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Username" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer" unique_id=1047364198]
+layout_mode = 2
+
+[node name="UsernameLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/Username" unique_id=1987846868]
+layout_mode = 2
+theme = ExtResource("3_oj565")
+text = "GameJolt Username"
+fit_content = true
+autowrap_mode = 0
+
+[node name="UsernameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/Username" unique_id=973650928]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer" unique_id=268221007]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UserToken" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer" unique_id=692917272]
+layout_mode = 2
+
+[node name="UserTokenLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/UserToken" unique_id=101398894]
+layout_mode = 2
+theme = ExtResource("3_oj565")
+text = "GameJolt User Token"
+fit_content = true
+autowrap_mode = 0
+
+[node name="UserTokenLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/UserToken" unique_id=277225516]
+layout_mode = 2
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer" unique_id=1789439957]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=1838087459]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=2108863935]
+custom_minimum_size = Vector2(800, 0)
+custom_maximum_size = Vector2(800, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_oj565")
+text = "LOGIN"
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=525357250]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoginInfo" type="RichTextLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=26729185]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+text = "Enter your Username and User Token to login!"
+horizontal_alignment = 1
+
+[node name="Control4" type="Control" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=1178570826]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ToggleButton" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=1624645857 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("4_f44it")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../../../..")
+group_name = "gamejolt"
+setting_name = "auto_login"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/ToggleButton/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="0" unique_id=251215606]
+text = "Auto Login"
+
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/ToggleButton/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="2" unique_id=507897889]
+text = "OFF"
+
+[node name="Control3" type="Control" parent="MarginContainer/VBoxContainer" unique_id=537976670]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="ReturnToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=423517707]
+layout_mode = 2
+theme = ExtResource("3_oj565")
+text = "Return To Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_return_to_menu_button_pressed"]
+
+[editable path="MarginContainer/VBoxContainer/Panel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/ToggleButton"]

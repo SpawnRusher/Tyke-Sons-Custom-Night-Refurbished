@@ -1,5 +1,5 @@
-extends Enemy
-class_name Phantom_Chipomat
+class_name Phantom_Chipomat extends Enemy
+
 @export_group("Nodes")
 @export var office: AnimatedSprite2D
 @export var dark_office: AnimatedSprite2D

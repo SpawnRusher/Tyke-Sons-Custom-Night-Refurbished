@@ -1,5 +1,4 @@
-extends Enemy
-class_name Nightmare_Chipper
+class_name Nightmare_Chipper extends Enemy
 
 @export_group("Nodes")
 @export var office_layer: CanvasLayer

@@ -1,5 +1,4 @@
-extends Enemy
-class_name Seabill
+class_name Seabill extends Enemy
 
 @export_group("Nodes")
 @export var office: AnimatedSprite2D

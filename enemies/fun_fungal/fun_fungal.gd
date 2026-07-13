@@ -1,5 +1,5 @@
-extends Enemy
-class_name Fun_Fungal
+class_name Fun_Fungal extends Enemy
+
 
 @export_group("Nodes")
 @export var office_layer: CanvasLayer

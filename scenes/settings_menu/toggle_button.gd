@@ -8,7 +8,8 @@ extends Button
 
 func _ready() -> void:
 	_update()
-	settings_menu.resetted_to_defaults.connect(_update)
+	if settings_menu.has_signal("resetted_to_defaults"):
+		settings_menu.resetted_to_defaults.connect(_update)
 	
 func _update() -> void:
 	button_pressed = SaveData.settings_data[group_name][setting_name]
