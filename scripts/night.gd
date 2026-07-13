@@ -8,9 +8,9 @@ const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
 func _ready() -> void:
 	PauseManager.unpause()
 	SignalBus.go_to_sleep.connect(_go_to_sleep)
-	SpecialFunctions.audio(FOREST_DAWN,0,0.2,1,0,0,-1,false,false)
-	SpecialFunctions.audio(FLASHLIGHT)
-	SpecialFunctions.audio(FLASHLIGHT)
+	add_child(SpecialFunctions.create_audio(FOREST_DAWN,0,0.2,1,-1))
+	add_child(SpecialFunctions.create_audio(FLASHLIGHT))
+	add_child(SpecialFunctions.create_audio(FLASHLIGHT))
 	
 func _go_to_sleep() -> void:
 	PauseManager.pause()

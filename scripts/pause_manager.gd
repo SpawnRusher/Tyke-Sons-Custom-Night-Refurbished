@@ -5,9 +5,11 @@ func _ready() -> void:
 	
 	
 func unpause() -> void:
-	get_tree().paused = false
-	print_debug("Tree Unpaused")
+	if get_tree().paused:
+		get_tree().paused = false
+		print_debug("Tree Unpaused")
 	
 func pause() -> void:
-	get_tree().paused = true
-	print_debug("Tree Paused")
+	if not get_tree().paused:
+		get_tree().paused = true
+		print_debug("Tree Paused")

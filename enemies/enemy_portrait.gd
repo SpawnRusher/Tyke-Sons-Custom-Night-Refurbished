@@ -29,5 +29,5 @@ func toggle(state: bool, quiet:= false) -> void:
 		enabled = true
 		texture.region = Rect2(120,0,120,120)
 	if not quiet:
-		SpecialFunctions.audio(QUIETBUTTONPRESS)
+		add_child(SpecialFunctions.create_audio(QUIETBUTTONPRESS))
 	SignalBus.enemy_portrait_toggled.emit(self)

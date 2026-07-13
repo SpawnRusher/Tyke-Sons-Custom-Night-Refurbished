@@ -12,12 +12,13 @@ class_name Chipomat
 @export var kill_timer_pause_threshold: float = 1.0
 @export var knock_sound: AudioStream
 
+@onready var camera = get_viewport().get_camera_2d()
 
 enum STATES {IDLE,SPAWNED,JUMPSCARE}
 var state: STATES
 enum SIDES {LEFT=-1,RIGHT}
 var side: SIDES
-const side_strings: Array[String] = ["l","","r"]
+const side_strings: Array[String] = ["l","r"]
 
 var current_random_variance: float
 var current_spawn_timer: float
@@ -74,7 +75,7 @@ func _visibility_checks() -> bool:
 		
 	if state != STATES.SPAWNED:
 		return false
-	if office_animation_direction != side_strings[side]:
+	if office_animation_direction != side_strings[side+1]:
 		return false
 	if "open_" not in office.animation:
 		return false
@@ -91,8 +92,11 @@ func _pick_side() -> SIDES:
 
 func _spawn_chipomat() -> void:
 	side = _pick_side()
-	sprite.play(side_strings[side])
-	SpecialFunctions.audio(knock_sound,0,1,1,side)
+	sprite.play(side_strings[side+1])
+	var knocking_audio:= SpecialFunctions.create_audio_2d(knock_sound)
+	knocking_audio.position.x = (camera.position.x+1280)+(1280*side)
+	print_debug(knocking_audio.position, " | ", knocking_audio.position - camera.position)
+	camera.add_child(knocking_audio)
 	state = STATES.SPAWNED
 	office_layer.update_window_occupants(enemy_id,side,true)
 	

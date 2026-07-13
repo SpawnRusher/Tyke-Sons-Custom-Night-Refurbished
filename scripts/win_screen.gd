@@ -30,14 +30,14 @@ func _input(event: InputEvent) -> void:
 			_leave()
 
 func _go_to_sleep() -> void:
-	SpecialFunctions.audio(ALARM_CLOCK)
+	add_child(SpecialFunctions.create_audio(ALARM_CLOCK))
 	wake_up.visible = true
 	wake_up.play("wake_up")
 	await get_tree().create_timer(5.8).timeout
 	early_bird.visible = true
-	SpecialFunctions.timer(_create_star,0.02,0,19,0,0,false,false,false)
-	SpecialFunctions.timer(_create_star,0.02,0,19,0,0,false,false,false)
-	SpecialFunctions.timer(_create_star,0.02,0,19,0,0,false,false,false)
+	add_child(SpecialFunctions.create_timer(_create_star,0.02,19))
+	add_child(SpecialFunctions.create_timer(_create_star,0.02,19))
+	add_child(SpecialFunctions.create_timer(_create_star,0.02,19))
 	can_leave = true
 	
 func _create_star() -> void:

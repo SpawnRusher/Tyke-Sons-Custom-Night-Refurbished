@@ -20,8 +20,8 @@ func _ready() -> void:
 	PauseManager.unpause()
 	SceneManager.load_scene("res://scenes/menu.tscn")
 	SceneManager.load_scene("res://scenes/night.tscn")
-	SpecialFunctions.audio(GAMEOVER,0,1,1,0,0,0,false,true)
-	SpecialFunctions.timer(move_game_over_text,0.04,0,-1,0,0,false,false,true)
+	add_child.call_deferred(SpecialFunctions.create_audio(GAMEOVER))
+	add_child.call_deferred(SpecialFunctions.create_timer(_move_game_over_text,0.04,-1))
 	@warning_ignore_start("integer_division")
 	var time_milliseconds = (Global.dead_time % 1000) / 10
 	var time_seconds = (Global.dead_time / 1000) % 60
@@ -31,7 +31,7 @@ func _ready() -> void:
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
 	if Global.dead_enemy_id in DEATH_VOICELINES:
-		SpecialFunctions.audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random())
+		add_child(SpecialFunctions.create_audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random()))
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -41,5 +41,5 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
-func move_game_over_text() -> void:
+func _move_game_over_text() -> void:
 	game_over_text.position = default_text_position + Vector2(randi_range(-3,3),randi_range(-3,3))

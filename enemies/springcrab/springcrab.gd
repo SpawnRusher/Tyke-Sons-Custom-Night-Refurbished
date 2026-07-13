@@ -60,7 +60,7 @@ func _reset_values() -> void:
 
 func spawn_springcrab() -> void:
 	stage = STAGES.SPAWNED
-	SpecialFunctions.audio(walking_sound)
+	add_child(SpecialFunctions.create_audio(walking_sound))
 	office_layer.update_window_occupants(enemy_id,0,true)
 	
 func leave_springcrab() -> void:

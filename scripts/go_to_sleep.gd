@@ -13,9 +13,9 @@ func _ready() -> void:
 		
 func _go_to_sleep() -> void:
 	if happyshroom != null and happyshroom.enabled == true and happyshroom.state == happyshroom.STATES.IDLE:
-		SpecialFunctions.audio(SLEEPING_FAKEOUT,0,1,1,0,0,0,true,true)
+		add_child(SpecialFunctions.create_audio(SLEEPING_FAKEOUT))
 	else:
-		SpecialFunctions.audio(SLEEPING,0,1,1,0,0,0,true,true)
+		get_tree().add_child(SpecialFunctions.create_audio(SLEEPING,0,1,1,0,true,true))
 	show()
 	var tween = get_tree().create_tween()
 	tween.set_pause_mode(tween.TWEEN_PAUSE_PROCESS)

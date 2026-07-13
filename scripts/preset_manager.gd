@@ -27,15 +27,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and hovering_sleep_assurance:
 		var mouse_pos = sleep_assurance_grid.get_local_mouse_position()
-		Global.sleep_assurance_points = (1 + (mouse_pos.x/32 as int)) + (16 * ((mouse_pos.y > (sleep_assurance_grid.size.y/2)) as int))
+		Global.sleep_assurance_points = max(1,1 + (mouse_pos.x/32 as int)) + (16 * ((mouse_pos.y > (sleep_assurance_grid.size.y/2)) as int))
 		_update_sleep_assurance_points(Global.sleep_assurance_points)
 
 func _on_preset_button_left_pressed() -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
+	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS))
 	_set_preset(current_preset - 1)
 		
 func _on_preset_button_right_pressed() -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
+	get_tree().add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS))
 	_set_preset(current_preset + 1)
 
 func _set_preset(index: int) -> void:

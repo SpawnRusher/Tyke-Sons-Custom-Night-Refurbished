@@ -1,6 +1,6 @@
 extends Node2D
 
-const STAIRSUP: AudioStream = preload("uid://c12xjq2e7f4ix")
+const STAIRS_UP: AudioStream = preload("uid://c12xjq2e7f4ix")
 
 @export var background: Sprite2D
 @export var text: Sprite2D
@@ -30,7 +30,7 @@ func _ready() -> void:
 	background_tween_2.tween_property(background,"scale",Vector2(10,10),0.5)
 	
 	await fade_tween_2.finished
-	SpecialFunctions.audio(STAIRSUP)
+	add_child(SpecialFunctions.create_audio(STAIRS_UP))
 	await get_tree().create_timer(2).timeout
 	
 	enter_night = true

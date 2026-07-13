@@ -1,7 +1,7 @@
 extends Node
 
 var ENABLED_IDS: Array[bool]
-var sleep_assurance_points: int
+var sleep_assurance_points: int = 1
 var current_preset_name: String
 var win_time: int
 

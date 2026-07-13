@@ -27,17 +27,17 @@ func _input(event: InputEvent) -> void:
 				GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 	
 func _on_settings_button_button_down() -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS,0,1,1,0,0,0,true)
+	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true))
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera,"position:y",720,0.2)
 
 func _on_menu_button_button_down() -> void:
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS,0,1,1,0,0,0,true)
+	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true))
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera,"position:y",0,0.2)
 
 func _on_start_button_pressed() -> void:
-	SpecialFunctions.audio(BIG_BUTTON_PRESS,0,1,1,0,0,0,true)
+	add_child(SpecialFunctions.create_audio(BIG_BUTTON_PRESS,0,1,1,0,true,true))
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished

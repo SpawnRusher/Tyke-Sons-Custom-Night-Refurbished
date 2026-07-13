@@ -20,8 +20,8 @@ func _ready() -> void:
 	if not enabled: return
 	sprite_area_2d.area_entered.connect(_area_entered)
 	sprite.set("position",positions[move_direction])
-	add_child(SpecialFunctions.start_timer(blinking,blink_time,-1,true))
-	add_child(SpecialFunctions.start_timer(start_moving,idle_time,0,true))
+	add_child(SpecialFunctions.create_timer(blinking,blink_time,-1))
+	add_child(SpecialFunctions.create_timer(start_moving,idle_time))
 
 func _deactivate() -> void:
 	super()
@@ -42,4 +42,4 @@ func start_moving() -> void:
 	tween.tween_property(sprite,"position",move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
 	await tween.finished
 	tween.kill()
-	add_child(SpecialFunctions.start_timer(start_moving,idle_time,0,true))
+	add_child(SpecialFunctions.create_timer(start_moving,idle_time,0,true))

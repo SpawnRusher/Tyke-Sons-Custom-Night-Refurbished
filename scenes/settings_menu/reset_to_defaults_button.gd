@@ -7,4 +7,4 @@ const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 func _on_pressed() -> void:
 	settings_menu.reset_to_defaults.emit(tab.name.to_lower())
-	SpecialFunctions.audio(LOUD_BUTTON_PRESS)
+	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS))

@@ -60,7 +60,7 @@ func _activate_happyshroom() -> void:
 func intro_dialogue() -> void:
 	for i in 3:
 		if i == 2:
-			SpecialFunctions.audio(happyshroom_laughs[3],0,0.1,0.5)
+			SpecialFunctions.create_audio(happyshroom_laughs[3],0,0.2,0.5)
 		happyshroom_text.self_modulate = Color(255,255-((255/4.0)*(i+1)),255-((255/4.0)*(i+1)))
 		happyshroom_text.text = dialogue[i]
 		await get_tree().create_timer(3).timeout

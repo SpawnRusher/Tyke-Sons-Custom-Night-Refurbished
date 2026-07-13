@@ -229,11 +229,12 @@ animations = [{
 "speed": 45.0
 }]
 
-[node name="WinScreen" type="Node2D" unique_id=284745267 node_paths=PackedStringArray("wake_up", "early_bird", "fade")]
+[node name="WinScreen" type="Node2D" unique_id=284745267 node_paths=PackedStringArray("wake_up", "early_bird", "fade", "night_timer")]
 script = ExtResource("1_8uu1o")
 wake_up = NodePath("WakeUp")
 early_bird = NodePath("EarlyBird")
 fade = NodePath("Fade")
+night_timer = NodePath("NightTimer")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1356120555]
 offset_right = 1280.0
