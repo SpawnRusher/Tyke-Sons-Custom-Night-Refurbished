@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://sprites/menu/plus_0-0_0.png" id="26_hwfsl"]
 [ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://sprites/menu/plus_1-0_0.png" id="27_a04p5"]
 [ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scripts/preset.gd" id="29_hwfsl"]
-[ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://sprites/gamejolt/gamejolt_icon.svg" id="32_0ndyk"]
+[ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://sprites/gamejolt/logo/gamejolt_icon.svg" id="32_0ndyk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_48ryc")

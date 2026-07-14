@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://baxq58dhtnofh"
-path="res://.godot/imported/Candara.TTF-58bbbf54952cb9221fe8c80d07ba60fd.fontdata"
+uid="uid://dr3n380hyymrg"
+path="res://.godot/imported/Candara Bold.TTF-44847acd591bf7c9941be5367cf5f43e.fontdata"
 
 [deps]
 
-source_file="res://fonts/Candara.TTF"
-dest_files=["res://.godot/imported/Candara.TTF-58bbbf54952cb9221fe8c80d07ba60fd.fontdata"]
+source_file="res://fonts/Candara Bold.TTF"
+dest_files=["res://.godot/imported/Candara Bold.TTF-44847acd591bf7c9941be5367cf5f43e.fontdata"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6051svx83ggi"
-path="res://.godot/imported/gamejolt_logo.svg-facd1fc82af814e7251b4c4922fbd047.ctex"
+uid="uid://7y46si1whh3m"
+path="res://.godot/imported/gamejolt_trophy_gold.svg-15e2ac7d99c028eb227c69b52bde2736.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/gamejolt/gamejolt_logo.svg"
-dest_files=["res://.godot/imported/gamejolt_logo.svg-facd1fc82af814e7251b4c4922fbd047.ctex"]
+source_file="res://sprites/gamejolt/trophies/gamejolt_trophy_gold.svg"
+dest_files=["res://.godot/imported/gamejolt_trophy_gold.svg-15e2ac7d99c028eb227c69b52bde2736.ctex"]
 
 [params]
 
