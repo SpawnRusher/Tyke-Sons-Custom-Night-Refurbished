@@ -104,6 +104,7 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		
 		text.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size][br][font_size=16]" + trophy["description"] + "[/font_size]"
 		trophies_vbox.add_child(new_trophy)
+		await get_tree().create_timer(0.1).timeout
 		
 func _trophy_icon_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, texture_rect: TextureRect, image_type: String) -> void:
 	var trophy_image = Image.new()
@@ -124,6 +125,7 @@ func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extr
 			scoreboard_name.text = scoreboard_name.text + "[br][font_size=16]" + table["description"] + "[/font_size]"
 		scoreboards_hbox.add_child(scoreboard)
 		GameJolt.api_request("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard})
+		await get_tree().create_timer(0.1).timeout
 		
 func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	for score in response["scores"]:
@@ -142,9 +144,10 @@ func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra
 			username = score["guest"]
 		text.text = "[font_size=24]" + str(response["scores"].find(score)+1) + ". " + username + "[/font_size][br][font_size=16]" + score["score"] + "[/font_size]"
 		
-		extra_info["scoreboard"].find_child("VBoxContainer").add_child(scoreboard_score)
+		extra_info["scoreboard"].find_child("ScoresVBox",true).add_child(scoreboard_score)
 		
 		GameJolt.api_request("users","fetch",{"user_id":score["user_id"]},{"avatar":avatar})
+		await get_tree().create_timer(0.1).timeout
 
 func _avatar_url_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, avatar: TextureRect, image_type: String) -> void:
 	var avatar_image = Image.new()

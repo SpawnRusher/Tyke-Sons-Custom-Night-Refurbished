@@ -4,11 +4,8 @@ extends Node
 var fix_string_bools: bool = false
 var auto_login: bool = true
 
-#var game_id: int = 1077734
-#var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
-
-var game_id: int = 819351
-var private_key: String = "c7be032df3d1da0db5125d214793f44c"
+var game_id: int = 1077734
+var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
 
 var authorized_username: String
 var authorized_user_token: String
