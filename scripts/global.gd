@@ -3,7 +3,9 @@ extends Node
 var ENABLED_IDS: Array[bool]
 var sleep_assurance_points: int = 1
 var current_preset_name: String
+var win_sleep_assurance: float
 var win_time: int
+
 
 var dead_enemy_id: Enemy.ENEMY_IDS = Enemy.ENEMY_IDS.NOT_SET
 var dead_sleep_assurance: float

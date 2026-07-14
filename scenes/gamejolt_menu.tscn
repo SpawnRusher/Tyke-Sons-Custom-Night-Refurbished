@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6051svx83ggi" path="res://sprites/gamejolt/logo/gamejolt_logo.svg" id="1_6x5vi"]
 [ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="3_oj565"]
 [ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button.tscn" id="4_f44it"]
+[ext_resource type="Texture2D" uid="uid://7y46si1whh3m" path="res://sprites/gamejolt/trophies/gamejolt_trophy_gold.svg" id="4_yfbch"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
 bg_color = Color(0.12225223, 0.12225223, 0.12225223, 1)
@@ -38,7 +39,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="GamejoltMenu" type="Control" unique_id=331925881 node_paths=PackedStringArray("username_line_edit", "user_token_line_edit", "login_info", "trophies_vbox")]
+[node name="GamejoltMenu" type="Control" unique_id=331925881 node_paths=PackedStringArray("username_line_edit", "user_token_line_edit", "login_info", "tab_container", "trophies_vbox", "scoreboards_hbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +50,9 @@ script = ExtResource("1_0v1sh")
 username_line_edit = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/Username/UsernameLineEdit")
 user_token_line_edit = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/HBoxContainer/UserToken/UserTokenLineEdit")
 login_info = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/LoginInfo")
-trophies_vbox = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer/VBoxContainer")
+tab_container = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer")
+trophies_vbox = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer/TrophiesVBox")
+scoreboards_hbox = NodePath("MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer/ScoreboardsHBox")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2133735237]
 layout_mode = 1
@@ -111,9 +114,13 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_oj565")
 theme_override_constants/side_margin = 16
+theme_override_constants/icon_max_width = 32
 theme_override_styles/panel = SubResource("StyleBoxEmpty_g4v7s")
 tab_alignment = 1
 current_tab = 0
+tab_1/icon = ExtResource("4_yfbch")
+tab_1/disabled = true
+tab_2/disabled = true
 
 [node name="Login" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=2049037828]
 layout_mode = 2
@@ -260,18 +267,42 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer" unique_id=409586519]
+[node name="TrophiesVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer" unique_id=409586519]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Leaderboards" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=676553127]
+[node name="Scoreboards" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=676553127]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 metadata/_tab_index = 2
+metadata/_tab_name = "Scoreboards"
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards" unique_id=983609255]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel" unique_id=2045407471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer" unique_id=1757709595]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScoreboardsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer" unique_id=392991382]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer" unique_id=537976670]
 custom_minimum_size = Vector2(0, 2)

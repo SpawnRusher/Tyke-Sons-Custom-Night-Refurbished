@@ -4,8 +4,11 @@ extends Node
 var fix_string_bools: bool = false
 var auto_login: bool = true
 
-var game_id: int = 1077734
-var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
+#var game_id: int = 1077734
+#var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
+
+var game_id: int = 819351
+var private_key: String = "c7be032df3d1da0db5125d214793f44c"
 
 var authorized_username: String
 var authorized_user_token: String
@@ -85,26 +88,26 @@ var signals: Dictionary = {
 	"time" : {
 		"time": time_time_completed
 	}}
-signal users_auth_completed(response: Dictionary, parameters: Dictionary)
-signal users_fetch_completed(response: Dictionary, parameters: Dictionary)
-signal sessions_open_completed(response: Dictionary, parameters: Dictionary)
-signal sessions_ping_completed(response: Dictionary, parameters: Dictionary)
-signal sessions_check_completed(response: Dictionary, parameters: Dictionary)
-signal sessions_close_completed(response: Dictionary, parameters: Dictionary)
-signal scores_fetch_completed(response: Dictionary, parameters: Dictionary)
-signal scores_tables_completed(response: Dictionary, parameters: Dictionary)
-signal scores_add_completed(response: Dictionary, parameters: Dictionary)
-signal scores_get_rank_completed(response: Dictionary, parameters: Dictionary)
-signal trophies_fetch_completed(response: Dictionary, parameters: Dictionary)
-signal trophies_add_achieved_completed(response: Dictionary, parameters: Dictionary)
-signal trophies_remove_achieved_completed(response: Dictionary, parameters: Dictionary)
-signal data_storage_set_completed(response: Dictionary, parameters: Dictionary)
-signal data_storage_update_completed(response: Dictionary, parameters: Dictionary)
-signal data_storage_remove_completed(response: Dictionary, parameters: Dictionary)
-signal data_storage_fetch_completed(response: Dictionary, parameters: Dictionary)
-signal data_storage_get_keys_completed(response: Dictionary, parameters: Dictionary)
-signal friends_friends_completed(response: Dictionary, parameters: Dictionary)
-signal time_time_completed(response: Dictionary, parameters: Dictionary)
+signal users_auth_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal sessions_open_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal sessions_ping_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal sessions_check_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal sessions_close_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal scores_tables_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal scores_add_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal scores_get_rank_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal trophies_add_achieved_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal trophies_remove_achieved_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal data_storage_set_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal data_storage_update_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal data_storage_remove_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal data_storage_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal data_storage_get_keys_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal friends_friends_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal time_time_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
 #endregion
 
 func _ready() -> void:
@@ -136,8 +139,9 @@ func _simplify_response(response: PackedByteArray) -> Dictionary:
 	dict.erase("response")
 	return dict
 
-## All hyphens '-' are replaced with underscores '_'
-func api_request(group: String, type: String, parameters:={}) -> void:
+##All hyphens '-' are replaced with underscores '_'[br]
+##[br][param extra_info]: Used to transfer data through api_request to request_completed calls, not used for GameJolt, but necessary
+func api_request(group: String, type: String, parameters:={}, extra_info:={}) -> void:
 	var url = url_endpoints[group][type]
 	for parameter in parameters:
 		if parameter == "user_id" and parameters[parameter] is Array:
@@ -154,15 +158,15 @@ func api_request(group: String, type: String, parameters:={}) -> void:
 	print_debug("request URL: " + url)
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(api_request_completed.bind(http,group,type,parameters))
+	http.request_completed.connect(api_request_completed.bind(http,group,type,parameters,extra_info))
 	http.request(url)
 
-func api_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, group: String, type: String, parameters: Dictionary) -> void:
+func api_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, group: String, type: String, parameters: Dictionary, extra_info: Dictionary) -> void:
 	http.queue_free()
 	print_debug("API request completed. Result: " + str(result) + ", response_code: " + str(response_code))
-	signals[group][type].emit(_simplify_response(body),parameters)
+	signals[group][type].emit(_simplify_response(body),parameters,extra_info)
 
-func _users_auth_completed(result: Dictionary, parameters: Dictionary) -> void:
+func _users_auth_completed(result: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	authorized_username = parameters["username"] if result["success"] == "true" else ""
 	authorized_user_token = parameters["user_token"] if result["success"] == "true" else ""
 		

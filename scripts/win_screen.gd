@@ -55,7 +55,8 @@ func _wake_up_loop() -> void:
 	wake_up.play("loop")
 
 func _add_gamejolt_scores() -> void:
-	pass
+	if Global.current_preset_name == "Sleep Insomnia":
+		GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"score":night_timer.text,"sort":Global.win_time,"table_id":"1091328",})
 	
 func _achieve_gamejolt_trophies() -> void:
 	if Global.current_preset_name == "Sleep Insomnia":
