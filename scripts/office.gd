@@ -136,23 +136,23 @@ func _move_player(go_direction: String) -> void:
 	if go_direction == "b":
 		if office.animation == "office":
 			office.play("go_b")
-			add_child(SpecialFunctions.create_audio(STAIRS_UP))
+			SpecialFunctions.create_audio(STAIRS_UP)
 		elif office.animation == "open_f":
 			office.play("leave_f")
-			add_child(SpecialFunctions.create_audio(RUNNING))
+			SpecialFunctions.create_audio(RUNNING)
 		elif office.animation == "open_b":
 			office.play("leave_b")
-			add_child(SpecialFunctions.create_audio(STAIRS_DOWN))
+			SpecialFunctions.create_audio(STAIRS_DOWN)
 		elif office.animation == "open_l":
 			office.play("leave_l")
-			add_child(SpecialFunctions.create_audio(RUNNING))
+			SpecialFunctions.create_audio(RUNNING)
 		elif office.animation == "open_r":
 			office.play("leave_r")
-			add_child(SpecialFunctions.create_audio(RUNNING))
+			SpecialFunctions.create_audio(RUNNING)
 		
 	elif office.animation == "office":
 		office.play("go_"+go_direction)
-		add_child(SpecialFunctions.create_audio(RUNNING))
+		SpecialFunctions.create_audio(RUNNING)
 
 	last_animation_played = office.animation
 
@@ -215,12 +215,12 @@ func _use_curtain(to_state: bool) -> void:
 	if not to_state:
 		if "closed_" in office.animation:
 			office.play("opening_"+dir)
-			add_child(SpecialFunctions.create_audio(CURTAIN_OPENING))
+			SpecialFunctions.create_audio(CURTAIN_OPENING)
 			return
 		
 	if "open_" in office.animation:
 		office.play("closing_"+dir)
-		add_child(SpecialFunctions.create_audio(CURTAIN_CLOSING))
+		SpecialFunctions.create_audio(CURTAIN_CLOSING)
 		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			SignalBus.flashlight_off.emit()
 	
@@ -268,11 +268,11 @@ func _camera_lock() -> void:
 				SignalBus.change_camera_position.emit(0)
 
 func _on_nose_pressed() -> void:
-	add_child(SpecialFunctions.create_audio(NOSE_HONK))
+	SpecialFunctions.create_audio(NOSE_HONK)
 
 func _on_lamp_button_pressed(source: BaseButton) -> void:
 	dark_overlay.visible = source.button_pressed
-	add_child(SpecialFunctions.create_audio(LAMPTOGGLE))
+	SpecialFunctions.create_audio(LAMPTOGGLE)
 
 func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: Variant, to_do: bool) -> void:
 	if which_side is String:

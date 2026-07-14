@@ -30,7 +30,7 @@ func _ready() -> void:
 	background_tween_2.tween_property(background,"scale",Vector2(10,10),0.5)
 	
 	await fade_tween_2.finished
-	add_child(SpecialFunctions.create_audio(STAIRS_UP))
+	SpecialFunctions.create_audio(STAIRS_UP)
 	await get_tree().create_timer(2).timeout
 	
 	enter_night = true

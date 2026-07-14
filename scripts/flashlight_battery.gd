@@ -35,7 +35,7 @@ func _on_value_changed() -> void:
 	if value == 0:
 		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			flashlight_state = Global.FLASHLIGHT_STATES.OFF
-			add_child(SpecialFunctions.create_audio(FLASHLIGHT_DEAD))
+			SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
 			SignalBus.update_flashlight_state.emit(Global.FLASHLIGHT_STATES.DEAD)
 	
 func flashlight_off(cooldown:= 0.0) -> void:
@@ -43,17 +43,17 @@ func flashlight_off(cooldown:= 0.0) -> void:
 		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			enable_cooldown = cooldown
 			flashlight_state = Global.FLASHLIGHT_STATES.OFF
-			add_child(SpecialFunctions.create_audio(FLASHLIGHT))
+			SpecialFunctions.create_audio(FLASHLIGHT)
 			SignalBus.update_flashlight_state.emit(flashlight_state)
 	
 func flashlight_on() -> void:
 	if value > 0 and enable_cooldown <= 0:
 		if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
 			flashlight_state = Global.FLASHLIGHT_STATES.ON
-			add_child(SpecialFunctions.create_audio(FLASHLIGHT))
+			SpecialFunctions.create_audio(FLASHLIGHT)
 			SignalBus.update_flashlight_state.emit(flashlight_state)
 	else:
-		add_child(SpecialFunctions.create_audio(FLASHLIGHT_DEAD))
+		SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
 
 func phantom_jumpscare() -> void:
 	value -= 30
@@ -64,7 +64,7 @@ func _on_batteries_button_pressed() -> void:
 		SignalBus.update_flashlight_state.emit(flashlight_state)
 		value = 100.0
 		current_batteries_cooldown = 0
-		add_child(SpecialFunctions.create_audio(QUIETBUTTONPRESS))
+		SpecialFunctions.create_audio(QUIETBUTTONPRESS)
 
 func visibility_checks() -> void:
 	batteries.visible = false

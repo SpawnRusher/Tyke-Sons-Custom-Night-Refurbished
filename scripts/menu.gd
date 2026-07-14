@@ -26,17 +26,17 @@ func _input(event: InputEvent) -> void:
 				GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 	
 func _on_settings_button_button_down() -> void:
-	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true))
+	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera,"position:y",720,0.2)
 
 func _on_menu_button_button_down() -> void:
-	add_child(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true))
+	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera,"position:y",0,0.2)
 
 func _on_start_button_pressed() -> void:
-	add_child(SpecialFunctions.create_audio(BIG_BUTTON_PRESS,0,1,1,0,true,true))
+	SpecialFunctions.create_audio(BIG_BUTTON_PRESS)
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished
@@ -49,4 +49,5 @@ func _on_enemy_portrait_mouse_exited() -> void:
 	enemy_tooltip.text = "Hover over an enemy to see tips!"
 
 func _on_gamejolt_button_pressed() -> void:
+	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true)
 	SceneManager.change_to_scene("res://scenes/gamejolt_menu.tscn")

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c2vxi6alnd0xa"]
 
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_ucmtr"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57qmd"]
 bg_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 
@@ -10,9 +12,14 @@ offset_right = 400.0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_ucmtr")
 theme_override_styles/panel = SubResource("StyleBoxFlat_57qmd")
 
 [node name="NameVBox" type="VBoxContainer" parent="." unique_id=931929370]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="NameVBox" unique_id=887351026]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
 [node name="Name" type="RichTextLabel" parent="NameVBox" unique_id=1810735326]
@@ -46,3 +53,11 @@ theme_override_constants/margin_bottom = 2
 [node name="ScoresVBox" type="VBoxContainer" parent="NameVBox/ScrollContainer/MarginContainer" unique_id=1823229156]
 layout_mode = 2
 theme_override_constants/separation = 8
+
+[node name="NoScoresText" type="RichTextLabel" parent="NameVBox/ScrollContainer/MarginContainer/ScoresVBox" unique_id=47558369]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "This scoreboard has no scores :("
+horizontal_alignment = 1
+vertical_alignment = 1

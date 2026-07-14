@@ -95,7 +95,6 @@ func _spawn_chipomat() -> void:
 	var knocking_audio:= SpecialFunctions.create_audio_2d(knock_sound)
 	knocking_audio.position.x = (camera.position.x+1280)+(1280*side)
 	print_debug(knocking_audio.position, " | ", knocking_audio.position - camera.position)
-	camera.add_child(knocking_audio)
 	state = STATES.SPAWNED
 	office_layer.update_window_occupants(enemy_id,side,true)
 	

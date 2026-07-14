@@ -35,7 +35,7 @@ func _on_mouse_entered() -> void:
 	
 func _pickup_lumber() -> void:
 	active = false
-	add_child(SpecialFunctions.create_audio(LUMBER_PICKUP))
+	SpecialFunctions.create_audio(LUMBER_PICKUP)
 	SignalBus.pickup_lumber.emit()
 	var fade_tween = get_tree().create_tween()
 	var move_tween = get_tree().create_tween()

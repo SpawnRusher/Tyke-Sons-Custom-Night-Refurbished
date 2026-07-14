@@ -3,7 +3,7 @@ extends Node
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func create_audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, repeats:= 0, autoplay:= true, persist_through_scenes:= false) -> AudioStreamPlayer:
+func create_audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, repeats:= 0, autoplay:= true, persist_through_scenes:= false, deferred:= false) -> AudioStreamPlayer:
 	var audio:= AudioStreamPlayer.new()
 	audio.stream = stream
 	audio.bus = AudioServer.get_bus_name(bus)
@@ -12,13 +12,18 @@ func create_audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, repea
 	audio.autoplay = autoplay
 	audio.finished.connect(_repeat_audio.bind(audio,repeats))
 	
+	if not deferred:
+		add_child(audio)
+	else:
+		add_child.call_deferred(audio)
+	
 	if not persist_through_scenes: 
 		SceneManager.scene_changed.connect(audio.queue_free)
 		SceneManager.scene_reloaded.connect(audio.queue_free)
 	
 	return audio
 	
-func create_audio_2d(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, panning_strength:= 1.0, repeats:= 0, max_distance:= 2000.0, attenuation:= 1.0, area_mask:= 0, autoplay:= true, persist_through_scenes:= false) -> AudioStreamPlayer2D:
+func create_audio_2d(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, panning_strength:= 1.0, repeats:= 0, max_distance:= 2000.0, attenuation:= 1.0, area_mask:= 0, autoplay:= true, persist_through_scenes:= false, deferred:= false) -> AudioStreamPlayer2D:
 	var audio:= AudioStreamPlayer2D.new()
 	audio.stream = stream
 	audio.bus = AudioServer.get_bus_name(bus)
@@ -29,6 +34,11 @@ func create_audio_2d(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pa
 	audio.attenuation = attenuation
 	audio.autoplay = autoplay
 	audio.finished.connect(_repeat_audio.bind(audio,repeats))
+	
+	if not deferred:
+		add_child(audio)
+	else:
+		add_child.call_deferred(audio)
 	
 	if not persist_through_scenes: 
 		SceneManager.scene_changed.connect(audio.queue_free)

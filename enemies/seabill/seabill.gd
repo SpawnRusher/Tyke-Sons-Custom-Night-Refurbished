@@ -108,7 +108,7 @@ func _reset_values() -> void:
 	current_sleep_assurance_grace_period = sleep_assurance_grace_period
 			
 func ready_seabill() -> void:
-	add_child(SpecialFunctions.create_audio(SPAWN_VOICELINES.pick_random()))
+	SpecialFunctions.create_audio(SPAWN_VOICELINES.pick_random())
 	state = STATES.READY
 	current_timer = randf_range(spawn_timer.x,spawn_timer.y)
 	current_kill_timer = kill_timer

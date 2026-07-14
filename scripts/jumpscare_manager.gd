@@ -15,7 +15,7 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		Global.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
 		Global.dead_time = night_timer.time_elapsed
 		SceneManager.load_scene("res://scenes/game_over.tscn")
-		add_child(SpecialFunctions.create_audio(enemy.jumpscare_sound,1))
+		SpecialFunctions.create_audio(enemy.jumpscare_sound,1)
 
 		if enemy.jumpscares.size() == 0:
 			push_error("No Jumpscare UIDs have been set for ",Enemy.ENEMY_IDS.keys()[enemy],"! Jumpscare will not start.")

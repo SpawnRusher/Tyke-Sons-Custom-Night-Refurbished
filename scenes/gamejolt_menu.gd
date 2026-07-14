@@ -48,12 +48,13 @@ func _ready() -> void:
 		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token},{})
 
 func _on_return_to_menu_button_pressed() -> void:
+	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true)
 	SceneManager.change_to_scene("res://scenes/menu.tscn")
 
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group_name,setting_name)
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
-	add_child(SpecialFunctions.create_audio(QUIETBUTTONPRESS))
+	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
 
 func _on_login_button_pressed() -> void:
 	GameJolt.api_request("users","auth",{"username":username_line_edit.text,"user_token":user_token_line_edit.text})
@@ -105,6 +106,8 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		text.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size][br][font_size=16]" + trophy["description"] + "[/font_size]"
 		trophies_vbox.add_child(new_trophy)
 		await get_tree().create_timer(0.1).timeout
+	if trophies_vbox.get_child_count() == 1:
+		trophies_vbox.get_child(0).visible = true
 		
 func _trophy_icon_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, texture_rect: TextureRect, image_type: String) -> void:
 	var trophy_image = Image.new()
@@ -126,6 +129,8 @@ func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extr
 		scoreboards_hbox.add_child(scoreboard)
 		GameJolt.api_request("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard})
 		await get_tree().create_timer(0.1).timeout
+	if scoreboards_hbox.get_child_count() == 1:
+		scoreboards_hbox.get_child(0).visible = true
 		
 func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	for score in response["scores"]:
@@ -148,6 +153,8 @@ func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra
 		
 		GameJolt.api_request("users","fetch",{"user_id":score["user_id"]},{"avatar":avatar})
 		await get_tree().create_timer(0.1).timeout
+	if extra_info["scoreboard"].find_child("ScoresVBox",true).get_child_count() == 1:
+		extra_info["scoreboard"].find_child("ScoresVBox",true).get_child(0).visible = true
 
 func _avatar_url_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, avatar: TextureRect, image_type: String) -> void:
 	var avatar_image = Image.new()
@@ -159,7 +166,7 @@ func _avatar_url_request_completed(result: int, response_code: int, headers: Pac
 	http.queue_free()
 
 func _on_tab_changed(tab: int) -> void:
-	add_child.call_deferred(SpecialFunctions.create_audio(LOUD_BUTTON_PRESS))
+	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
 	if tab_container.get_tab_title(tab) == "Trophies" and not trophies_loaded:
 		trophies_loaded = true
 		GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})

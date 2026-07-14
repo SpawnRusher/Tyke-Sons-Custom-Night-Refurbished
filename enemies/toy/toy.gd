@@ -69,7 +69,7 @@ func visibility_checks() -> bool:
 	
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
-	add_child(SpecialFunctions.create_audio(TOY_RUNNING))
+	SpecialFunctions.create_audio(TOY_RUNNING)
 	stage = STAGES.IDLE
 	_reset_values()
 	

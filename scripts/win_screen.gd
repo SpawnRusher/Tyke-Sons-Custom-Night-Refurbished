@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			_leave()
 
 func _go_to_sleep() -> void:
-	add_child(SpecialFunctions.create_audio(ALARM_CLOCK))
+	SpecialFunctions.create_audio(ALARM_CLOCK)
 	wake_up.visible = true
 	wake_up.play("wake_up")
 	await get_tree().create_timer(5.8).timeout

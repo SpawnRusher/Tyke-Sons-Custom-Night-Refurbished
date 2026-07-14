@@ -20,8 +20,8 @@ func _ready() -> void:
 	PauseManager.unpause()
 	SceneManager.load_scene("res://scenes/menu.tscn")
 	SceneManager.load_scene("res://scenes/night.tscn")
-	add_child.call_deferred(SpecialFunctions.create_audio(GAMEOVER))
-	add_child.call_deferred(SpecialFunctions.create_timer(_move_game_over_text,0.04,-1))
+	SpecialFunctions.create_audio(GAMEOVER)
+	SpecialFunctions.create_timer(_move_game_over_text,0.04,-1)
 	@warning_ignore_start("integer_division")
 	var time_milliseconds = (Global.dead_time % 1000) / 10
 	var time_seconds = (Global.dead_time / 1000) % 60
@@ -31,7 +31,7 @@ func _ready() -> void:
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
 	if Global.dead_enemy_id in DEATH_VOICELINES:
-		add_child(SpecialFunctions.create_audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random()))
+		SpecialFunctions.create_audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random())
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

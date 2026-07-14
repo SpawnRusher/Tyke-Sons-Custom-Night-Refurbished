@@ -217,7 +217,11 @@ size_flags_vertical = 3
 [node name="LoginInfo" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=26729185]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-text = "Enter your Username and User Token to login!"
+bbcode_enabled = true
+text = "Enter your Username and User Token to login!
+This will allow you to earn trophies and compete on the scoreboards!
+
+[font_size=20]You can view your achieved trophies and the scoreboards in their respective tabs after logging in."
 horizontal_alignment = 1
 
 [node name="Control4" type="Control" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login" unique_id=1178570826]
@@ -272,6 +276,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="NoTrophiesText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer/TrophiesVBox" unique_id=1102537015]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "No trophies for this game :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Scoreboards" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=676553127]
 visible = false
 layout_mode = 2
@@ -303,6 +315,14 @@ theme_override_constants/margin_bottom = 5
 [node name="ScoreboardsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer" unique_id=392991382]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="NoScoreboardsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer/ScoreboardsHBox" unique_id=1758781455]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "No scoreboards for this game :("
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control3" type="Control" parent="MarginContainer/VBoxContainer" unique_id=537976670]
 custom_minimum_size = Vector2(0, 2)
