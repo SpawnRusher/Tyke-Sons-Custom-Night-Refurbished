@@ -78,7 +78,9 @@ var default_settings_data: Dictionary = {
 		"username":"",
 		"user_token":"",
 		"auto_login":false
-	},}
+	},
+	"test group":{
+		"im an item":"Hi"}}
 	
 var default_save_data: Dictionary = {
 	"statistics": {
@@ -131,7 +133,9 @@ var settings_data_to_migrate: Dictionary = {
 	},
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
-	},}
+	},
+	"test group": {
+		"MIGRATE_PREVIOUS_KEY":"goy"}}
 	
 var save_data_to_migrate: Dictionary = {}
 
@@ -150,14 +154,6 @@ func _ready() -> void:
 	_load_file(FILE_TYPE.SETTINGS) if _check_for_file(FILE_TYPE.SETTINGS) else _create_file(FILE_TYPE.SETTINGS)
 	_load_file(FILE_TYPE.SAVE) if _check_for_file(FILE_TYPE.SAVE) else _create_file(FILE_TYPE.SAVE)
 
-func _input(event: InputEvent) -> void:
-	if OS.is_debug_build():
-		if event is InputEventKey and event.is_pressed():
-			if event.keycode == KEY_C:
-				_save_file(FILE_TYPE.SETTINGS)
-			if event.keycode == KEY_D:
-				_save_file(FILE_TYPE.SAVE)
-	
 func _check_for_file(type: FILE_TYPE) -> bool:
 	var check_file:= FileAccess.open(file_paths[type], FileAccess.READ)
 	if check_file:
@@ -299,6 +295,11 @@ func _migrate_data(type: FILE_TYPE) -> void:
 	for first_key in migrate_data: # Loop the first-level keys (groups)
 		if first_key in current_data:
 			for second_key in migrate_data[first_key]: # Loop the second-level keys (the keys with the actual values, a.k.a. the settings or save data)
+				if second_key == "MIGRATE_PREVIOUS_KEY":
+					print_debug("Found ", second_key, " under ", first_key)
+					current_data[migrate_data[first_key][second_key]] = current_data[first_key] # NOT WORKING YET
+					current_data.erase(first_key)
+					continue
 				if second_key in current_data[first_key]:
 					temp_value = current_data[first_key][second_key] # Saves the value
 					current_data[first_key].erase(second_key) # Delete the old key
@@ -311,11 +312,26 @@ func _add_missing_data(type: FILE_TYPE) -> void:
 
 	for first_key in default_data:
 		if first_key not in current_data:
-			current_data[first_key] = {}
-		if first_key in current_data:
+			current_data[first_key] = default_data[first_key]
+			continue
+			
+		if first_key is Dictionary:
 			for second_key in default_data[first_key]:
 				if second_key not in current_data[first_key]:
 					current_data[first_key][second_key] = default_data[first_key][second_key]
+					continue
+				
+				if second_key is Dictionary:
+					for third_key in default_data[first_key][second_key]:
+						if third_key not in current_data[first_key][second_key]:
+							current_data[first_key][second_key][third_key] = default_data[first_key][second_key][third_key]
+							continue
+						
+						if third_key is Dictionary:
+							for fourth_key in default_data[first_key][second_key][third_key]:
+								if fourth_key not in current_data[first_key][second_key][third_key]:
+									current_data[first_key][second_key][third_key][fourth_key] = default_data[first_key][second_key][third_key][fourth_key]
+									continue
 
 func _update_keybinds_actions() -> void:
 	for action in settings_data["keybinds"]:
