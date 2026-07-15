@@ -4,8 +4,11 @@ extends Node
 var fix_string_bools: bool = false
 var auto_login: bool = true
 
-var game_id: int = 1077734
-var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
+#var game_id: int = 1077734
+#var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
+
+var game_id: int = 669217
+var private_key: String = "602be4ce478dc39b197cedcce538604b"
 
 var authorized_username: String
 var authorized_user_token: String
@@ -110,8 +113,8 @@ signal time_time_completed(response: Dictionary, parameters: Dictionary, extra_i
 func _ready() -> void:
 	users_auth_completed.connect(_users_auth_completed)
 	if auto_login:
-		if SaveData.settings_data["gamejolt"]["username"] != "" and SaveData.settings_data["gamejolt"]["user_token"] != "":
-			api_request("users","auth",{"username":SaveData.settings_data["gamejolt"]["username"],"user_token":SaveData.settings_data["gamejolt"]["user_token"]})
+		if SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"]) != "" and SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"]) != "":
+			api_request("users","auth",{"username":SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"]),"user_token":SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"])})
 
 ## Automatically converts the URL given into its signature and returns it along with the URL signature identifier for easy use.[br][br]Syntax: [code]url += _add_signature(url)[/code]
 func _add_signature(url: String) -> String:

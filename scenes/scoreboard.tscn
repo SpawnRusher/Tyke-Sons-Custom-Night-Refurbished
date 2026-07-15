@@ -8,10 +8,11 @@ bg_color = Color(0.080783345, 0.080783345, 0.080783345, 1)
 [node name="Scoreboard" type="PanelContainer" unique_id=684742258]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 400.0
+offset_right = 500.0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 theme = ExtResource("1_ucmtr")
 theme_override_styles/panel = SubResource("StyleBoxFlat_57qmd")
 
@@ -21,23 +22,26 @@ layout_mode = 2
 [node name="Control" type="Control" parent="NameVBox" unique_id=887351026]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Name" type="RichTextLabel" parent="NameVBox" unique_id=1810735326]
 custom_minimum_size = Vector2(0, 35)
+custom_maximum_size = Vector2(500, -1)
 layout_mode = 2
+mouse_filter = 1
 bbcode_enabled = true
-text = "Scoreboard "
+text = "Scoreboard"
 fit_content = true
-autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="NameVBox" unique_id=1848785625]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="NameVBox" unique_id=677064943]
-custom_minimum_size = Vector2(400, 0)
-custom_maximum_size = Vector2(400, -1)
+custom_minimum_size = Vector2(500, 0)
+custom_maximum_size = Vector2(500, -1)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -52,12 +56,13 @@ theme_override_constants/margin_bottom = 2
 
 [node name="ScoresVBox" type="VBoxContainer" parent="NameVBox/ScrollContainer/MarginContainer" unique_id=1823229156]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 5
 
 [node name="NoScoresText" type="RichTextLabel" parent="NameVBox/ScrollContainer/MarginContainer/ScoresVBox" unique_id=47558369]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 text = "This scoreboard has no scores :("
 horizontal_alignment = 1
 vertical_alignment = 1

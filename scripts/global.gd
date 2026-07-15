@@ -1,8 +1,11 @@
 extends Node
 
+#region GAME SETTINGS
 var ENABLED_IDS: Array[bool]
 var sleep_assurance_points: int = 1
 var current_preset_name: String
+var survival_mode: bool
+#endregion
 var win_sleep_assurance: float
 var win_time: int
 

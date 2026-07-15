@@ -22,6 +22,7 @@ func _ready() -> void:
 	SceneManager.load_scene("res://scenes/night.tscn")
 	SpecialFunctions.create_audio(GAMEOVER)
 	SpecialFunctions.create_timer(_move_game_over_text,0.04,-1)
+	_gamejolt_add_scores()
 	@warning_ignore_start("integer_division")
 	var time_milliseconds = (Global.dead_time % 1000) / 10
 	var time_seconds = (Global.dead_time / 1000) % 60
@@ -43,3 +44,11 @@ func _input(event: InputEvent) -> void:
 
 func _move_game_over_text() -> void:
 	game_over_text.position = default_text_position + Vector2(randi_range(-3,3),randi_range(-3,3))
+
+func _gamejolt_add_scores() -> void:
+	if Global.current_preset_name == "Sleep Insomnia" and Global.survival_mode:
+		GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"table_id":"1097836","sort":str(Global.dead_time),"score":night_timer.text.right(night_timer.text.length()-6)},{})
+		
+		
+		
+		

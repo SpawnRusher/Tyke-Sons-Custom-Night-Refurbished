@@ -274,13 +274,14 @@ theme_override_constants/margin_bottom = 5
 [node name="TrophiesVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer" unique_id=409586519]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 6
 
 [node name="NoTrophiesText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Trophies/Panel/ScrollContainer/MarginContainer/TrophiesVBox" unique_id=1102537015]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 text = "No trophies for this game :("
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -306,6 +307,7 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer" unique_id=1757709595]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -314,13 +316,17 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ScoreboardsHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer" unique_id=392991382]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="NoScoreboardsText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Scoreboards/Panel/ScrollContainer/MarginContainer/ScoreboardsHBox" unique_id=1758781455]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 text = "No scoreboards for this game :("
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 

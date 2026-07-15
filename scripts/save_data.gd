@@ -1,7 +1,8 @@
 extends Node
 
 const file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
-enum FILE_TYPE {SETTINGS, SAVE}
+enum FILE_TYPE {SETTINGS, SAVE, DEFAULT_SETTINGS, DEFAULT_SAVE}
+enum SET_DATA_SPECIAL {NONE,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
 
 var default_settings_data: Dictionary = {
 	"display": {
@@ -79,7 +80,30 @@ var default_settings_data: Dictionary = {
 		"auto_login":false
 	},}
 	
-var default_save_data: Dictionary = {}
+var default_save_data: Dictionary = {
+	"statistics": {
+		"deaths": {
+			Enemy.ENEMY_IDS.CHIPOMAT_1:0,
+			Enemy.ENEMY_IDS.CHIPOMAT_2:0,
+			Enemy.ENEMY_IDS.CHIPOMAT_3:0,
+			Enemy.ENEMY_IDS.FUN_FUNGAL:0,
+			Enemy.ENEMY_IDS.SPRINGCRAB:0,
+			Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER:0,
+			Enemy.ENEMY_IDS.SEABILL:0,
+			Enemy.ENEMY_IDS.FREDBEAR:0,
+			Enemy.ENEMY_IDS.BIDY:0,
+			Enemy.ENEMY_IDS.BUSTER:0,
+			Enemy.ENEMY_IDS.BRUCE:0,
+			Enemy.ENEMY_IDS.CHIPPER:0,
+			Enemy.ENEMY_IDS.TOY:0,
+			Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:0,
+			Enemy.ENEMY_IDS.HAPPYSHROOM:0,
+		},
+		"flashlight_battery_used":0,
+		"flashlight_batteries_picked_up":0,
+		"total_flashes":0,
+		
+	}}
 	
 var settings_data_to_migrate: Dictionary = {
 	"display": {
@@ -106,16 +130,10 @@ signal settings_data_loaded
 signal save_data_loaded
 
 func _ready() -> void:
-	if _check_for_file(FILE_TYPE.SETTINGS):
-		_load_file(FILE_TYPE.SETTINGS)
-	else:
-		_create_file(FILE_TYPE.SETTINGS)
+	@warning_ignore_start("standalone_ternary")
+	_load_file(FILE_TYPE.SETTINGS) if _check_for_file(FILE_TYPE.SETTINGS) else _create_file(FILE_TYPE.SETTINGS)
+	_load_file(FILE_TYPE.SAVE) if _check_for_file(FILE_TYPE.SAVE) else _create_file(FILE_TYPE.SAVE)
 
-	if _check_for_file(FILE_TYPE.SAVE):
-		_load_file(FILE_TYPE.SAVE)
-	else:
-		_create_file(FILE_TYPE.SAVE)
-	
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event is InputEventKey and event.is_pressed():
@@ -144,7 +162,6 @@ func _save_file(type: FILE_TYPE) -> void:
 
 func _load_file(type: FILE_TYPE) -> void:
 	var json:= JSON.new()
-	
 	if type == FILE_TYPE.SETTINGS:
 		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
 		json.parse(settings_data_file.get_as_text())
@@ -152,6 +169,7 @@ func _load_file(type: FILE_TYPE) -> void:
 			settings_data = json.data
 		await _migrate_data(FILE_TYPE.SETTINGS)
 		await _add_missing_data(FILE_TYPE.SETTINGS)
+		_save_file(type)
 		settings_data_loaded.emit()
 		_update_settings()
 		_update_keybinds_actions()
@@ -160,6 +178,7 @@ func _load_file(type: FILE_TYPE) -> void:
 		json.parse(save_data_file.get_as_text())
 		if json.data:
 			save_data = json.data
+		_save_file(type)
 		save_data_loaded.emit()
 		_migrate_data(FILE_TYPE.SAVE)
 		_add_missing_data(FILE_TYPE.SAVE)
@@ -190,20 +209,86 @@ func change_data(type: FILE_TYPE, value: Variant, key1: String, key2: String) ->
 		print_debug("Save data updated: [", key1,"][",key2,"] = " + str(value))
 	_save_file(type)
 
+func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SET_DATA_SPECIAL.NONE) -> void:
+	var current_dict: Dictionary = [settings_data,save_data][type]
+	var key: Variant
+	for i in keys.size():
+		key = keys[i]
+		if current_dict[key] is not Dictionary:
+			break
+		if not current_dict.has(key):
+			push_error("Failed to set data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
+			return
+		current_dict = current_dict[key]
+		
+	if special == SET_DATA_SPECIAL.TOGGLE_BOOL:
+		if current_dict[keys[keys.size()-1]] is not bool:
+			push_error("Cannot run set_data special operation ", SET_DATA_SPECIAL.keys()[special], " as the ", FILE_TYPE.keys()[type], " data being modified is not a boolean.")
+			return
+		if value is not bool:
+			push_error("Cannot run set_data special operation ", SET_DATA_SPECIAL.keys()[special], " as the value parameter is not a boolean.")
+			return
+	
+	if special > SET_DATA_SPECIAL.TOGGLE_BOOL:
+		if current_dict[keys[keys.size()-1]] is not int and current_dict[keys[keys.size()-1]] is not float:
+			push_error("Cannot run set_data special operation ", SET_DATA_SPECIAL.keys()[special], " as the ", FILE_TYPE.keys()[type], " data being modified is not numerical.")
+			return
+		if value is not int and value is not float:
+			push_error("Cannot run set_data special operation ", SET_DATA_SPECIAL.keys()[special], " as the value parameter is not numerical.")
+			return
+	
+	match special:
+		SET_DATA_SPECIAL.NONE:
+			current_dict[keys[keys.size()-1]] = value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to ", value)
+		SET_DATA_SPECIAL.ADD:
+			current_dict[keys[keys.size()-1]] += value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to add ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.SUBTRACT:
+			current_dict[keys[keys.size()-1]] -= value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to subtract ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.MULTIPLY:
+			current_dict[keys[keys.size()-1]] *= value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to multiply ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.DIVIDE:
+			current_dict[keys[keys.size()-1]] /= value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (float) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.DIVIDE_INT:
+			current_dict[keys[keys.size()-1]] = floor(current_dict[keys[keys.size()-1]] / value)
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (int) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.MODULO:
+			current_dict[keys[keys.size()-1]] %= value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to modulo ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.EXPONENT:
+			current_dict[keys[keys.size()-1]] **= value
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to exponent ", value, " (",current_dict[keys[keys.size()-1]],")")
+		SET_DATA_SPECIAL.ROOT:
+			current_dict[keys[keys.size()-1]] **= (1.0/value)
+			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to root ", value, " (",current_dict[keys[keys.size()-1]],")")
+		
+	_save_file(type)
+	
+func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
+	var current_dict: Dictionary = [settings_data,save_data,default_settings_data,default_save_data][type]
+	var key: Variant
+	for i in keys.size()-1:
+		key = keys[i]
+		if not current_dict.has(key):
+			push_error("Failed to get data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
+			return
+		if current_dict[key] is not Dictionary:
+			break
+		current_dict = current_dict[key]
+	return current_dict[keys[keys.size()-1]]
+
+
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
 ## Currently only supports editing second keys.
 func _migrate_data(type: FILE_TYPE) -> void:
 	var temp_value: Variant
-	var current_data: Dictionary
-	var migrate_data: Dictionary
-	
-	# Gets the Settings and Save data dictionaries into one set of variables to not need to copy paste the same code twice
-	if type == FILE_TYPE.SETTINGS:
-		current_data = settings_data.duplicate_deep()
-		migrate_data = settings_data_to_migrate.duplicate_deep()
-	else:
-		current_data = save_data.duplicate_deep()
-		migrate_data = save_data_to_migrate.duplicate_deep()
+	# Create reference variables to the dictionaries to be able to reuse the same code for both
+	var current_data: Dictionary = [settings_data,save_data][type]
+	var migrate_data: Dictionary = [settings_data_to_migrate,save_data_to_migrate][type]
 		
 	for first_key in migrate_data: # Loop the first-level keys (groups)
 		if first_key in current_data:
@@ -212,27 +297,12 @@ func _migrate_data(type: FILE_TYPE) -> void:
 					temp_value = current_data[first_key][second_key] # Saves the value
 					current_data[first_key].erase(second_key) # Delete the old key
 					current_data[first_key][migrate_data[first_key][second_key]] = temp_value # Set the value on the new key. Done!
-	
-	# Update the Dictionaries for Settings and Save data
-	if type == FILE_TYPE.SETTINGS:
-		settings_data = current_data
-		settings_data_to_migrate = migrate_data
-	else:
-		save_data = current_data
-		save_data_to_migrate = migrate_data
-	_save_file(type)
 
 func _add_missing_data(type: FILE_TYPE) -> void:
-	var current_data: Dictionary
-	var default_data: Dictionary
-	
-	if type == FILE_TYPE.SETTINGS:
-		current_data = settings_data
-		default_data = default_settings_data
-	else:
-		current_data = save_data
-		default_data = default_save_data
-		
+	# Create reference variables to the dictionaries to be able to reuse the same code for both
+	var current_data: Dictionary = [settings_data,save_data][type]
+	var default_data: Dictionary = [default_settings_data,default_save_data][type]
+
 	for first_key in default_data:
 		if first_key not in current_data:
 			current_data[first_key] = {}
@@ -240,12 +310,6 @@ func _add_missing_data(type: FILE_TYPE) -> void:
 			for second_key in default_data[first_key]:
 				if second_key not in current_data[first_key]:
 					current_data[first_key][second_key] = default_data[first_key][second_key]
-	
-	if type == FILE_TYPE.SETTINGS:
-		settings_data = current_data
-	else:
-		save_data = current_data
-	_save_file(type)
 
 func _update_keybinds_actions() -> void:
 	for action in settings_data["keybinds"]:
@@ -257,7 +321,6 @@ func _deserialize_input_event(event: Dictionary) -> InputEvent:
 		"key":
 			new_event = InputEventKey.new()
 			new_event.physical_keycode = event["physical_keycode"]
-			
 		"mouse_button":
 			new_event = InputEventMouseButton.new()
 			new_event.button_index = event["button_index"]

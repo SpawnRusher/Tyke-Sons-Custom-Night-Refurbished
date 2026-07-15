@@ -16,7 +16,7 @@ func _change_camera_position(to_pos:=-1) -> void:
 	if to_pos == -1:
 		if lockpos != -1:
 			lockpos = -1
-			if SaveData.settings_data["game"]["use_old_camera_scrolling"]:
+			if SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","use_old_camera_scrolling"]):
 				position.x = 200
 		return
 	lockpos = to_pos
@@ -25,8 +25,8 @@ func _move_camera() -> void:
 	if lockpos != -1:
 		position.x = lockpos
 		return
-		
-	if not SaveData.settings_data["game"]["use_old_camera_scrolling"]:
+	
+	if not SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","use_old_camera_scrolling"]):
 		position.x = clampf(200 + ((office.get_local_mouse_position().x - 840) / 4.1), 0, 400)
 		return
 	

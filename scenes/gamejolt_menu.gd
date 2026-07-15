@@ -105,7 +105,7 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		
 		text.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size][br][font_size=16]" + trophy["description"] + "[/font_size]"
 		trophies_vbox.add_child(new_trophy)
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.02).timeout
 	if trophies_vbox.get_child_count() == 1:
 		trophies_vbox.get_child(0).visible = true
 		
@@ -128,7 +128,6 @@ func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extr
 			scoreboard_name.text = scoreboard_name.text + "[br][font_size=16]" + table["description"] + "[/font_size]"
 		scoreboards_hbox.add_child(scoreboard)
 		GameJolt.api_request("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard})
-		await get_tree().create_timer(0.1).timeout
 	if scoreboards_hbox.get_child_count() == 1:
 		scoreboards_hbox.get_child(0).visible = true
 		

@@ -44,8 +44,8 @@ func _input(event: InputEvent) -> void:
 				accept_event()
 
 func _reset_to_defaults(tab_name: String) -> void:
-	for setting in SaveData.settings_data[tab_name]:
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,SaveData.default_settings_data[tab_name][setting],tab_name,setting)
+	for setting in SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[tab_name]):
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[tab_name,setting],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,["tab_name","setting"]))
 	resetted_to_defaults.emit()
 
 func _keybind_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:

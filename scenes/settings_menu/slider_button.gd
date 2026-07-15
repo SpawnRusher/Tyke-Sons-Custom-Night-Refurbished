@@ -12,7 +12,7 @@ func _ready() -> void:
 	settings_menu.resetted_to_defaults.connect(_update)
 	
 func _update() -> void:
-	slider.value = SaveData.settings_data[group_name][setting_name]
+	slider.value = SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name])
 	state_label.text = str(int(slider.value))
 
 func _on_slider_value_changed(value: float) -> void:

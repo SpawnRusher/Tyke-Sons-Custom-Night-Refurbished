@@ -12,7 +12,7 @@ func _ready() -> void:
 		settings_menu.resetted_to_defaults.connect(_update)
 	
 func _update() -> void:
-	button_pressed = SaveData.settings_data[group_name][setting_name]
+	button_pressed = SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name])
 	state_label.text = ["OFF","ON"][button_pressed as int]
 	
 func _on_toggled(toggled_on: bool) -> void:

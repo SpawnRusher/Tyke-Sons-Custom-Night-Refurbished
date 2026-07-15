@@ -11,6 +11,8 @@ func _ready() -> void:
 func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 	if not jumpscare_sprite.is_playing():
 		PauseManager.pause()
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","deaths",str(enemy.enemy_id)],1,SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.save_data["statistics"]["deaths"][enemy.enemy_id]+=1
 		Global.dead_enemy_id = enemy.enemy_id
 		Global.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
 		Global.dead_time = night_timer.time_elapsed
@@ -30,7 +32,7 @@ func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		show()
 
 func _jumpscare_end() -> void:
-	if not SaveData.settings_data["game"]["auto_restart_on_death"]:
+	if not SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","auto_restart_on_death"]):
 		SceneManager.change_to_scene("res://scenes/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	else:
 		PauseManager.unpause()
