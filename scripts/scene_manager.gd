@@ -1,11 +1,13 @@
 extends Node
 
-var scenes: Dictionary
+var scenes: Dictionary[String,Dictionary]
 
 enum CHANGE_SCENE_BEHAVIOR {FAIL,AWAIT,BYPASS}
 
-signal scene_changed
-signal scene_reloaded
+signal scene_changing(previous: String, next: String)
+signal scene_changed(previous: String, next: String)
+signal scene_reloading(path: String)
+signal scene_reloaded(path: String)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -14,7 +16,10 @@ func _process(delta: float) -> void:
 	for scene: String in scenes:
 		scenes[scene]["status"] = ResourceLoader.load_threaded_get_status(scene,scenes[scene]["progress"])
 		if scenes[scene]["load_immediately"] and scenes[scene]["progress"][0] >= 1.0:
+			var previous_scene_path:= get_tree().current_scene.scene_file_path
+			scene_changing.emit(previous_scene_path, scene)
 			change_to_scene(scene)
+			scene_changed.emit(previous_scene_path, scene)
 
 ## Loads a scene filepath with a threaded request. Supports an indefinite number of scenes at the same time.
 func load_scene(path: String, load_immediately:= false, free_after_use:= true, type_hint:= "", use_sub_threads:= false, cache_mode:= ResourceLoader.CACHE_MODE_REUSE) -> void:
@@ -37,23 +42,29 @@ func get_progress(path: String) -> float:
 ## Custom scene changer function to work with the script. Checks if the scene is finished loading before changing, otherwise nothing happens.
 func change_to_scene(path: String, behavior:= CHANGE_SCENE_BEHAVIOR.AWAIT) -> void:
 	if path not in scenes:
+		var previous_scene_path:= get_tree().current_scene.scene_file_path
+		scene_changing.emit(previous_scene_path, path)
 		get_tree().change_scene_to_file(path)
-		scene_changed.emit()
+		scene_changed.emit(previous_scene_path, path)
 		return
 	if scenes[path]["progress"][0] < 1 and behavior == CHANGE_SCENE_BEHAVIOR.FAIL:
 		push_error("Attempted changing to scene before it finished loading. CHANGE_SCENE_BEHAVIOR.FAIL")
 	elif behavior == CHANGE_SCENE_BEHAVIOR.AWAIT and get_progress(path) < 1.0:
 		scenes[path]["load_immediately"] = true
 	else:
+		var previous_scene_path:= get_tree().current_scene.scene_file_path
+		scene_changing.emit(previous_scene_path, path)
 		get_tree().change_scene_to_file(path)
-		scene_changed.emit()
+		scene_changed.emit(previous_scene_path, path)
 		if scenes[path]["free_after_use"]:
 			ResourceLoader.load_threaded_get(path)
 		unload_scene(path)
 
-func reload_scene(path: String) -> void:
+func reload_scene() -> void:
+	var scene_path = get_tree().current_scene.scene_file_path
+	scene_reloading.emit(scene_path)
 	get_tree().reload_current_scene()
-	scene_reloaded.emit()
+	scene_reloaded.emit(scene_path)
 
 ## Check for how many scenes are pre-loaded in the scene manager.[br]
 ## [param start]: The index to start at when printing the dictionary entries.

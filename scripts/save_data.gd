@@ -82,27 +82,43 @@ var default_settings_data: Dictionary = {
 	
 var default_save_data: Dictionary = {
 	"statistics": {
-		"deaths": {
-			Enemy.ENEMY_IDS.CHIPOMAT_1:0,
-			Enemy.ENEMY_IDS.CHIPOMAT_2:0,
-			Enemy.ENEMY_IDS.CHIPOMAT_3:0,
-			Enemy.ENEMY_IDS.FUN_FUNGAL:0,
-			Enemy.ENEMY_IDS.SPRINGCRAB:0,
-			Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER:0,
-			Enemy.ENEMY_IDS.SEABILL:0,
-			Enemy.ENEMY_IDS.FREDBEAR:0,
-			Enemy.ENEMY_IDS.BIDY:0,
-			Enemy.ENEMY_IDS.BUSTER:0,
-			Enemy.ENEMY_IDS.BRUCE:0,
-			Enemy.ENEMY_IDS.CHIPPER:0,
-			Enemy.ENEMY_IDS.TOY:0,
-			Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:0,
-			Enemy.ENEMY_IDS.HAPPYSHROOM:0,
+		"flashlight": {
+			"flashlight_battery_drained":0,
+			"phantom_chipomat_flashlight_battery_drained":0,
+			"flashlight_batteries_picked_up":0,
+			"flashlight_total_flashes":0,
 		},
-		"flashlight_battery_used":0,
-		"flashlight_batteries_picked_up":0,
-		"total_flashes":0,
-		
+		"jumpscares": {
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_1]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_2]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_3]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.FUN_FUNGAL]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.SPRINGCRAB]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.SEABILL]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.FREDBEAR]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BIDY]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BUSTER]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BRUCE]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPPER]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.TOY]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT]:0,
+			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.HAPPYSHROOM]:0,
+		},
+		"playtime": {
+			"general": {
+				"total":0,
+				"menu":0,
+				"gamejolt_menu":0,
+				"night":0,
+			},
+			"presets": {
+				"Custom Night":0,
+				"Top Row":0,
+				"Bottom Row":0,
+				"Sleep Insomnia":0,
+			},
+		},		
 	}}
 	
 var settings_data_to_migrate: Dictionary = {
@@ -205,11 +221,11 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 	var key: Variant
 	for i in keys.size():
 		key = keys[i]
-		if current_dict[key] is not Dictionary:
-			break
 		if not current_dict.has(key):
 			push_error("Failed to set data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
 			return
+		if current_dict[key] is not Dictionary:
+			break
 		current_dict = current_dict[key]	
 		
 	if special == SET_DATA_SPECIAL.TOGGLE_BOOL:

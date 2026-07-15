@@ -33,6 +33,7 @@ func _ready() -> void:
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
 	if Global.dead_enemy_id in DEATH_VOICELINES:
 		SpecialFunctions.create_audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random())
+	Global.dead_enemy_id = -1
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

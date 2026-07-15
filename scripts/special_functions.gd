@@ -18,8 +18,8 @@ func create_audio(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, repea
 		add_child.call_deferred(audio)
 	
 	if not persist_through_scenes: 
-		SceneManager.scene_changed.connect(audio.queue_free)
-		SceneManager.scene_reloaded.connect(audio.queue_free)
+		SceneManager.scene_changed.connect(audio.queue_free.unbind(2))
+		SceneManager.scene_reloaded.connect(audio.queue_free.unbind(1))
 	
 	return audio
 	
@@ -41,8 +41,8 @@ func create_audio_2d(stream: AudioStream, bus:= 0, volume:= 1.0, pitch:= 1.0, pa
 		add_child.call_deferred(audio)
 	
 	if not persist_through_scenes: 
-		SceneManager.scene_changed.connect(audio.queue_free)
-		SceneManager.scene_reloaded.connect(audio.queue_free)
+		SceneManager.scene_changed.connect(audio.queue_free.unbind(2))
+		SceneManager.scene_reloaded.connect(audio.queue_free.unbind(1))
 
 	return audio
 
@@ -64,8 +64,8 @@ func create_timer(function_name: Callable, interval: float, repeats:= 0, autosta
 	timer.timeout.connect(_repeat_timer.bind(timer,repeats))
 	
 	if not persist_through_scenes: 
-		SceneManager.scene_changed.connect(timer.queue_free)
-		SceneManager.scene_reloaded.connect(timer.queue_free)
+		SceneManager.scene_changed.connect(timer.queue_free.unbind(2))
+		SceneManager.scene_reloaded.connect(timer.queue_free.unbind(1))
 	
 	return timer
 

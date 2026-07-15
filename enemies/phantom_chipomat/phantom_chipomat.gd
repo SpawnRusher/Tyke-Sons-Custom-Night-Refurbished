@@ -40,6 +40,7 @@ func phantom_attack() -> void:
 	sprite.visible = true
 	sprite.play()
 	SpecialFunctions.create_audio(jumpscare_sound,1)
+	SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","jumpscares",ENEMY_IDS.keys()[enemy_id]],1,SaveData.SET_DATA_SPECIAL.ADD)
 	await sprite.animation_finished
 	SignalBus.phantom_jumpscare.emit()
 	var tween = get_tree().create_tween()

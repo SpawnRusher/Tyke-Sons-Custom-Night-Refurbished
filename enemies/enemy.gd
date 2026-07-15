@@ -1,12 +1,12 @@
 class_name Enemy extends Node
 
-enum ENEMY_IDS {NOT_SET=-1, CHIPOMAT_1, CHIPOMAT_2, CHIPOMAT_3, FUN_FUNGAL, SPRINGCRAB, NIGHTMARE_CHIPPER, SEABILL, FREDBEAR, BIDY, BUSTER, BRUCE, CHIPPER, TOY, PHANTOM_CHIPOMAT, HAPPYSHROOM}
+enum ENEMY_IDS {CHIPOMAT_1, CHIPOMAT_2, CHIPOMAT_3, FUN_FUNGAL, SPRINGCRAB, NIGHTMARE_CHIPPER, SEABILL, FREDBEAR, BIDY, BUSTER, BRUCE, CHIPPER, TOY, PHANTOM_CHIPOMAT, HAPPYSHROOM}
 	
 enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 
 
 @export_group("Enemy Details")
-@export var enemy_id: ENEMY_IDS = ENEMY_IDS.NOT_SET
+@export var enemy_id: ENEMY_IDS = -1
 @export var sleep_assurance_score: float = -1
 @export_group("Jumpscare Details")
 @export var jumpscare_sound: AudioStream
@@ -15,7 +15,7 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 var enabled: bool
 
 func _ready() -> void:
-	if enemy_id == ENEMY_IDS.NOT_SET:
+	if enemy_id == -1:
 		print_debug("An Enemy ID has not been set for one of the enemies! Running _deactivate()")
 		_deactivate()
 		return

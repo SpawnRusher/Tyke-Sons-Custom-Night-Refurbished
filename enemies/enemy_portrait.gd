@@ -8,7 +8,7 @@ class_name Enemy_Portrait extends TextureRect
 const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 
 func _ready() -> void:
-	assert(enemy_id > Enemy.ENEMY_IDS.NOT_SET,"Enemy ID has not been set for one of the enemy portraits!")
+	assert(enemy_id > -1,"Enemy ID has not been set for one of the enemy portraits!")
 
 func _input(event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) and border.is_hovered():
