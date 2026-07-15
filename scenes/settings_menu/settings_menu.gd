@@ -59,7 +59,7 @@ func _keybind_button(button: Button, group_name: String, setting_name: String, s
 
 func _update_action_list(button: Button, state_label, action: String, event: InputEvent) -> void:
 	state_label.text = event.as_text().trim_suffix(" - Physical")
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,_serialize_input_event(event),"keybinds",remapping_action)
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["keybinds",remapping_action],_serialize_input_event(event))
 	
 ## Converts an InputEvent of type Key or MouseButton into readable data which can be deserialized to create and InputEvent of equal type when loading data. [br]
 ## [br] Deserialization function is in SaveData.
@@ -80,15 +80,15 @@ func _on_tab_changed(tab: int) -> void:
 	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
 	
 func _slider_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel, slider: Range) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,slider.value,group_name,setting_name)
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],slider.value)
 	state_label.text = str(int(slider.value))
 	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
 	
 func _dropdown_button(index: int, button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, dropdown: OptionButton) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,dropdown.get_item_id(index),group_name,setting_name)
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],dropdown.get_item_id(index))
 	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
 	
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group_name,setting_name)
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
 	SpecialFunctions.create_audio(QUIETBUTTONPRESS)

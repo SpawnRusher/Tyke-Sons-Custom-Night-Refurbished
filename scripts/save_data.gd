@@ -200,15 +200,6 @@ func _update_settings() -> void:
 	
 	get_tree().root.canvas_item_default_texture_filter = settings_data["display"]["antialiasing"]
 
-func change_data(type: FILE_TYPE, value: Variant, key1: String, key2: String) -> void:
-	if type == FILE_TYPE.SETTINGS:
-		settings_data[key1][key2] = value
-		print_debug("Settings data updated: [",key1,"][",key2,"] = " + str(value))
-	elif type == FILE_TYPE.SAVE:
-		save_data[key1][key2] = value
-		print_debug("Save data updated: [", key1,"][",key2,"] = " + str(value))
-	_save_file(type)
-
 func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SET_DATA_SPECIAL.NONE) -> void:
 	var current_dict: Dictionary = [settings_data,save_data][type]
 	var key: Variant
@@ -219,7 +210,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 		if not current_dict.has(key):
 			push_error("Failed to set data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
 			return
-		current_dict = current_dict[key]
+		current_dict = current_dict[key]	
 		
 	if special == SET_DATA_SPECIAL.TOGGLE_BOOL:
 		if current_dict[keys[keys.size()-1]] is not bool:
@@ -280,7 +271,6 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 			break
 		current_dict = current_dict[key]
 	return current_dict[keys[keys.size()-1]]
-
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
 ## Currently only supports editing second keys.

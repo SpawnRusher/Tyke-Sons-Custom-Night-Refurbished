@@ -7,8 +7,6 @@ const TROPHY = preload("uid://cc30spbhiddw")
 const SCOREBOARD = preload("uid://c2vxi6alnd0xa")
 const SCOREBOARD_SCORE = preload("uid://cnjso7820f2hb")
 
-
-
 const trophy_images: Dictionary[String,Resource] = {
 	"Bronze":preload("uid://0v0x60882ttn"),
 	"Silver":preload("uid://droo2c354fvl7"),
@@ -52,7 +50,7 @@ func _on_return_to_menu_button_pressed() -> void:
 	SceneManager.change_to_scene("res://scenes/menu.tscn")
 
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
-	SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,button.button_pressed,group_name,setting_name)
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
 	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
 
@@ -62,12 +60,12 @@ func _on_login_button_pressed() -> void:
 func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	if response["success"] == "false":
 		login_info.text = "Failed to log in with GameJolt. Double check Username and User Token."
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,"","gamejolt","username")
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,"","gamejolt","user_token")
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"],"")
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"],"")
 	else:
 		login_info.text = "Logged in successfully as " + GameJolt.authorized_username + "!"
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["username"],"gamejolt","username")
-		SaveData.change_data(SaveData.FILE_TYPE.SETTINGS,parameters["user_token"],"gamejolt","user_token")
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"],parameters["username"])
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"],parameters["user_token"])
 		tab_container.set("tab_1/disabled",false)
 		tab_container.set("tab_2/disabled",false)
 		

@@ -11,6 +11,7 @@ func _ready() -> void:
 func jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 	if not jumpscare_sprite.is_playing():
 		PauseManager.pause()
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","deaths",str(enemy.enemy_id)],1,0,)
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","deaths",str(enemy.enemy_id)],1,SaveData.SET_DATA_SPECIAL.ADD)
 		SaveData.save_data["statistics"]["deaths"][enemy.enemy_id]+=1
 		Global.dead_enemy_id = enemy.enemy_id
