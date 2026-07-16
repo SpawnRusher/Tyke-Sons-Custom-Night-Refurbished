@@ -78,9 +78,7 @@ var default_settings_data: Dictionary = {
 		"username":"",
 		"user_token":"",
 		"auto_login":false
-	},
-	"test group":{
-		"im an item":"Hi"}}
+	},}
 	
 var default_save_data: Dictionary = {
 	"statistics": {
@@ -133,9 +131,7 @@ var settings_data_to_migrate: Dictionary = {
 	},
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
-	},
-	"test group": {
-		"MIGRATE_PREVIOUS_KEY":"goy"}}
+	},}
 	
 var save_data_to_migrate: Dictionary = {}
 
@@ -179,8 +175,8 @@ func _load_file(type: FILE_TYPE) -> void:
 		json.parse(settings_data_file.get_as_text())
 		if json.data:
 			settings_data = json.data
-		await _migrate_data(FILE_TYPE.SETTINGS)
 		await _add_missing_data(FILE_TYPE.SETTINGS)
+		await _migrate_data(FILE_TYPE.SETTINGS)
 		_save_file(type)
 		settings_data_loaded.emit()
 		_update_settings()
@@ -287,23 +283,43 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
 ## Currently only supports editing second keys.
 func _migrate_data(type: FILE_TYPE) -> void:
-	var temp_value: Variant
 	# Create reference variables to the dictionaries to be able to reuse the same code for both
 	var current_data: Dictionary = [settings_data,save_data][type]
 	var migrate_data: Dictionary = [settings_data_to_migrate,save_data_to_migrate][type]
 		
-	for first_key in migrate_data: # Loop the first-level keys (groups)
+	for first_key in migrate_data:
 		if first_key in current_data:
-			for second_key in migrate_data[first_key]: # Loop the second-level keys (the keys with the actual values, a.k.a. the settings or save data)
-				if second_key == "MIGRATE_PREVIOUS_KEY":
-					print_debug("Found ", second_key, " under ", first_key)
-					current_data[migrate_data[first_key][second_key]] = current_data[first_key] # NOT WORKING YET
-					current_data.erase(first_key)
-					continue
+			if first_key in current_data:
+				current_data[migrate_data[first_key]] = current_data[first_key]
+				current_data.erase(first_key)
+				continue
+			for second_key in migrate_data[first_key]:
 				if second_key in current_data[first_key]:
-					temp_value = current_data[first_key][second_key] # Saves the value
-					current_data[first_key].erase(second_key) # Delete the old key
-					current_data[first_key][migrate_data[first_key][second_key]] = temp_value # Set the value on the new key. Done!
+					if second_key == "MIGRATE_PREVIOUS_KEY":
+						current_data[migrate_data[first_key][second_key]] = current_data[first_key]
+						current_data.erase(first_key)
+						continue
+					if second_key in current_data[first_key]:
+						current_data[first_key][migrate_data[first_key][second_key]] = current_data[first_key][second_key]
+						current_data[first_key].erase(second_key)
+					for third_key in migrate_data[first_key][second_key]:
+						if third_key in current_data[first_key][second_key]:
+							if second_key == "MIGRATE_PREVIOUS_KEY":
+								current_data[migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key]
+								current_data[first_key].erase(second_key)
+								continue
+							if third_key in current_data[first_key][second_key]:
+								current_data[first_key][second_key][migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key][third_key]
+								current_data[first_key][second_key].erase(third_key)
+							for fourth_key in migrate_data[first_key][second_key][third_key]:
+								if fourth_key in current_data[first_key][second_key][third_key]:
+									if third_key == "MIGRATE_PREVIOUS_KEY":
+										current_data[migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key]
+										current_data[first_key][second_key].erase(third_key)
+										continue
+									if fourth_key in current_data[first_key][second_key][third_key]:
+										current_data[first_key][second_key][third_key][migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key][fourth_key]
+										current_data[first_key][second_key][third_key].erase(fourth_key)
 
 func _add_missing_data(type: FILE_TYPE) -> void:
 	# Create reference variables to the dictionaries to be able to reuse the same code for both
