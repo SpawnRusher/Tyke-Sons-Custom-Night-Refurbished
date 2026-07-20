@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cc30spbhiddw"]
 
-[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_dhcmp"]
+[ext_resource type="Theme" uid="uid://byygsn28jeep" path="res://themes/gamejolt_menu_theme.tres" id="1_dhcmp"]
 [ext_resource type="Texture2D" uid="uid://0v0x60882ttn" path="res://sprites/gamejolt/trophies/gamejolt_trophy_bronze.svg" id="1_nxsgq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhcmp"]
@@ -31,28 +31,43 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dhcmp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=171481396]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1451334442]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1910235737]
+[node name="TrophyIcon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1910235737]
 custom_minimum_size = Vector2(75, 75)
 custom_maximum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("1_nxsgq")
 expand_mode = 2
 
-[node name="Text" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1812209165]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=107641799]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1812209165]
 custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
+text = "Title"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1005217177]
+custom_maximum_size = Vector2(-1, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Description"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1

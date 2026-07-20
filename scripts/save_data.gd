@@ -78,8 +78,7 @@ var default_settings_data: Dictionary = {
 		"username":"",
 		"user_token":"",
 		"auto_login":false
-	},}
-	
+	},}	
 var default_save_data: Dictionary = {
 	"statistics": {
 		"flashlight": {
@@ -120,7 +119,6 @@ var default_save_data: Dictionary = {
 			},
 		},		
 	}}
-	
 var settings_data_to_migrate: Dictionary = {
 	"display": {
 		"texture_filter":"antialiasing"
@@ -132,7 +130,6 @@ var settings_data_to_migrate: Dictionary = {
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
 	},}
-	
 var save_data_to_migrate: Dictionary = {}
 
 var settings_data: Dictionary = default_settings_data
@@ -146,7 +143,6 @@ signal settings_data_loaded
 signal save_data_loaded
 
 func _ready() -> void:
-	@warning_ignore_start("standalone_ternary")
 	_load_file(FILE_TYPE.SETTINGS) if _check_for_file(FILE_TYPE.SETTINGS) else _create_file(FILE_TYPE.SETTINGS)
 	_load_file(FILE_TYPE.SAVE) if _check_for_file(FILE_TYPE.SAVE) else _create_file(FILE_TYPE.SAVE)
 
@@ -198,8 +194,8 @@ func _create_file(type: FILE_TYPE) -> void:
 	_load_file(type)
 	
 func _update_settings() -> void:
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),(settings_data["game"]["master_volume"])/100.0)
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Jumpscare"),(settings_data["game"]["jumpscare_volume"])/100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),(get_data(FILE_TYPE.SETTINGS,["game","master_volume"]))/100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Jumpscare"),(get_data(FILE_TYPE.SETTINGS,["game","jumpscare_volume"]))/100.0)
 	
 	DisplayServer.window_set_mode(settings_data["display"]["window_mode"])
 	DisplayServer.window_set_vsync_mode(settings_data["display"]["vsync_mode"])
@@ -281,43 +277,47 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 	return current_dict[keys[keys.size()-1]]
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
-## Currently only supports editing second keys.
 func _migrate_data(type: FILE_TYPE) -> void:
 	# Create reference variables to the dictionaries to be able to reuse the same code for both
 	var current_data: Dictionary = [settings_data,save_data][type]
 	var migrate_data: Dictionary = [settings_data_to_migrate,save_data_to_migrate][type]
+	
+	
 		
 	for first_key in migrate_data:
 		if first_key in current_data:
-			if first_key in current_data:
+			if first_key in current_data and current_data[first_key] is not Dictionary:
 				current_data[migrate_data[first_key]] = current_data[first_key]
 				current_data.erase(first_key)
 				continue
+				
 			for second_key in migrate_data[first_key]:
 				if second_key in current_data[first_key]:
 					if second_key == "MIGRATE_PREVIOUS_KEY":
 						current_data[migrate_data[first_key][second_key]] = current_data[first_key]
 						current_data.erase(first_key)
 						continue
-					if second_key in current_data[first_key]:
+					if second_key in current_data[first_key] and current_data[first_key][second_key] is not Dictionary:
 						current_data[first_key][migrate_data[first_key][second_key]] = current_data[first_key][second_key]
 						current_data[first_key].erase(second_key)
+						
 					for third_key in migrate_data[first_key][second_key]:
 						if third_key in current_data[first_key][second_key]:
-							if second_key == "MIGRATE_PREVIOUS_KEY":
+							if third_key == "MIGRATE_PREVIOUS_KEY":
 								current_data[migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key]
 								current_data[first_key].erase(second_key)
 								continue
-							if third_key in current_data[first_key][second_key]:
+							if third_key in current_data[first_key][second_key] and current_data[first_key][second_key][third_key] is not Dictionary:
 								current_data[first_key][second_key][migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key][third_key]
 								current_data[first_key][second_key].erase(third_key)
+								
 							for fourth_key in migrate_data[first_key][second_key][third_key]:
 								if fourth_key in current_data[first_key][second_key][third_key]:
-									if third_key == "MIGRATE_PREVIOUS_KEY":
+									if fourth_key == "MIGRATE_PREVIOUS_KEY":
 										current_data[migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key]
 										current_data[first_key][second_key].erase(third_key)
 										continue
-									if fourth_key in current_data[first_key][second_key][third_key]:
+									if fourth_key in current_data[first_key][second_key][third_key] and current_data[first_key][second_key][third_key][fourth_key] is not Dictionary:
 										current_data[first_key][second_key][third_key][migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key][fourth_key]
 										current_data[first_key][second_key][third_key].erase(fourth_key)
 

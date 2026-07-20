@@ -4,20 +4,33 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 const TROPHY = preload("uid://cc30spbhiddw")
+const TROPHY_DIVIDER = preload("uid://6r8dbyg5bf3")
 const SCOREBOARD = preload("uid://c2vxi6alnd0xa")
 const SCOREBOARD_SCORE = preload("uid://cnjso7820f2hb")
 
-const trophy_images: Dictionary[String,Resource] = {
-	"Bronze":preload("uid://0v0x60882ttn"),
-	"Silver":preload("uid://droo2c354fvl7"),
-	"Gold":preload("uid://7y46si1whh3m"),
-	"Platinum":preload("uid://2rmo5irqvj2j") }
-	
-const trophy_images_secret: Dictionary[String,Resource] = {
-	"Bronze":preload("uid://crbob87uk318t"),
-	"Silver":preload("uid://ja2bpxd358ci"),
-	"Gold":preload("uid://dssvh1553nhoh"),
-	"Platinum":preload("uid://bl4gonb7wgn4") }
+
+const TROPHY_DATA: Dictionary = {
+	"Bronze": {
+		"icon_normal":preload("uid://0v0x60882ttn"),
+		"icon_secret":preload("uid://crbob87uk318t"),
+		"color":Color(0.976, 0.78, 0.569, 1.0),
+	},
+	"Silver": {
+		"icon_normal":preload("uid://droo2c354fvl7"),
+		"icon_secret":preload("uid://ja2bpxd358ci"),
+		"color":Color(0.812, 0.812, 0.812, 1.0),
+	},
+	"Gold": {
+		"icon_normal":preload("uid://7y46si1whh3m"),
+		"icon_secret":preload("uid://dssvh1553nhoh"),
+		"color":Color(1.0, 0.812, 0.153, 1.0),
+	},
+	"Platinum": {
+		"icon_normal":preload("uid://2rmo5irqvj2j"),
+		"icon_secret":preload("uid://bl4gonb7wgn4"),
+		"color":Color(0.745, 0.843, 0.847, 1.0),
+	}}
+
 
 @export var username_line_edit: LineEdit
 @export var user_token_line_edit: LineEdit
@@ -71,16 +84,33 @@ func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_i
 		
 func _users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	if extra_info["avatar"]:
+		if response["users"][0]["avatar_url"] == "https://secure.gravatar.com/avatar/48f6ec541c9bafc3f2a6517d1885cb73?s=60&r=pg&d=https%3A%2F%2Fs.gjcdn.net%2Fimg%2Fno-avatar-3.png":
+			return
 		var http = HTTPRequest.new()
 		add_child(http)
 		http.request_completed.connect(_avatar_url_request_completed.bind(http,extra_info["avatar"],response["users"][0]["avatar_url"].right(3)))
 		http.request(response["users"][0]["avatar_url"])
 
 func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	var current_difficulty:= ""
 	for trophy in response["trophies"]:
+		if current_difficulty != trophy["difficulty"]:
+			current_difficulty = trophy["difficulty"]
+			var trophy_divider = TROPHY_DIVIDER.instantiate()
+			var divider_text = trophy_divider.find_child("DividerText")
+			divider_text.text = "[font_size=80][b][color=" + TROPHY_DATA[trophy["difficulty"]]["color"].to_html()+"]"+ trophy["difficulty"]
+			for child in trophy_divider.get_children():
+				if child is HSeparator:
+					var style_box = StyleBoxLine.new()
+					style_box = child.get_theme_stylebox("separator").duplicate()
+					style_box.color = TROPHY_DATA[trophy["difficulty"]]["color"]
+					child.add_theme_stylebox_override("separator",style_box)
+			trophies_vbox.add_child(trophy_divider)
 		var new_trophy:= TROPHY.instantiate()
-		var image = new_trophy.find_child("Icon",true)
-		var text = new_trophy.find_child("Text",true)
+		var trophy_icon = new_trophy.find_child("TrophyIcon",true)
+		trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]]["icon_normal"]
+		var title = new_trophy.find_child("Title",true)
+		var description = new_trophy.find_child("Description",true)
 		var border_box = StyleBoxFlat.new()
 		border_box = new_trophy.get_theme_stylebox("panel").duplicate()
 		if trophy["achieved"] == "false":
@@ -92,18 +122,19 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		if "https://s.gjcdn.net/img/trophy-" not in trophy["image_url"]:
 			var http = HTTPRequest.new()
 			add_child(http)
-			http.request_completed.connect(_trophy_icon_request_completed.bind(http,image,trophy["image_url"].right(3)))
+			http.request_completed.connect(_trophy_icon_request_completed.bind(http,trophy_icon,trophy["image_url"].right(3)))
 			http.request(trophy["image_url"])
 		
 		elif "secret" not in trophy["image_url"]:
-			image.texture = trophy_images[trophy["difficulty"]]
+			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_normal"]]
 		else:
-			image.texture = trophy_images_secret[trophy["difficulty"]]
+			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_secret"]]
 			trophy["description"] = "[i][color=gray]Description hidden. Achieve this trophy to read it![/color][/i]"
 		
-		text.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size][br][font_size=16]" + trophy["description"] + "[/font_size]"
+		title.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size]"
+		description.text = "[font_size=16]" + trophy["description"] + "[/font_size]"
 		trophies_vbox.add_child(new_trophy)
-		await get_tree().create_timer(0.02).timeout
+		await get_tree().create_timer(0.01).timeout
 	if trophies_vbox.get_child_count() == 1:
 		trophies_vbox.get_child(0).visible = true
 		
@@ -119,19 +150,22 @@ func _trophy_icon_request_completed(result: int, response_code: int, headers: Pa
 func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
 	for table in response["tables"]:
 		var scoreboard = SCOREBOARD.instantiate()
-		var scoreboard_name = scoreboard.find_child("Name")
+		var scoreboard_name:= scoreboard.find_child("Name")
+		var load_scores_button: Button = scoreboard.find_child("LoadScoresButton")
 		scoreboard.name = table["name"]
 		scoreboard_name.text = "[font_size=32]" + table["name"] + "[/font_size]"
 		if table["description"]:
 			scoreboard_name.text = scoreboard_name.text + "[br][font_size=16]" + table["description"] + "[/font_size]"
 		scoreboards_hbox.add_child(scoreboard)
-		GameJolt.api_request("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard})
+		load_scores_button.pressed.connect(GameJolt.api_request.bind("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard}))
 	if scoreboards_hbox.get_child_count() == 1:
 		scoreboards_hbox.get_child(0).visible = true
 		
 func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	var scoreboard = extra_info["scoreboard"]
 	for score in response["scores"]:
 		var scoreboard_score = SCOREBOARD_SCORE.instantiate()
+		scoreboard.find_child("LoadScoresButton").visible = false
 		var border_box = StyleBoxFlat.new()
 		border_box = scoreboard_score.get_theme_stylebox("panel").duplicate()
 		if score["user"] == GameJolt.authorized_username:
@@ -139,19 +173,20 @@ func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra
 			scoreboard_score.add_theme_stylebox_override("panel",border_box)
 		var avatar = scoreboard_score.find_child("Avatar")
 		var text = scoreboard_score.find_child("Text")
+		var date = scoreboard_score.find_child("Date")
 		var username
 		if score["user"]:
 			username = score["user"]
 		else:
 			username = score["guest"]
 		text.text = "[font_size=24]" + str(response["scores"].find(score)+1) + ". " + username + "[/font_size][br][font_size=16]" + score["score"] + "[/font_size]"
-		
-		extra_info["scoreboard"].find_child("ScoresVBox",true).add_child(scoreboard_score)
+		date.text = "[font_size=20][color=gray]" + score["stored"]
+		scoreboard.find_child("ScoresVBox",true).add_child(scoreboard_score)
 		
 		GameJolt.api_request("users","fetch",{"user_id":score["user_id"]},{"avatar":avatar})
-		await get_tree().create_timer(0.1).timeout
-	if extra_info["scoreboard"].find_child("ScoresVBox",true).get_child_count() == 1:
-		extra_info["scoreboard"].find_child("ScoresVBox",true).get_child(0).visible = true
+		await get_tree().create_timer(0.01).timeout
+	if scoreboard.find_child("ScoresVBox",true).get_child_count() == 1:
+		scoreboard.find_child("ScoresVBox",true).get_child(0).visible = true
 
 func _avatar_url_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, avatar: TextureRect, image_type: String) -> void:
 	var avatar_image = Image.new()

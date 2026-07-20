@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnjso7820f2hb"]
 
-[ext_resource type="Texture2D" uid="uid://0v0x60882ttn" path="res://sprites/gamejolt/trophies/gamejolt_trophy_bronze.svg" id="1_0s8y6"]
+[ext_resource type="Texture2D" uid="uid://cnq5a6kwal13f" path="res://sprites/gamejolt/default_pfp.svg" id="1_0s8y6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
 bg_color = Color(0.09239706, 0.09239707, 0.09239703, 1)
@@ -49,3 +49,10 @@ text = "[font_size=24]X. Username[/font_size][br][font_size=16]Score[/font_size]
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
+
+[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=668059250]
+layout_mode = 2
+bbcode_enabled = true
+text = "2 weeks ago"
+fit_content = true
+autowrap_mode = 0
