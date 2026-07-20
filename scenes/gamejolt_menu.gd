@@ -92,20 +92,20 @@ func _users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_
 		http.request(response["users"][0]["avatar_url"])
 
 func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
-	var current_difficulty:= ""
+	var foldable_container: FoldableContainer = FoldableContainer.new()
+	var container_vbox: VBoxContainer
 	for trophy in response["trophies"]:
-		if current_difficulty != trophy["difficulty"]:
-			current_difficulty = trophy["difficulty"]
-			var trophy_divider = TROPHY_DIVIDER.instantiate()
-			var divider_text = trophy_divider.find_child("DividerText")
-			divider_text.text = "[font_size=80][b][color=" + TROPHY_DATA[trophy["difficulty"]]["color"].to_html()+"]"+ trophy["difficulty"]
-			for child in trophy_divider.get_children():
-				if child is HSeparator:
-					var style_box = StyleBoxLine.new()
-					style_box = child.get_theme_stylebox("separator").duplicate()
-					style_box.color = TROPHY_DATA[trophy["difficulty"]]["color"]
-					child.add_theme_stylebox_override("separator",style_box)
-			trophies_vbox.add_child(trophy_divider)
+		if foldable_container.title != trophy["difficulty"]:
+			foldable_container = FoldableContainer.new()
+			foldable_container.fold()
+			foldable_container.title = trophy["difficulty"]
+			foldable_container.title_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			foldable_container.add_theme_color_override("font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
+			foldable_container.add_theme_color_override("hover_font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
+			foldable_container.add_theme_color_override("collapsed_font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
+			trophies_vbox.add_child(foldable_container)
+			container_vbox = VBoxContainer.new()
+			foldable_container.add_child(container_vbox)
 		var new_trophy:= TROPHY.instantiate()
 		var trophy_icon = new_trophy.find_child("TrophyIcon",true)
 		trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]]["icon_normal"]
@@ -119,12 +119,12 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		else:
 			border_box.border_color = Color(0.0, 1.0, 0.0, 1.0)
 			new_trophy.add_theme_stylebox_override("panel",border_box)
+			
 		if "https://s.gjcdn.net/img/trophy-" not in trophy["image_url"]:
 			var http = HTTPRequest.new()
 			add_child(http)
 			http.request_completed.connect(_trophy_icon_request_completed.bind(http,trophy_icon,trophy["image_url"].right(3)))
 			http.request(trophy["image_url"])
-		
 		elif "secret" not in trophy["image_url"]:
 			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_normal"]]
 		else:
@@ -133,8 +133,9 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		
 		title.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size]"
 		description.text = "[font_size=16]" + trophy["description"] + "[/font_size]"
-		trophies_vbox.add_child(new_trophy)
+		container_vbox.add_child(new_trophy)
 		await get_tree().create_timer(0.01).timeout
+		
 	if trophies_vbox.get_child_count() == 1:
 		trophies_vbox.get_child(0).visible = true
 		

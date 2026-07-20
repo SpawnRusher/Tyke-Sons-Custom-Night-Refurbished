@@ -182,10 +182,10 @@ func _load_file(type: FILE_TYPE) -> void:
 		json.parse(save_data_file.get_as_text())
 		if json.data:
 			save_data = json.data
+		_add_missing_data(FILE_TYPE.SAVE)
+		_migrate_data(FILE_TYPE.SAVE)
 		_save_file(type)
 		save_data_loaded.emit()
-		_migrate_data(FILE_TYPE.SAVE)
-		_add_missing_data(FILE_TYPE.SAVE)
 
 func _create_file(type: FILE_TYPE) -> void:
 	var create_file:= FileAccess.open(file_paths[type], FileAccess.WRITE)
@@ -210,6 +210,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 	for i in keys.size():
 		key = keys[i]
 		if not current_dict.has(key):
+			keys.pop_back()
 			push_error("Failed to set data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
 			return
 		if current_dict[key] is not Dictionary:
@@ -282,8 +283,8 @@ func _migrate_data(type: FILE_TYPE) -> void:
 	var current_data: Dictionary = [settings_data,save_data][type]
 	var migrate_data: Dictionary = [settings_data_to_migrate,save_data_to_migrate][type]
 	
+
 	
-		
 	for first_key in migrate_data:
 		if first_key in current_data:
 			if first_key in current_data and current_data[first_key] is not Dictionary:
@@ -326,24 +327,25 @@ func _add_missing_data(type: FILE_TYPE) -> void:
 	var current_data: Dictionary = [settings_data,save_data][type]
 	var default_data: Dictionary = [default_settings_data,default_save_data][type]
 
+
 	for first_key in default_data:
 		if first_key not in current_data:
 			current_data[first_key] = default_data[first_key]
 			continue
 			
-		if first_key is Dictionary:
+		if default_data[first_key] is Dictionary:
 			for second_key in default_data[first_key]:
 				if second_key not in current_data[first_key]:
 					current_data[first_key][second_key] = default_data[first_key][second_key]
 					continue
 				
-				if second_key is Dictionary:
+				if default_data[first_key][second_key] is Dictionary:
 					for third_key in default_data[first_key][second_key]:
 						if third_key not in current_data[first_key][second_key]:
 							current_data[first_key][second_key][third_key] = default_data[first_key][second_key][third_key]
 							continue
 						
-						if third_key is Dictionary:
+						if default_data[first_key][second_key][third_key] is Dictionary:
 							for fourth_key in default_data[first_key][second_key][third_key]:
 								if fourth_key not in current_data[first_key][second_key][third_key]:
 									current_data[first_key][second_key][third_key][fourth_key] = default_data[first_key][second_key][third_key][fourth_key]
