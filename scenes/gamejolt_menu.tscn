@@ -79,13 +79,12 @@ theme_override_constants/side_margin = 16
 theme_override_constants/icon_max_width = 32
 theme_override_styles/panel = SubResource("StyleBoxEmpty_g4v7s")
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 tab_1/icon = ExtResource("4_yfbch")
 tab_1/disabled = true
 tab_2/disabled = true
 
 [node name="Login" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=2049037828]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 4
@@ -206,6 +205,7 @@ text = "Auto Login"
 text = "OFF"
 
 [node name="Trophies" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer" unique_id=1115626224]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_right = 4

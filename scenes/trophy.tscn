@@ -71,3 +71,11 @@ text = "Description"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
+
+[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=2100671759]
+layout_mode = 2
+size_flags_horizontal = 10
+bbcode_enabled = true
+text = "2 days ago"
+fit_content = true
+autowrap_mode = 0

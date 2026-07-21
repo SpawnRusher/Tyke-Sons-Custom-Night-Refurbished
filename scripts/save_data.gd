@@ -4,9 +4,9 @@ const file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save
 enum FILE_TYPE {SETTINGS, SAVE, DEFAULT_SETTINGS, DEFAULT_SAVE}
 enum SET_DATA_SPECIAL {NONE,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
 
-var default_settings_data: Dictionary = {
+const DEFAULT_SETTINGS_DATA: Dictionary = {
 	"display": {
-		"max_fps":max(60,DisplayServer.screen_get_refresh_rate()),
+		"max_fps":60,
 		"window_mode":DisplayServer.WINDOW_MODE_WINDOWED,
 		"vsync_mode":DisplayServer.VSYNC_DISABLED,
 		"antialiasing":get_viewport().DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
@@ -79,7 +79,22 @@ var default_settings_data: Dictionary = {
 		"user_token":"",
 		"auto_login":false
 	},}	
-var default_save_data: Dictionary = {
+const MIGRATE_SETTINGS_DATA: Dictionary = {
+	"display": {
+		"texture_filter":"antialiasing"
+	},
+	"game": {
+		"forward_screen_margin":"top_screen_margin",
+		"backward_screen_margin":"bottom_screen_margin"
+	},
+	"keybinds": {
+		"Toggle Lamp":"toggle_lamp"
+	},}
+var settings_data: Dictionary = DEFAULT_SETTINGS_DATA
+var settings_data_file: FileAccess
+signal settings_data_loaded
+
+const DEFAULT_SAVE_DATA: Dictionary = {
 	"statistics": {
 		"flashlight": {
 			"flashlight_battery_drained":0,
@@ -88,21 +103,21 @@ var default_save_data: Dictionary = {
 			"flashlight_total_flashes":0,
 		},
 		"jumpscares": {
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_1]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_2]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPOMAT_3]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.FUN_FUNGAL]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.SPRINGCRAB]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.SEABILL]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.FREDBEAR]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BIDY]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BUSTER]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.BRUCE]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.CHIPPER]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.TOY]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT]:0,
-			Enemy.ENEMY_IDS.keys()[Enemy.ENEMY_IDS.HAPPYSHROOM]:0,
+			"CHIPOMAT_1":0,
+			"CHIPOMAT_2":0,
+			"CHIPOMAT_3":0,
+			"FUN_FUNGAL":0,
+			"SPRINGCRAB":0,
+			"NIGHTMARE_CHIPPER":0,
+			"SEABILL":0,
+			"FREDBEAR":0,
+			"BIDY":0,
+			"BUSTER":0,
+			"BRUCE":0,
+			"CHIPPER":0,
+			"TOY":0,
+			"PHANTOM_CHIPOMAT":0,
+			"HAPPYSHROOM":0,
 		},
 		"playtime": {
 			"general": {
@@ -119,27 +134,10 @@ var default_save_data: Dictionary = {
 			},
 		},		
 	}}
-var settings_data_to_migrate: Dictionary = {
-	"display": {
-		"texture_filter":"antialiasing"
-	},
-	"game": {
-		"forward_screen_margin":"top_screen_margin",
-		"backward_screen_margin":"bottom_screen_margin"
-	},
-	"keybinds": {
-		"Toggle Lamp":"toggle_lamp"
-	},}
-var save_data_to_migrate: Dictionary = {}
-
-var settings_data: Dictionary = default_settings_data
-var save_data: Dictionary = default_save_data
-var save_data_encryption_key: String
-
-var settings_data_file: FileAccess
+const MIGRATE_SAVE_DATA: Dictionary = {}
+var save_data: Dictionary = DEFAULT_SAVE_DATA
 var save_data_file: FileAccess
-
-signal settings_data_loaded
+const save_data_encryption_key: String = ""
 signal save_data_loaded
 
 func _ready() -> void:
@@ -159,7 +157,7 @@ func _save_file(type: FILE_TYPE) -> void:
 		settings_data_file.store_string(JSON.stringify(settings_data, "\t"))
 		settings_data_file.close()
 		_update_settings()
-	elif type == FILE_TYPE.SAVE:
+	else:
 		save_data_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
 		save_data_file.store_string(JSON.stringify(save_data, "\t"))
 		save_data_file.close()
@@ -265,7 +263,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 	_save_file(type)
 	
 func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
-	var current_dict: Dictionary = [settings_data,save_data,default_settings_data,default_save_data][type]
+	var current_dict: Dictionary = [settings_data,save_data,DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 	var key: Variant
 	for i in keys.size()-1:
 		key = keys[i]
@@ -281,9 +279,7 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 func _migrate_data(type: FILE_TYPE) -> void:
 	# Create reference variables to the dictionaries to be able to reuse the same code for both
 	var current_data: Dictionary = [settings_data,save_data][type]
-	var migrate_data: Dictionary = [settings_data_to_migrate,save_data_to_migrate][type]
-	
-
+	var migrate_data: Dictionary = [MIGRATE_SETTINGS_DATA,MIGRATE_SAVE_DATA][type]
 	
 	for first_key in migrate_data:
 		if first_key in current_data:
@@ -325,7 +321,7 @@ func _migrate_data(type: FILE_TYPE) -> void:
 func _add_missing_data(type: FILE_TYPE) -> void:
 	# Create reference variables to the dictionaries to be able to reuse the same code for both
 	var current_data: Dictionary = [settings_data,save_data][type]
-	var default_data: Dictionary = [default_settings_data,default_save_data][type]
+	var default_data: Dictionary = [DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 
 
 	for first_key in default_data:

@@ -7,8 +7,6 @@ const TROPHY = preload("uid://cc30spbhiddw")
 const TROPHY_DIVIDER = preload("uid://6r8dbyg5bf3")
 const SCOREBOARD = preload("uid://c2vxi6alnd0xa")
 const SCOREBOARD_SCORE = preload("uid://cnjso7820f2hb")
-
-
 const TROPHY_DATA: Dictionary = {
 	"Bronze": {
 		"icon_normal":preload("uid://0v0x60882ttn"),
@@ -41,11 +39,6 @@ const TROPHY_DATA: Dictionary = {
 
 @export var scoreboards_hbox: HBoxContainer
 
-
-
-var trophies_loaded: bool
-var scoreboards_loaded: bool
-
 signal toggle_button(button: Button, group_name: String, setting_name: String, setting_label: String, state_label: RichTextLabel)
 
 func _ready() -> void:
@@ -56,7 +49,7 @@ func _ready() -> void:
 	GameJolt.scores_fetch_completed.connect(_scores_fetch_completed)
 	toggle_button.connect(_toggle_button)
 	if GameJolt.authorized_username != "":
-		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token},{})
+		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 
 func _on_return_to_menu_button_pressed() -> void:
 	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true)
@@ -70,7 +63,7 @@ func _toggle_button(button: Button, group_name: String, setting_name: String, se
 func _on_login_button_pressed() -> void:
 	GameJolt.api_request("users","auth",{"username":username_line_edit.text,"user_token":user_token_line_edit.text})
 
-func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
 	if response["success"] == "false":
 		login_info.text = "Failed to log in with GameJolt. Double check Username and User Token."
 		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"],"")
@@ -81,18 +74,19 @@ func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_i
 		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"],parameters["user_token"])
 		tab_container.set("tab_1/disabled",false)
 		tab_container.set("tab_2/disabled",false)
+		GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
+		GameJolt.api_request("scores","tables")
 		
-func _users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+func _users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
 	if extra_info["avatar"]:
-		if response["users"][0]["avatar_url"] == "https://secure.gravatar.com/avatar/48f6ec541c9bafc3f2a6517d1885cb73?s=60&r=pg&d=https%3A%2F%2Fs.gjcdn.net%2Fimg%2Fno-avatar-3.png":
-			return
-		var http = HTTPRequest.new()
-		add_child(http)
-		http.request_completed.connect(_avatar_url_request_completed.bind(http,extra_info["avatar"],response["users"][0]["avatar_url"].right(3)))
-		http.request(response["users"][0]["avatar_url"])
+		if response["users"][0]["avatar_url"] != "https://secure.gravatar.com/avatar/48f6ec541c9bafc3f2a6517d1885cb73?s=60&r=pg&d=https%3A%2F%2Fs.gjcdn.net%2Fimg%2Fno-avatar-3.png": # This is the link that is used for all default GameJolt profile pictures. I have a .SVG file of the default profile picture which is the default image for all user entries in the GameJolt menu, thus it should not be overwritten with a .PNG or .JPEG
+			var http:= HTTPRequest.new()
+			add_child(http)
+			http.request_completed.connect(_image_url_request_completed.bind(http,extra_info["avatar"],response["users"][0]["avatar_url"].right(3)))
+			http.request(response["users"][0]["avatar_url"])
 
-func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
-	var foldable_container: FoldableContainer = FoldableContainer.new()
+func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
+	var foldable_container:= FoldableContainer.new()
 	var container_vbox: VBoxContainer
 	for trophy in response["trophies"]:
 		if foldable_container.title != trophy["difficulty"]:
@@ -104,26 +98,30 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 			foldable_container.add_theme_color_override("hover_font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
 			foldable_container.add_theme_color_override("collapsed_font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
 			trophies_vbox.add_child(foldable_container)
+			var margin:= MarginContainer.new()
+			margin.add_theme_constant_override("margin_left",4)
+			margin.add_theme_constant_override("margin_top",4)
+			margin.add_theme_constant_override("margin_right",4)
+			margin.add_theme_constant_override("margin_bottom",4)
+			foldable_container.add_child(margin)
 			container_vbox = VBoxContainer.new()
-			foldable_container.add_child(container_vbox)
+			margin.add_child(container_vbox)
+			
 		var new_trophy:= TROPHY.instantiate()
-		var trophy_icon = new_trophy.find_child("TrophyIcon",true)
+		var trophy_icon:= new_trophy.find_child("TrophyIcon",true)
 		trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]]["icon_normal"]
-		var title = new_trophy.find_child("Title",true)
-		var description = new_trophy.find_child("Description",true)
-		var border_box = StyleBoxFlat.new()
+		var title:= new_trophy.find_child("Title",true)
+		var description:= new_trophy.find_child("Description",true)
+		var date:= new_trophy.find_child("Date",true)
+		var border_box:= StyleBoxFlat.new()
 		border_box = new_trophy.get_theme_stylebox("panel").duplicate()
-		if trophy["achieved"] == "false":
-			border_box.border_color = Color(1.0, 0.0, 0.0, 1.0)
-			new_trophy.add_theme_stylebox_override("panel",border_box)
-		else:
-			border_box.border_color = Color(0.0, 1.0, 0.0, 1.0)
-			new_trophy.add_theme_stylebox_override("panel",border_box)
+		border_box.border_color = Color(1.0, 0.0, 0.0, 1.0) if trophy["achieved"] == "false" else Color(0.0, 1.0, 0.0, 1.0) 
+		new_trophy.add_theme_stylebox_override("panel",border_box)
 			
 		if "https://s.gjcdn.net/img/trophy-" not in trophy["image_url"]:
-			var http = HTTPRequest.new()
+			var http:= HTTPRequest.new()
 			add_child(http)
-			http.request_completed.connect(_trophy_icon_request_completed.bind(http,trophy_icon,trophy["image_url"].right(3)))
+			http.request_completed.connect(_image_url_request_completed.bind(http,trophy_icon,trophy["image_url"].right(3)))
 			http.request(trophy["image_url"])
 		elif "secret" not in trophy["image_url"]:
 			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_normal"]]
@@ -133,26 +131,18 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 		
 		title.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size]"
 		description.text = "[font_size=16]" + trophy["description"] + "[/font_size]"
+		date.text = "[font_size=20][color=gray]" + trophy["achieved"] if trophy["achieved"] != "false" else ""
 		container_vbox.add_child(new_trophy)
 		await get_tree().create_timer(0.01).timeout
 		
 	if trophies_vbox.get_child_count() == 1:
 		trophies_vbox.get_child(0).visible = true
 		
-func _trophy_icon_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, texture_rect: TextureRect, image_type: String) -> void:
-	var trophy_image = Image.new()
-	if image_type == "jpg":
-		trophy_image.load_jpg_from_buffer(body)
-	else:
-		trophy_image.load_png_from_buffer(body)
-	texture_rect.texture = ImageTexture.create_from_image(trophy_image)
-	http.queue_free()
-	
-func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
 	for table in response["tables"]:
-		var scoreboard = SCOREBOARD.instantiate()
+		var scoreboard:= SCOREBOARD.instantiate()
 		var scoreboard_name:= scoreboard.find_child("Name")
-		var load_scores_button: Button = scoreboard.find_child("LoadScoresButton")
+		var load_scores_button:= scoreboard.find_child("LoadScoresButton")
 		scoreboard.name = table["name"]
 		scoreboard_name.text = "[font_size=32]" + table["name"] + "[/font_size]"
 		if table["description"]:
@@ -162,19 +152,19 @@ func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extr
 	if scoreboards_hbox.get_child_count() == 1:
 		scoreboards_hbox.get_child(0).visible = true
 		
-func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
 	var scoreboard = extra_info["scoreboard"]
 	for score in response["scores"]:
 		var scoreboard_score = SCOREBOARD_SCORE.instantiate()
 		scoreboard.find_child("LoadScoresButton").visible = false
-		var border_box = StyleBoxFlat.new()
+		var border_box:= StyleBoxFlat.new()
 		border_box = scoreboard_score.get_theme_stylebox("panel").duplicate()
 		if score["user"] == GameJolt.authorized_username:
 			border_box.border_color = Color(0.0, 1.0, 0.0, 1.0)
 			scoreboard_score.add_theme_stylebox_override("panel",border_box)
-		var avatar = scoreboard_score.find_child("Avatar")
-		var text = scoreboard_score.find_child("Text")
-		var date = scoreboard_score.find_child("Date")
+		var avatar:= scoreboard_score.find_child("Avatar")
+		var text:= scoreboard_score.find_child("Text")
+		var date:= scoreboard_score.find_child("Date")
 		var username
 		if score["user"]:
 			username = score["user"]
@@ -188,21 +178,15 @@ func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra
 		await get_tree().create_timer(0.01).timeout
 	if scoreboard.find_child("ScoresVBox",true).get_child_count() == 1:
 		scoreboard.find_child("ScoresVBox",true).get_child(0).visible = true
-
-func _avatar_url_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, avatar: TextureRect, image_type: String) -> void:
-	var avatar_image = Image.new()
+		
+func _image_url_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, texture_rect: TextureRect, image_type: String) -> void:
+	var image = Image.new()
 	if image_type == "jpg":
-		avatar_image.load_jpg_from_buffer(body)
+		image.load_jpg_from_buffer(body)
 	else:
-		avatar_image.load_png_from_buffer(body)
-	avatar.texture = ImageTexture.create_from_image(avatar_image)
+		image.load_png_from_buffer(body)
+	texture_rect.texture = ImageTexture.create_from_image(image)
 	http.queue_free()
 
 func _on_tab_changed(tab: int) -> void:
 	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
-	if tab_container.get_tab_title(tab) == "Trophies" and not trophies_loaded:
-		trophies_loaded = true
-		GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
-	elif tab_container.get_tab_title(tab) == "Scoreboards" and not scoreboards_loaded:
-		scoreboards_loaded = true
-		GameJolt.api_request("scores","tables")

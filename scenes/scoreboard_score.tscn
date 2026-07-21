@@ -56,3 +56,4 @@ bbcode_enabled = true
 text = "2 weeks ago"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 2
