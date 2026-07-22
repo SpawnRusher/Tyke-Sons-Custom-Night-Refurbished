@@ -132,29 +132,27 @@ func _input(event: InputEvent) -> void:
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
 		return
-
-	if go_direction == "b":
-		if office.animation == "office":
-			office.play("go_b")
-			SpecialFunctions.create_audio(STAIRS_UP)
-		elif office.animation == "open_f":
-			office.play("leave_f")
-			SpecialFunctions.create_audio(RUNNING)
-		elif office.animation == "open_b":
-			office.play("leave_b")
-			SpecialFunctions.create_audio(STAIRS_DOWN)
-		elif office.animation == "open_l":
-			office.play("leave_l")
-			SpecialFunctions.create_audio(RUNNING)
-		elif office.animation == "open_r":
-			office.play("leave_r")
-			SpecialFunctions.create_audio(RUNNING)
 		
-	elif office.animation == "office":
+	if office.animation == "office":
 		office.play("go_"+go_direction)
-		SpecialFunctions.create_audio(RUNNING)
-
+		last_animation_played = office.animation
+		match go_direction:
+			"b":
+				SpecialFunctions.create_audio(STAIRS_UP)
+			_:
+				SpecialFunctions.create_audio(RUNNING)
+		return
+		
+	# if office.animation != "office", the only other movement option is leaving a window
+	office.play("leave_" + go_direction)
 	last_animation_played = office.animation
+	match go_direction:
+		"b":
+			SpecialFunctions.create_audio(STAIRS_DOWN)
+		_:
+			office.play("leave_" + office.animation.right(1))
+		
+
 
 func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
