@@ -40,13 +40,13 @@ func _notification(what: int) -> void:
 
 func _scene_changing(previous: String, next: String) -> void:	
 	match previous:
-		"res://scenes/menu.tscn":
+		"res://scenes/menu/menu.tscn":
 			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","menu"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
-		"res://scenes/gamejolt_menu.tscn":
+		"res://scenes/gamejolt_menu/gamejolt_menu.tscn":
 			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","gamejolt_menu"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
 		
 func _scene_reloading(path: String) -> void:
-	if path == "res://scenes/night.tscn":
+	if path == "res://scenes/night/night.tscn":
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","night"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","presets",Global.current_preset_name],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
 
@@ -60,10 +60,10 @@ func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> v
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("return_to_menu"):
 		PauseManager.unpause()
-		SceneManager.change_to_scene("res://scenes/menu.tscn")
+		SceneManager.change_to_scene("res://scenes/menu/menu.tscn")
 	if event.is_action_pressed("restart_night"):
 		PauseManager.unpause()
-		if get_tree().current_scene.scene_file_path == "res://scenes/night.tscn":
+		if get_tree().current_scene.scene_file_path == "res://scenes/night/night.tscn":
 			SceneManager.reload_scene()
-		elif get_tree().current_scene.scene_file_path == "res://scenes/game_over.tscn":
-			SceneManager.change_to_scene("res://scenes/night.tscn")
+		elif get_tree().current_scene.scene_file_path == "res://scenes/game_over/game_over.tscn":
+			SceneManager.change_to_scene("res://scenes/night/night.tscn")

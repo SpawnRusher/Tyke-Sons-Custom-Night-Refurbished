@@ -24,7 +24,7 @@ func _go_to_sleep() -> void:
 	if happyshroom != null and happyshroom.enabled == true and happyshroom.state == happyshroom.STATES.IDLE:
 		SignalBus.activate_happyshroom.emit()
 	else:
-		get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
+		get_tree().change_scene_to_file("res://scenes/win_screen/win_screen.tscn")
 
 func _activate_happyshroom() -> void:
 	happyshroom.state = happyshroom.STATES.INTRO

@@ -18,8 +18,8 @@ const DEATH_VOICELINES: Dictionary[Enemy.ENEMY_IDS,Array] = {
 
 func _ready() -> void:
 	PauseManager.unpause()
-	SceneManager.load_scene("res://scenes/menu.tscn")
-	SceneManager.load_scene("res://scenes/night.tscn")
+	SceneManager.load_scene("res://scenes/menu/menu.tscn")
+	SceneManager.load_scene("res://scenes/night/night.tscn")
 	SpecialFunctions.create_audio(GAMEOVER)
 	SpecialFunctions.create_timer(_move_game_over_text,0.04,-1)
 	_gamejolt_add_scores()
@@ -38,10 +38,10 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.keycode == KEY_ESCAPE:
-			SceneManager.change_to_scene("res://scenes/menu.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
+			SceneManager.change_to_scene("res://scenes/menu/menu.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
+			SceneManager.change_to_scene("res://scenes/night/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
 func _move_game_over_text() -> void:
 	game_over_text.position = default_text_position + Vector2(randi_range(-3,3),randi_range(-3,3))

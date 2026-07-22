@@ -4,7 +4,6 @@ const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
 const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
 
 const TROPHY = preload("uid://cc30spbhiddw")
-const TROPHY_DIVIDER = preload("uid://6r8dbyg5bf3")
 const SCOREBOARD = preload("uid://c2vxi6alnd0xa")
 const SCOREBOARD_SCORE = preload("uid://cnjso7820f2hb")
 const TROPHY_DATA: Dictionary = {
@@ -53,7 +52,7 @@ func _ready() -> void:
 
 func _on_return_to_menu_button_pressed() -> void:
 	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true)
-	SceneManager.change_to_scene("res://scenes/menu.tscn")
+	SceneManager.change_to_scene("res://scenes/menu/menu.tscn")
 
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)

@@ -10,7 +10,7 @@ const RUNNING_UPSTAIRS: AudioStream = preload("uid://c12xjq2e7f4ix")
 var enter_night: bool
 
 func _ready() -> void:
-	SceneManager.load_scene("res://scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
+	SceneManager.load_scene("res://scenes/scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
 	if SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","skip_loading_night"]):
 		print("skip load")
 		enter_night = true
@@ -37,8 +37,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if enter_night:
-		if SceneManager.get_progress("res://scenes/night.tscn") >= 1:
-			SceneManager.change_to_scene("res://scenes/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
+		if SceneManager.get_progress("res://scenes/night/night.tscn") >= 1:
+			SceneManager.change_to_scene("res://scenes/night/night.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:

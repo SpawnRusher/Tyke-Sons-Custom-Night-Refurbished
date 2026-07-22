@@ -15,7 +15,7 @@ func _jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		Global.dead_enemy_id = enemy.enemy_id
 		Global.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
 		Global.dead_time = night_timer.time_elapsed
-		SceneManager.load_scene("res://scenes/game_over.tscn")
+		SceneManager.load_scene("res://scenes/game_over/game_over.tscn")
 		SpecialFunctions.create_audio(enemy.jumpscare_sound,1)
 
 		if enemy.jumpscares.size() == 0:
@@ -32,7 +32,7 @@ func _jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 
 func _jumpscare_end() -> void:
 	if not SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","auto_restart_on_death"]):
-		SceneManager.change_to_scene("res://scenes/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
+		SceneManager.change_to_scene("res://scenes/game_over/game_over.tscn",SceneManager.CHANGE_SCENE_BEHAVIOR.AWAIT)
 	else:
 		PauseManager.unpause()
 		get_tree().reload_current_scene()

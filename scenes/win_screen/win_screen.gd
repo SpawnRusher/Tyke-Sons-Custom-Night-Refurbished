@@ -26,8 +26,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton or event is InputEventKey:
-		if can_leave == true:
-			_leave()
+		_leave()
 
 func _go_to_sleep() -> void:
 	SpecialFunctions.create_audio(ALARM_CLOCK)
@@ -45,11 +44,12 @@ func _create_star() -> void:
 	early_bird.add_child(star)
 
 func _leave() -> void:
-	fade.visible = true
-	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(fade,"self_modulate:a",1,1)
-	await tween.finished
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	if can_leave:
+		fade.visible = true
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(fade,"self_modulate:a",1,1)
+		await tween.finished
+		get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
 	
 func _wake_up_loop() -> void:
 	wake_up.play("loop")
