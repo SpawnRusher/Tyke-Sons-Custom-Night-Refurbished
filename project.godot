@@ -22,7 +22,7 @@ buses/default_bus_layout="uid://ccfjkwv6v8d8p"
 
 [autoload]
 
-PastebinChecks="*uid://hshyyh2h1d1a"
+Pastebin="*uid://hshyyh2h1d1a"
 Global="*uid://dxxlyt06pahul"
 SignalBus="*uid://sy8ekdistfxs"
 SpecialFunctions="*uid://bwuaj8p61dfjw"

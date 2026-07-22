@@ -14,7 +14,7 @@ var dead_enemy_id: Enemy.ENEMY_IDS = -1
 var dead_sleep_assurance: float
 var dead_time: int
 
-var version_type: PastebinChecks.VERSION_TYPE
+var version_type: Pastebin.VERSION_TYPE
 var pastebin_version: String
 
 enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
@@ -53,7 +53,7 @@ func _scene_reloading(path: String) -> void:
 func _update_scene_start_time() -> void:
 	scene_start_time = Time.get_ticks_msec()
 
-func _pastebin_version_check(vt: PastebinChecks.VERSION_TYPE, pb_v: String) -> void:
+func _pastebin_version_check(vt: Pastebin.VERSION_TYPE, pb_v: String) -> void:
 	version_type = vt
 	pastebin_version = pb_v
 

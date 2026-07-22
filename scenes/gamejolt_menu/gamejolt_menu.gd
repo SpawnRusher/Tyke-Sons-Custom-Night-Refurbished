@@ -79,7 +79,7 @@ func _users_auth_completed(response: Dictionary, parameters: Dictionary, extra_i
 		
 func _users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info:={}) -> void:
 	if extra_info["avatar"]:
-		if response["users"][0]["avatar_url"] != "https://secure.gravatar.com/avatar/48f6ec541c9bafc3f2a6517d1885cb73?s=60&r=pg&d=https%3A%2F%2Fs.gjcdn.net%2Fimg%2Fno-avatar-3.png": # This is the link that is used for all default GameJolt profile pictures. I have a .SVG file of the default profile picture which is the default image for all user entries in the GameJolt menu, thus it should not be overwritten with a .PNG or .JPEG
+		if "no-avatar-3" not in response["users"][0]["avatar_url"]: # This is the link that is used for all default GameJolt profile pictures. I have a .SVG file of the default profile picture which is the default image for all user entries in the GameJolt menu, thus it should not be overwritten with a .PNG or .JPEG
 			var http:= HTTPRequest.new()
 			add_child(http)
 			http.request_completed.connect(_image_url_request_completed.bind(http,extra_info["avatar"],response["users"][0]["avatar_url"].right(3)))

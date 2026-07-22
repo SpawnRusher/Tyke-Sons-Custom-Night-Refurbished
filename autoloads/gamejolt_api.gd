@@ -155,7 +155,6 @@ func api_request(group: String, type: String, parameters:={}, extra_info:={}) ->
 		url += "&" + parameter + "=" + parameters[parameter]
 		
 	url += _add_signature(url)
-	print_debug("request URL: " + url)
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(api_request_completed.bind(http,group,type,parameters,extra_info))
@@ -163,7 +162,6 @@ func api_request(group: String, type: String, parameters:={}, extra_info:={}) ->
 
 func api_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, group: String, type: String, parameters: Dictionary, extra_info: Dictionary) -> void:
 	http.queue_free()
-	print_debug("API request completed. Result: " + str(result) + ", response_code: " + str(response_code))
 	signals[group][type].emit(_simplify_response(body),parameters,extra_info)
 
 func _users_auth_completed(result: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
