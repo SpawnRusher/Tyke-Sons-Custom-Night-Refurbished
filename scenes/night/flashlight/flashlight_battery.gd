@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
+const BUTTON_PRESS_QUIET: AudioStream = preload("uid://dubq1cwtm73fs")
 const FLASHLIGHT: AudioStream = preload("uid://b1ly4og0c82sg")
 const FLASHLIGHT_DEAD: AudioStream = preload("uid://iwmdlvotnfwa")
 
@@ -67,7 +67,7 @@ func _on_batteries_button_pressed() -> void:
 		SignalBus.update_flashlight_state.emit(flashlight_state)
 		value = 100.0
 		current_batteries_cooldown = 0
-		SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","flashlight","flashlight_batteries_picked_up"],1,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _visibility_checks() -> void:

@@ -1,7 +1,7 @@
 extends Control
 
-const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
-const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
+const BUTTON_PRESS_QUIET: AudioStream = preload("uid://dubq1cwtm73fs")
+const BUTTON_PRESS_LOUD: AudioStream = preload("uid://dljncvmipnl1d")
 
 const TROPHY = preload("uid://cc30spbhiddw")
 const SCOREBOARD = preload("uid://c2vxi6alnd0xa")
@@ -51,13 +51,13 @@ func _ready() -> void:
 		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 
 func _on_return_to_menu_button_pressed() -> void:
-	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS,0,1,1,0,true,true)
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
 	SceneManager.change_to_scene("res://scenes/menu/menu.tscn")
 
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
-	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 
 func _on_login_button_pressed() -> void:
 	GameJolt.api_request("users","auth",{"username":username_line_edit.text,"user_token":user_token_line_edit.text})
@@ -189,4 +189,4 @@ func _image_url_request_completed(result: int, response_code: int, headers: Pack
 	http.queue_free()
 
 static func _on_tab_changed(tab: int) -> void:
-	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)

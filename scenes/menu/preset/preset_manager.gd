@@ -1,6 +1,6 @@
 extends Panel
 
-const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
+const BUTTON_PRESS_LOUD: AudioStream = preload("uid://dljncvmipnl1d")
 
 @export_group("Nodes")
 @export var presets: Node
@@ -31,11 +31,11 @@ func _process(delta: float) -> void:
 		_update_sleep_assurance_points(Global.sleep_assurance_points)
 
 func _on_preset_button_left_pressed() -> void:
-	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)
 	_set_preset(current_preset - 1)
 		
 func _on_preset_button_right_pressed() -> void:
-	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)
 	_set_preset(current_preset + 1)
 
 func _set_preset(index: int) -> void:

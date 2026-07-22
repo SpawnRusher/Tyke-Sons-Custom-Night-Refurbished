@@ -5,7 +5,7 @@ class_name Enemy_Portrait extends TextureRect
 @export var enemy_id: Enemy.ENEMY_IDS
 @export_multiline var enemy_tooltip: String
 
-const QUIET_BUTTON_PRESS: AudioStream = preload("uid://dubq1cwtm73fs")
+const BUTTON_PRESS_QUIET: AudioStream = preload("uid://dubq1cwtm73fs")
 
 func _ready() -> void:
 	assert(enemy_id > -1,"Enemy ID has not been set for one of the enemy portraits!")
@@ -28,5 +28,5 @@ func toggle(state: bool, quiet:= false) -> void:
 		enabled = true
 		texture.region = Rect2(120,0,120,120)
 	if not quiet:
-		SpecialFunctions.create_audio(QUIET_BUTTON_PRESS)
+		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 	SignalBus.enemy_portrait_toggled.emit(self)

@@ -1,7 +1,7 @@
 extends Control
 
-const QUIETBUTTONPRESS: AudioStream = preload("uid://dubq1cwtm73fs")
-const LOUD_BUTTON_PRESS: AudioStream = preload("uid://dljncvmipnl1d")
+const BUTTON_PRESS_QUIET: AudioStream = preload("uid://dubq1cwtm73fs")
+const BUTTON_PRESS_LOUD: AudioStream = preload("uid://dljncvmipnl1d")
 
 @onready var tabs_container: TabContainer
 
@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 				InputMap.action_add_event(remapping_action, event)
 				_update_action_list(remapping_button, remapping_state_label, remapping_action, event)
 				
-				SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+				SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 				
 				remapping = false
 				remapping_action = ""
@@ -55,7 +55,7 @@ func _keybind_button(button: Button, group_name: String, setting_name: String, s
 		remapping_action = setting_name
 		remapping_state_label = state_label
 		state_label.text = "Press any input..."
-		SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 
 func _update_action_list(button: Button, state_label, action: String, event: InputEvent) -> void:
 	state_label.text = event.as_text().trim_suffix(" - Physical")
@@ -77,18 +77,18 @@ func _serialize_input_event(event: InputEvent) -> Dictionary:
 	return dict
 
 func _on_tab_changed(tab: int) -> void:
-	SpecialFunctions.create_audio(LOUD_BUTTON_PRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)
 	
 func _slider_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel, slider: Range) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],slider.value)
 	state_label.text = str(int(slider.value))
-	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 	
 func _dropdown_button(index: int, button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, dropdown: OptionButton) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],dropdown.get_item_id(index))
-	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 	
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)
 	state_label.text = ["OFF","ON"][button.button_pressed as int]
-	SpecialFunctions.create_audio(QUIETBUTTONPRESS)
+	SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
