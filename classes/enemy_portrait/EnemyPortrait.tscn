@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b6cj7ldkxh614"]
+
+[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://scenes/menu/assets/portraits/chipomat_1.0.png" id="1_lagqk"]
+[ext_resource type="Script" uid="uid://cqq11s5sen8bw" path="res://classes/enemy_portrait/enemy_portrait.gd" id="2_ufxrq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rkrv"]
+atlas = ExtResource("1_lagqk")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i38x2"]
+load_path = "res://.godot/imported/portraitborder1.png-d60093249ee3ae7ff187586a94b13cd0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pah85"]
+load_path = "res://.godot/imported/portraitborder2.png-cad44123684953ee4e436f9a63b6a5b6.ctex"
+
+[node name="EnemyPortrait" type="TextureRect" unique_id=1551062530]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_4rkrv")
+script = ExtResource("2_ufxrq")
+
+[node name="PortraitBorder" type="TextureButton" parent="." unique_id=1956503844]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -66.0
+offset_right = 66.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+action_mode = 0
+button_mask = 5
+texture_normal = SubResource("CompressedTexture2D_i38x2")
+texture_hover = SubResource("CompressedTexture2D_pah85")
+
+[connection signal="pressed" from="PortraitBorder" to="." method="_on_portrait_border_pressed" flags=18]

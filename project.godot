@@ -45,7 +45,11 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
-"res://Enemies/": "red"
+"res://autoloads/": "blue",
+"res://classes/": "gray",
+"res://global_assets/": "red",
+"res://global_assets/fonts/": "red",
+"res://scenes/": "green"
 }
 
 [gui]

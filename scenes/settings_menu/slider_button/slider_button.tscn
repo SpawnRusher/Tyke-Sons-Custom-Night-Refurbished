@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://nbk8g6wpfyl0"]
+
+[ext_resource type="Script" uid="uid://bu34ir2vj6od7" path="res://scenes/settings_menu/slider_button/slider_button.gd" id="1_akmrj"]
+
+[node name="Slider" type="Button" unique_id=810285521]
+custom_minimum_size = Vector2(0, 50)
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_filter = 1
+button_mask = 0
+script = ExtResource("1_akmrj")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=471564885]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=670532442]
+layout_mode = 2
+
+[node name="SettingLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=590994961]
+layout_mode = 2
+mouse_filter = 1
+text = "SliderLabel"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1297477231]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="StateLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1024995569]
+layout_mode = 2
+mouse_filter = 1
+text = "SliderValue"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slider" type="HSlider" parent="MarginContainer/HBoxContainer" unique_id=193667728]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 1
+
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/Slider" to="." method="_on_slider_value_changed"]

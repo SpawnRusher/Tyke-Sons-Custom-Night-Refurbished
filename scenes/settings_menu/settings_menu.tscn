@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bnnlmjux6685y"]
 
-[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://themes/settings_theme.tres" id="1_05p07"]
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://global_assets/themes/settings_theme.tres" id="1_05p07"]
 [ext_resource type="Script" uid="uid://rg0leobu6t3s" path="res://scenes/settings_menu/settings_menu.gd" id="2_wswnh"]
-[ext_resource type="PackedScene" uid="uid://nbk8g6wpfyl0" path="res://scenes/settings_menu/slider_button.tscn" id="3_5sljs"]
-[ext_resource type="PackedScene" uid="uid://c3t6q2otj5hlj" path="res://scenes/settings_menu/reset_to_defaults_button.tscn" id="3_rcdfy"]
-[ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button.tscn" id="3_vlvk0"]
-[ext_resource type="PackedScene" uid="uid://br8xrm84gnlie" path="res://scenes/settings_menu/dropdown_button.tscn" id="5_bsihy"]
-[ext_resource type="PackedScene" uid="uid://c5tck8h81yxqm" path="res://scenes/settings_menu/keybind_button.tscn" id="6_bsihy"]
+[ext_resource type="PackedScene" uid="uid://nbk8g6wpfyl0" path="res://scenes/settings_menu/slider_button/slider_button.tscn" id="3_5sljs"]
+[ext_resource type="PackedScene" uid="uid://c3t6q2otj5hlj" path="res://scenes/settings_menu/reset_to_defaults_button/reset_to_defaults_button.tscn" id="3_rcdfy"]
+[ext_resource type="PackedScene" uid="uid://dw8ei0ipedn27" path="res://scenes/settings_menu/toggle_button/toggle_button.tscn" id="3_vlvk0"]
+[ext_resource type="PackedScene" uid="uid://br8xrm84gnlie" path="res://scenes/settings_menu/dropdown_button/dropdown_button.tscn" id="5_bsihy"]
+[ext_resource type="PackedScene" uid="uid://c5tck8h81yxqm" path="res://scenes/settings_menu/keybind_button/keybind_button.tscn" id="6_bsihy"]
 
 [node name="SettingsMenu" type="Control" unique_id=131214480]
 layout_mode = 3

@@ -1,0 +1,23 @@
+[gd_resource type="Theme" format=3 uid="uid://g60ym0ekaepa"]
+
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://global_assets/fonts/angltrr.ttf" id="1_r1rft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1rft"]
+bg_color = Color(0.043137256, 0.105882354, 0.2, 0.7647059)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.033, 0.06123334, 0.11, 0.7647059)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yf5fn"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[resource]
+default_font = ExtResource("1_r1rft")
+default_font_size = 16
+Panel/styles/panel = SubResource("StyleBoxFlat_r1rft")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_yf5fn")

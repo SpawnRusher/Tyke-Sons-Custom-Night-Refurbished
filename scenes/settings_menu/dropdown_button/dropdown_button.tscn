@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://br8xrm84gnlie"]
+
+[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://global_assets/themes/settings_theme.tres" id="1_85ve3"]
+[ext_resource type="Script" uid="uid://cldpoivc6h8ma" path="res://scenes/settings_menu/dropdown_button/dropdown_button.gd" id="2_65wj8"]
+
+[node name="DropdownButton" type="Button" unique_id=1278885680]
+custom_minimum_size = Vector2(0, 50)
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("1_85ve3")
+button_mask = 0
+script = ExtResource("2_65wj8")
+
+[node name="DropdownMargin" type="MarginContainer" parent="." unique_id=1335151449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="DropdownHBox" type="HBoxContainer" parent="DropdownMargin" unique_id=1096428025]
+layout_mode = 2
+
+[node name="SettingLabel" type="RichTextLabel" parent="DropdownMargin/DropdownHBox" unique_id=825760219]
+layout_mode = 2
+mouse_filter = 1
+text = "DropdownLabel"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="DropdownMargin/DropdownHBox" unique_id=847199398]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Dropdown" type="OptionButton" parent="DropdownMargin/DropdownHBox" unique_id=87337718]
+layout_mode = 2
+mouse_filter = 1
+
+[connection signal="item_selected" from="DropdownMargin/DropdownHBox/Dropdown" to="." method="_on_dropdown_item_selected"]

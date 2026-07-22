@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://gut8g6qau2e3"]
+
+[ext_resource type="Texture2D" uid="uid://bbbbndet6pg2j" path="res://scenes/win_screen/star/assets/_0.png" id="1_8h2o5"]
+[ext_resource type="Texture2D" uid="uid://bcps2vgouabma" path="res://scenes/win_screen/star/assets/_1.png" id="2_736ig"]
+[ext_resource type="Texture2D" uid="uid://bbgof4g3ll3e4" path="res://scenes/win_screen/star/assets/_2.png" id="3_a8amr"]
+[ext_resource type="Texture2D" uid="uid://qfb16ooeokgj" path="res://scenes/win_screen/star/assets/_3.png" id="4_407l6"]
+[ext_resource type="Texture2D" uid="uid://ctgkcubh7xolq" path="res://scenes/win_screen/star/assets/_4.png" id="5_uajes"]
+[ext_resource type="Texture2D" uid="uid://bvlyjlo1qlgnm" path="res://scenes/win_screen/star/assets/_5.png" id="6_l4kpr"]
+[ext_resource type="Texture2D" uid="uid://dxsxbo50c6xdo" path="res://scenes/win_screen/star/assets/_6.png" id="7_yhfyt"]
+[ext_resource type="Texture2D" uid="uid://bs6e4ucbgmumv" path="res://scenes/win_screen/star/assets/_7.png" id="8_juviy"]
+[ext_resource type="Texture2D" uid="uid://cdb6dinju1ul3" path="res://scenes/win_screen/star/assets/_8.png" id="9_kbgq4"]
+[ext_resource type="Texture2D" uid="uid://div8ryap8cx8p" path="res://scenes/win_screen/star/assets/_9.png" id="10_ew18n"]
+[ext_resource type="Texture2D" uid="uid://bly0n60psp70" path="res://scenes/win_screen/star/assets/_10.png" id="11_0b3mg"]
+[ext_resource type="Texture2D" uid="uid://b4w01p6bklp1f" path="res://scenes/win_screen/star/assets/_11.png" id="12_du5gw"]
+[ext_resource type="Texture2D" uid="uid://c2agufe78ohtr" path="res://scenes/win_screen/star/assets/_12.png" id="13_ris8f"]
+[ext_resource type="Texture2D" uid="uid://domf43u73qtr3" path="res://scenes/win_screen/star/assets/_13.png" id="14_4i2jj"]
+[ext_resource type="Texture2D" uid="uid://bjgdfstwalbhb" path="res://scenes/win_screen/star/assets/_14.png" id="15_x8av5"]
+[ext_resource type="Script" uid="uid://bd4oxlqdrbi52" path="res://scenes/win_screen/star/star.gd" id="16_736ig"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7yf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8h2o5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_736ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a8amr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_407l6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uajes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l4kpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yhfyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_juviy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kbgq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ew18n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_0b3mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_du5gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ris8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4i2jj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x8av5")
+}],
+"loop": false,
+"name": &"star",
+"speed": 22.5
+}]
+
+[node name="star" type="AnimatedSprite2D" unique_id=1564801550]
+top_level = true
+sprite_frames = SubResource("SpriteFrames_s7yf5")
+animation = &"star"
+script = ExtResource("16_736ig")

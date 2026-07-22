@@ -1,0 +1,786 @@
+[gd_scene format=3 uid="uid://toc38okidr1k"]
+
+[ext_resource type="Script" uid="uid://dha57u0dr8m37" path="res://scenes/menu/menu.gd" id="1_4xbh2"]
+[ext_resource type="Texture2D" uid="uid://we0d2q4g21tp" path="res://scenes/menu/assets/background/background_border.png" id="2_4xbh2"]
+[ext_resource type="Texture2D" uid="uid://ck264h375n4j7" path="res://scenes/menu/assets/background/background.png" id="3_gxxro"]
+[ext_resource type="Texture2D" uid="uid://b0wrxl6h6wuxm" path="res://scenes/menu/assets/start_button/start_button_normal.png" id="4_2rjk0"]
+[ext_resource type="Texture2D" uid="uid://bdjjytloqkyhj" path="res://scenes/menu/assets/start_button/start_button_highlight.png" id="5_fqr1d"]
+[ext_resource type="PackedScene" uid="uid://b6cj7ldkxh614" path="res://classes/enemy_portrait/EnemyPortrait.tscn" id="6_wshxo"]
+[ext_resource type="Texture2D" uid="uid://d2ttaa7vyiogk" path="res://scenes/menu/assets/portraits/chipomat_1.0.png" id="7_fstgh"]
+[ext_resource type="Texture2D" uid="uid://lct25gjh7tld" path="res://scenes/menu/assets/portraits/chipomat_2.0.png" id="8_wshxo"]
+[ext_resource type="Texture2D" uid="uid://65i2x5bsnrul" path="res://scenes/menu/assets/portraits/chipomat_3.0.png" id="9_ojs8s"]
+[ext_resource type="Texture2D" uid="uid://beii7re0jeyc2" path="res://scenes/menu/assets/portraits/fun_fungal.png" id="10_l53yv"]
+[ext_resource type="Texture2D" uid="uid://dom47ax7aa316" path="res://scenes/menu/assets/portraits/springcrab.png" id="11_wy1p8"]
+[ext_resource type="Texture2D" uid="uid://slavmstc868q" path="res://scenes/menu/assets/portraits/nightmare_chipper.png" id="12_5jtk7"]
+[ext_resource type="Texture2D" uid="uid://bgec1wacj5fnb" path="res://scenes/menu/assets/portraits/seabill.png" id="13_rhal1"]
+[ext_resource type="Texture2D" uid="uid://c851rah3g5rvk" path="res://scenes/menu/assets/portraits/fredbear.png" id="14_pjaa3"]
+[ext_resource type="Texture2D" uid="uid://cfpwsw7msddfh" path="res://scenes/menu/assets/portraits/bidy.png" id="15_n7cc5"]
+[ext_resource type="Texture2D" uid="uid://n62q7imsxula" path="res://scenes/menu/assets/portraits/buster.png" id="16_7e7pp"]
+[ext_resource type="Texture2D" uid="uid://b20w7el3jr20g" path="res://scenes/menu/assets/portraits/bruce.png" id="17_vu0bd"]
+[ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://scenes/menu/assets/portraits/chipper.png" id="18_2j2ur"]
+[ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://scenes/menu/assets/portraits/toy.png" id="19_tatpe"]
+[ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://scenes/menu/assets/portraits/phantom_chipomat.png" id="20_dsh75"]
+[ext_resource type="Script" uid="uid://dv4jm5hofvke8" path="res://scenes/menu/preset/preset_manager.gd" id="21_gxxro"]
+[ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://scenes/menu/assets/arrows/minus_normal.png" id="22_fstgh"]
+[ext_resource type="Texture2D" uid="uid://rl232h6kj0fv" path="res://scenes/menu/assets/arrows/minus_highlight.png" id="23_wshxo"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://global_assets/themes/default_font_theme.tres" id="24_jrnmg"]
+[ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://scenes/menu/assets/arrows/plus_normal.png" id="25_ojs8s"]
+[ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://scenes/menu/assets/arrows/plus_highlight.png" id="26_l53yv"]
+[ext_resource type="Texture2D" uid="uid://ck5it5jq4buy4" path="res://scenes/night/sleep_assurance/assets/sleep_assurance_point_border.png" id="27_njbmb"]
+[ext_resource type="Texture2D" uid="uid://irutswq3wufd" path="res://scenes/night/sleep_assurance/assets/sleep_assurance_point_progress.png" id="28_27fuh"]
+[ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://global_assets/themes/enemy_tooltip_theme.tres" id="29_6ucwt"]
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://global_assets/fonts/angltrr.ttf" id="30_nq8vv"]
+[ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scenes/menu/preset/preset.gd" id="31_4xbh2"]
+[ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_icon.svg" id="32_lqhxe"]
+[ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="33_kr7it"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
+atlas = ExtResource("7_fstgh")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a04p5"]
+atlas = ExtResource("8_wshxo")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5gwo"]
+atlas = ExtResource("9_ojs8s")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_negbw"]
+atlas = ExtResource("10_l53yv")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg76g"]
+atlas = ExtResource("11_wy1p8")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1beph"]
+atlas = ExtResource("12_5jtk7")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1aad"]
+atlas = ExtResource("13_rhal1")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x65h"]
+atlas = ExtResource("14_pjaa3")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ndyk"]
+atlas = ExtResource("15_n7cc5")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qewb"]
+atlas = ExtResource("16_7e7pp")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i3g8"]
+atlas = ExtResource("17_vu0bd")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhjd8"]
+atlas = ExtResource("18_2j2ur")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b38jj"]
+atlas = ExtResource("19_tatpe")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5dr5"]
+atlas = ExtResource("20_dsh75")
+region = Rect2(0, 0, 120, 120)
+
+[node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid", "enemy_tooltip", "ver_string")]
+script = ExtResource("1_4xbh2")
+fade = NodePath("Camera/Fade")
+enemy_portrait_grid = NodePath("Menu/EnemyPortraitGrid")
+enemy_tooltip = NodePath("Menu/StuffUnderEnemyPortraitGrid/EnemyTooltip/EnemyTooltipText")
+ver_string = NodePath("Menu/Game Version")
+
+[node name="Camera" type="CanvasLayer" parent="." unique_id=481994971]
+follow_viewport_enabled = true
+
+[node name="Camera" type="Camera2D" parent="Camera" unique_id=903196640]
+anchor_mode = 0
+
+[node name="BackgroundBorder" type="Sprite2D" parent="Camera/Camera" unique_id=1510366116]
+texture = ExtResource("2_4xbh2")
+centered = false
+
+[node name="Fade" type="ColorRect" parent="Camera" unique_id=1632255787]
+visible = false
+top_level = true
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu" type="CanvasLayer" parent="." unique_id=1000497276]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Menu" unique_id=2051899676]
+texture = ExtResource("3_gxxro")
+centered = false
+
+[node name="StartButton" type="TextureButton" parent="Menu" unique_id=857379688]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.0
+offset_top = 527.0
+offset_right = 91.0
+offset_bottom = 597.0
+action_mode = 0
+texture_normal = ExtResource("4_2rjk0")
+texture_hover = ExtResource("5_fqr1d")
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemyPortraitGrid" type="GridContainer" parent="Menu" unique_id=54844479]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 40.0
+offset_right = 480.0
+offset_bottom = 300.0
+grow_horizontal = 2
+offset_transform_position = Vector2(160, 40)
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 7
+
+[node name="Chipomat1" parent="Menu/EnemyPortraitGrid" unique_id=1551062530 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_hwfsl")
+border = NodePath("PortraitBorder")
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
+
+[node name="Chipomat2" parent="Menu/EnemyPortraitGrid" unique_id=72126778 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_a04p5")
+border = NodePath("PortraitBorder")
+enemy_id = 1
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
+
+[node name="Chipomat3" parent="Menu/EnemyPortraitGrid" unique_id=1422143944 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_b5gwo")
+border = NodePath("PortraitBorder")
+enemy_id = 2
+enemy_tooltip = "He will knock on one of the side windows. Close the curtain on him until he leaves."
+
+[node name="FunFungal" parent="Menu/EnemyPortraitGrid" unique_id=1368074244 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_negbw")
+border = NodePath("PortraitBorder")
+enemy_id = 3
+enemy_tooltip = "He will slowly emerge from one of the windows, sides or front. Keep your flashlight shone on him until he retreats fully."
+
+[node name="Springcrab" parent="Menu/EnemyPortraitGrid" unique_id=724411342 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mg76g")
+border = NodePath("PortraitBorder")
+enemy_id = 4
+enemy_tooltip = "She will approach the front windows. Alternate flashing the left and right side until she leaves. Don't mess up your alternation, or you'll have to do it again!"
+
+[node name="NightmareChipper" parent="Menu/EnemyPortraitGrid" unique_id=110385668 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1beph")
+border = NodePath("PortraitBorder")
+enemy_id = 5
+enemy_tooltip = "He will appear on the bed when you visit the bedroom. If his mouth is shut, avoid shining the flashlight on him too long. If his mouth is open, shine the flashlight on him until he disappears."
+
+[node name="Seabill" parent="Menu/EnemyPortraitGrid" unique_id=1476772420 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_j1aad")
+border = NodePath("PortraitBorder")
+enemy_id = 6
+enemy_tooltip = "He will announce his attack ahead of time. You can move around the room freely while he is crossing, except going to the front... While he is crossing, be sure to shut off your lights when he turns to stare at you!"
+
+[node name="Fredbear" parent="Menu/EnemyPortraitGrid" unique_id=1501125903 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7x65h")
+border = NodePath("PortraitBorder")
+enemy_id = 7
+enemy_tooltip = "He will move back-and-forth across the room, designated by a yellow icon on the map. Avoid him when navigating the room."
+
+[node name="Bidy" parent="Menu/EnemyPortraitGrid" unique_id=500944931 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0ndyk")
+border = NodePath("PortraitBorder")
+enemy_id = 8
+enemy_tooltip = "He will move back-and-forth across the room, designated by a pink icon on the map. Avoid him when navigating the room."
+
+[node name="Buster" parent="Menu/EnemyPortraitGrid" unique_id=1158660989 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0qewb")
+border = NodePath("PortraitBorder")
+enemy_id = 9
+enemy_tooltip = "He will move back-and-forth across the room, designated by a gray icon on the map. Avoid him when navigating the room."
+
+[node name="Bruce" parent="Menu/EnemyPortraitGrid" unique_id=339125956 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5i3g8")
+border = NodePath("PortraitBorder")
+enemy_id = 10
+enemy_tooltip = "ZZZZZ buzz buzz saw"
+
+[node name="Chipper" parent="Menu/EnemyPortraitGrid" unique_id=1587528508 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_mhjd8")
+border = NodePath("PortraitBorder")
+enemy_id = 11
+enemy_tooltip = "Lumber lumber lumber"
+
+[node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_b38jj")
+border = NodePath("PortraitBorder")
+enemy_id = 12
+enemy_tooltip = "He will remain in the bedroom until getting up to leave. After he leaves, shut off the lights until you hear him run back upstairs."
+
+[node name="PhantomChipomat" parent="Menu/EnemyPortraitGrid" unique_id=170324132 node_paths=PackedStringArray("border") instance=ExtResource("6_wshxo")]
+layout_mode = 2
+texture = SubResource("AtlasTexture_x5dr5")
+border = NodePath("PortraitBorder")
+enemy_id = 13
+enemy_tooltip = "He will appear and jumpscare you if you have the lights turned off for too long, and will drain some of your flashlight's battery."
+
+[node name="StuffUnderEnemyPortraitGrid" type="HBoxContainer" parent="Menu" unique_id=321749835]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.42800003
+anchor_right = 0.5
+anchor_bottom = 0.42800003
+offset_left = -483.0
+offset_top = -0.16003418
+offset_right = 483.0
+offset_bottom = 114.839966
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PresetManager" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("21_gxxro")
+presets = NodePath("../../Presets")
+enemy_portrait_grid = NodePath("../../EnemyPortraitGrid")
+sleep_assurance_grid = NodePath("VBoxContainer/SleepAssuranceGrid")
+text = NodePath("VBoxContainer/HBoxContainer/PresetLabel")
+left_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonLeft")
+right_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonRight")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager" unique_id=456587967]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=618954355]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PresetButtonLeft" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=1404654020]
+layout_mode = 2
+texture_normal = ExtResource("22_fstgh")
+texture_hover = ExtResource("23_wshxo")
+
+[node name="PresetLabel" type="RichTextLabel" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=363426685]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("24_jrnmg")
+text = "PresetLabel"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PresetButtonRight" type="TextureButton" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer" unique_id=2138640104]
+layout_mode = 2
+texture_normal = ExtResource("25_ojs8s")
+texture_hover = ExtResource("26_l53yv")
+
+[node name="SleepAssuranceGrid" type="GridContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=750174912]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 7
+theme_override_constants/v_separation = 7
+columns = 16
+
+[node name="TextureProgressBar1" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1487321306]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=437824345]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar3" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1970799290]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar4" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1964566504]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar5" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=441334889]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar6" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=322955235]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar7" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1005060850]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar8" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=2011754069]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar9" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=841834604]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar10" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=122093106]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar11" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=597959032]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar12" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=2136101177]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar13" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=782856030]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar14" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1696975793]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar15" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=698442523]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar16" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1262748709]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar17" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=243489680]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar18" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1041175912]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar19" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1678396904]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar20" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=888648173]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar21" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1995633078]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar22" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=853268492]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar23" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1971231404]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar24" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1305869228]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar25" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=926676100]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar26" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=319598312]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar27" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=835648452]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar28" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=865314958]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar29" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=481541711]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar30" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1135676131]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar31" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1004335694]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="TextureProgressBar32" type="TextureProgressBar" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" unique_id=1571739367]
+layout_mode = 2
+max_value = 1.0
+texture_under = ExtResource("27_njbmb")
+texture_progress = ExtResource("28_27fuh")
+texture_progress_offset = Vector2(6, 6)
+
+[node name="Control" type="Control" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer" unique_id=25061280]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EnemyTooltip" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=886793377]
+show_behind_parent = true
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("29_6ucwt")
+
+[node name="EnemyTooltipText" type="RichTextLabel" parent="Menu/StuffUnderEnemyPortraitGrid/EnemyTooltip" unique_id=907061861]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Hover over an enemy to see tips!"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="Menu" unique_id=1348462967]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -80.0
+offset_right = 140.0
+offset_bottom = -10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("30_nq8vv")
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "SETTINGS"
+flat = true
+
+[node name="Game Version" type="RichTextLabel" parent="Menu" unique_id=1268201984]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -51.0
+offset_right = 188.0
+offset_bottom = -11.0
+grow_vertical = 0
+theme = ExtResource("24_jrnmg")
+text = "v0.0.0"
+fit_content = true
+vertical_alignment = 2
+
+[node name="Presets" type="Node" parent="Menu" unique_id=1880380593]
+
+[node name="CurrentCodedCharacters" type="Node" parent="Menu/Presets" unique_id=933311323]
+script = ExtResource("31_4xbh2")
+chipomat_1 = true
+chipomat_2 = true
+chipomat_3 = true
+fun_fungal = true
+springcrab = true
+nightmare_chipper = true
+seabill = true
+fredbear = true
+bidy = true
+buster = true
+chipper = true
+toy = true
+phantom_chipomat = true
+sleep_assurance_points = 12
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"
+
+[node name="TopRow" type="Node" parent="Menu/Presets" unique_id=1865242925]
+script = ExtResource("31_4xbh2")
+chipomat_1 = true
+chipomat_2 = true
+chipomat_3 = true
+fun_fungal = true
+springcrab = true
+nightmare_chipper = true
+seabill = true
+sleep_assurance_points = 4
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"
+
+[node name="BottomRow" type="Node" parent="Menu/Presets" unique_id=965749338]
+script = ExtResource("31_4xbh2")
+fredbear = true
+bidy = true
+buster = true
+bruce = true
+chipper = true
+toy = true
+phantom_chipomat = true
+sleep_assurance_points = 2
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"
+
+[node name="SleepInsomnia" type="Node" parent="Menu/Presets" unique_id=1435786425]
+script = ExtResource("31_4xbh2")
+chipomat_1 = true
+chipomat_2 = true
+chipomat_3 = true
+fun_fungal = true
+springcrab = true
+nightmare_chipper = true
+seabill = true
+fredbear = true
+bidy = true
+buster = true
+bruce = true
+chipper = true
+toy = true
+phantom_chipomat = true
+sleep_assurance_points = 16
+metadata/_custom_type_script = "uid://b50fmaj3pcsop"
+
+[node name="GamejoltButton" type="TextureButton" parent="Menu" unique_id=357387411]
+offset_left = 1176.0
+offset_top = 608.0
+offset_right = 1261.0
+offset_bottom = 698.0
+texture_normal = ExtResource("32_lqhxe")
+
+[node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Settings" unique_id=437575964]
+position = Vector2(0, 720)
+texture = ExtResource("3_gxxro")
+centered = false
+
+[node name="SettingsMenu" parent="Settings" unique_id=131214480 instance=ExtResource("33_kr7it")]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 2.0
+
+[node name="MenuButton" type="Button" parent="Settings" unique_id=531978215]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("30_nq8vv")
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "MENU"
+flat = true
+
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat2" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat2" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat3" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat3" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/FunFungal" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/FunFungal" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Springcrab" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Springcrab" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/NightmareChipper" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/NightmareChipper" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Seabill" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Seabill" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Fredbear" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Fredbear" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Bidy" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Bidy" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Buster" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Buster" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Bruce" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Bruce" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipper" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipper" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Toy" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/PhantomChipomat" to="." method="_on_enemy_portrait_mouse_exited"]
+[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer/PresetButtonLeft" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_preset_button_left_pressed"]
+[connection signal="pressed" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/HBoxContainer/PresetButtonRight" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_preset_button_right_pressed"]
+[connection signal="mouse_entered" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
+[connection signal="mouse_exited" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
+[connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="pressed" from="Menu/GamejoltButton" to="." method="_on_gamejolt_button_pressed"]
+[connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
+
+[editable path="Menu/EnemyPortraitGrid/Chipomat1"]
+[editable path="Menu/EnemyPortraitGrid/Chipomat2"]
+[editable path="Menu/EnemyPortraitGrid/Chipomat3"]
+[editable path="Menu/EnemyPortraitGrid/FunFungal"]
+[editable path="Menu/EnemyPortraitGrid/Springcrab"]
+[editable path="Menu/EnemyPortraitGrid/NightmareChipper"]
+[editable path="Menu/EnemyPortraitGrid/Seabill"]
+[editable path="Menu/EnemyPortraitGrid/Fredbear"]
+[editable path="Menu/EnemyPortraitGrid/Bidy"]
+[editable path="Menu/EnemyPortraitGrid/Buster"]
+[editable path="Menu/EnemyPortraitGrid/Bruce"]
+[editable path="Menu/EnemyPortraitGrid/Chipper"]
+[editable path="Menu/EnemyPortraitGrid/Toy"]
+[editable path="Menu/EnemyPortraitGrid/PhantomChipomat"]
+[editable path="Settings/SettingsMenu"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/RestartNight"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ReturnToMenu"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ToggleLamp"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward"]
+[editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight"]

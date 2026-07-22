@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b0wod4hc5c5bx"]
+
+[ext_resource type="Script" uid="uid://cb5buwn7on0gi" path="res://scenes/pre_menu_checks/pre_menu_checks.gd" id="1_m1b8p"]
+
+[node name="PreMenuChecks" type="Node2D" unique_id=924286489 node_paths=PackedStringArray("text")]
+script = ExtResource("1_m1b8p")
+text = NodePath("Text")
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1358065877]
+offset_right = 1280.0
+offset_bottom = 720.0
+bbcode_enabled = true
+text = "Checking game version info..."
+horizontal_alignment = 1
+vertical_alignment = 1
