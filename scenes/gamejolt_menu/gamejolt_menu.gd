@@ -50,9 +50,13 @@ func _ready() -> void:
 	if GameJolt.authorized_username != "":
 		_users_auth_completed({"success":"true"},{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
 
-func _on_return_to_menu_button_pressed() -> void:
-	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
-	SceneManager.change_to_scene("res://scenes/menu/menu.tscn")
+func _input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if event is InputEventKey and event.is_pressed():
+			if event.keycode == KEY_A:
+				GameJolt.api_request("trophies","add_achieved",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"trophy_id":"306501"})
+			if event.keycode == KEY_R:
+				GameJolt.api_request("trophies","remove_achieved",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"trophy_id":"306501"})
 
 func _toggle_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],button.button_pressed)
@@ -91,7 +95,6 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 	for trophy in response["trophies"]:
 		if foldable_container.title != trophy["difficulty"]:
 			foldable_container = FoldableContainer.new()
-			foldable_container.fold()
 			foldable_container.title = trophy["difficulty"]
 			foldable_container.title_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			foldable_container.add_theme_color_override("font_color",TROPHY_DATA[trophy["difficulty"]]["color"])
@@ -106,6 +109,7 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 			foldable_container.add_child(margin)
 			container_vbox = VBoxContainer.new()
 			margin.add_child(container_vbox)
+			
 			
 		var new_trophy:= TROPHY.instantiate()
 		var trophy_icon:= new_trophy.find_child("TrophyIcon",true)
@@ -124,9 +128,9 @@ func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, ext
 			http.request_completed.connect(_image_url_request_completed.bind(http,trophy_icon,trophy["image_url"].right(3)))
 			http.request(trophy["image_url"])
 		elif "secret" not in trophy["image_url"]:
-			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_normal"]]
+			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]]["icon_normal"]
 		else:
-			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]["icon_secret"]]
+			trophy_icon.texture = TROPHY_DATA[trophy["difficulty"]]["icon_secret"]
 			trophy["description"] = "[i][color=gray]Description hidden. Achieve this trophy to read it![/color][/i]"
 		
 		title.text = "[font_size=32][b]" + trophy["title"] + "[/b][/font_size]"
@@ -149,6 +153,7 @@ func _scores_tables_completed(response: Dictionary, parameters: Dictionary, extr
 			scoreboard_name.text = scoreboard_name.text + "[br][font_size=16]" + table["description"] + "[/font_size]"
 		scoreboards_hbox.add_child(scoreboard)
 		load_scores_button.pressed.connect(GameJolt.api_request.bind("scores","fetch",{"limit":"100","table_id":table["id"]},{"scoreboard":scoreboard}))
+		load_scores_button.pressed.connect(load_scores_button.queue_free)
 	if scoreboards_hbox.get_child_count() == 1:
 		scoreboards_hbox.get_child(0).visible = true
 		
@@ -156,22 +161,23 @@ func _scores_fetch_completed(response: Dictionary, parameters: Dictionary, extra
 	var scoreboard = extra_info["scoreboard"]
 	for score in response["scores"]:
 		var scoreboard_score = SCOREBOARD_SCORE.instantiate()
-		scoreboard.find_child("LoadScoresButton").visible = false
 		var border_box:= StyleBoxFlat.new()
 		border_box = scoreboard_score.get_theme_stylebox("panel").duplicate()
 		if score["user"] == GameJolt.authorized_username:
 			border_box.border_color = Color(0.0, 1.0, 0.0, 1.0)
 			scoreboard_score.add_theme_stylebox_override("panel",border_box)
 		var avatar:= scoreboard_score.find_child("Avatar")
-		var text:= scoreboard_score.find_child("Text")
+		var name_text:= scoreboard_score.find_child("Name")
+		var score_text:= scoreboard_score.find_child("Score")
 		var date:= scoreboard_score.find_child("Date")
 		var username
 		if score["user"]:
 			username = score["user"]
 		else:
 			username = score["guest"]
-		text.text = "[font_size=24]" + str(response["scores"].find(score)+1) + ". " + username + "[/font_size][br][font_size=16]" + score["score"] + "[/font_size]"
-		date.text = "[font_size=20][color=gray]" + score["stored"]
+		name_text.text = "[font_size=24]" + str(response["scores"].find(score)+1) + ". " + username
+		score_text.text = "[font_size=16]" + score["score"] + "[/font_size]"
+		date.text = "[font_size=12][color=gray]" + score["stored"]
 		scoreboard.find_child("ScoresVBox",true).add_child(scoreboard_score)
 		
 		GameJolt.api_request("users","fetch",{"user_id":score["user_id"]},{"avatar":avatar})

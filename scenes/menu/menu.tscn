@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scenes/menu/preset/preset.gd" id="31_4xbh2"]
 [ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_icon.svg" id="32_lqhxe"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="33_kr7it"]
+[ext_resource type="PackedScene" uid="uid://ctp3qf7xwe3v3" path="res://scenes/gamejolt_menu/gamejolt_menu.tscn" id="34_gxxro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_fstgh")
@@ -585,15 +586,33 @@ action_mode = 0
 text = "SETTINGS"
 flat = true
 
-[node name="Game Version" type="RichTextLabel" parent="Menu" unique_id=1268201984]
-anchors_preset = 2
+[node name="StatisticsButton" type="Button" parent="Menu" unique_id=1674353814]
+anchors_preset = -1
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = -51.0
-offset_right = 188.0
-offset_bottom = -11.0
-grow_vertical = 0
+offset_left = -630.0
+offset_top = -57.0
+offset_right = -426.0
+offset_bottom = -10.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("30_nq8vv")
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "STATISTICS"
+flat = true
+alignment = 0
+
+[node name="Game Version" type="RichTextLabel" parent="Menu" unique_id=1268201984]
+offset_left = 15.0
+offset_top = 6.0
+offset_right = 190.0
+offset_bottom = 46.0
 theme = ExtResource("24_jrnmg")
 text = "v0.0.0"
 fit_content = true
@@ -705,6 +724,24 @@ action_mode = 0
 text = "MENU"
 flat = true
 
+[node name="GameJolt" type="CanvasLayer" parent="." unique_id=1172141535]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Background" type="Sprite2D" parent="GameJolt" unique_id=1761350212]
+position = Vector2(1280, 0)
+texture = ExtResource("3_gxxro")
+centered = false
+
+[node name="GamejoltMenu" parent="GameJolt" unique_id=331925881 instance=ExtResource("34_gxxro")]
+offset_left = 1285.0
+offset_top = 3.0
+offset_right = 1273.0
+offset_bottom = -4.0
+
+[node name="MarginContainer" parent="GameJolt/GamejoltMenu" index="0" unique_id=2106310549]
+offset_bottom = -2.0
+
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_exited"]
@@ -741,6 +778,7 @@ flat = true
 [connection signal="button_down" from="Menu/SettingsButton" to="." method="_on_settings_button_button_down"]
 [connection signal="pressed" from="Menu/GamejoltButton" to="." method="_on_gamejolt_button_pressed"]
 [connection signal="button_down" from="Settings/MenuButton" to="." method="_on_menu_button_button_down"]
+[connection signal="pressed" from="GameJolt/GamejoltMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_gamejolt_return_to_menu_button_pressed"]
 
 [editable path="Menu/EnemyPortraitGrid/Chipomat1"]
 [editable path="Menu/EnemyPortraitGrid/Chipomat2"]
@@ -784,3 +822,5 @@ flat = true
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward"]
 [editable path="Settings/SettingsMenu/Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight"]
+[editable path="GameJolt/GamejoltMenu"]
+[editable path="GameJolt/GamejoltMenu/MarginContainer/VBoxContainer/TabsPanel/MarginContainer/TabContainer/Login/Panel/MarginContainer/Login/ToggleButton"]

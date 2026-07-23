@@ -8,7 +8,7 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.16565639, 0.16565642, 0.16565639, 0.6)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -24,7 +24,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 79.0
 grow_horizontal = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("1_dhcmp")
 theme_override_styles/panel = SubResource("StyleBoxFlat_dhcmp")
@@ -38,44 +37,42 @@ theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1451334442]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="TrophyIcon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1910235737]
 custom_minimum_size = Vector2(75, 75)
 custom_maximum_size = Vector2(75, 75)
 layout_mode = 2
 texture = ExtResource("1_nxsgq")
-expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=107641799]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=842262592]
+layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1812209165]
-custom_maximum_size = Vector2(-1, 100)
+[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1812209165]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "Title"
 fit_content = true
-autowrap_mode = 0
-vertical_alignment = 1
 
-[node name="Description" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1005217177]
-custom_maximum_size = Vector2(-1, 100)
+[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2100671759]
 layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "Description"
-fit_content = true
-autowrap_mode = 0
-vertical_alignment = 1
-
-[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=2100671759]
-layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
+size_flags_vertical = 0
 bbcode_enabled = true
 text = "2 days ago"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1005217177]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+bbcode_enabled = true
+text = "Description"
+fit_content = true
+vertical_alignment = 2

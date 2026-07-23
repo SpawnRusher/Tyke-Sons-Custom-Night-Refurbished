@@ -1,6 +1,6 @@
 class_name Toy extends Enemy
 
-const TOY_RUNNING = preload("uid://dmxbc6sdfjf11")
+const TOY_LEAVING = preload("uid://orl7ysnchahb")
 
 @export_group("Nodes")
 @export var office: AnimatedSprite2D
@@ -69,7 +69,7 @@ func visibility_checks() -> bool:
 	
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
-	SpecialFunctions.create_audio(TOY_RUNNING)
+	SpecialFunctions.create_audio(TOY_LEAVING)
 	stage = STAGES.IDLE
 	_reset_values()
 	

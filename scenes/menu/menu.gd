@@ -22,8 +22,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		if event is InputEventKey and event.is_pressed():
-			if event.keycode == KEY_F:
-				GameJolt.api_request("trophies","fetch",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token})
+			pass
 	
 func _on_settings_button_button_down() -> void:
 	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)
@@ -48,6 +47,12 @@ func _on_enemy_portrait_mouse_entered(source: Control) -> void:
 func _on_enemy_portrait_mouse_exited() -> void:
 	enemy_tooltip.text = "Hover over an enemy to see tips!"
 
-static func _on_gamejolt_button_pressed() -> void:
+func _on_gamejolt_button_pressed() -> void:
 	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
-	SceneManager.change_to_scene("res://scenes/gamejolt_menu/gamejolt_menu.tscn")
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera,"position:x",1280,0.2)
+
+func _on_gamejolt_return_to_menu_button_pressed() -> void:
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera,"position:x",0,0.2)

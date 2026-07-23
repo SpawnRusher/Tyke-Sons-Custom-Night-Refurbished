@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cnq5a6kwal13f" path="res://scenes/gamejolt_menu/assets/default_pfp.svg" id="1_0s8y6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
-bg_color = Color(0.09239706, 0.09239707, 0.09239703, 1)
+bg_color = Color(0.15294118, 0.15294118, 0.15294118, 0.58431375)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -40,20 +40,37 @@ size_flags_vertical = 4
 texture = ExtResource("1_0s8y6")
 expand_mode = 1
 
-[node name="Text" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=456513629]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1722271026]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=72682153]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=456513629]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "[font_size=24]X. Username[/font_size][br][font_size=16]Score[/font_size]"
+text = "[font_size=24]X. Username[/font_size]"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
 
-[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=668059250]
+[node name="Date" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=668059250]
 layout_mode = 2
+size_flags_vertical = 0
 bbcode_enabled = true
 text = "2 weeks ago"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 2
+
+[node name="Score" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1291432164]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[font_size=16]Score[/font_size]"
+fit_content = true
+vertical_alignment = 1

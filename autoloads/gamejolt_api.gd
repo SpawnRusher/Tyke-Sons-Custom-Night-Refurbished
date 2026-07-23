@@ -115,6 +115,9 @@ func _ready() -> void:
 	if auto_login:
 		if SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"]) != "" and SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"]) != "":
 			api_request("users","auth",{"username":SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","username"]),"user_token":SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["gamejolt","user_token"])})
+	trophies_add_achieved_completed.connect(_trophies_add_achieved)
+	trophies_remove_achieved_completed.connect(_trophies_remove_achieved)
+	trophies_fetch_completed.connect(_trophies_fetch_completed)
 
 ## Automatically converts the URL given into its signature and returns it along with the URL signature identifier for easy use.[br][br]Syntax: [code]url += _add_signature(url)[/code]
 func _add_signature(url: String) -> String:
@@ -158,6 +161,7 @@ func api_request(group: String, type: String, parameters:={}, extra_info:={}) ->
 	var http = HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(api_request_completed.bind(http,group,type,parameters,extra_info))
+	print_debug(url)
 	http.request(url)
 
 func api_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, http: HTTPRequest, group: String, type: String, parameters: Dictionary, extra_info: Dictionary) -> void:
@@ -168,5 +172,27 @@ func _users_auth_completed(result: Dictionary, parameters: Dictionary, extra_inf
 	authorized_username = parameters["username"] if result["success"] == "true" else ""
 	authorized_user_token = parameters["user_token"] if result["success"] == "true" else ""
 		
+func _trophies_add_achieved(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	if response["success"] == "false":
+		print_debug("FAILED Add trophy " + parameters["trophy_id"])
+	elif response["success"] == "true":
+		print_debug("SUCCEEDED Add trophy " + parameters["trophy_id"])
 		
+func _trophies_remove_achieved(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	if response["success"] == "false":
+		print_debug("FAILED Remove trophy ", parameters["trophy_id"])
+	elif response["success"] == "true":
+		print_debug("SUCCEEDED Remove trophy ", parameters["trophy_id"])
+		
+func _trophies_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	if response["success"] == "false":
+		print_debug("FAILED Fetch trophy ", response["trophies"][0])
+	elif response["success"] == "true":
+		print_debug("SUCCEEDED Fetch trophy ", response["trophies"][0])
+		_trophy_popup(response,parameters,extra_info)
+
+func _trophy_popup(response: Dictionary, parameters: Dictionary, extra_info: Dictionary) -> void:
+	pass
+		
+	
 		
