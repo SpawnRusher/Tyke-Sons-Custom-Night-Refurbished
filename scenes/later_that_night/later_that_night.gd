@@ -10,7 +10,7 @@ const RUNNING_UPSTAIRS: AudioStream = preload("uid://c12xjq2e7f4ix")
 var enter_night: bool
 
 func _ready() -> void:
-	SceneManager.load_scene("res://scenes/scenes/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
+	SceneManager.load_scene("res://scenes/night/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
 	if SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["game","skip_loading_night"]):
 		print("skip load")
 		enter_night = true

@@ -39,7 +39,7 @@ func _on_start_button_pressed() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(fade,"self_modulate:a",1,0.5)
 	await tween.finished
-	SceneManager.change_to_scene("res://scenes/scenes/later_that_night.tscn")
+	SceneManager.change_to_scene("res://scenes/later_that_night/later_that_night.tscn")
 
 func _on_enemy_portrait_mouse_entered(source: Control) -> void:
 	enemy_tooltip.text = source.enemy_tooltip
