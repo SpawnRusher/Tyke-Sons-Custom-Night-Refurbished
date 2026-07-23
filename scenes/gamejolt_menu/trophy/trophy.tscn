@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cc30spbhiddw"]
 
-[ext_resource type="Theme" uid="uid://byygsn28jeep" path="res://global_assets/themes/gamejolt_menu_theme.tres" id="1_dhcmp"]
 [ext_resource type="Texture2D" uid="uid://0v0x60882ttn" path="res://scenes/gamejolt_menu/assets/trophies/gamejolt_trophy_bronze.svg" id="1_nxsgq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhcmp"]
@@ -25,7 +24,6 @@ anchor_right = 1.0
 offset_bottom = 79.0
 grow_horizontal = 2
 size_flags_vertical = 0
-theme = ExtResource("1_dhcmp")
 theme_override_styles/panel = SubResource("StyleBoxFlat_dhcmp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=171481396]

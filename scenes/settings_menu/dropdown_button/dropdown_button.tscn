@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://br8xrm84gnlie"]
 
-[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://global_assets/themes/settings_theme.tres" id="1_85ve3"]
 [ext_resource type="Script" uid="uid://cldpoivc6h8ma" path="res://scenes/settings_menu/dropdown_button/dropdown_button.gd" id="2_65wj8"]
 
 [node name="DropdownButton" type="Button" unique_id=1278885680]
 custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2
 mouse_filter = 1
-theme = ExtResource("1_85ve3")
 button_mask = 0
 script = ExtResource("2_65wj8")
 

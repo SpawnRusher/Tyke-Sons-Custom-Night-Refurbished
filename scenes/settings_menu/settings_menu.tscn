@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnnlmjux6685y"]
 
-[ext_resource type="Theme" uid="uid://bfuyo1rp0fe5e" path="res://global_assets/themes/settings_theme.tres" id="1_05p07"]
+[ext_resource type="Theme" uid="uid://uqgu00djilug" path="res://global_assets/themes/default_control_theme.tres" id="1_rcdfy"]
 [ext_resource type="Script" uid="uid://rg0leobu6t3s" path="res://scenes/settings_menu/settings_menu.gd" id="2_wswnh"]
 [ext_resource type="PackedScene" uid="uid://nbk8g6wpfyl0" path="res://scenes/settings_menu/slider_button/slider_button.tscn" id="3_5sljs"]
 [ext_resource type="PackedScene" uid="uid://c3t6q2otj5hlj" path="res://scenes/settings_menu/reset_to_defaults_button/reset_to_defaults_button.tscn" id="3_rcdfy"]
@@ -16,111 +16,126 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("1_05p07")
+theme = ExtResource("1_rcdfy")
 script = ExtResource("2_wswnh")
 
-[node name="Panel" type="PanelContainer" parent="." unique_id=1668547593]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=757844964]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -391.5
-offset_top = -252.0
-offset_right = 391.5
-offset_bottom = 252.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1078660640]
+layout_mode = 2
+
+[node name="ReturnToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1314624660]
+layout_mode = 2
+text = "Return To Menu"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=2021659188]
+layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 1
 
-[node name="PanelMargin" type="MarginContainer" parent="Panel" unique_id=757844964]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1109159813]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TabContainer" type="TabContainer" parent="Panel/PanelMargin" unique_id=1969351730]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1969351730]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/icon_max_width = 32
 tab_alignment = 1
 current_tab = 0
 
-[node name="Display" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1771293774]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Display" unique_id=368572435]
+[node name="Display" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=368572435]
 layout_mode = 2
 size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display" unique_id=1045592592]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer" unique_id=1319924782]
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Display/TabMargin" unique_id=1215289781]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer" unique_id=1215289781]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll" unique_id=1853873325]
+[node name="TabVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer" unique_id=1853873325]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
-tab = NodePath("../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
+tab = NodePath("")
 
-[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=395995736]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=395995736]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="MaxFPS" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=810285521 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="MaxFPS" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=810285521 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "display"
 setting_name = "max_fps"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="0" unique_id=590994961]
 text = "Max FPS"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="2" unique_id=1024995569]
 text = "0"
 
-[node name="Slider" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="3" unique_id=193667728]
+[node name="Slider" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810285521, 670532442) index="3" unique_id=193667728]
 max_value = 360.0
 
-[node name="Antialiasing" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=1624645857 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+[node name="Antialiasing" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1624645857 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "display"
 setting_name = "antialiasing"
 setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
 state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="0" unique_id=251215606]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="0" unique_id=251215606]
 text = "Antialiasing"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="2" unique_id=507897889]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/Antialiasing/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1624645857, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
-[node name="WindowMode" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=1278885680 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+[node name="WindowMode" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1278885680 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "display"
 setting_name = "window_mode"
 setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
 dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="0" unique_id=825760219]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="0" unique_id=825760219]
 text = "Window Mode"
 
-[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="2" unique_id=87337718]
+[node name="Dropdown" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/WindowMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1278885680, 1096428025) index="2" unique_id=87337718]
 selected = 0
 item_count = 3
 popup/item_0/text = "Windowed"
@@ -130,18 +145,18 @@ popup/item_1/id = 3
 popup/item_2/text = "Exclusive"
 popup/item_2/id = 4
 
-[node name="VSync" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox" unique_id=644630701 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+[node name="VSync" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=644630701 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "display"
 setting_name = "vsync_mode"
 setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
 dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="0" unique_id=825760219]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="0" unique_id=825760219]
 text = "VSync Mode"
 
-[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="2" unique_id=87337718]
+[node name="Dropdown" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/VSync/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(644630701, 1096428025) index="2" unique_id=87337718]
 selected = 0
 item_count = 4
 popup/item_0/text = "Disabled"
@@ -153,12 +168,15 @@ popup/item_2/id = 2
 popup/item_3/text = "Fast"
 popup/item_3/id = 3
 
-[node name="Game" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1627397997]
+[node name="Game" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=694958584]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Game" unique_id=2000524679]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game" unique_id=1758141779]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer" unique_id=2000524679]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -166,122 +184,123 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Game/TabMargin" unique_id=865111506]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer" unique_id=865111506]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll" unique_id=2030068338]
+[node name="TabVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer" unique_id=2030068338]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
-tab = NodePath("../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
+tab = NodePath("")
 
-[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1269798834]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1269798834]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="MasterVolume" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1858945785 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="MasterVolume" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1858945785 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "master_volume"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="0" unique_id=590994961]
 text = "Master Volume"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MasterVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1858945785, 670532442) index="2" unique_id=1024995569]
 text = "50"
 
-[node name="JumpscareVolume" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1068303367 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="JumpscareVolume" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1068303367 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "jumpscare_volume"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="0" unique_id=590994961]
 text = "Jumpscare Volume"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/JumpscareVolume/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1068303367, 670532442) index="2" unique_id=1024995569]
 text = "50"
 
-[node name="AutoRestartOnDeath" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1456973171 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+[node name="AutoRestartOnDeath" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1456973171 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "auto_restart_on_death"
 setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
 state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="0" unique_id=251215606]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="0" unique_id=251215606]
 text = "Auto Restart On Death"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="2" unique_id=507897889]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/AutoRestartOnDeath/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1456973171, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
-[node name="SkipLoadingNight" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1868348644 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+[node name="SkipLoadingNight" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1868348644 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "skip_loading_night"
 setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
 state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="0" unique_id=251215606]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="0" unique_id=251215606]
 text = "Skip Loading Night"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="2" unique_id=507897889]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/SkipLoadingNight/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1868348644, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
-[node name="UseOldCameraScrolling" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1108053077 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+[node name="UseOldCameraScrolling" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1108053077 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "use_old_camera_scrolling"
 setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
 state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="0" unique_id=251215606]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="0" unique_id=251215606]
 text = "Use Old Camera Scrolling"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="2" unique_id=507897889]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldCameraScrolling/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1108053077, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
-[node name="UseOldFrontWindowHitbox" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=249140566 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+[node name="UseOldFrontWindowHitbox" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=249140566 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "use_old_front_window_hitbox"
 setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
 state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="0" unique_id=251215606]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="0" unique_id=251215606]
 text = "Use Old Front Window Hitbox"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="2" unique_id=507897889]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldFrontWindowHitbox/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(249140566, 1937837762) index="2" unique_id=507897889]
 text = "OFF"
 
-[node name="MovementMode" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1499132036 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
+[node name="MovementMode" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1499132036 node_paths=PackedStringArray("settings_menu", "setting_label", "dropdown") instance=ExtResource("5_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "movement_mode"
 setting_label = NodePath("DropdownMargin/DropdownHBox/SettingLabel")
 dropdown = NodePath("DropdownMargin/DropdownHBox/Dropdown")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="0" unique_id=825760219]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="0" unique_id=825760219]
 text = "Movement Mode"
 
-[node name="Dropdown" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="2" unique_id=87337718]
+[node name="Dropdown" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MovementMode/DropdownMargin/DropdownHBox" parent_id_path=PackedInt32Array(1499132036, 1096428025) index="2" unique_id=87337718]
 selected = 0
 item_count = 5
 popup/item_0/text = "Hover"
@@ -295,84 +314,87 @@ popup/item_3/id = 3
 popup/item_4/text = "Click+Keyboard"
 popup/item_4/id = 4
 
-[node name="TopScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=10074031 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="TopScreenMargin" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=10074031 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "top_screen_margin"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="0" unique_id=590994961]
 text = "Top Screen Margin"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="2" unique_id=1024995569]
 text = "100"
 
-[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="3" unique_id=193667728]
+[node name="Slider" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/TopScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(10074031, 670532442) index="3" unique_id=193667728]
 max_value = 300.0
 
-[node name="LeftScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=871636082 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="LeftScreenMargin" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=871636082 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "left_screen_margin"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="0" unique_id=590994961]
 text = "Left Screen Margin"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="2" unique_id=1024995569]
 text = "100"
 
-[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="3" unique_id=193667728]
+[node name="Slider" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/LeftScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(871636082, 670532442) index="3" unique_id=193667728]
 max_value = 300.0
 
-[node name="BottomScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=2108170838 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="BottomScreenMargin" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2108170838 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "bottom_screen_margin"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="0" unique_id=590994961]
 text = "Bottom Screen Margin"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="2" unique_id=1024995569]
 text = "100"
 
-[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="3" unique_id=193667728]
+[node name="Slider" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/BottomScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2108170838, 670532442) index="3" unique_id=193667728]
 max_value = 300.0
 
-[node name="RightScreenMargin" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox" unique_id=1303697337 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
+[node name="RightScreenMargin" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1303697337 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label", "slider") instance=ExtResource("3_5sljs")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 group_name = "game"
 setting_name = "right_screen_margin"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 slider = NodePath("MarginContainer/HBoxContainer/Slider")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="0" unique_id=590994961]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="0" unique_id=590994961]
 text = "Right Screen Margin"
 
-[node name="StateLabel" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="2" unique_id=1024995569]
+[node name="StateLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="2" unique_id=1024995569]
 text = "100"
 
-[node name="Slider" parent="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="3" unique_id=193667728]
+[node name="Slider" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RightScreenMargin/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1303697337, 670532442) index="3" unique_id=193667728]
 max_value = 300.0
 
-[node name="Keybinds" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer" unique_id=1504104377]
+[node name="Keybinds" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=1758522098]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="TabMargin" type="MarginContainer" parent="Panel/PanelMargin/TabContainer/Keybinds" unique_id=443604113]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds" unique_id=437473380]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer" unique_id=443604113]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -380,174 +402,175 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TabScroll" type="ScrollContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin" unique_id=1437040814]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer" unique_id=1437040814]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="TabVBox" type="VBoxContainer" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll" unique_id=914849533]
+[node name="TabVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer" unique_id=914849533]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
-tab = NodePath("../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
+tab = NodePath("")
 
-[node name="Control" type="Control" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1027549335]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1027549335]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="RestartNight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1625416073 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="RestartNight" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1625416073 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "restart_night"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/RestartNight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1625416073, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RestartNight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1625416073, 923350876) index="0" unique_id=1564517087]
 text = "Restart Night"
 
-[node name="ReturnToMenu" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=244291619 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="ReturnToMenu" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=244291619 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "return_to_menu"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ReturnToMenu/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(244291619, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ReturnToMenu/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(244291619, 923350876) index="0" unique_id=1564517087]
 text = "Return To Menu"
 
-[node name="ToggleLamp" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=2065219765 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="ToggleLamp" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2065219765 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "toggle_lamp"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ToggleLamp/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2065219765, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ToggleLamp/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2065219765, 923350876) index="0" unique_id=1564517087]
 text = "Toggle Lamp"
 
-[node name="GoToSleep" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=210479620 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="GoToSleep" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=210479620 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "go_to_sleep"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(210479620, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/GoToSleep/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(210479620, 923350876) index="0" unique_id=1564517087]
 text = "Go To Sleep"
 
-[node name="CloseCurtain" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1306004482 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="CloseCurtain" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1306004482 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "close_curtain"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1306004482, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/CloseCurtain/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1306004482, 923350876) index="0" unique_id=1564517087]
 text = "Close Curtain
 "
 
-[node name="UseFlashlight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=646497533 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="UseFlashlight" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=646497533 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "use_flashlight"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(646497533, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseFlashlight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(646497533, 923350876) index="0" unique_id=1564517087]
 text = "Use Flashlight
 "
 
-[node name="ClickFrontWindow" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1935670563 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="ClickFrontWindow" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1935670563 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "click_front_window"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1935670563, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ClickFrontWindow/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1935670563, 923350876) index="0" unique_id=1564517087]
 text = "Click Front Window
 "
 
-[node name="ClickMove" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1906188970 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="ClickMove" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1906188970 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "click_move"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1906188970, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ClickMove/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1906188970, 923350876) index="0" unique_id=1564517087]
 text = "Click Move
 "
 
-[node name="MoveForward" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1209939523 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="MoveForward" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1209939523 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "move_forward"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1209939523, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveForward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1209939523, 923350876) index="0" unique_id=1564517087]
 text = "Move Forward"
 
-[node name="MoveLeft" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=794133684 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="MoveLeft" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=794133684 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "move_left"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794133684, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveLeft/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794133684, 923350876) index="0" unique_id=1564517087]
 text = "Move Left"
 
-[node name="MoveBackward" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=318653688 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="MoveBackward" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=318653688 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "move_backward"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(318653688, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveBackward/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(318653688, 923350876) index="0" unique_id=1564517087]
 text = "Move Backward"
 
-[node name="MoveRight" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox" unique_id=1628007890 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+[node name="MoveRight" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1628007890 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
 layout_mode = 2
-settings_menu = NodePath("../../../../../../../..")
+settings_menu = NodePath("../../../../../../../../../../..")
 setting_name = "move_right"
 setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
 state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 
-[node name="SettingLabel" parent="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1628007890, 923350876) index="0" unique_id=1564517087]
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1628007890, 923350876) index="0" unique_id=1564517087]
 text = "Move Right"
 
-[connection signal="tab_changed" from="Panel/PanelMargin/TabContainer" to="." method="_on_tab_changed"]
+[connection signal="tab_changed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" to="." method="_on_tab_changed"]
 
-[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/MaxFPS"]
-[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/Antialiasing"]
-[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/WindowMode"]
-[editable path="Panel/PanelMargin/TabContainer/Display/TabMargin/TabScroll/TabVBox/VSync"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MasterVolume"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/JumpscareVolume"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/AutoRestartOnDeath"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/SkipLoadingNight"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldCameraScrolling"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/UseOldFrontWindowHitbox"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/MovementMode"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/TopScreenMargin"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/LeftScreenMargin"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/BottomScreenMargin"]
-[editable path="Panel/PanelMargin/TabContainer/Game/TabMargin/TabScroll/TabVBox/RightScreenMargin"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/RestartNight"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ReturnToMenu"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ToggleLamp"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/GoToSleep"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/CloseCurtain"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/UseFlashlight"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickFrontWindow"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/ClickMove"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveForward"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveLeft"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveBackward"]
-[editable path="Panel/PanelMargin/TabContainer/Keybinds/TabMargin/TabScroll/TabVBox/MoveRight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/Antialiasing"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/WindowMode"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/VSync"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MasterVolume"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/JumpscareVolume"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/AutoRestartOnDeath"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/SkipLoadingNight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldCameraScrolling"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseOldFrontWindowHitbox"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MovementMode"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/TopScreenMargin"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/LeftScreenMargin"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/BottomScreenMargin"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RightScreenMargin"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/RestartNight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ReturnToMenu"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ToggleLamp"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/GoToSleep"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/CloseCurtain"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/UseFlashlight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ClickFrontWindow"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/ClickMove"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveForward"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveLeft"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveBackward"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight"]
