@@ -266,21 +266,15 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 	var current_dict: Dictionary = [settings_data,save_data,DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 	var key: Variant
 	
-	if keys.size() == 1:
-		if not current_dict.has(keys[0]):
-			push_error("Failed to get data as key ", keys[0], " is not present in ", FILE_TYPE.keys()[type], keys)
-			return
-		return current_dict[keys[0]]
-
-	for i in keys.size()-1:
+	for i in keys.size():
 		key = keys[i]
 		if not current_dict.has(key):
 			push_error("Failed to get data as key ", key, " is not present in ", FILE_TYPE.keys()[type], keys)
 			return
 		if current_dict[key] is not Dictionary:
-			break
-		current_dict = current_dict[key]
-	return current_dict[keys[keys.size()-1]]
+			return current_dict[key]
+		current_dict = current_dict[key]	
+	return current_dict
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
 func _migrate_data(type: FILE_TYPE) -> void:
