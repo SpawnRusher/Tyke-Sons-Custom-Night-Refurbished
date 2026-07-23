@@ -265,6 +265,13 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 	var current_dict: Dictionary = [settings_data,save_data,DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 	var key: Variant
+	
+	if keys.size() == 1:
+		if not current_dict.has(keys[0]):
+			push_error("Failed to get data as key ", keys[0], " is not present in ", FILE_TYPE.keys()[type], keys)
+			return
+		return current_dict[keys[0]]
+
 	for i in keys.size()-1:
 		key = keys[i]
 		if not current_dict.has(key):
