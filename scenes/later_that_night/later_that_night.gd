@@ -3,9 +3,7 @@ extends Node2D
 const RUNNING_UPSTAIRS: AudioStream = preload("uid://c12xjq2e7f4ix")
 
 @export var background: Sprite2D
-@export var text: Sprite2D
 @export var fade: ColorRect
-
 
 var enter_night: bool
 
