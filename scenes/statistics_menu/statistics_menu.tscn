@@ -1,0 +1,462 @@
+[gd_scene format=3 uid="uid://ba5ve7l4s7ybs"]
+
+[ext_resource type="Theme" uid="uid://uqgu00djilug" path="res://assets/themes/default_control_theme.tres" id="1_2llrf"]
+[ext_resource type="Script" uid="uid://onkjghfxqfis" path="res://scenes/statistics_menu/statistics_menu.gd" id="2_oudyb"]
+[ext_resource type="PackedScene" uid="uid://citkhlq4ic847" path="res://scenes/statistics_menu/statistic.tscn" id="3_p3e85"]
+
+[node name="StatisticsMenu" type="Control" unique_id=611859182]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2llrf")
+script = ExtResource("2_oudyb")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=478273629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1479436]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1050057328]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1249792442]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=472654204]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="General" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=941815440]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General" unique_id=1701974631]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer" unique_id=307440542]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer" unique_id=1361018975]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer" unique_id=1052602246]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=1445738346]
+layout_mode = 2
+
+[node name="FlashlightBatteriesPickedUp" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=464559416 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "flashlight_batteries_picked_up"
+value_suffix = " batteries picked up"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteriesPickedUp/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(464559416, 1528557703) index="0" unique_id=890778957]
+text = "Flashlight Batteries Picked Up"
+
+[node name="FlashlightBatteryDrained" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1004883163 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "flashlight_battery_drained"
+value_type = 2
+value_suffix = " batteries drained"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteryDrained/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1004883163, 1528557703) index="0" unique_id=890778957]
+text = "Flashlight Battery Drained"
+
+[node name="FlashlightFlashes" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=204263777 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "flashlight_flashes"
+value_prefix = "flashed "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightFlashes/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(204263777, 1528557703) index="0" unique_id=890778957]
+text = "Flashlight Flashes"
+
+[node name="Jumpscares" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=1720891605]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares" unique_id=940630323]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer" unique_id=803628895]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer" unique_id=886745922]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer" unique_id=1746612949]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=1676284120]
+layout_mode = 2
+
+[node name="Bidy" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=859998103 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "bidy"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bidy/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(859998103, 1528557703) index="0" unique_id=890778957]
+text = "Bidy"
+
+[node name="Bruce" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1020886865 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "bruce"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bruce/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1020886865, 1528557703) index="0" unique_id=890778957]
+text = "Bruce"
+
+[node name="Buster" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=343937952 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "buster"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Buster/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(343937952, 1528557703) index="0" unique_id=890778957]
+text = "Buster"
+
+[node name="Chipomat1" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1527602273 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "chipomat_1"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat1/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1527602273, 1528557703) index="0" unique_id=890778957]
+text = "Chipomat 1.0"
+
+[node name="Chipomat2" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=643457515 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "chipomat_2"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat2/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(643457515, 1528557703) index="0" unique_id=890778957]
+text = "Chipomat 2.0"
+
+[node name="Chipomat3" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=550223017 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "chipomat_3"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat3/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(550223017, 1528557703) index="0" unique_id=890778957]
+text = "Chipomat 3.0"
+
+[node name="Chipper" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=580691836 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "chipper"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipper/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(580691836, 1528557703) index="0" unique_id=890778957]
+text = "Chipper"
+
+[node name="Fredbear" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=485369483 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "fredbear"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Fredbear/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(485369483, 1528557703) index="0" unique_id=890778957]
+text = "Fredbear"
+
+[node name="FunFungal" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2083519918 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "fun_fungal"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FunFungal/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2083519918, 1528557703) index="0" unique_id=890778957]
+text = "Fun Fungal"
+
+[node name="Happyshroom" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1036632692 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "happyshroom"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Happyshroom/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1036632692, 1528557703) index="0" unique_id=890778957]
+text = "Happyshroom"
+
+[node name="NightmareChipper" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1971648057 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "nightmare_chipper"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/NightmareChipper/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1971648057, 1528557703) index="0" unique_id=890778957]
+text = "Nightmare Chipper"
+
+[node name="PhantomChipomat" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=17500112 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "phantom_chipomat"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhantomChipomat/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(17500112, 1528557703) index="0" unique_id=890778957]
+text = "Phantom Chipomat"
+
+[node name="Seabill" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1471455922 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "seabill"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Seabill/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1471455922, 1528557703) index="0" unique_id=890778957]
+text = "Seabill"
+
+[node name="Springcrab" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1667654361 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "springcrab"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Springcrab/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1667654361, 1528557703) index="0" unique_id=890778957]
+text = "Springcrab"
+
+[node name="Toy" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1897342514 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "jumpscares"
+statistic_name = "toy"
+value_prefix = "jumpscared "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Toy/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1897342514, 1528557703) index="0" unique_id=890778957]
+text = "Toy"
+
+[node name="Playtime" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=1491646679]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime" unique_id=822892288]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer" unique_id=824839509]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer" unique_id=1642485839]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer" unique_id=1221137306]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer" unique_id=369816040]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1215437606]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1304390402]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="General" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1014229163]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "General"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=965077206]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Total" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1034813237 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "total"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Total/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1034813237, 1528557703) index="0" unique_id=890778957]
+text = "Total"
+
+[node name="Menu" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=862562662 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "menu"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Menu/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(862562662, 1528557703) index="0" unique_id=890778957]
+text = "Menu"
+
+[node name="Night" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=327144902 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "night"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Night/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(327144902, 1528557703) index="0" unique_id=890778957]
+text = "Night"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2141296950]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=528616346]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Presets" type="RichTextLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=903571267]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Presets"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=333539562]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CustomNight" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1261865254 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "Custom Night"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CustomNight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1261865254, 1528557703) index="0" unique_id=890778957]
+text = "Custom Night"
+
+[node name="BottomRow" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1185917488 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "Bottom Row"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BottomRow/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1185917488, 1528557703) index="0" unique_id=890778957]
+text = "Bottom Row"
+
+[node name="TopRow" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1606138270 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "Top Row"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TopRow/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1606138270, 1528557703) index="0" unique_id=890778957]
+text = "Top Row"
+
+[node name="SleepInsomnia" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=129793733 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "playtime"
+statistic_name = "Sleep Insomnia"
+value_type = 3
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepInsomnia/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(129793733, 1528557703) index="0" unique_id=890778957]
+text = "Sleep Insomnia"
+
+[node name="ReturnToMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1457011925]
+layout_mode = 2
+text = "Return To Menu"
+
+[connection signal="tab_changed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" to="." method="_on_tab_container_tab_changed"]
+
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteriesPickedUp"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteryDrained"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightFlashes"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bidy"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bruce"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Buster"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat1"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat2"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipomat3"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Chipper"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Fredbear"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FunFungal"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Happyshroom"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/NightmareChipper"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhantomChipomat"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Seabill"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Springcrab"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Toy"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Total"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Menu"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Night"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CustomNight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BottomRow"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TopRow"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepInsomnia"]

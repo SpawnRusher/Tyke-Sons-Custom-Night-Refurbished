@@ -49,7 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dddwv5ok67q6f" path="res://scenes/win_screen/assets/wake_up/_37.png" id="47_smsdw"]
 [ext_resource type="Texture2D" uid="uid://dh1iwcauru835" path="res://scenes/win_screen/assets/wake_up/_38.png" id="48_retvi"]
 [ext_resource type="Texture2D" uid="uid://bo3laj022ebel" path="res://scenes/win_screen/assets/early_bird.png" id="49_ndgog"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://global_assets/themes/default_font_theme.tres" id="50_8mujy"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://assets/themes/default_font_theme.tres" id="50_8mujy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3mpqp"]
 animations = [{

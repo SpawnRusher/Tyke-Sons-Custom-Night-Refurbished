@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://g60ym0ekaepa"]
 
-[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://global_assets/fonts/angltrr.ttf" id="1_r1rft"]
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://assets/fonts/angltrr.ttf" id="1_r1rft"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1rft"]
 bg_color = Color(0.043137256, 0.105882354, 0.2, 0.7647059)

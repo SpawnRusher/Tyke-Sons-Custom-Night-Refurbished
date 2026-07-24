@@ -1,9 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://uqgu00djilug"]
 
-[ext_resource type="FontFile" uid="uid://baxq58dhtnofh" path="res://global_assets/fonts/candara/candara.TTF" id="1_68dih"]
-[ext_resource type="FontFile" uid="uid://dr3n380hyymrg" path="res://global_assets/fonts/candara/candara_bold.TTF" id="2_o7tri"]
-[ext_resource type="FontFile" uid="uid://cobn03bkmfssx" path="res://global_assets/fonts/candara/candara_bold_italic.TTF" id="3_1pjj0"]
-[ext_resource type="FontFile" uid="uid://b5tejrarh3fas" path="res://global_assets/fonts/candara/candara_italic.TTF" id="4_saab5"]
+[ext_resource type="FontFile" uid="uid://baxq58dhtnofh" path="res://assets/fonts/candara/candara.TTF" id="1_68dih"]
+[ext_resource type="FontFile" uid="uid://dr3n380hyymrg" path="res://assets/fonts/candara/candara_bold.TTF" id="2_o7tri"]
+[ext_resource type="FontFile" uid="uid://cobn03bkmfssx" path="res://assets/fonts/candara/candara_bold_italic.TTF" id="3_1pjj0"]
+[ext_resource type="FontFile" uid="uid://b5tejrarh3fas" path="res://assets/fonts/candara/candara_italic.TTF" id="4_saab5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkitj"]
 content_margin_left = 4.0

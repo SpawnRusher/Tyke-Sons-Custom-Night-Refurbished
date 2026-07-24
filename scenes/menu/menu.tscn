@@ -23,17 +23,18 @@
 [ext_resource type="Script" uid="uid://dv4jm5hofvke8" path="res://scenes/menu/preset/preset_manager.gd" id="21_gxxro"]
 [ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://scenes/menu/assets/arrows/minus_normal.png" id="22_fstgh"]
 [ext_resource type="Texture2D" uid="uid://rl232h6kj0fv" path="res://scenes/menu/assets/arrows/minus_highlight.png" id="23_wshxo"]
-[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://global_assets/themes/default_font_theme.tres" id="24_jrnmg"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://assets/themes/default_font_theme.tres" id="24_jrnmg"]
 [ext_resource type="Texture2D" uid="uid://knsba118lj5p" path="res://scenes/menu/assets/arrows/plus_normal.png" id="25_ojs8s"]
 [ext_resource type="Texture2D" uid="uid://c0xj1sj5uhx4n" path="res://scenes/menu/assets/arrows/plus_highlight.png" id="26_l53yv"]
 [ext_resource type="Texture2D" uid="uid://ck5it5jq4buy4" path="res://scenes/night/sleep_assurance/assets/sleep_assurance_point_border.png" id="27_njbmb"]
 [ext_resource type="Texture2D" uid="uid://irutswq3wufd" path="res://scenes/night/sleep_assurance/assets/sleep_assurance_point_progress.png" id="28_27fuh"]
-[ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://global_assets/themes/enemy_tooltip_theme.tres" id="29_6ucwt"]
-[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://global_assets/fonts/angltrr.ttf" id="30_nq8vv"]
+[ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://assets/themes/enemy_tooltip_theme.tres" id="29_6ucwt"]
+[ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://assets/fonts/angltrr.ttf" id="30_nq8vv"]
 [ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scenes/menu/preset/preset.gd" id="31_4xbh2"]
 [ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_icon.svg" id="32_lqhxe"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="33_kr7it"]
 [ext_resource type="PackedScene" uid="uid://ctp3qf7xwe3v3" path="res://scenes/gamejolt_menu/gamejolt_menu.tscn" id="34_gxxro"]
+[ext_resource type="PackedScene" uid="uid://ba5ve7l4s7ybs" path="res://scenes/statistics_menu/statistics_menu.tscn" id="35_2rjk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwfsl"]
 atlas = ExtResource("7_fstgh")
@@ -752,15 +753,38 @@ texture = ExtResource("3_gxxro")
 centered = false
 
 [node name="GamejoltMenu" parent="GameJolt" unique_id=331925881 instance=ExtResource("34_gxxro")]
-offset_left = 1285.0
-offset_top = 3.0
-offset_right = 1273.0
-offset_bottom = -4.0
+anchors_preset = -1
+anchor_left = 1.0040001
+anchor_top = 0.004
+anchor_right = 1.9950001
+anchor_bottom = 0.994
+offset_left = -0.12011719
+offset_top = 0.119999886
+offset_right = -0.60009766
+offset_bottom = 0.32000732
+grow_vertical = 0
 
 [node name="MarginContainer" parent="GameJolt/GamejoltMenu" index="0" unique_id=2106310549]
 offset_bottom = -2.0
 
 [node name="Statistics" type="CanvasLayer" parent="." unique_id=219291398]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Statistics" unique_id=1977912587]
+position = Vector2(-1280, 0)
+texture = ExtResource("3_gxxro")
+centered = false
+
+[node name="StatisticsMenu" parent="Statistics" unique_id=611859182 instance=ExtResource("35_2rjk0")]
+anchors_preset = -1
+anchor_left = -1.0
+anchor_top = 0.001
+anchor_right = 0.0
+offset_left = 5.0
+offset_top = 6.2799997
+offset_right = -7.0
+offset_bottom = -6.0
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
@@ -796,10 +820,12 @@ offset_bottom = -2.0
 [connection signal="mouse_entered" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_entered"]
 [connection signal="mouse_exited" from="Menu/StuffUnderEnemyPortraitGrid/PresetManager/VBoxContainer/SleepAssuranceGrid" to="Menu/StuffUnderEnemyPortraitGrid/PresetManager" method="_on_sleep_assurance_grid_mouse_exited"]
 [connection signal="pressed" from="Menu/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Menu/StatisticsButton" to="." method="_on_statistics_button_pressed"]
 [connection signal="pressed" from="Menu/GamejoltButton" to="." method="_on_gamejolt_button_pressed"]
 [connection signal="pressed" from="Settings/SettingsMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_settings_return_to_menu_button_pressed"]
 [connection signal="pressed" from="Settings/MenuButton" to="." method="_on_settings_return_to_menu_button_pressed"]
 [connection signal="pressed" from="GameJolt/GamejoltMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_gamejolt_return_to_menu_button_pressed"]
+[connection signal="pressed" from="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_statistics_return_to_menu_button_pressed"]
 
 [editable path="Menu/EnemyPortraitGrid/Chipomat1"]
 [editable path="Menu/EnemyPortraitGrid/Chipomat2"]
@@ -845,3 +871,15 @@ offset_bottom = -2.0
 [editable path="Settings/SettingsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight"]
 [editable path="GameJolt/GamejoltMenu"]
 [editable path="GameJolt/GamejoltMenu/MarginContainer/VBoxContainer/TabsPanelContainer/MarginContainer/TabContainer/Login/PanelContainer/MarginContainer/Login/ToggleButton"]
+[editable path="Statistics/StatisticsMenu"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteriesPickedUp"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteryDrained"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightFlashes"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bidy"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Total"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Menu"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Night"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CustomNight"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/BottomRow"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/TopRow"]
+[editable path="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Playtime/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepInsomnia"]

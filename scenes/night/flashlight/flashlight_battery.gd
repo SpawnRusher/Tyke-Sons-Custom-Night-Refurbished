@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	_visibility_checks()
 	if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 		value -= 15 * delta
-		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","flashlight","flashlight_battery_drained"],15 * delta,SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_battery_drained"],15 * delta,SaveData.SET_DATA_SPECIAL.ADD)
 	if current_batteries_cooldown < batteries_cooldown:
 		current_batteries_cooldown += 1 * delta
 	if enable_cooldown > 0:
@@ -53,13 +53,12 @@ func _flashlight_on() -> void:
 			flashlight_state = Global.FLASHLIGHT_STATES.ON
 			SpecialFunctions.create_audio(FLASHLIGHT)
 			SignalBus.update_flashlight_state.emit(flashlight_state)
-			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","flashlight","flashlight_total_flashes"],1,SaveData.SET_DATA_SPECIAL.ADD)
+			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_flashes"],1,SaveData.SET_DATA_SPECIAL.ADD)
 	else:
 		SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
 
 func _phantom_jumpscare() -> void:
 	value -= 30
-	SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","flashlight","phantom_chipomat_flashlight_battery_drained"],30,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _on_batteries_button_pressed() -> void:
 	if current_batteries_cooldown >= batteries_cooldown:
@@ -68,7 +67,7 @@ func _on_batteries_button_pressed() -> void:
 		value = 100.0
 		current_batteries_cooldown = 0
 		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
-		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","flashlight","flashlight_batteries_picked_up"],1,SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_batteries_picked_up"],1,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _visibility_checks() -> void:
 	batteries.visible = false

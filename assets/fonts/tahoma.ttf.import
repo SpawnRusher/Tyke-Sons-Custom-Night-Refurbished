@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dyxiu4yi7x3kp"
-path="res://.godot/imported/candara_light.TTF-0b96832039ca8fec2b454a4b754df254.fontdata"
+uid="uid://cpt5ndhcm7ytc"
+path="res://.godot/imported/tahoma.ttf-1d23b25e9d07aad3eba5d0a5354978f3.fontdata"
 
 [deps]
 
-source_file="res://global_assets/fonts/candara/candara_light.TTF"
-dest_files=["res://.godot/imported/candara_light.TTF-0b96832039ca8fec2b454a4b754df254.fontdata"]
+source_file="res://assets/fonts/tahoma.ttf"
+dest_files=["res://.godot/imported/tahoma.ttf-1d23b25e9d07aad3eba5d0a5354978f3.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=3
+hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctp3qf7xwe3v3"]
 
-[ext_resource type="Theme" uid="uid://uqgu00djilug" path="res://global_assets/themes/default_control_theme.tres" id="1_penvq"]
+[ext_resource type="Theme" uid="uid://uqgu00djilug" path="res://assets/themes/default_control_theme.tres" id="1_penvq"]
 [ext_resource type="Script" uid="uid://cutp1a2inw5g" path="res://scenes/gamejolt_menu/gamejolt_menu.gd" id="2_dhamn"]
 [ext_resource type="Texture2D" uid="uid://c6051svx83ggi" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_logo.svg" id="3_penvq"]
 [ext_resource type="Texture2D" uid="uid://7y46si1whh3m" path="res://scenes/gamejolt_menu/assets/trophies/gamejolt_trophy_gold.svg" id="4_dhamn"]

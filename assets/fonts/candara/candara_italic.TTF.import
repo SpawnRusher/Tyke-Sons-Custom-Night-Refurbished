@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cpt5ndhcm7ytc"
-path="res://.godot/imported/tahoma.ttf-54c50c806bc14edd7b595ece1d348e5b.fontdata"
+uid="uid://b5tejrarh3fas"
+path="res://.godot/imported/candara_italic.TTF-b87ffeaf5e551273253aed9316106ff9.fontdata"
 
 [deps]
 
-source_file="res://global_assets/fonts/tahoma.ttf"
-dest_files=["res://.godot/imported/tahoma.ttf-54c50c806bc14edd7b595ece1d348e5b.fontdata"]
+source_file="res://assets/fonts/candara/candara_italic.TTF"
+dest_files=["res://.godot/imported/candara_italic.TTF-b87ffeaf5e551273253aed9316106ff9.fontdata"]
 
 [params]
 
@@ -22,7 +22,7 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=1
+hinting=3
 subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0

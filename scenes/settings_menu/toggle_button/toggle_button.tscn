@@ -4,6 +4,7 @@
 
 [node name="ToggleButton" type="Button" unique_id=1624645857]
 custom_minimum_size = Vector2(0, 50)
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2

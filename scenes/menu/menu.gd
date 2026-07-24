@@ -68,3 +68,17 @@ func _on_gamejolt_return_to_menu_button_pressed() -> void:
 	tween.tween_property(camera,"position:x",0,0.2)
 	await tween.finished
 	disable_menu = false
+
+func _on_statistics_button_pressed() -> void:
+	disable_menu = true
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera,"position:x",-1280,0.2)
+
+func _on_statistics_return_to_menu_button_pressed() -> void:
+	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD,0,1,1,0,true,true)
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera,"position:x",0,0.2)
+	await tween.finished
+	disable_menu = false
+	
