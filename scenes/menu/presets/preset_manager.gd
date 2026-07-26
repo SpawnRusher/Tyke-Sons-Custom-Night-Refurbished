@@ -3,14 +3,14 @@ extends Panel
 const BUTTON_PRESS_LOUD: AudioStream = preload("uid://dljncvmipnl1d")
 
 @export_group("Nodes")
-@export var presets: Node
 @export var enemy_portrait_grid: GridContainer
 @export var sleep_assurance_grid: GridContainer
 @export var text: RichTextLabel
 @export var left_button: TextureButton
 @export var right_button: TextureButton
+@export_group("Presets")
+@export var presets: Array[Preset]
 
-@onready var preset_list: Array[Node] = presets.get_children()
 @onready var enemy_portrait_list: Array[Node] = enemy_portrait_grid.get_children()
 @onready var sleep_assurance_list: Array[Node] = sleep_assurance_grid.get_children()
 
@@ -39,16 +39,16 @@ func _on_preset_button_right_pressed() -> void:
 	_set_preset(current_preset + 1)
 
 func _set_preset(index: int) -> void:
-	if index >= preset_list.size():
+	if index >= presets.size():
 		index = 0
 	if index < 0:
-		index = preset_list.size() - 1
+		index = presets.size() - 1
 	current_preset = index
-	Global.sleep_assurance_points = preset_list[current_preset].sleep_assurance_points
-	_update_enemy_portraits(preset_list[current_preset].enabled_ids)
-	_update_sleep_assurance_points(preset_list[current_preset].sleep_assurance_points)
+	Global.sleep_assurance_points = presets[current_preset].sleep_assurance_points
+	_update_enemy_portraits(presets[current_preset].enabled_ids)
+	_update_sleep_assurance_points(presets[current_preset].sleep_assurance_points)
 
-func _update_enemy_portraits(id_array: Array[bool]) -> void:
+func _update_enemy_portraits(id_array: Dictionary[Enemy.ENEMY_IDS,bool]) -> void:
 	for i in id_array.size():
 		enemy_portrait_list[i].toggle(id_array[i],true)
 	_preset_match()
@@ -67,18 +67,15 @@ func _enemy_portrait_toggled(enemy_portrait: Enemy_Portrait) -> void:
 
 func _preset_match() -> void:
 	preset_match = false
-	if preset_list[current_preset].enabled_ids == Global.ENABLED_IDS and preset_list[current_preset].sleep_assurance_points == Global.sleep_assurance_points:
+	if presets[current_preset].enabled_ids == Global.ENABLED_IDS and presets[current_preset].sleep_assurance_points == Global.sleep_assurance_points:
 		preset_match = true
 		
 	else:
-		for i in preset_list.size():
-			if preset_list[i].enabled_ids == Global.ENABLED_IDS:
+		for i in presets.size():
+			if presets[i].enabled_ids == Global.ENABLED_IDS:
 				current_preset = i
 	
-	if preset_match == false:
-		text.text = "Custom Night"
-	else:
-		text.text = preset_list[current_preset].name.capitalize()
+	text.text = "Custom Night" if preset_match == false else presets[current_preset].preset_name
 	Global.current_preset_name = text.text
 
 func _on_sleep_assurance_grid_mouse_entered() -> void:

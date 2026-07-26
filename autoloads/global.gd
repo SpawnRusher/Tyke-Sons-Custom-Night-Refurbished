@@ -1,7 +1,21 @@
 extends Node
 
 #region GAME SETTINGS
-var ENABLED_IDS: Array[bool]
+var ENABLED_IDS: Dictionary[Enemy.ENEMY_IDS,bool] = {
+	Enemy.ENEMY_IDS.CHIPOMAT_1:false,
+	Enemy.ENEMY_IDS.CHIPOMAT_2:false,
+	Enemy.ENEMY_IDS.CHIPOMAT_3:false,
+	Enemy.ENEMY_IDS.FUN_FUNGAL:false,
+	Enemy.ENEMY_IDS.SPRINGCRAB:false,
+	Enemy.ENEMY_IDS.NIGHTMARE_CHIPPER:false,
+	Enemy.ENEMY_IDS.SEABILL:false,
+	Enemy.ENEMY_IDS.FREDBEAR:false,
+	Enemy.ENEMY_IDS.BIDY:false,
+	Enemy.ENEMY_IDS.BUSTER:false,
+	Enemy.ENEMY_IDS.BRUCE:false,
+	Enemy.ENEMY_IDS.CHIPPER:false,
+	Enemy.ENEMY_IDS.TOY:false,
+	Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:false}
 var sleep_assurance_points: int = 1
 var current_preset_name: String
 var survival_mode: bool
@@ -24,7 +38,6 @@ var scene_time: int
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	ENABLED_IDS.resize(14)
 	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
 	SceneManager.scene_changing.connect(_scene_changing)
 	SceneManager.scene_reloading.connect(_scene_reloading)

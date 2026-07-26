@@ -55,13 +55,18 @@ func _repeat_audio(audio: Node, repeats: int) -> void:
 	repeats -= 1
 	audio.finished.connect(_repeat_audio.bind(audio,repeats))
 	
-func create_timer(function_name: Callable, interval: float, repeats:= 0, autostart:= true, persist_through_scenes:= false) -> Timer:
+func create_timer(function_name: Callable, interval: float, repeats:= 0, autostart:= true, persist_through_scenes:= false, deferred:= false) -> Timer:
 	var timer:= Timer.new()
 	timer.timeout.connect(function_name)
 	timer.one_shot = true
 	timer.autostart = autostart
 	timer.wait_time = interval
 	timer.timeout.connect(_repeat_timer.bind(timer,repeats))
+	
+	if not deferred:
+		add_child(timer)
+	else:
+		add_child.call_deferred(timer)
 	
 	if not persist_through_scenes: 
 		SceneManager.scene_changed.connect(timer.queue_free.unbind(2))

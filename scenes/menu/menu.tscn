@@ -20,7 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://c6gwy583ltq7m" path="res://scenes/menu/assets/portraits/chipper.png" id="18_2j2ur"]
 [ext_resource type="Texture2D" uid="uid://b4o7sg8q6dvyo" path="res://scenes/menu/assets/portraits/toy.png" id="19_tatpe"]
 [ext_resource type="Texture2D" uid="uid://b78deb6qq8app" path="res://scenes/menu/assets/portraits/phantom_chipomat.png" id="20_dsh75"]
-[ext_resource type="Script" uid="uid://dv4jm5hofvke8" path="res://scenes/menu/preset/preset_manager.gd" id="21_gxxro"]
+[ext_resource type="Script" uid="uid://dv4jm5hofvke8" path="res://scenes/menu/presets/preset_manager.gd" id="21_gxxro"]
+[ext_resource type="Script" uid="uid://cnuj3bj7pdcvm" path="res://scenes/menu/presets/resources/preset.gd" id="22_2rjk0"]
 [ext_resource type="Texture2D" uid="uid://h6r7ymvapddi" path="res://scenes/menu/assets/arrows/minus_normal.png" id="22_fstgh"]
 [ext_resource type="Texture2D" uid="uid://rl232h6kj0fv" path="res://scenes/menu/assets/arrows/minus_highlight.png" id="23_wshxo"]
 [ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://assets/themes/default_font_theme.tres" id="24_jrnmg"]
@@ -30,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://irutswq3wufd" path="res://scenes/night/sleep_assurance/assets/sleep_assurance_point_progress.png" id="28_27fuh"]
 [ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://assets/themes/enemy_tooltip_theme.tres" id="29_6ucwt"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://assets/fonts/angltrr.ttf" id="30_nq8vv"]
-[ext_resource type="Script" uid="uid://b50fmaj3pcsop" path="res://scenes/menu/preset/preset.gd" id="31_4xbh2"]
 [ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_icon.svg" id="32_lqhxe"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="33_kr7it"]
 [ext_resource type="PackedScene" uid="uid://ctp3qf7xwe3v3" path="res://scenes/gamejolt_menu/gamejolt_menu.tscn" id="34_gxxro"]
@@ -91,6 +91,94 @@ region = Rect2(0, 0, 120, 120)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5dr5"]
 atlas = ExtResource("20_dsh75")
 region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="Resource" id="Resource_wy1p8"]
+script = ExtResource("22_2rjk0")
+preset_name = "Bottom Row"
+sleep_assurance_points = 2
+enabled_ids = Dictionary[int, bool]({
+0: false,
+1: false,
+2: false,
+3: false,
+4: false,
+5: false,
+6: false,
+7: true,
+8: true,
+9: true,
+10: true,
+11: true,
+12: true,
+13: true
+})
+metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
+
+[sub_resource type="Resource" id="Resource_l53yv"]
+script = ExtResource("22_2rjk0")
+preset_name = "Top Row"
+sleep_assurance_points = 4
+enabled_ids = Dictionary[int, bool]({
+0: true,
+1: true,
+2: true,
+3: true,
+4: true,
+5: true,
+6: true,
+7: false,
+8: false,
+9: false,
+10: false,
+11: false,
+12: false,
+13: false
+})
+metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
+
+[sub_resource type="Resource" id="Resource_2rjk0"]
+script = ExtResource("22_2rjk0")
+preset_name = "Coded Enemies"
+sleep_assurance_points = 12
+enabled_ids = Dictionary[int, bool]({
+0: true,
+1: true,
+2: true,
+3: true,
+4: true,
+5: true,
+6: true,
+7: true,
+8: true,
+9: true,
+10: false,
+11: false,
+12: true,
+13: true
+})
+metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
+
+[sub_resource type="Resource" id="Resource_gxxro"]
+script = ExtResource("22_2rjk0")
+preset_name = "Sleep Insomnia"
+sleep_assurance_points = 16
+enabled_ids = Dictionary[int, bool]({
+0: true,
+1: true,
+2: true,
+3: true,
+4: true,
+5: true,
+6: true,
+7: true,
+8: true,
+9: true,
+10: true,
+11: true,
+12: true,
+13: true
+})
+metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 
 [node name="Menu" type="Node2D" unique_id=87801377 node_paths=PackedStringArray("fade", "enemy_portrait_grid", "enemy_tooltip", "ver_string")]
 script = ExtResource("1_4xbh2")
@@ -277,17 +365,17 @@ offset_bottom = 114.839966
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PresetManager" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=134214408 node_paths=PackedStringArray("presets", "enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
+[node name="PresetManager" type="Panel" parent="Menu/StuffUnderEnemyPortraitGrid" unique_id=134214408 node_paths=PackedStringArray("enemy_portrait_grid", "sleep_assurance_grid", "text", "left_button", "right_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("21_gxxro")
-presets = NodePath("../../Presets")
 enemy_portrait_grid = NodePath("../../EnemyPortraitGrid")
 sleep_assurance_grid = NodePath("VBoxContainer/SleepAssuranceGrid")
 text = NodePath("VBoxContainer/HBoxContainer/PresetLabel")
 left_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonLeft")
 right_button = NodePath("VBoxContainer/HBoxContainer/PresetButtonRight")
+presets = Array[ExtResource("22_2rjk0")]([SubResource("Resource_wy1p8"), SubResource("Resource_l53yv"), SubResource("Resource_2rjk0"), SubResource("Resource_gxxro")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/StuffUnderEnemyPortraitGrid/PresetManager" unique_id=456587967]
 layout_mode = 1
@@ -632,69 +720,6 @@ theme = ExtResource("24_jrnmg")
 text = "v0.0.0"
 fit_content = true
 vertical_alignment = 2
-
-[node name="Presets" type="Node" parent="Menu" unique_id=1880380593]
-
-[node name="CurrentCodedCharacters" type="Node" parent="Menu/Presets" unique_id=933311323]
-script = ExtResource("31_4xbh2")
-chipomat_1 = true
-chipomat_2 = true
-chipomat_3 = true
-fun_fungal = true
-springcrab = true
-nightmare_chipper = true
-seabill = true
-fredbear = true
-bidy = true
-buster = true
-chipper = true
-toy = true
-phantom_chipomat = true
-sleep_assurance_points = 12
-metadata/_custom_type_script = "uid://b50fmaj3pcsop"
-
-[node name="TopRow" type="Node" parent="Menu/Presets" unique_id=1865242925]
-script = ExtResource("31_4xbh2")
-chipomat_1 = true
-chipomat_2 = true
-chipomat_3 = true
-fun_fungal = true
-springcrab = true
-nightmare_chipper = true
-seabill = true
-sleep_assurance_points = 4
-metadata/_custom_type_script = "uid://b50fmaj3pcsop"
-
-[node name="BottomRow" type="Node" parent="Menu/Presets" unique_id=965749338]
-script = ExtResource("31_4xbh2")
-fredbear = true
-bidy = true
-buster = true
-bruce = true
-chipper = true
-toy = true
-phantom_chipomat = true
-sleep_assurance_points = 2
-metadata/_custom_type_script = "uid://b50fmaj3pcsop"
-
-[node name="SleepInsomnia" type="Node" parent="Menu/Presets" unique_id=1435786425]
-script = ExtResource("31_4xbh2")
-chipomat_1 = true
-chipomat_2 = true
-chipomat_3 = true
-fun_fungal = true
-springcrab = true
-nightmare_chipper = true
-seabill = true
-fredbear = true
-bidy = true
-buster = true
-bruce = true
-chipper = true
-toy = true
-phantom_chipomat = true
-sleep_assurance_points = 16
-metadata/_custom_type_script = "uid://b50fmaj3pcsop"
 
 [node name="GamejoltButton" type="TextureButton" parent="Menu" unique_id=357387411]
 offset_left = 1176.0
