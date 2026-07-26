@@ -37,7 +37,7 @@ func _ready() -> void:
 	super()
 	if not enabled: return
 	_reset_values()
-	sprite.animation_changed.connect(_update_last_animation_played)
+	sprite.animation_changed.connect(func(): last_animation_played = sprite.animation)
 	sprite.animation_finished.connect(_on_animation_finished)
 
 func _process(delta: float) -> void:
@@ -140,10 +140,7 @@ func leave_seabill() -> void:
 func prepare_jumpscare() -> void:
 	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	state = STATES.JUMPSCARE
-	
-func _update_last_animation_played() -> void:
-	last_animation_played = sprite.animation
-	
+
 func _on_animation_finished() -> void:
 	if last_animation_played == "turning_stare":
 		sprite.play("staring")

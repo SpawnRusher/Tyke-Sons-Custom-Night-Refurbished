@@ -15,7 +15,7 @@ extends CanvasLayer
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 
 var last_animation_played: String
-var office_direction: String
+var office_animation_direction: String
 var lock_movement: bool
 var flashlight_state: Global.FLASHLIGHT_STATES:
 	set(new_state):
@@ -52,9 +52,11 @@ var window_occupants_r: Array[Enemy.ENEMY_IDS]
 
 func _ready() -> void:
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
+	office.animation_changed.connect(func(): 
+		last_animation_played = office.animation
+		office_animation_direction = office.animation.right(1))
 
 func _process(delta: float) -> void:
-	office_direction = office.animation.right(1)
 	nose.disabled = (office.animation != "office")
 	lamp_button.disabled = (office.animation != "office")
 	lamp_button.visible = !lamp_button.disabled
@@ -129,30 +131,37 @@ func _input(event: InputEvent) -> void:
 		if not Input.is_action_pressed("use_flashlight"):
 			_use_flashlight(Global.FLASHLIGHT_STATES.OFF, office.get_local_mouse_position())
 
-
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
 		return
 	
-	office.play("go_" + go_direction) if office.animation == "office" else office.play("leave_" + go_direction)
-	last_animation_played = office.animation
-	match go_direction:
+	if go_direction != "b":
+		office.play("go_"+go_direction)
+		SpecialFunctions.create_audio(RUNNING)
+		return
+	
+	if office.animation == "office":
+		office.play("go_b")
+		SpecialFunctions.create_audio(STAIRS_UP)
+		return
+
+	office.play("leave_"+office.animation.right(1))
+	match office_animation_direction:
 		"b":
-			SpecialFunctions.create_audio(STAIRS_UP) if office.animation == "office" else SpecialFunctions.create_audio(STAIRS_DOWN)
+			SpecialFunctions.create_audio(STAIRS_DOWN)
 		_:
 			SpecialFunctions.create_audio(RUNNING)
+	
 		
 
-
+		
 func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
 
 func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0)) -> void:
 	if "open_" not in office.animation:
 		return
-		
-	var dir = office.animation.right(1)
-		
+	
 	if to_state == Global.FLASHLIGHT_STATES.OFF:
 		SignalBus.flashlight_off.emit()
 		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
@@ -161,7 +170,7 @@ func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0
 
 	elif dead_flashlight_sound_check == false:
 		dead_flashlight_sound_check = true
-		match dir:
+		match office_animation_direction:
 			"f":
 				if not SpecialFunctions.in_range(mouse_pos.y,150,650):
 					return
@@ -193,43 +202,40 @@ func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0
 		popup.text = popup_labels["go_to_sleep"]
 		
 func _use_curtain(to_state: bool) -> void:
-	var dir = office.animation.right(1)
-	if dir != "r" and dir != "l":
+	if office_animation_direction != "r" and office_animation_direction != "l":
 		return
 	if "open_" not in office.animation and "closed_" not in office.animation:
 		return
 		
 	if not to_state:
 		if "closed_" in office.animation:
-			office.play("opening_"+dir)
+			office.play("opening_"+office_animation_direction)
 			SpecialFunctions.create_audio(CURTAIN_OPENING)
 			return
 		
 	if "open_" in office.animation:
-		office.play("closing_"+dir)
+		office.play("closing_"+office_animation_direction)
 		SpecialFunctions.create_audio(CURTAIN_CLOSING)
 		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 			SignalBus.flashlight_off.emit()
 	
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
-	var dir = last_animation_played.right(1)
 	if "leave_" in last_animation_played:
 		office.play("return")
 	elif last_animation_played == "return":
 		office.play("office")
 		window_background.play("f")
 	elif "go_" in last_animation_played:
-		office.play("open_"+dir)
-		window_background.play(dir)
+		office.play("open_"+office_animation_direction)
+		window_background.play(office_animation_direction)
 		
 	front_window.visible = (office.animation == "open_f")
 	front_window_overlay.visible = (office.animation == "open_f")
-	last_animation_played = office.animation
 	
 	if "opening_" in last_animation_played:
-		office.play("open_"+dir)
+		office.play("open_"+office_animation_direction)
 	if "closing_" in last_animation_played:
-		office.play("closed_"+dir)
+		office.play("closed_"+office_animation_direction)
 				
 func _can_move() -> bool:
 	if dark_overlay.visible:
@@ -248,7 +254,7 @@ func _camera_lock() -> void:
 		SignalBus.change_camera_position.emit(-1)
 		return
 	if "go_" in office.animation:
-		match office.animation.right(1):
+		match office_animation_direction:
 			"l","r":
 				if office.frame >= 3:
 					SignalBus.change_camera_position.emit(0)

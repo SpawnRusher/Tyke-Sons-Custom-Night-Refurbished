@@ -31,9 +31,9 @@ func _ready() -> void:
 	if not enabled: return
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 	_reset_values()
+	office.animation_changed.connect(func(): office_animation_direction = office.animation.right(1))
 
 func _process(delta: float) -> void:
-	office_animation_direction = office.animation.right(1)
 	sprite.visible = _visibility_checks()
 	match state:
 		STATES.IDLE:
