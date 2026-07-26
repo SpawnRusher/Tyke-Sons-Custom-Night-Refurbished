@@ -93,8 +93,8 @@ atlas = ExtResource("20_dsh75")
 region = Rect2(0, 0, 120, 120)
 
 [sub_resource type="Resource" id="Resource_wy1p8"]
+resource_name = "Bottom Row"
 script = ExtResource("22_2rjk0")
-preset_name = "Bottom Row"
 sleep_assurance_points = 2
 enabled_ids = Dictionary[int, bool]({
 0: false,
@@ -115,8 +115,8 @@ enabled_ids = Dictionary[int, bool]({
 metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 
 [sub_resource type="Resource" id="Resource_l53yv"]
+resource_name = "Top Row"
 script = ExtResource("22_2rjk0")
-preset_name = "Top Row"
 sleep_assurance_points = 4
 enabled_ids = Dictionary[int, bool]({
 0: true,
@@ -137,8 +137,8 @@ enabled_ids = Dictionary[int, bool]({
 metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 
 [sub_resource type="Resource" id="Resource_2rjk0"]
+resource_name = "Coded Enemies"
 script = ExtResource("22_2rjk0")
-preset_name = "Coded Enemies"
 sleep_assurance_points = 12
 enabled_ids = Dictionary[int, bool]({
 0: true,
@@ -159,6 +159,7 @@ enabled_ids = Dictionary[int, bool]({
 metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 
 [sub_resource type="Resource" id="Resource_gxxro"]
+resource_name = "Sleep Insomnia"
 script = ExtResource("22_2rjk0")
 preset_name = "Sleep Insomnia"
 sleep_assurance_points = 16
@@ -810,6 +811,54 @@ offset_left = 5.0
 offset_top = 6.2799997
 offset_right = -7.0
 offset_bottom = -6.0
+
+[node name="FlashlightBatteryDrained" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1445738346) index="1" unique_id=1004883163]
+value_suffix = "% battery drained"
+
+[node name="Bidy" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="0" unique_id=859998103]
+value_prefix = ""
+
+[node name="Bruce" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="1" unique_id=1020886865]
+value_prefix = ""
+
+[node name="Buster" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="2" unique_id=343937952]
+value_prefix = ""
+
+[node name="Chipomat1" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="3" unique_id=1527602273]
+value_prefix = ""
+
+[node name="Chipomat2" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="4" unique_id=643457515]
+value_prefix = ""
+
+[node name="Chipomat3" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="5" unique_id=550223017]
+value_prefix = ""
+
+[node name="Chipper" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="6" unique_id=580691836]
+value_prefix = ""
+
+[node name="Fredbear" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="7" unique_id=485369483]
+value_prefix = ""
+
+[node name="FunFungal" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="8" unique_id=2083519918]
+value_prefix = ""
+
+[node name="Happyshroom" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="9" unique_id=1036632692]
+value_prefix = ""
+
+[node name="NightmareChipper" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="10" unique_id=1971648057]
+value_prefix = ""
+
+[node name="PhantomChipomat" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="11" unique_id=17500112]
+value_prefix = ""
+
+[node name="Seabill" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="12" unique_id=1471455922]
+value_prefix = ""
+
+[node name="Springcrab" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="13" unique_id=1667654361]
+value_prefix = ""
+
+[node name="Toy" parent="Statistics/StatisticsMenu/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(611859182, 1676284120) index="14" unique_id=1897342514]
+value_prefix = ""
 
 [connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="Menu/EnemyPortraitGrid/Chipomat1" to="." method="_on_enemy_portrait_mouse_entered" flags=18]
