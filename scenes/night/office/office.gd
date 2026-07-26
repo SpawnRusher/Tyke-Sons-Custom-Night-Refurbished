@@ -44,6 +44,7 @@ const LAMPTOGGLE: AudioStream = preload("uid://bf8j1xugtu8dh")
 #endregion
 
 #region WindowArrays
+var window_occupants_arrays: Array[Array] = [window_occupants_l,window_occupants_f,window_occupants_r]
 var window_occupants_l: Array[Enemy.ENEMY_IDS]
 var window_occupants_f: Array[Enemy.ENEMY_IDS]
 var window_occupants_r: Array[Enemy.ENEMY_IDS]
@@ -132,25 +133,14 @@ func _input(event: InputEvent) -> void:
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
 		return
-		
-	if office.animation == "office":
-		office.play("go_"+go_direction)
-		last_animation_played = office.animation
-		match go_direction:
-			"b":
-				SpecialFunctions.create_audio(STAIRS_UP)
-			_:
-				SpecialFunctions.create_audio(RUNNING)
-		return
-		
-	# if office.animation != "office", the only other movement option is leaving a window
-	office.play("leave_" + go_direction)
+	
+	office.play("go_" + go_direction) if office.animation == "office" else office.play("leave_" + go_direction)
 	last_animation_played = office.animation
 	match go_direction:
 		"b":
-			SpecialFunctions.create_audio(STAIRS_DOWN)
+			SpecialFunctions.create_audio(STAIRS_UP) if office.animation == "office" else SpecialFunctions.create_audio(STAIRS_DOWN)
 		_:
-			office.play("leave_" + office.animation.right(1))
+			SpecialFunctions.create_audio(RUNNING)
 		
 
 
@@ -158,10 +148,10 @@ func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
 
 func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0)) -> void:
-	var dir = office.animation.right(1)
-	
 	if "open_" not in office.animation:
 		return
+		
+	var dir = office.animation.right(1)
 		
 	if to_state == Global.FLASHLIGHT_STATES.OFF:
 		SignalBus.flashlight_off.emit()
@@ -171,32 +161,31 @@ func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0
 
 	elif dead_flashlight_sound_check == false:
 		dead_flashlight_sound_check = true
-		if dir == "l" or dir == "r":
-			SignalBus.flashlight_on.emit()
-			if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-				office.frame = 1
-			
-		if dir == "b":
-			SignalBus.flashlight_on.emit()
-			if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-				office.frame = 1
-		
-		if dir == "f":
-			if SpecialFunctions.in_range(mouse_pos.x,60,610) and SpecialFunctions.in_range(mouse_pos.y,150,650):
+		match dir:
+			"f":
+				if not SpecialFunctions.in_range(mouse_pos.y,150,650):
+					return
+					
+				if SpecialFunctions.in_range(mouse_pos.x,60,610):
+					SignalBus.flashlight_on.emit()
+					if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+						office.frame = 1
+						front_window.play("l")
+						front_window_overlay.play("l")
+						front_window_overlay.frame = 1
+				elif SpecialFunctions.in_range(mouse_pos.x,611,1680):
+					SignalBus.flashlight_on.emit()
+					if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+						office.frame = 2
+						front_window.play("r")
+						front_window_overlay.play("r")
+						front_window_overlay.frame = 1	
+
+			_:
 				SignalBus.flashlight_on.emit()
 				if flashlight_state == Global.FLASHLIGHT_STATES.ON:
 					office.frame = 1
-					front_window.play("l")
-					front_window_overlay.play("l")
-					front_window_overlay.frame = 1
-			elif SpecialFunctions.in_range(mouse_pos.x,611,1680) and SpecialFunctions.in_range(mouse_pos.y,150,650):
-				SignalBus.flashlight_on.emit()
-				if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-					office.frame = 2
-					front_window.play("r")
-					front_window_overlay.play("r")
-					front_window_overlay.frame = 1		
-		
+
 	else:
 		dead_flashlight_sound_check = false
 		
@@ -255,15 +244,17 @@ func _can_move() -> bool:
 	return true
 
 func _camera_lock() -> void:
-	if office.animation == "return" or office.animation == "office":
+	if (office.animation == "return" or office.animation == "office"):
 		SignalBus.change_camera_position.emit(-1)
+		return
 	if "go_" in office.animation:
-		if office.animation.right(1) == "l" or office.animation.right(1) == "r":
-			if office.frame >= 3:
-				SignalBus.change_camera_position.emit(0)
-		elif office.animation.right(1) == "f" or office.animation.right(1) == "b":
-			if office.frame >= 4:
-				SignalBus.change_camera_position.emit(0)
+		match office.animation.right(1):
+			"l","r":
+				if office.frame >= 3:
+					SignalBus.change_camera_position.emit(0)
+			"f","b":
+				if office.frame >= 4:
+					SignalBus.change_camera_position.emit(0)
 
 func _on_nose_pressed() -> void:
 	SpecialFunctions.create_audio(NOSE_HONK)
@@ -277,19 +268,18 @@ func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: Variant, to_do: bo
 		which_side = {"l":-1,"f":0,"r":1}[which_side]
 	elif which_side is not int:
 		push_error("Can only get window occupants with an int or String!")
-	var occupants_arrays:= [window_occupants_l,window_occupants_f,window_occupants_r]
 	match to_do:
 		false:
-			occupants_arrays[which_side+1].erase(id)
+			window_occupants_arrays[which_side+1].erase(id)
 		true:
-			occupants_arrays[which_side+1].append(id)
+			window_occupants_arrays[which_side+1].append(id)
 
 func get_window_occupants(which_side: Variant) -> Array:
 	if which_side is String:
 		which_side = {"l":-1,"f":0,"r":1}[which_side]
 	elif which_side is not int:
 		push_error("Can only get window occupants with an int or String!")
-	return [window_occupants_l,window_occupants_f,window_occupants_r][which_side+1]
+	return window_occupants_arrays[which_side+1]
 
 func _can_go_to_sleep() -> bool:
 	if sleep_assurance.sleep_assurance_normal < 1:

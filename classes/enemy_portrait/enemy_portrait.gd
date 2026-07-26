@@ -23,12 +23,8 @@ func _input(event: InputEvent) -> void:
 func toggle(state: bool, quiet:= false) -> void:
 	if enabled == state:
 		return
-	if not state:
-		enabled = false
-		texture.region = Rect2(0,0,120,120)
-	else:
-		enabled = true
-		texture.region = Rect2(120,0,120,120)
+	enabled = state
+	texture.region = Rect2(0,0,120,120) if not enabled else Rect2(120,0,120,120)
 	if not quiet:
 		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 	SignalBus.enemy_portrait_toggled.emit(self)

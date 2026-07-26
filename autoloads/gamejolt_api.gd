@@ -1,59 +1,58 @@
-@icon("res://sprites/gamejolt/gamejolt_icon.svg")
 extends Node 
 
-var fix_string_bools: bool = false
-var auto_login: bool = true
+const fix_string_bools: bool = false
+const auto_login: bool = true
 
-#var game_id: int = 1077734
-#var private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
+#const game_id: String = "1077734"
+#const private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
 
-var game_id: int = 669217
-var private_key: String = "602be4ce478dc39b197cedcce538604b"
+const game_id: String = "669217"
+const private_key: String = "602be4ce478dc39b197cedcce538604b"
 
 var authorized_username: String
 var authorized_user_token: String
 
 #region API URLs
 const api_url: String = "https://api.gamejolt.com/api/game/v1_2/"
-var url_endpoints: Dictionary[String,Dictionary] = {
+const url_endpoints: Dictionary[String,Dictionary] = {
 	"users": {
-		"auth": api_url + "users/auth/?game_id=" + str(game_id),
-		"fetch": api_url + "users/?game_id=" + str(game_id)
+		"auth": api_url + "users/auth/?game_id=" + game_id,
+		"fetch": api_url + "users/?game_id=" + game_id
 	},
 	"sessions": {
-		"open": api_url + "sessions/open/?game_id=" + str(game_id),
-		"ping": api_url + "sessions/ping/?game_id=" + str(game_id),
-		"check": api_url + "sessions/check/?game_id=" + str(game_id),
-		"close": api_url + "sessions/close/?game_id=" + str(game_id)
+		"open": api_url + "sessions/open/?game_id=" + game_id,
+		"ping": api_url + "sessions/ping/?game_id=" + game_id,
+		"check": api_url + "sessions/check/?game_id=" + game_id,
+		"close": api_url + "sessions/close/?game_id=" + game_id
 	},
 	"scores": {
-		"fetch": api_url + "scores/fetch/?game_id=" + str(game_id),
-		"tables": api_url + "scores/tables/?game_id=" + str(game_id),
-		"add": api_url + "scores/add/?game_id=" + str(game_id),
-		"get_rank": api_url + "scores/get-rank/?game_id=" + str(game_id)
+		"fetch": api_url + "scores/fetch/?game_id=" + game_id,
+		"tables": api_url + "scores/tables/?game_id=" + game_id,
+		"add": api_url + "scores/add/?game_id=" + game_id,
+		"get_rank": api_url + "scores/get-rank/?game_id=" + game_id
 	},
 	"trophies": {
-		"fetch": api_url + "trophies/fetch/?game_id=" + str(game_id),
-		"add_achieved": api_url + "trophies/add_achieved/?game_id=" + str(game_id),
-		"remove_achieved": api_url + "trophies/remove_achieved/?game_id=" + str(game_id)
+		"fetch": api_url + "trophies/fetch/?game_id=" + game_id,
+		"add_achieved": api_url + "trophies/add_achieved/?game_id=" + game_id,
+		"remove_achieved": api_url + "trophies/remove_achieved/?game_id=" + game_id
 	},
 	"data-store": {
-		"set": api_url + "data-store/set/?game_id=" + str(game_id),
-		"update": api_url + "data-store/update/?game_id=" + str(game_id),
-		"remove": api_url + "data-store/remove/?game_id=" + str(game_id),
-		"fetch": api_url + "data-store/fetch/?game_id=" + str(game_id),
-		"get_keys": api_url + "data-store/get-keys/?game_id=" + str(game_id),
+		"set": api_url + "data-store/set/?game_id=" + game_id,
+		"update": api_url + "data-store/update/?game_id=" + game_id,
+		"remove": api_url + "data-store/remove/?game_id=" + game_id,
+		"fetch": api_url + "data-store/fetch/?game_id=" + game_id,
+		"get_keys": api_url + "data-store/get-keys/?game_id=" + game_id,
 	},
 	"friends" : {
-		"friends": api_url + "friends/?game_id=" + str(game_id)
+		"friends": api_url + "friends/?game_id=" + game_id
 	},
 	"time" : {
-		"time": api_url + "time/?game_id=" + str(game_id)
+		"time": api_url + "time/?game_id=" + game_id
 	}}
 #endregion
 
 #region SIGNALS
-var signals: Dictionary = {
+var signals: Dictionary[String,Dictionary] = {
 	"users": {
 		"auth": users_auth_completed,
 		"fetch": users_fetch_completed
@@ -83,10 +82,10 @@ var signals: Dictionary = {
 		"get_keys": data_storage_get_keys_completed,
 	},
 	"friends" : {
-		"friends": friends_friends_completed
+		"fetch": friends_fetch_completed
 	},
 	"time" : {
-		"time": time_time_completed
+		"fetch": time_fetch_completed
 	}}
 signal users_auth_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
 signal users_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
@@ -106,8 +105,8 @@ signal data_storage_update_completed(response: Dictionary, parameters: Dictionar
 signal data_storage_remove_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
 signal data_storage_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
 signal data_storage_get_keys_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
-signal friends_friends_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
-signal time_time_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal friends_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
+signal time_fetch_completed(response: Dictionary, parameters: Dictionary, extra_info: Dictionary)
 #endregion
 
 func _ready() -> void:
@@ -119,14 +118,14 @@ func _ready() -> void:
 	trophies_remove_achieved_completed.connect(_trophies_remove_achieved)
 	trophies_fetch_completed.connect(_trophies_fetch_completed)
 
-## Automatically converts the URL given into its signature and returns it along with the URL signature identifier for easy use.[br][br]Syntax: [code]url += _add_signature(url)[/code]
-func _add_signature(url: String) -> String:
+## Automatically converts the URL given into its signature and returns [code]"&signature=[signature]"[/code][br][br]Syntax: [code]url += _add_signature(url)[/code]
+static func _add_signature(url: String) -> String:
 	url += private_key
 	url = url.sha1_text()
 	return "&signature="+url
 
 ## Simplifies the response PackedByteArray:[br][br]1. It converts it to a string before parsing it with JSON into a dictionary [br]2. It converts all string-bools into true bools (if fix_string_bools == true)[br]3. It moves all keys nested in the "response" key up one level in the dictionary for easier access and less redundancy (so you don't have to add ["response"] in every reference) [br][br]Basically this function exists to convert all finished HTTP requests into useful dictionaries.
-func _simplify_response(response: PackedByteArray) -> Dictionary:
+static func _simplify_response(response: PackedByteArray) -> Dictionary:
 	var dict: Dictionary = JSON.parse_string(response.get_string_from_utf8())
 	
 	for item in dict["response"]:

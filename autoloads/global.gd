@@ -36,19 +36,16 @@ func _process(delta: float) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","total"],Time.get_ticks_msec(),SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","total"],Time.get_ticks_msec(),SaveData.SET_DATA_SPECIAL.ADD)
 
 func _scene_changing(previous: String, next: String) -> void:	
-	match previous:
-		"res://scenes/menu/menu.tscn":
-			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","menu"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
-		"res://scenes/gamejolt_menu/gamejolt_menu.tscn":
-			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","gamejolt_menu"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
+	if previous == "res://scenes/menu/menu.tscn":
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","menu"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
 		
 func _scene_reloading(path: String) -> void:
 	if path == "res://scenes/night/night.tscn":
-		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","general","night"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
-		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","presets",Global.current_preset_name],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime","night"],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","playtime",Global.current_preset_name],scene_time,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _update_scene_start_time() -> void:
 	scene_start_time = Time.get_ticks_msec()

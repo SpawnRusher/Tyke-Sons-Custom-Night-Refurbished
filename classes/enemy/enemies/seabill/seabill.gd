@@ -154,7 +154,4 @@ func _on_animation_finished() -> void:
 		moving_state = MOVING_STATES.WALKING
 
 func visibility_checks() -> void:
-	if office.animation == "office":
-		sprite.visible = true
-	else:
-		sprite.visible = false
+	sprite.visible = office.animation == "office"

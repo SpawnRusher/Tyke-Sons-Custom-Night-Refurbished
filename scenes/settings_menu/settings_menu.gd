@@ -76,7 +76,7 @@ func _serialize_input_event(event: InputEvent) -> Dictionary:
 	
 	return dict
 
-func _on_tab_changed(tab: int) -> void:
+static func _on_tab_changed(tab: int) -> void:
 	SpecialFunctions.create_audio(BUTTON_PRESS_LOUD)
 	
 func _slider_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel, slider: Range) -> void:

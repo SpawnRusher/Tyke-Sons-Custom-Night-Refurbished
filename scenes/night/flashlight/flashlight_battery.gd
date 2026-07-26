@@ -33,29 +33,27 @@ func _process(delta: float) -> void:
 		enable_cooldown -= 1 * delta
 	
 func _on_value_changed() -> void:
-	if value == 0:
-		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-			flashlight_state = Global.FLASHLIGHT_STATES.OFF
-			SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
-			SignalBus.update_flashlight_state.emit(Global.FLASHLIGHT_STATES.DEAD)
+	if value == 0 and flashlight_state == Global.FLASHLIGHT_STATES.ON:
+		flashlight_state = Global.FLASHLIGHT_STATES.OFF
+		SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
+		SignalBus.update_flashlight_state.emit(Global.FLASHLIGHT_STATES.DEAD)
 	
 func _flashlight_off(cooldown:= 0.0) -> void:
-	if value > 0:
-		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-			enable_cooldown = cooldown
-			flashlight_state = Global.FLASHLIGHT_STATES.OFF
-			SpecialFunctions.create_audio(FLASHLIGHT)
-			SignalBus.update_flashlight_state.emit(flashlight_state)
+	if value > 0 and flashlight_state == Global.FLASHLIGHT_STATES.ON:
+		enable_cooldown = cooldown
+		flashlight_state = Global.FLASHLIGHT_STATES.OFF
+		SpecialFunctions.create_audio(FLASHLIGHT)
+		SignalBus.update_flashlight_state.emit(flashlight_state)
 	
 func _flashlight_on() -> void:
-	if value > 0 and enable_cooldown <= 0:
-		if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
-			flashlight_state = Global.FLASHLIGHT_STATES.ON
-			SpecialFunctions.create_audio(FLASHLIGHT)
-			SignalBus.update_flashlight_state.emit(flashlight_state)
-			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_flashes"],1,SaveData.SET_DATA_SPECIAL.ADD)
-	else:
+	if value <= 0 or enable_cooldown > 0:
 		SpecialFunctions.create_audio(FLASHLIGHT_DEAD)
+		return
+	if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
+		flashlight_state = Global.FLASHLIGHT_STATES.ON
+		SpecialFunctions.create_audio(FLASHLIGHT)
+		SignalBus.update_flashlight_state.emit(flashlight_state)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_flashes"],1,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _phantom_jumpscare() -> void:
 	value -= 30
@@ -70,12 +68,13 @@ func _on_batteries_button_pressed() -> void:
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","flashlight_batteries_picked_up"],1,SaveData.SET_DATA_SPECIAL.ADD)
 
 func _visibility_checks() -> void:
-	batteries.visible = false
-	if office.animation == "open_b":
-		batteries.visible = true
-		batteries.value = 0
-		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
-			batteries.value = current_batteries_cooldown
+	if office.animation != "open_b":
+		batteries.visible = false
+		return
+	batteries.visible = true
+	batteries.value = 0
+	if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+		batteries.value = current_batteries_cooldown
 			
 func _activate_happyshroom() -> void:
 	value = 100

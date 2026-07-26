@@ -25,41 +25,22 @@ const window_positions: Dictionary = {
 		}
 	}
 	
-const timer_durations: Dictionary = {
-	"l": { 
-		"go":0.14, 
-		"leave":0.25 
-		},
-	"r": {
-		"go":0.14,
-		"leave":0.25
-		},
-	"f": {
-		"go":0.18,
-		"leave":0.12
-		},
-	"b": {
-		"go":0.18,
-		"leave":0.7
-		}
-	}
-
 const tween_durations: Dictionary = {
 	"l": { 
-		"go":0.6375,
-		"leave":0.6375
+		"go":0.7775,
+		"leave":0.8875
 		},
 	"r": {
-		"go":0.86375,
-		"leave":0.6375
+		"go":1.0375,
+		"leave":0.8875
 		},
 	"f": {
-		"go":0.6375,
-		"leave":0.6375
+		"go":0.8175,
+		"leave":0.7575
 		},
 	"b": {
-		"go":1.2,
-		"leave":1.05
+		"go":1.38,
+		"leave":1.75
 		}
 	}
 
@@ -76,7 +57,7 @@ func _player_icon_tween() -> void:
 	go_or_leave = office.animation.left(office.animation.length()-2)
 	if "go" in go_or_leave or "leave" in go_or_leave:
 		var player_tween = get_tree().current_scene.create_tween()
-		player_tween.tween_property(player,"position",window_positions[window_direction][go_or_leave],tween_durations[window_direction][go_or_leave]+timer_durations[window_direction][go_or_leave]).set_trans(Tween.TRANS_LINEAR)
+		player_tween.tween_property(player,"position",window_positions[window_direction][go_or_leave],tween_durations[window_direction][go_or_leave]).set_trans(Tween.TRANS_LINEAR)
 
 func _activate_happyshroom() -> void:
 	player.position = default_player_position
