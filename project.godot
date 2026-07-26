@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tyke & Son's Custom Night: Refurbished"
-config/version="v0.2.5"
+config/version="v0.2.6"
 run/main_scene="uid://b0wod4hc5c5bx"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
@@ -47,7 +47,6 @@ window/stretch/mode="canvas_items"
 folder_colors={
 "res://assets/": "red",
 "res://assets/fonts/": "red",
-"res://autoloads/": "blue",
 "res://classes/": "gray",
 "res://scenes/": "green"
 }

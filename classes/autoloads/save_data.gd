@@ -138,7 +138,7 @@ func _ready() -> void:
 	_load_file(FILE_TYPE.SETTINGS) if _check_for_file(FILE_TYPE.SETTINGS) else _create_file(FILE_TYPE.SETTINGS)
 	_load_file(FILE_TYPE.SAVE) if _check_for_file(FILE_TYPE.SAVE) else _create_file(FILE_TYPE.SAVE)
 
-func _check_for_file(type: FILE_TYPE) -> bool:
+static func _check_for_file(type: FILE_TYPE) -> bool:
 	var check_file:= FileAccess.open(file_paths[type], FileAccess.READ)
 	if check_file:
 		check_file.close()

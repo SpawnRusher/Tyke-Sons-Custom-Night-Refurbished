@@ -95,6 +95,7 @@ region = Rect2(0, 0, 120, 120)
 [sub_resource type="Resource" id="Resource_wy1p8"]
 resource_name = "Bottom Row"
 script = ExtResource("22_2rjk0")
+preset_name = "Bottom Row"
 sleep_assurance_points = 2
 enabled_ids = Dictionary[int, bool]({
 0: false,
@@ -117,6 +118,7 @@ metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 [sub_resource type="Resource" id="Resource_l53yv"]
 resource_name = "Top Row"
 script = ExtResource("22_2rjk0")
+preset_name = "Top Row"
 sleep_assurance_points = 4
 enabled_ids = Dictionary[int, bool]({
 0: true,
@@ -139,6 +141,7 @@ metadata/_custom_type_script = "uid://cnuj3bj7pdcvm"
 [sub_resource type="Resource" id="Resource_2rjk0"]
 resource_name = "Coded Enemies"
 script = ExtResource("22_2rjk0")
+preset_name = "Coded Enemies"
 sleep_assurance_points = 12
 enabled_ids = Dictionary[int, bool]({
 0: true,
