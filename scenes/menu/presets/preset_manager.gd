@@ -33,7 +33,7 @@ var enabled_ids: Dictionary[Enemy.ENEMY_IDS,bool] = {
 	Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:false}:
 		set(value):
 			enabled_ids = value
-			GameInfo.enabled_ids = value.duplicate()
+			GameInfo.enabled_ids = value
 			_toggle_enemy_portraits()
 var hovering_sleep_assurance: bool
 var current_preset: int:
@@ -66,8 +66,8 @@ func _ready() -> void:
 	for enemy_portrait in enemy_portrait_list:
 		enemy_portrait.enemy_portrait_toggled.connect(_enemy_portrait_toggled)
 	enabled_ids = GameInfo.enabled_ids.duplicate()
-	current_preset = GameInfo.current_preset_index
-	preset_label.text = GameInfo.current_preset_name
+	sleep_assurance_points = GameInfo.sleep_assurance_points
+	_check_preset_match()
 	
 func _process(delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and hovering_sleep_assurance:
