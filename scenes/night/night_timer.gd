@@ -40,9 +40,9 @@ func _go_to_sleep() -> void:
 			time_before_happyshroom = time_elapsed
 		if happyshroom.state == happyshroom.STATES.ACTIVE:
 			time_happyshroom_fight = time_elapsed
-		Global.win_time = time_before_happyshroom + time_happyshroom_fight
+		GameInfo.win_time = time_before_happyshroom + time_happyshroom_fight
 		return
-	Global.win_time = time_elapsed
+	GameInfo.win_time = time_elapsed
 
 func _update_happyshroom_intro() -> void:
 	happyshroom.state = happyshroom.STATES.INTRO

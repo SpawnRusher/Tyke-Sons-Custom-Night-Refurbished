@@ -30,6 +30,7 @@ SceneManager="*uid://citkddbygjm54"
 SaveData="*uid://1a3d5gncs74v"
 GameJolt="*uid://di3xq831lvbif"
 PauseManager="*uid://bfke8o5xd67jj"
+GameInfo="*uid://chrkuhdc1fqxl"
 
 [debug]
 

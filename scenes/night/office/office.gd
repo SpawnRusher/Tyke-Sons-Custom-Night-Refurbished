@@ -17,16 +17,16 @@ extends CanvasLayer
 var last_animation_played: String
 var office_animation_direction: String
 var lock_movement: bool
-var flashlight_state: Global.FLASHLIGHT_STATES:
+var flashlight_state: GameInfo.FLASHLIGHT_STATES:
 	set(new_state):
-		if new_state == Global.FLASHLIGHT_STATES.OFF and new_state != flashlight_state:
+		if new_state == GameInfo.FLASHLIGHT_STATES.OFF and new_state != flashlight_state:
 			office.frame = 0
 			front_window_overlay.frame = 0
 		flashlight_state = new_state
-		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
+		if flashlight_state != GameInfo.FLASHLIGHT_STATES.ON:
 			dead_flashlight_sound_check = false
-		if flashlight_state == Global.FLASHLIGHT_STATES.DEAD:
-			_use_flashlight(Global.FLASHLIGHT_STATES.OFF)
+		if flashlight_state == GameInfo.FLASHLIGHT_STATES.DEAD:
+			_use_flashlight(GameInfo.FLASHLIGHT_STATES.OFF)
 var dead_flashlight_sound_check: bool
 
 const popup_labels: Dictionary = {
@@ -108,7 +108,7 @@ func _input(event: InputEvent) -> void:
 			if nightmare_chipper.sprite.frame > 0:
 				nightmare_chipper._jumpscare(Enemy.JUMPSCARE_AREAS.BEDROOM)
 				return
-			if office.animation == "open_b" and flashlight_state == Global.FLASHLIGHT_STATES.ON and sleep_assurance.sleep_assurance_normal >= 1:
+			if office.animation == "open_b" and flashlight_state == GameInfo.FLASHLIGHT_STATES.ON and sleep_assurance.sleep_assurance_normal >= 1:
 				SignalBus.go_to_sleep.emit()
 
 		if Input.is_action_pressed("click_front_window"):
@@ -127,9 +127,9 @@ func _input(event: InputEvent) -> void:
 				_move_player("r")
 	
 		if Input.is_action_pressed("use_flashlight"):
-			_use_flashlight(Global.FLASHLIGHT_STATES.ON, office.get_local_mouse_position())
+			_use_flashlight(GameInfo.FLASHLIGHT_STATES.ON, office.get_local_mouse_position())
 		if not Input.is_action_pressed("use_flashlight"):
-			_use_flashlight(Global.FLASHLIGHT_STATES.OFF, office.get_local_mouse_position())
+			_use_flashlight(GameInfo.FLASHLIGHT_STATES.OFF, office.get_local_mouse_position())
 
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
@@ -155,16 +155,16 @@ func _move_player(go_direction: String) -> void:
 		
 
 		
-func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
 
-func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0)) -> void:
+func _use_flashlight(to_state: GameInfo.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0)) -> void:
 	if "open_" not in office.animation:
 		return
 	
-	if to_state == Global.FLASHLIGHT_STATES.OFF:
+	if to_state == GameInfo.FLASHLIGHT_STATES.OFF:
 		SignalBus.flashlight_off.emit()
-		if flashlight_state != Global.FLASHLIGHT_STATES.ON:
+		if flashlight_state != GameInfo.FLASHLIGHT_STATES.ON:
 			office.frame = 0
 			front_window_overlay.frame = 0
 
@@ -177,14 +177,14 @@ func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0
 					
 				if SpecialFunctions.in_range(mouse_pos.x,60,610):
 					SignalBus.flashlight_on.emit()
-					if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+					if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 						office.frame = 1
 						front_window.play("l")
 						front_window_overlay.play("l")
 						front_window_overlay.frame = 1
 				elif SpecialFunctions.in_range(mouse_pos.x,611,1680):
 					SignalBus.flashlight_on.emit()
-					if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+					if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 						office.frame = 2
 						front_window.play("r")
 						front_window_overlay.play("r")
@@ -192,7 +192,7 @@ func _use_flashlight(to_state: Global.FLASHLIGHT_STATES, mouse_pos:= Vector2(0,0
 
 			_:
 				SignalBus.flashlight_on.emit()
-				if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+				if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 					office.frame = 1
 
 	else:
@@ -216,7 +216,7 @@ func _use_curtain(to_state: bool) -> void:
 	if "open_" in office.animation:
 		office.play("closing_"+office_animation_direction)
 		SpecialFunctions.create_audio(CURTAIN_CLOSING)
-		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+		if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 			SignalBus.flashlight_off.emit()
 	
 func _on_office_animation_finished(source: AnimatedSprite2D) -> void:
@@ -244,7 +244,7 @@ func _can_move() -> bool:
 		return false
 	if lock_movement:
 		return false
-	if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+	if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 		return false
 		
 	return true
@@ -292,7 +292,7 @@ func _can_go_to_sleep() -> bool:
 		return false
 	if office.animation != "open_b":
 		return false
-	if flashlight_state == Global.FLASHLIGHT_STATES.OFF:
+	if flashlight_state == GameInfo.FLASHLIGHT_STATES.OFF:
 		return false
 	return true
 		

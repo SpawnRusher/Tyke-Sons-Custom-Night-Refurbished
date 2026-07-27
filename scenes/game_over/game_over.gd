@@ -24,16 +24,16 @@ func _ready() -> void:
 	SpecialFunctions.create_timer(_move_game_over_text,0.04,-1)
 	_gamejolt_add_scores()
 	@warning_ignore_start("integer_division")
-	var time_milliseconds = (Global.dead_time % 1000) / 10
-	var time_seconds = (Global.dead_time / 1000) % 60
-	var time_minutes = ((Global.dead_time / 1000) / 60) % 60
+	var time_milliseconds = (GameInfo.dead_time % 1000) / 10
+	var time_seconds = (GameInfo.dead_time / 1000) % 60
+	var time_minutes = ((GameInfo.dead_time / 1000) / 60) % 60
 	night_timer.text = ("Time: " + "%02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
-	sleep_assurance.text = "Sleep Assurance: " + str(snappedf(Global.dead_sleep_assurance*100,0.01))+"%"
+	sleep_assurance.text = "Sleep Assurance: " + str(snappedf(GameInfo.dead_sleep_assurance*100,0.01))+"%"
 	var fade_tween = get_tree().create_tween()
 	fade_tween.tween_property(white_fade,"modulate:a",0,1)
-	if Global.dead_enemy_id in DEATH_VOICELINES:
-		SpecialFunctions.create_audio(DEATH_VOICELINES[Global.dead_enemy_id].pick_random())
-	Global.dead_enemy_id = -1
+	if GameInfo.dead_enemy_id in DEATH_VOICELINES:
+		SpecialFunctions.create_audio(DEATH_VOICELINES[GameInfo.dead_enemy_id].pick_random())
+	GameInfo.dead_enemy_id = -1
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -47,8 +47,8 @@ func _move_game_over_text() -> void:
 	game_over_text.position = default_text_position + Vector2(randi_range(-3,3),randi_range(-3,3))
 
 func _gamejolt_add_scores() -> void:
-	if Global.current_preset_name == "Sleep Insomnia" and Global.survival_mode:
-		GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"table_id":"1097836","sort":str(Global.dead_time),"score":night_timer.text.right(night_timer.text.length()-6)},{})
+	if GameInfo.current_preset_name == "Sleep Insomnia" and GameInfo.survival_mode_enabled:
+		GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"table_id":"1097836","sort":str(GameInfo.dead_time),"score":night_timer.text.right(night_timer.text.length()-6)},{})
 		
 		
 		

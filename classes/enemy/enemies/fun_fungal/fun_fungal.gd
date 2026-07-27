@@ -14,7 +14,7 @@ var office_animation_direction: String
 var current_idle_timer: float
 var current_progress_timer: float
 var current_progress_normalized: float
-var flashlight_state: Global.FLASHLIGHT_STATES
+var flashlight_state: GameInfo.FLASHLIGHT_STATES
 enum STATES {IDLE,ACTIVE}
 enum POSITIONS {LEFT,FRONT_LEFT,FRONT_RIGHT,RIGHT}
 var state: STATES
@@ -77,7 +77,7 @@ func _deactivate():
 	super()
 	sprite.queue_free()
 	
-func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
 
 func _spawn_fungal():
@@ -105,7 +105,7 @@ func _flash_checks() -> bool:
 		return false
 	if "open_" not in office.animation:
 		return false
-	if position != POSITIONS.FRONT_LEFT and position != POSITIONS.FRONT_RIGHT and flashlight_state == Global.FLASHLIGHT_STATES.OFF:
+	if position != POSITIONS.FRONT_LEFT and position != POSITIONS.FRONT_RIGHT and flashlight_state == GameInfo.FLASHLIGHT_STATES.OFF:
 		return false
 	if position != POSITIONS.LEFT and position != POSITIONS.RIGHT and office.frame != position:
 		return false

@@ -14,7 +14,7 @@ enum ATTACK_STATES {CLOSED, OPEN}
 var state: STATES = STATES.IDLE
 var attack_state: ATTACK_STATES
 var current_timer: float
-var flashlight_state: Global.FLASHLIGHT_STATES
+var flashlight_state: GameInfo.FLASHLIGHT_STATES
 
 func _ready() -> void:
 	super()
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 			_jumpscare()
 		return
 		
-	if office.animation == "open_b" and flashlight_state == Global.FLASHLIGHT_STATES.ON:
+	if office.animation == "open_b" and flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 		current_timer -= 1 * delta
 	
 	if current_timer <= 0:
@@ -65,17 +65,17 @@ func _leave_nightmare_chipper() -> void:
 	state = STATES.IDLE
 	SignalBus.flashlight_off.emit()
 	
-func _update_flashlight_state(new_state: Global.FLASHLIGHT_STATES) -> void:
+func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
 
 func _frame_checks() -> int:
 	if sprite.frame > 0:
-		if flashlight_state == Global.FLASHLIGHT_STATES.ON:
+		if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 			return sprite.frame
 		return 0
 	if office.animation != "open_b":
 		return 0
-	if flashlight_state != Global.FLASHLIGHT_STATES.ON:
+	if flashlight_state != GameInfo.FLASHLIGHT_STATES.ON:
 		return 0
 	return attack_state+1
 

@@ -6,8 +6,6 @@ func _ready() -> void:
 @warning_ignore_start("unused_signal")
 signal pastebin_version_check(version_type: Pastebin.VERSION_TYPE, pastebin_version: String)
 
-signal enemy_portrait_toggled(enemy_portrait: Enemy_Portrait)
-
 signal jumpscare(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS)
 signal phantom_jumpscare()
 
@@ -17,7 +15,7 @@ signal change_camera_position(pos: int)
 
 signal flashlight_off()
 signal flashlight_on()
-signal update_flashlight_state(state: Global.FLASHLIGHT_STATES)
+signal update_flashlight_state(state: GameInfo.FLASHLIGHT_STATES)
 
 signal pickup_lumber()
 signal lumber_despawned()

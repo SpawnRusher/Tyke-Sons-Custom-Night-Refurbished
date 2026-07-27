@@ -12,9 +12,9 @@ func _jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 	if not jumpscare_sprite.is_playing():
 		PauseManager.pause()
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","jumpscares",enemy.ENEMY_IDS.keys()[enemy.enemy_id].to_lower()],1,SaveData.SET_DATA_SPECIAL.ADD)
-		Global.dead_enemy_id = enemy.enemy_id
-		Global.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
-		Global.dead_time = night_timer.time_elapsed
+		GameInfo.dead_enemy_id = enemy.enemy_id
+		GameInfo.dead_sleep_assurance = sleep_assurance.sleep_assurance_normal
+		GameInfo.dead_time = night_timer.time_elapsed
 		SceneManager.load_scene("res://scenes/game_over/game_over.tscn")
 		SpecialFunctions.create_audio(enemy.jumpscare_sound,1)
 
