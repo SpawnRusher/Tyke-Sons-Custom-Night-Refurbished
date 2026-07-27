@@ -134,23 +134,13 @@ func _input(event: InputEvent) -> void:
 func _move_player(go_direction: String) -> void:
 	if not _can_move():
 		return
-	
-	if go_direction != "b":
-		office.play("go_"+go_direction)
-		SpecialFunctions.create_audio(RUNNING)
-		return
-	
-	if office.animation == "office":
-		office.play("go_b")
-		SpecialFunctions.create_audio(STAIRS_UP)
-		return
 
-	office.play("leave_"+office.animation.right(1))
-	match office_animation_direction:
-		"b":
-			SpecialFunctions.create_audio(STAIRS_DOWN)
-		_:
-			SpecialFunctions.create_audio(RUNNING)
+	if office.animation == "office":
+		office.play("go_"+go_direction)
+		SpecialFunctions.create_audio(STAIRS_UP) if office_animation_direction == "b" else SpecialFunctions.create_audio(RUNNING)
+	elif go_direction == "b":
+		office.play("leave_"+office.animation.right(1))
+		SpecialFunctions.create_audio(STAIRS_DOWN) if office_animation_direction == "b" else SpecialFunctions.create_audio(RUNNING)
 	
 		
 
