@@ -83,14 +83,14 @@ func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 func _spawn_fungal():
 	state = STATES.ACTIVE
 	position = POSITIONS.values().pick_random()
-	office_layer.update_window_occupants(enemy_id,position,true)
+	office_layer.update_window_occupants(enemy_id,position_strings[position],true)
 	sprite.rotation_degrees = position_info[position]["angle"]
 	current_progress_timer = 0
 
 func _leave_fungal() -> void:
 	state = STATES.IDLE
 	SignalBus.enemy_defended.emit(self)
-	office_layer.update_window_occupants(enemy_id,position,false)
+	office_layer.update_window_occupants(enemy_id,position_strings[position],false)
 	current_idle_timer = idle_timer
 
 func _visibility_checks() -> bool:

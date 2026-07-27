@@ -26,9 +26,9 @@ func _ready() -> void:
 	if jumpscares.is_empty():
 		push_error("No jumpscares have been set for ",ENEMY_IDS.keys()[enemy_id],"!")
 	if enemy_id != ENEMY_IDS.HAPPYSHROOM:
-		enabled = GameInfo.ENABLED_IDS[enemy_id]
+		enabled = GameInfo.enabled_ids[enemy_id]
 	else:
-		enabled = false not in GameInfo.ENABLED_IDS
+		enabled = false not in GameInfo.enabled_ids
 	if not enabled:
 		_deactivate()
 

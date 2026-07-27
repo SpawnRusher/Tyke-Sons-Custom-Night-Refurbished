@@ -1,6 +1,7 @@
 extends Node
 
-var ENABLED_IDS: Dictionary[Enemy.ENEMY_IDS,bool] = {
+#region NIGHT INFO
+var enabled_ids: Dictionary[Enemy.ENEMY_IDS,bool] = {
 	Enemy.ENEMY_IDS.CHIPOMAT_1:false,
 	Enemy.ENEMY_IDS.CHIPOMAT_2:false,
 	Enemy.ENEMY_IDS.CHIPOMAT_3:false,
@@ -15,9 +16,10 @@ var ENABLED_IDS: Dictionary[Enemy.ENEMY_IDS,bool] = {
 	Enemy.ENEMY_IDS.CHIPPER:false,
 	Enemy.ENEMY_IDS.TOY:false,
 	Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:false}
-var sleep_assurance_points: int = 1
 var current_preset_index: int
 var current_preset_name: String
+var sleep_assurance_points: int = 1
+#endregion
 var survival_mode_enabled: bool
 var win_sleep_assurance: float
 var win_time: int
