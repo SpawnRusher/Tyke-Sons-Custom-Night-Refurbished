@@ -19,7 +19,6 @@ enum SIDES {LEFT=-1,RIGHT}
 var side: SIDES
 const side_strings: Array[String] = ["l","r"]
 
-var current_random_variance: float
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_timer: float
@@ -94,7 +93,6 @@ func _spawn_chipomat() -> void:
 	sprite.play(side_strings[side+1])
 	var knocking_audio:= SpecialFunctions.create_audio_2d(knock_sound)
 	knocking_audio.position.x = (camera.position.x+1280)+(1280*side)
-	print_debug(knocking_audio.position, " | ", knocking_audio.position - camera.position)
 	state = STATES.SPAWNED
 	office_layer.update_window_occupants(enemy_id,side,true)
 	

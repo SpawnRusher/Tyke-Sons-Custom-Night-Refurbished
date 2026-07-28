@@ -4,8 +4,6 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 @warning_ignore_start("unused_signal")
-signal pastebin_version_check(version_type: Pastebin.VERSION_TYPE, pastebin_version: String)
-
 signal jumpscare(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS)
 signal phantom_jumpscare()
 

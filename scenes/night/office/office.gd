@@ -141,9 +141,6 @@ func _move_player(go_direction: String) -> void:
 	elif go_direction == "b":
 		office.play("leave_"+office.animation.right(1))
 		SpecialFunctions.create_audio(STAIRS_DOWN) if office_animation_direction == "b" else SpecialFunctions.create_audio(RUNNING)
-	
-		
-
 		
 func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state

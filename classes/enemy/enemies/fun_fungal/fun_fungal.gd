@@ -11,7 +11,7 @@ class_name Fun_Fungal extends Enemy
 
 
 var office_animation_direction: String
-var current_idle_timer: float
+var current_idle_timer: float = idle_timer
 var current_progress_timer: float
 var current_progress_normalized: float
 var flashlight_state: GameInfo.FLASHLIGHT_STATES
@@ -19,7 +19,7 @@ enum STATES {IDLE,ACTIVE}
 enum POSITIONS {LEFT,FRONT_LEFT,FRONT_RIGHT,RIGHT}
 var state: STATES
 var position: POSITIONS
-const position_strings: Dictionary[POSITIONS,String] = {POSITIONS.LEFT:"l",POSITIONS.FRONT_LEFT:"f",POSITIONS.FRONT_RIGHT:"f",POSITIONS.RIGHT:"r"}
+const position_strings: Array[String] = ["l","f","f","r"]
 const position_info: Dictionary[POSITIONS,Dictionary] = {
 	POSITIONS.LEFT: {
 		"out":Vector2(960,35),
@@ -42,12 +42,10 @@ const position_info: Dictionary[POSITIONS,Dictionary] = {
 		"angle": 135
 	}}
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	if not enabled: return
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
-	current_idle_timer = idle_timer
 	office.animation_changed.connect(func(): office_animation_direction = office.animation.right(1))
 	
 func _process(delta: float) -> void:

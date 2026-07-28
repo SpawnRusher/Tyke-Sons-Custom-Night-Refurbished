@@ -23,6 +23,9 @@ func _process(delta: float) -> void:
 
 ## Loads a scene filepath with a threaded request. Supports an indefinite number of scenes at the same time.
 func load_scene(path: String, load_immediately:= false, free_after_use:= true, type_hint:= "", use_sub_threads:= false, cache_mode:= ResourceLoader.CACHE_MODE_REUSE) -> void:
+	if path in scenes:
+		push_error("Scene in path '%s' already loaded or being loaded!" % path)
+		return
 	ResourceLoader.load_threaded_request(path, type_hint, use_sub_threads, cache_mode)
 	scenes[path] = {
 		"status":-1,
@@ -70,10 +73,8 @@ func reload_scene() -> void:
 ## [param start]: The index to start at when printing the dictionary entries.
 ## [param end]: The index to end at when printing the dictionary entries. Default value of -1 means it will end when the dictionary ends.
 func print_loaded_scenes(start:= 0, end:= -1) -> void:
-	if start > scenes.size():
-		start = scenes.size()
-	if end == -1 or end > scenes.size():
-		end = scenes.size()
+	start = wrapi(start,0,scenes.size())
+	end = wrapi(end,start,scenes.size())
 		
-	for i in range(start,end):
+	for i in range(start,end+1):
 		print_rich(scenes.keys()[i],": ",scenes[scenes.keys()[i]])

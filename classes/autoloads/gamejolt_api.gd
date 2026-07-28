@@ -3,11 +3,8 @@ extends Node
 const fix_string_bools: bool = false
 const auto_login: bool = true
 
-#const game_id: String = "1077734"
-#const private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
-
-const game_id: String = "669217"
-const private_key: String = "602be4ce478dc39b197cedcce538604b"
+const game_id: String = "1077734"
+const private_key: String = "3a582ce926142adf8e355dbeebfcee6e"
 
 var authorized_username: String
 var authorized_user_token: String

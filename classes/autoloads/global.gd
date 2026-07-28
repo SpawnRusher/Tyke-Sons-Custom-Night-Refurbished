@@ -1,14 +1,12 @@
 extends Node
 
-var version_type: Pastebin.VERSION_TYPE
-var pastebin_version: String
+var pastebin_current_version: String
 
 var scene_start_time: int
 var scene_time: int
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	SignalBus.pastebin_version_check.connect(_pastebin_version_check)
 	SceneManager.scene_changing.connect(_scene_changing)
 	SceneManager.scene_reloading.connect(_scene_reloading)
 	SceneManager.scene_changed.connect(_update_scene_start_time.unbind(2))
@@ -32,10 +30,6 @@ func _scene_reloading(path: String) -> void:
 
 func _update_scene_start_time() -> void:
 	scene_start_time = Time.get_ticks_msec()
-
-func _pastebin_version_check(vt: Pastebin.VERSION_TYPE, pb_v: String) -> void:
-	version_type = vt
-	pastebin_version = pb_v
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("return_to_menu"):

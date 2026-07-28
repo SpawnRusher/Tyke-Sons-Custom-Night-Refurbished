@@ -3,7 +3,6 @@ extends Node
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	
 func unpause() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
