@@ -23,10 +23,10 @@ class_name Happyshroom extends Enemy
 
 const HAPPYSHROOM_BOSS_MUSIC = preload("uid://cwjw1aqycksxv")
 
-const dialogue: Array = ["You thought you could go to sleep.","You wish.","[color=red][shake rate=25 level=10]Something got inside.[/shake][/color]"]
+const dialogue: Array[String] = ["[shake rate=20 level=2]You thought you could go to sleep.","[shake rate=20 level=5]This nightmare isn't over yet.","[color=red][shake rate=25 level=10]Something got inside.[/shake][/color]"]
 
-const happyshroom_laughs: Array = [preload("uid://cnq6vu6n6cs5w"), preload("uid://dpj4nc1887c81"), preload("uid://bm5aol3fvyr1b"), preload("uid://memlagcty5cs")]
-const happyshroom_startles: Array = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
+const happyshroom_laughs: Array[Resource] = [preload("uid://cnq6vu6n6cs5w"), preload("uid://dpj4nc1887c81"), preload("uid://bm5aol3fvyr1b"), preload("uid://memlagcty5cs")]
+const happyshroom_startles: Array[Resource] = [preload("uid://c7r6p26y4cvj2"), preload("uid://cfh0sbfs55bjn"), preload("uid://bd06x5cpoxtt6")]
 
 enum STATES {IDLE,INTRO,ACTIVE}
 var state: STATES

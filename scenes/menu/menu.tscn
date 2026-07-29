@@ -32,6 +32,7 @@
 [ext_resource type="Theme" uid="uid://g60ym0ekaepa" path="res://assets/themes/enemy_tooltip_theme.tres" id="29_6ucwt"]
 [ext_resource type="FontFile" uid="uid://ru0xewg3iwei" path="res://assets/fonts/angltrr.ttf" id="30_nq8vv"]
 [ext_resource type="Texture2D" uid="uid://d0sb7ydk4so00" path="res://scenes/gamejolt_menu/assets/logo/gamejolt_icon.svg" id="32_lqhxe"]
+[ext_resource type="Script" uid="uid://bs0drq03okb80" path="res://scenes/menu/happyshroom_testing_mode.gd" id="33_fqr1d"]
 [ext_resource type="PackedScene" uid="uid://bnnlmjux6685y" path="res://scenes/settings_menu/settings_menu.tscn" id="33_kr7it"]
 [ext_resource type="PackedScene" uid="uid://ctp3qf7xwe3v3" path="res://scenes/gamejolt_menu/gamejolt_menu.tscn" id="34_gxxro"]
 [ext_resource type="PackedScene" uid="uid://ba5ve7l4s7ybs" path="res://scenes/statistics_menu/statistics_menu.tscn" id="35_2rjk0"]
@@ -738,6 +739,27 @@ offset_right = 1261.0
 offset_bottom = 698.0
 texture_normal = ExtResource("32_lqhxe")
 
+[node name="HappyshroomTestingMode" type="PanelContainer" parent="Menu" unique_id=1734729476 node_paths=PackedStringArray("check_button")]
+offset_left = 159.0
+offset_top = 425.0
+offset_right = 325.0
+offset_bottom = 491.0
+script = ExtResource("33_fqr1d")
+check_button = NodePath("HBoxContainer/CheckButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HappyshroomTestingMode" unique_id=2140054993]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/HappyshroomTestingMode/HBoxContainer" unique_id=1516119103]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Happyshroom Testing Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Menu/HappyshroomTestingMode/HBoxContainer" unique_id=1259030441]
+layout_mode = 2
+
 [node name="Settings" type="CanvasLayer" parent="." unique_id=1144324389]
 layer = 0
 follow_viewport_enabled = true
@@ -905,6 +927,7 @@ value_prefix = ""
 [connection signal="pressed" from="Menu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Menu/StatisticsButton" to="." method="_on_statistics_button_pressed"]
 [connection signal="pressed" from="Menu/GamejoltButton" to="." method="_on_gamejolt_button_pressed"]
+[connection signal="toggled" from="Menu/HappyshroomTestingMode/HBoxContainer/CheckButton" to="Menu/HappyshroomTestingMode" method="_on_check_button_toggled"]
 [connection signal="pressed" from="Settings/SettingsMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_settings_return_to_menu_button_pressed"]
 [connection signal="pressed" from="Settings/MenuButton" to="." method="_on_settings_return_to_menu_button_pressed"]
 [connection signal="pressed" from="GameJolt/GamejoltMenu/MarginContainer/VBoxContainer/ReturnToMenuButton" to="." method="_on_gamejolt_return_to_menu_button_pressed"]

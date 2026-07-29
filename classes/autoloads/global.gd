@@ -1,7 +1,5 @@
 extends Node
 
-var pastebin_current_version: String
-
 var scene_start_time: int
 var scene_time: int
 

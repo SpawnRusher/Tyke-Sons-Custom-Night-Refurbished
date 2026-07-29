@@ -16,9 +16,9 @@ var enabled_ids: Dictionary[Enemy.ENEMY_IDS,bool] = {
 	Enemy.ENEMY_IDS.CHIPPER:false,
 	Enemy.ENEMY_IDS.TOY:false,
 	Enemy.ENEMY_IDS.PHANTOM_CHIPOMAT:false}
-var current_preset_index: int
+var current_preset: int
 var current_preset_name: String
-var sleep_assurance_points: int = 1
+var sleep_assurance_points: int
 #endregion
 var survival_mode_enabled: bool
 var win_sleep_assurance: float
@@ -27,3 +27,6 @@ var dead_enemy_id: Enemy.ENEMY_IDS = -1
 var dead_sleep_assurance: float
 var dead_time: int
 enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
+
+
+var happyshroom_test_mode: bool

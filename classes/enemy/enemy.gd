@@ -29,6 +29,13 @@ func _ready() -> void:
 		enabled = GameInfo.enabled_ids[enemy_id]
 	else:
 		enabled = false not in GameInfo.enabled_ids
+		
+	if GameInfo.happyshroom_test_mode:
+		if enemy_id != ENEMY_IDS.HAPPYSHROOM:
+			enabled = false
+		else:
+			enabled = true
+		
 	if not enabled:
 		_deactivate()
 

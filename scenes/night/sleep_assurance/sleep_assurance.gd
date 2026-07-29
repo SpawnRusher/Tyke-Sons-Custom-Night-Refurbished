@@ -17,6 +17,8 @@ func _ready() -> void:
 	SignalBus.remove_sleep_assurance.connect(_remove_score)
 	SignalBus.activate_happyshroom.connect(_activate_happyshroom)
 	sleep_assurance_points_amount = GameInfo.sleep_assurance_points
+	if GameInfo.happyshroom_test_mode:
+		sleep_assurance_current_score = sleep_assurance_points_amount *  sleep_assurance_score_per_point
 	for i in sleep_assurance_points_amount:
 		var temp_point: TextureProgressBar = TextureProgressBar.new()
 		temp_point.texture_under = SLEEP_ASSURANCE_POINT_BORDER

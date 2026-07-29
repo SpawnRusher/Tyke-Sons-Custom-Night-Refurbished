@@ -105,7 +105,7 @@ func _input(event: InputEvent) -> void:
 				lamp_button.pressed.emit()
 		
 		if event.is_action_pressed("go_to_sleep"):
-			if nightmare_chipper.sprite.frame > 0:
+			if nightmare_chipper != null and nightmare_chipper.sprite.frame > 0:
 				nightmare_chipper._jumpscare(Enemy.JUMPSCARE_AREAS.BEDROOM)
 				return
 			if office.animation == "open_b" and flashlight_state == GameInfo.FLASHLIGHT_STATES.ON and sleep_assurance.sleep_assurance_normal >= 1:
