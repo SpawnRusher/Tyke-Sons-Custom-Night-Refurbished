@@ -345,7 +345,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_mhjd8")
 border = NodePath("PortraitBorder")
 enemy_id = 11
-enemy_tooltip = "Lumber lumber lumber"
+enemy_tooltip = "Lumber will appear on your screen frequently. Hover your mouse over it quickly to pick it up before it despawns."
 menu = NodePath("../../..")
 
 [node name="Toy" parent="Menu/EnemyPortraitGrid" unique_id=169010502 node_paths=PackedStringArray("border", "menu") instance=ExtResource("6_wshxo")]

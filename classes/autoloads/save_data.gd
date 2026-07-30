@@ -100,6 +100,12 @@ const DEFAULT_SAVE_DATA: Dictionary = {
 			"flashlight_battery_drained":0,
 			"flashlight_batteries_picked_up":0,
 			"flashlight_flashes":0,
+			"lamp_toggles":0,
+			"sleep_assurance_gained":0,
+			"sleep_assurance_lost":0,
+			"room_movements":0,
+			"curtains_opened":0,
+			"curtains_closed":0,
 		},
 		"jumpscares": {
 			"chipomat_1":0,

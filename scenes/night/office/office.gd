@@ -138,9 +138,11 @@ func _move_player(go_direction: String) -> void:
 	if office.animation == "office":
 		office.play("go_"+go_direction)
 		SpecialFunctions.create_audio(STAIRS_UP) if office_animation_direction == "b" else SpecialFunctions.create_audio(RUNNING)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","room_movements"],1,SaveData.SET_DATA_SPECIAL.ADD)
 	elif go_direction == "b":
 		office.play("leave_"+office.animation.right(1))
 		SpecialFunctions.create_audio(STAIRS_DOWN) if office_animation_direction == "b" else SpecialFunctions.create_audio(RUNNING)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","room_movements"],1,SaveData.SET_DATA_SPECIAL.ADD)
 		
 func _update_flashlight_state(new_state: GameInfo.FLASHLIGHT_STATES) -> void:
 	flashlight_state = new_state
@@ -198,11 +200,13 @@ func _use_curtain(to_state: bool) -> void:
 		if "closed_" in office.animation:
 			office.play("opening_"+office_animation_direction)
 			SpecialFunctions.create_audio(CURTAIN_OPENING)
+			SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","curtains_opened"],1,SaveData.SET_DATA_SPECIAL.ADD)
 			return
 		
 	if "open_" in office.animation:
 		office.play("closing_"+office_animation_direction)
 		SpecialFunctions.create_audio(CURTAIN_CLOSING)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","curtains_closed"],1,SaveData.SET_DATA_SPECIAL.ADD)
 		if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 			SignalBus.flashlight_off.emit()
 	
@@ -255,6 +259,7 @@ func _on_nose_pressed() -> void:
 func _on_lamp_button_pressed(source: BaseButton) -> void:
 	dark_overlay.visible = source.button_pressed
 	SpecialFunctions.create_audio(LAMPTOGGLE)
+	SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","lamp_toggles"],1,SaveData.SET_DATA_SPECIAL.ADD)
 
 func update_window_occupants(id: Enemy.ENEMY_IDS, which_side: Variant, to_do: bool) -> void:
 	if which_side is String:

@@ -102,6 +102,70 @@ value_suffix = " times"
 [node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightFlashes/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(204263777, 1528557703) index="0" unique_id=890778957]
 text = "Flashlight Flashes"
 
+[node name="LampToggles" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=732425343 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "lamp_toggles"
+value_prefix = "toggled "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LampToggles/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(732425343, 1528557703) index="0" unique_id=890778957]
+text = "Lamp Toggles"
+
+[node name="SleepAssuranceGained" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=900163524 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "sleep_assurance_gained"
+value_type = 4
+value_suffix = " full points gained"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepAssuranceGained/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(900163524, 1528557703) index="0" unique_id=890778957]
+text = "Sleep Assurance Gained"
+
+[node name="SleepAssuranceLost" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1445645470 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "sleep_assurance_lost"
+value_type = 4
+value_suffix = " full points lost"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepAssuranceLost/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1445645470, 1528557703) index="0" unique_id=890778957]
+text = "Sleep Assurance Lost"
+
+[node name="RoomMovements" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1328116247 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "room_movements"
+value_prefix = "moved "
+value_suffix = " times"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RoomMovements/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1328116247, 1528557703) index="0" unique_id=890778957]
+text = "Room Movements"
+
+[node name="CurtainsOpened" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1967220673 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "curtains_opened"
+value_suffix = " curtains opened"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CurtainsOpened/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1967220673, 1528557703) index="0" unique_id=890778957]
+text = "Curtains Opened"
+
+[node name="CurtainsClosed" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2045934816 node_paths=PackedStringArray("statistics_menu") instance=ExtResource("3_p3e85")]
+layout_mode = 2
+statistics_menu = NodePath("../../../../../../../../../../../..")
+group = "general"
+statistic_name = "curtains_closed"
+value_suffix = " curtains closed"
+
+[node name="NameLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CurtainsClosed/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2045934816, 1528557703) index="0" unique_id=890778957]
+text = "Curtains Closed"
+
 [node name="Jumpscares" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=1720891605]
 visible = false
 layout_mode = 2
@@ -438,6 +502,12 @@ text = "Return To Menu"
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteriesPickedUp"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightBatteryDrained"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/FlashlightFlashes"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/LampToggles"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepAssuranceGained"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SleepAssuranceLost"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/RoomMovements"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CurtainsOpened"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/General/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/CurtainsClosed"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bidy"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Bruce"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Jumpscares/PanelContainer/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Buster"]

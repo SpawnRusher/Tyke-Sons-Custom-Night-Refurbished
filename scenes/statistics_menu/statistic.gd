@@ -1,6 +1,6 @@
 extends PanelContainer
 
-enum STATISTIC_TYPES {INT,FLOAT,BATTERY_DRAINED,PLAYTIME}
+enum STATISTIC_TYPES {INT,FLOAT,BATTERY_DRAINED,PLAYTIME,SLEEP_ASSURANCE}
 
 @export var statistics_menu: Control
 @export var group: String
@@ -37,6 +37,11 @@ func _ready() -> void:
 			var seconds = milliseconds / 1000
 			milliseconds -= seconds * 1000
 			milliseconds /= 10 #milliseconds is stored as a 3 digit int value from 0-999, so this "rounds it to 2 decimal places"
-			to_text = ("%d hour(s), %d minute(s), %d.%02d second(s) [%02d:%02d:%02d.%02d]" % [hours,minutes,seconds,milliseconds,hours,minutes,seconds,milliseconds])
+			to_text = ("%02d:%02d:%02d.%02d" % [hours,minutes,seconds,milliseconds])
 			@warning_ignore_restore("integer_division")
+		STATISTIC_TYPES.SLEEP_ASSURANCE:
+			var sleep_assurance = (SaveData.get_data(SaveData.FILE_TYPE.SAVE,access_key))
+			sleep_assurance /= 50.0
+			to_text = str(sleep_assurance)
+			
 	value_label.text = value_prefix + to_text + value_suffix

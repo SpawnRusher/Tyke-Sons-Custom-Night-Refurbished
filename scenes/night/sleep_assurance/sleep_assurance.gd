@@ -50,11 +50,14 @@ func _update_points() -> void:
 func _add_score(enemy: Enemy) -> void:
 	enemy.sleep_assurance_score = max(0,enemy.sleep_assurance_score) # so I can put a warning in the Enemy class for when sleep_assurance_score is not set
 	sleep_assurance_current_score = sleep_assurance_current_score + enemy.sleep_assurance_score * sleep_assurance_multiplier
+	SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","sleep_assurance_gained"],enemy.sleep_assurance_score * sleep_assurance_multiplier,SaveData.SET_DATA_SPECIAL.ADD)
 	_update_points()
 
 func _remove_score(delta: float, enemy: Enemy) -> void:
 	if enemy is Seabill:
+		var previous_sleep_assurance: float = sleep_assurance_current_score
 		sleep_assurance_current_score = max(0,sleep_assurance_current_score - 10 * delta)
+		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","sleep_assurance_lost"],previous_sleep_assurance - sleep_assurance_current_score,SaveData.SET_DATA_SPECIAL.ADD)
 	_update_points()
 	
 func _activate_happyshroom() -> void:
