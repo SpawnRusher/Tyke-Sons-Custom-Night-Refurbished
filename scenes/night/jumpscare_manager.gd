@@ -18,15 +18,15 @@ func _jumpscare_start(enemy: Enemy, area: Enemy.JUMPSCARE_AREAS) -> void:
 		SceneManager.load_scene("res://scenes/game_over/game_over.tscn")
 		SpecialFunctions.create_audio(enemy.jumpscare_sound,1)
 
-		if enemy.jumpscares.size() == 0:
-			push_error("No Jumpscare UIDs have been set for ",Enemy.ENEMY_IDS.keys()[enemy],"! Jumpscare will not start.")
+		if enemy.jumpscares_files.size() == 0:
+			push_error("No Jumpscare UIDs have been set for ",Enemy.ENEMY_IDS.keys()[enemy.enemy_id],"! Jumpscare will not start.")
 			return
 			
-		if area > enemy.jumpscares.size():
+		if area > enemy.jumpscares_files.size():
 			push_error("Enemy ",Enemy.ENEMY_IDS.keys()[enemy.enemy_id]," does not have a Jumpscare UID set for ",Enemy.JUMPSCARE_AREAS.keys()[area], "! Falling back to another UID.")
-			area = enemy.jumpscares.find(enemy.jumpscares.pick_random()) as Enemy.JUMPSCARE_AREAS
+			area = enemy.jumpscares_files.find(enemy.jumpscares_files.pick_random()) as Enemy.JUMPSCARE_AREAS
 		
-		jumpscare_sprite.sprite_frames = enemy.jumpscares[area]
+		jumpscare_sprite.sprite_frames = load(enemy.jumpscares_files[area])
 		jumpscare_sprite.play()
 		show()
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 	super()
 	if not enabled: return
 	current_attack_timer = attack_timer
-	sprite.sprite_frames = jumpscares[JUMPSCARE_AREAS.MIDDLE]
+	sprite.sprite_frames = load(jumpscares_files[JUMPSCARE_AREAS.MIDDLE])
 
 func _process(delta: float) -> void:
 	if _attack_checks():
