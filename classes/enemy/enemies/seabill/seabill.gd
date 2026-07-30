@@ -28,7 +28,7 @@ var current_sleep_assurance_grace_period: float
 var stare_times_array: Array
 var last_animation_played: String
 
-enum STATES {IDLE,READY,SPAWNED,JUMPSCARE}
+enum STATES {IDLE,READY,ACTIVE,JUMPSCARE}
 var state: STATES
 enum MOVING_STATES {IDLE,WALKING,TURNING,STARING}
 var moving_state: MOVING_STATES
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
-	elif state == STATES.SPAWNED and office.animation == "open_f":
+	elif state == STATES.ACTIVE and office.animation == "open_f":
 		_jumpscare()
 		return
 		
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		if current_timer <= 0:
 			spawn_seabill()
 
-	if state == STATES.SPAWNED:
+	if state == STATES.ACTIVE:
 		dark_flicker.self_modulate.a8 -= randi_range(-60,60)
 		if moving_state == MOVING_STATES.WALKING:
 			current_walk_timer -= 1 * delta
@@ -118,7 +118,7 @@ func ready_seabill() -> void:
 		stare_times_array.append(snappedf((1.0/(stare_times+1)) * (i+1),0.001))
 	
 func spawn_seabill() -> void:
-	state = STATES.SPAWNED
+	state = STATES.ACTIVE
 	sprite.play("walking")
 	moving_state = MOVING_STATES.WALKING
 			

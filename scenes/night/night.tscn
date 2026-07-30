@@ -2366,7 +2366,7 @@ metadata/_edit_use_anchors_ = true
 [node name="DebugInfo" type="RichTextLabel" parent="GUI" unique_id=256529932 node_paths=PackedStringArray("enemies")]
 offset_left = 10.0
 offset_top = 232.0
-offset_right = 388.0
+offset_right = 583.0
 offset_bottom = 625.0
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 12

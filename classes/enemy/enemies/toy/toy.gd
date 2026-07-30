@@ -17,8 +17,8 @@ var current_spawn_timer: float
 var spawn_timer_comparison: float
 var current_kill_timer: float
 var current_leave_timer: float
-enum STAGES {IDLE,SITTING,STANDING,SPAWN,JUMPSCARE}
-var stage: STAGES
+enum STATES {IDLE,SITTING,STANDING,ACTIVE,JUMPSCARE}
+var state: STATES
 
 func _ready() -> void:
 	super()
@@ -27,17 +27,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	sprite.visible = visibility_checks()
-	if stage == STAGES.JUMPSCARE:
+	if state == STATES.JUMPSCARE:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
 
-	if stage <= STAGES.STANDING:
+	if state <= STATES.STANDING:
 		current_spawn_timer -= 1 * delta
-		stage = lerp(0,3,min((spawn_timer_comparison - current_spawn_timer)/spawn_timer_comparison,1))
-		sprite.frame = stage
+		state = lerp(0,3,min((spawn_timer_comparison - current_spawn_timer)/spawn_timer_comparison,1))
+		sprite.frame = state
 			
-	if stage == STAGES.SPAWN:
+	if state == STATES.ACTIVE:
 		current_kill_timer -= 1 * delta
 		
 		if dark_overlay.visible:
@@ -70,9 +70,9 @@ func visibility_checks() -> bool:
 func leave_toy() -> void:
 	SignalBus.enemy_defended.emit(self)
 	SpecialFunctions.create_audio(TOY_LEAVING)
-	stage = STAGES.IDLE
+	state = STATES.IDLE
 	_reset_values()
 	
 func prepare_jumpscare() -> void:
 	if OS.is_debug_build(): _jumpscare() #TEMPORARY FOR TESTING PURPOSES
-	stage = STAGES.JUMPSCARE
+	state = STATES.JUMPSCARE

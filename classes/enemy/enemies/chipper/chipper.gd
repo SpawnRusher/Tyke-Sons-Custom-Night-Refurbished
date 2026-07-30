@@ -9,6 +9,7 @@ const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
 @export var lumber_timer: float
 
 var current_spawn_timer: float
+var current_lumber: Lumber
 
 func _ready() -> void:
 	super()
@@ -25,9 +26,9 @@ func _process(delta: float) -> void:
 		current_spawn_timer = spawn_timer
 
 func _create_lumber() -> void:
-	var lumber: TextureRect = lumber_scene.instantiate()
-	gui_layer.add_child(lumber)
-	lumber.lumber_timer = lumber_timer
+	current_lumber = lumber_scene.instantiate()
+	gui_layer.add_child(current_lumber)
+	current_lumber.lumber_timer = lumber_timer
 
 func _pickup_lumber() -> void:
 	pass

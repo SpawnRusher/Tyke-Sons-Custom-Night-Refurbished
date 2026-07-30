@@ -85,10 +85,7 @@ func _visibility_checks() -> bool:
 func _pick_side() -> SIDES:
 	side = SIDES.values().pick_random()
 	if office_layer.get_window_occupants(side).size() >= 2:
-		if side == SIDES.LEFT:
-			side = SIDES.RIGHT
-		else:
-			side = SIDES.LEFT
+		side = wrapi(side+1,-1,1) as SIDES
 	return side
 
 func _spawn_chipomat() -> void:

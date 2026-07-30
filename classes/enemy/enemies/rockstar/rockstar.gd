@@ -13,6 +13,10 @@ class_name Rockstar extends Enemy
 
 enum MOVE_DIRECTION {UP_LEFT,DOWN_RIGHT}
 var move_direction: MOVE_DIRECTION = MOVE_DIRECTION.values().pick_random()
+var current_idle_timer: Timer
+var move_tween: Tween
+var current_move_time: float
+var current_elapsed_move_time: float
 
 func _ready() -> void:
 	super()
@@ -20,7 +24,11 @@ func _ready() -> void:
 	sprite_area_2d.area_entered.connect(_area_entered)
 	sprite.set("position",positions[move_direction])
 	SpecialFunctions.create_timer(blinking,blink_time,-1)
-	SpecialFunctions.create_timer(start_moving,idle_time)
+	current_idle_timer = SpecialFunctions.create_timer(start_moving,idle_time)
+
+func _process(delta: float) -> void:
+	if move_tween:
+		current_elapsed_move_time = current_move_time - move_tween.get_total_elapsed_time()
 
 func _deactivate() -> void:
 	super()
@@ -34,11 +42,18 @@ func blinking() -> void:
 	sprite.visible = !sprite.visible
 	
 func start_moving() -> void:
-	move_direction = wrapi(move_direction+1,0,2) as MOVE_DIRECTION
 	var move_to: Vector2 = positions[move_direction]
-	var tween: Tween = create_tween()
-	var current_move_time: float = randf_range(move_timer.x,move_timer.y)
-	tween.tween_property(sprite,"position",move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
-	await tween.finished
-	tween.kill()
-	SpecialFunctions.create_timer(start_moving,idle_time,0,true)
+	move_tween = create_tween()
+	current_move_time = randf_range(move_timer.x,move_timer.y)
+	move_tween.tween_property(sprite,"position",move_to,current_move_time).set_trans(Tween.TRANS_LINEAR)
+	await move_tween.finished
+	move_tween.kill()
+	current_move_time = 0
+	current_elapsed_move_time = 0
+	_on_finished_moving()
+
+func _on_finished_moving() -> void:
+	move_direction = wrapi(move_direction+1,0,2) as MOVE_DIRECTION
+	current_idle_timer = SpecialFunctions.create_timer(start_moving,idle_time,0,true)
+	await current_idle_timer.timeout
+	current_idle_timer.queue_free()
