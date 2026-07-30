@@ -2363,7 +2363,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
 
-[node name="DebugInfo" type="RichTextLabel" parent="GUI" unique_id=256529932 node_paths=PackedStringArray("enemies")]
+[node name="DebugInfo" type="RichTextLabel" parent="GUI" unique_id=256529932 node_paths=PackedStringArray("enemies", "flashlight_battery")]
 offset_left = 10.0
 offset_top = 232.0
 offset_right = 583.0
@@ -2375,6 +2375,7 @@ text = "CHIPOMAT_1:
 "
 script = ExtResource("296_q0y1d")
 enemies = NodePath("../../Enemies")
+flashlight_battery = NodePath("../FlashlightBattery")
 
 [node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
 process_mode = 3

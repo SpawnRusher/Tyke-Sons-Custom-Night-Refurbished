@@ -1,17 +1,19 @@
 extends RichTextLabel
 
 @export var enemies: Node
+@export var flashlight_battery: TextureProgressBar
 
 var enemies_list: Array[Node]
 
 func _ready() -> void:
-	if not OS.is_debug_build():
+	if not GameInfo.show_debug_info:
 		queue_free()
 	await get_tree().create_timer(0.05).timeout
 	enemies_list = enemies.get_children()
 	
 func _process(delta: float) -> void:
 	text = ""
+	text += "BATTERIES: %1.2f" % [30.0 - flashlight_battery.current_batteries_cooldown] + "\r\n"
 	for enemy: Enemy in enemies_list:
 		text += "%s: " % Enemy.ENEMY_IDS.keys()[enemy.enemy_id]
 		var new_text: String = ""

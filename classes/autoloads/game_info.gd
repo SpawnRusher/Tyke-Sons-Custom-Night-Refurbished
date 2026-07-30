@@ -30,3 +30,4 @@ enum FLASHLIGHT_STATES {DEAD=-1, OFF, ON}
 
 
 var happyshroom_test_mode: bool
+var show_debug_info: bool
