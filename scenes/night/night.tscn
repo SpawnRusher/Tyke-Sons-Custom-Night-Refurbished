@@ -1633,43 +1633,30 @@ shader_parameter/direction = Vector2(1, 0)
 shader_parameter/wrapping_mode = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wcijm"]
-load_path = "res://.godot/imported/_0.png-f7f360f0c3171848605791d7c3216faa.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mpx18"]
-load_path = "res://.godot/imported/_1.png-337ed5c1ab922f5a45b8ab5505c76e26.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_42whw"]
-load_path = "res://.godot/imported/_2.png-dcb889eaefced7951d06643b8c4e54c9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iswey"]
-load_path = "res://.godot/imported/_3.png-572f893d7b923bb1c4dbea0e6763edfc.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5mp61"]
-load_path = "res://.godot/imported/_4.png-28962b37b1485544392b5624ce5a5574.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jgapb"]
-load_path = "res://.godot/imported/_5.png-229cc82b098ee477870035ca447f0ab3.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_acegp"]
-load_path = "res://.godot/imported/_6.png-b20c0ef01f25b0e143ef1331dfc12e89.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5rlnh"]
-load_path = "res://.godot/imported/_7.png-e97958e98b9dd389b4bc36753886990d.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5u2ve"]
-load_path = "res://.godot/imported/_8.png-cb949583de7c7bc746089af896914dec.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hfo5p"]
-load_path = "res://.godot/imported/_9.png-8c24961e7bb25e8dbf2f34acb8dc51b2.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r0wqk"]
-load_path = "res://.godot/imported/_10.png-f54dca6bf4e836c3a792e20526a30d7c.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k17el"]
-load_path = "res://.godot/imported/_11.png-f4a38d042815572075d308fa6784db06.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lfbng"]
-load_path = "res://.godot/imported/_12.png-2bb9ce44a7b9800a6689f9e7956dd084.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0r0ah"]
 animations = [{
@@ -1947,7 +1934,7 @@ attack_timer = 3.0
 enemy_id = 13
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("315_h18a6")
-jumpscares_files = Array[String](["uid://bdcay5wlrvx68"])
+jumpscares_files = Array[String](["uid://dh5bvsmfxce32"])
 metadata/_custom_type_script = "uid://5w5286ex124e"
 
 [node name="Happyshroom" type="Node" parent="Enemies" unique_id=1330476963 node_paths=PackedStringArray("enemies_list", "office_layer", "office", "office_modulate", "window_background", "front_window", "gui_layer", "gui_modulate", "happyshroom_layer", "happyshroom_fade", "happyshroom_text")]

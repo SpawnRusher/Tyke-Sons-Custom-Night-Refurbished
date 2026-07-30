@@ -12,7 +12,6 @@ enum JUMPSCARE_AREAS {MIDDLE, BEDROOM}
 @export var jumpscare_sound: AudioStream
 @export_file var jumpscares_files: Array[String]
 
-
 var enabled: bool
 
 func _ready() -> void:
@@ -39,7 +38,6 @@ func _ready() -> void:
 		
 	if not enabled:
 		_deactivate()
-		
 
 func _deactivate() -> void: 
 	self.queue_free()
