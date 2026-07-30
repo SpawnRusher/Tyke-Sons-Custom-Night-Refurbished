@@ -9,7 +9,7 @@ class_name Nightmare_Chipper extends Enemy
 @export var flash_timer: float
 @export var kill_timer: float
 
-enum STATES {IDLE=-1,ACTIVE,JUMPSCARE}
+enum STATES {IDLE,ACTIVE,JUMPSCARE}
 enum ATTACK_STATES {CLOSED, OPEN}
 var state: STATES = STATES.IDLE
 var attack_state: ATTACK_STATES
@@ -50,8 +50,11 @@ func _deactivate() -> void:
 
 func _office_animation_changed() -> void:
 	if office.animation == "leave_b":
-		if attack_state == ATTACK_STATES.OPEN:
+		if attack_state == ATTACK_STATES.CLOSED:
+			_leave_nightmare_chipper()
+		else:
 			_prepare_jumpscare()
+
 
 func _spawn_nightmare_chipper() -> void:
 	if office.animation == "open_b":
@@ -72,6 +75,8 @@ func _frame_checks() -> int:
 	if sprite.frame > 0:
 		if flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:
 			return sprite.frame
+		return 0
+	if state == STATES.IDLE:
 		return 0
 	if office.animation != "open_b":
 		return 0

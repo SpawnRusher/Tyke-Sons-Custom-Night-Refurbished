@@ -74,5 +74,5 @@ func leave_toy() -> void:
 	_reset_values()
 	
 func prepare_jumpscare() -> void:
-	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	if OS.is_debug_build(): _jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	stage = STAGES.JUMPSCARE

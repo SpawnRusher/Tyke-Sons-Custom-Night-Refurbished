@@ -2363,7 +2363,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="GUI" unique_id=1389900753]
 
-[node name="DebugInfo" type="RichTextLabel" parent="GUI" unique_id=256529932 node_paths=PackedStringArray("enemies", "chipomat_1", "chipomat_2", "chipomat_3", "fun_fungal", "springcrab", "nightmare_chipper", "seabill", "fredbear", "bidy", "buster", "bruce", "chipper", "toy", "phantom_chipomat", "happyshroom")]
+[node name="DebugInfo" type="RichTextLabel" parent="GUI" unique_id=256529932 node_paths=PackedStringArray("enemies")]
 offset_left = 10.0
 offset_top = 232.0
 offset_right = 388.0
@@ -2375,21 +2375,6 @@ text = "CHIPOMAT_1:
 "
 script = ExtResource("296_q0y1d")
 enemies = NodePath("../../Enemies")
-chipomat_1 = NodePath("../../Enemies/Chipomat1")
-chipomat_2 = NodePath("../../Enemies/Chipomat2")
-chipomat_3 = NodePath("../../Enemies/Chipomat3")
-fun_fungal = NodePath("../../Enemies/FunFungal")
-springcrab = NodePath("../../Enemies/Springcrab")
-nightmare_chipper = NodePath("../../Enemies/NightmareChipper")
-seabill = NodePath("../../Enemies/Seabill")
-fredbear = NodePath("../../Enemies/Fredbear")
-bidy = NodePath("../../Enemies/Bidy")
-buster = NodePath("../../Enemies/Buster")
-bruce = NodePath("../../Enemies/Bruce")
-chipper = NodePath("../../Enemies/Chipper")
-toy = NodePath("../../Enemies/Toy")
-phantom_chipomat = NodePath("../../Enemies/PhantomChipomat")
-happyshroom = NodePath("../../Enemies/Happyshroom")
 
 [node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
 process_mode = 3

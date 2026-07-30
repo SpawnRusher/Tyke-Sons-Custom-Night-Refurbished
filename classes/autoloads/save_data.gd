@@ -228,31 +228,31 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 	match special:
 		SET_DATA_SPECIAL.NONE:
 			current_dict[keys[keys.size()-1]] = value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to ", value)
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to ", value)
 		SET_DATA_SPECIAL.ADD:
 			current_dict[keys[keys.size()-1]] += value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to add ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to add ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.SUBTRACT:
 			current_dict[keys[keys.size()-1]] -= value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to subtract ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to subtract ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.MULTIPLY:
 			current_dict[keys[keys.size()-1]] *= value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to multiply ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to multiply ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.DIVIDE:
 			current_dict[keys[keys.size()-1]] /= value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (float) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (float) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.DIVIDE_INT:
 			current_dict[keys[keys.size()-1]] = floor(current_dict[keys[keys.size()-1]] / value)
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (int) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to (int) divide ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.MODULO:
 			current_dict[keys[keys.size()-1]] %= value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to modulo ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to modulo ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.EXPONENT:
 			current_dict[keys[keys.size()-1]] **= value
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to exponent ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to exponent ", value, " (",current_dict[keys[keys.size()-1]],")")
 		SET_DATA_SPECIAL.ROOT:
 			current_dict[keys[keys.size()-1]] **= (1.0/value)
-			print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to root ", value, " (",current_dict[keys[keys.size()-1]],")")
+			#print_debug("Changed ", keys, " in ", FILE_TYPE.keys()[type], " to root ", value, " (",current_dict[keys[keys.size()-1]],")")
 		
 	_save_file(type)
 	

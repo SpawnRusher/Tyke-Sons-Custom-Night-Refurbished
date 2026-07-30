@@ -13,7 +13,7 @@ class_name Chipomat extends Enemy
 
 @onready var camera = get_viewport().get_camera_2d()
 
-enum STATES {IDLE,SPAWNED,JUMPSCARE}
+enum STATES {IDLE,ACTIVE,JUMPSCARE}
 var state: STATES
 enum SIDES {LEFT=-1,RIGHT}
 var side: SIDES
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 			current_spawn_timer -= 1 * delta
 			if current_spawn_timer <= 0:
 				_spawn_chipomat()
-		STATES.SPAWNED:
+		STATES.ACTIVE:
 			current_kill_timer -= 1 * delta
 			if office_animation_direction == sprite.animation and "clos" in office.animation:
 				current_kill_timer = max(current_kill_timer,kill_timer_pause_threshold)
@@ -71,7 +71,7 @@ func _visibility_checks() -> bool:
 				return true
 		return false
 		
-	if state != STATES.SPAWNED:
+	if state != STATES.ACTIVE:
 		return false
 	if office_animation_direction != side_strings[side+1]:
 		return false
@@ -96,7 +96,7 @@ func _spawn_chipomat() -> void:
 	sprite.play(side_strings[side+1])
 	var knocking_audio:= SpecialFunctions.create_audio_2d(knock_sound)
 	knocking_audio.position.x = (camera.position.x+1280)+(1280*side)
-	state = STATES.SPAWNED
+	state = STATES.ACTIVE
 	office_layer.update_window_occupants(enemy_id,side,true)
 	
 func _leave_chipomat() -> void:
@@ -106,6 +106,6 @@ func _leave_chipomat() -> void:
 	office_layer.update_window_occupants(enemy_id,side,false)
 	
 func _prepare_jumpscare() -> void:
-	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	if OS.is_debug_build(): _jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	state = STATES.JUMPSCARE
 	

@@ -13,12 +13,12 @@ class_name Springcrab
 @export var kill_timer_pause_threshold: float
 @export var walking_sound: AudioStream
 
-enum STAGES {IDLE,SPAWNED,JUMPSCARE}
-var stage: STAGES
+enum STATES {IDLE,ACTIVE,JUMPSCARE}
+var state: STATES
 var current_spawn_timer: float
 var current_kill_timer: float
 var current_leave_flashes: float
-var last_side_flashed: String
+var last_side_flashed: String = "N/A"
 
 func _ready() -> void:
 	super()
@@ -28,17 +28,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	sprite.frame = _frame_checks()
-	if stage == STAGES.JUMPSCARE:
+	if state == STATES.JUMPSCARE:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
 
-	if stage == STAGES.IDLE:
+	if state == STATES.IDLE:
 		current_spawn_timer -= 1 * delta
 		if current_spawn_timer <= 0:
 			spawn_springcrab()
 			
-	if stage == STAGES.SPAWNED:
+	if state == STATES.ACTIVE:
 		if seabill == null or not seabill.spawned:
 			current_kill_timer -= 1 * delta
 			
@@ -56,27 +56,27 @@ func _reset_values() -> void:
 	current_spawn_timer = randf_range(spawn_timer.x,spawn_timer.y)
 	current_kill_timer = kill_timer
 	current_leave_flashes = leave_flashes
-	last_side_flashed = ""
+	last_side_flashed = "N/A"
 
 func spawn_springcrab() -> void:
-	stage = STAGES.SPAWNED
+	state = STATES.ACTIVE
 	SpecialFunctions.create_audio(walking_sound)
 	office_layer.update_window_occupants(enemy_id,0,true)
 	
 func leave_springcrab() -> void:
 	SignalBus.enemy_defended.emit(self)
-	stage = STAGES.IDLE
+	state = STATES.IDLE
 	office_layer.update_window_occupants(enemy_id,0,false)
 	_reset_values()
 	
 func _frame_checks() -> int:
-	if stage == STAGES.JUMPSCARE:
+	if state == STATES.JUMPSCARE:
 		if sprite.frame == 1:
 			if office.animation == "open_f" and office.frame == 2:
 				return 1
 		return 0
 	
-	if stage != STAGES.SPAWNED:
+	if state != STATES.ACTIVE:
 		return 0
 	if office.animation != "open_f":
 		return 0
@@ -86,7 +86,7 @@ func _frame_checks() -> int:
 	return 1
 					
 func _flash_springcrab(using_flashlight: bool) -> void:
-	if stage != STAGES.SPAWNED:
+	if state != STATES.ACTIVE:
 		return
 	if not using_flashlight:
 		return
@@ -104,7 +104,7 @@ func _flash_springcrab(using_flashlight: bool) -> void:
 		leave_springcrab()
 		
 func prepare_jumpscare() -> void:
-	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
-	stage = STAGES.JUMPSCARE
+	if OS.is_debug_build(): _jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	state = STATES.JUMPSCARE
 
 	

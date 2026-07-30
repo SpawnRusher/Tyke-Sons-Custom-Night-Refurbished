@@ -138,7 +138,7 @@ func leave_seabill() -> void:
 	_reset_values()
 	
 func prepare_jumpscare() -> void:
-	_jumpscare() #TEMPORARY FOR TESTING PURPOSES
+	if OS.is_debug_build(): _jumpscare() #TEMPORARY FOR TESTING PURPOSES
 	state = STATES.JUMPSCARE
 
 func _on_animation_finished() -> void:
