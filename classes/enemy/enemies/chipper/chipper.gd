@@ -1,6 +1,6 @@
 class_name Chipper extends Enemy
 
-const lumber_scene: PackedScene = preload("uid://i1kgthfoxabk")
+const LUMBER = preload("uid://i1kgthfoxabk") # I HAVE TO USE THE LUMBER SCENE. I CANNOT USE LUMBER.NEW().
 
 @onready var camera: Camera2D = get_viewport().get_camera_2d()
 @export var gui_layer: CanvasLayer
@@ -14,9 +14,6 @@ var current_lumber: Lumber
 func _ready() -> void:
 	super()
 	if not enabled: return
-	SignalBus.pickup_lumber.connect(_pickup_lumber)
-	SignalBus.lumber_despawned.connect(_lumber_despawned)
-	
 	current_spawn_timer = spawn_timer
 			
 func _process(delta: float) -> void:
@@ -26,12 +23,14 @@ func _process(delta: float) -> void:
 		current_spawn_timer = spawn_timer
 
 func _create_lumber() -> void:
-	current_lumber = lumber_scene.instantiate()
+	current_lumber = LUMBER.instantiate()
 	gui_layer.add_child(current_lumber)
 	current_lumber.lumber_timer = lumber_timer
+	current_lumber.lumber_picked_up.connect(_on_lumber_picked_up)
+	current_lumber.lumber_despawned.connect(_on_lumber_despawned)
 
-func _pickup_lumber() -> void:
+func _on_lumber_picked_up() -> void:
 	pass
 
-func _lumber_despawned() -> void:
+func _on_lumber_despawned() -> void:
 	_jumpscare()

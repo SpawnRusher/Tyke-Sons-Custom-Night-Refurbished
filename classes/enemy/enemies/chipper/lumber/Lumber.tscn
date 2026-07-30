@@ -4,12 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://wkwoyiyrresu" path="res://classes/enemy/enemies/chipper/lumber/assets/lumber_brown.png" id="1_w77jl"]
 
 [node name="Lumber" type="TextureRect" unique_id=1125661381]
-offset_right = 144.0
-offset_bottom = 77.0
+offset_left = 415.0
+offset_top = 306.0
+offset_right = 559.0
+offset_bottom = 383.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_w77jl")
 script = ExtResource("1_keo0h")
 metadata/_custom_type_script = "uid://ct7podfhfihc5"
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered" flags=6]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

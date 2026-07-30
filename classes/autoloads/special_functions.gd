@@ -93,3 +93,10 @@ func in_range(value: float,min_value: float,max_value: float,min_exclusive:=fals
 	if max_exclusive == true and value >= max_value:
 		return false
 	return true
+	
+func overlaps(compare: Vector2, top_left: Vector2, bottom_right: Vector2) -> bool:
+	if compare > top_left:
+		return false
+	if compare < bottom_right:
+		return false
+	return true

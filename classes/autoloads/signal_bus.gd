@@ -15,9 +15,6 @@ signal flashlight_off()
 signal flashlight_on()
 signal update_flashlight_state(state: GameInfo.FLASHLIGHT_STATES)
 
-signal pickup_lumber()
-signal lumber_despawned()
-
 signal enemy_defended(enemy: Enemy)
 signal remove_sleep_assurance(delta: float, enemy: Enemy)
 signal activate_happyshroom()
