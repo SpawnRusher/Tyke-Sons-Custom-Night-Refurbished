@@ -5,32 +5,45 @@
 [ext_resource type="Shader" uid="uid://b7vkrd27auh0y" path="res://assets/shaders/perspective.gdshader" id="3_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://scenes/night/windows/left/closed/window_left_closed.png" id="3_2go0w"]
 [ext_resource type="Texture2D" uid="uid://bmupht3pf77r5" path="res://scenes/night/windows/right/closed/window_right_closed.png" id="4_0f1a6"]
+[ext_resource type="SpriteFrames" uid="uid://b2q5uf1sf284w" path="res://classes/enemy/enemies/chipomat/chipomat_1/assets/jumpscare/chipomat_1_middle_jumpscare.tres" id="5_q0y1d"]
 [ext_resource type="Texture2D" uid="uid://dt5y8dns3h6yr" path="res://scenes/night/windows/left/closing/window_left_closing_0.png" id="5_tt6cj"]
 [ext_resource type="Texture2D" uid="uid://ds1ypmlt4rxp1" path="res://scenes/night/windows/left/closing/window_left_closing_1.png" id="6_ypa18"]
+[ext_resource type="SpriteFrames" uid="uid://ik0t0ikpallq" path="res://classes/enemy/enemies/chipomat/chipomat_2/assets/jumpscare/chipomat_2_middle_jumpscare.tres" id="7_0dnh4"]
 [ext_resource type="Texture2D" uid="uid://c2cfo8th7rwvv" path="res://scenes/night/windows/left/closing/window_left_closing_2.png" id="7_sj5rq"]
 [ext_resource type="Texture2D" uid="uid://mbrlnt5ksta6" path="res://scenes/night/windows/left/closing/window_left_closing_3.png" id="8_hs32g"]
 [ext_resource type="Texture2D" uid="uid://5y465okr4owe" path="res://scenes/night/windows/right/closing/window_right_closing_0.png" id="9_3oyjr"]
+[ext_resource type="SpriteFrames" uid="uid://br2l74dfjtd8a" path="res://classes/enemy/enemies/chipomat/chipomat_3/assets/jumpscare/chipomat_3_middle_jumpscare.tres" id="9_q0y1d"]
 [ext_resource type="Texture2D" uid="uid://bup2emewld1qs" path="res://scenes/night/windows/right/closing/window_right_closing_1.png" id="10_qm66n"]
 [ext_resource type="Texture2D" uid="uid://bdb8hmpxyvvyg" path="res://scenes/night/windows/right/closing/window_right_closing_2.png" id="11_0r0ah"]
 [ext_resource type="Texture2D" uid="uid://y58x8v0g5prk" path="res://scenes/night/windows/right/closing/window_right_closing_3.png" id="12_j3nq1"]
 [ext_resource type="Texture2D" uid="uid://c65bxq70v2qwm" path="res://scenes/night/windows/back/going_up/frame_0001.png" id="13_v3m7b"]
 [ext_resource type="Texture2D" uid="uid://c8qkfdgcxabl7" path="res://scenes/night/windows/back/going_up/frame_0002.png" id="14_s1pp0"]
 [ext_resource type="Texture2D" uid="uid://b25r85duh8252" path="res://scenes/night/windows/back/going_up/frame_0003.png" id="15_fyxh2"]
+[ext_resource type="SpriteFrames" uid="uid://d36elcdbetmxy" path="res://classes/enemy/enemies/springcrab/assets/jumpscare/springcrab_middle_jumpscare.tres" id="15_q0y1d"]
 [ext_resource type="Texture2D" uid="uid://cxw23j3hly40n" path="res://scenes/night/windows/back/going_up/frame_0004.png" id="16_hdtqd"]
 [ext_resource type="Texture2D" uid="uid://cf0rqex5s8vu2" path="res://scenes/night/windows/back/going_up/frame_0005.png" id="17_ld77w"]
+[ext_resource type="SpriteFrames" uid="uid://cfn7yj35rjap5" path="res://classes/enemy/enemies/nightmare_chipper/assets/jumpscare/middle/nightmare_chipper_middle_jumpscare.tres" id="17_q0y1d"]
+[ext_resource type="SpriteFrames" uid="uid://dlisyljncf6jp" path="res://classes/enemy/enemies/nightmare_chipper/assets/jumpscare/bedroom/nightmare_chipper_bedroom_jumpscare.tres" id="18_0dnh4"]
 [ext_resource type="Texture2D" uid="uid://1551udjq4u17" path="res://scenes/night/windows/back/going_up/frame_0006.png" id="18_tb7nn"]
 [ext_resource type="Texture2D" uid="uid://by8scb5jde1ti" path="res://scenes/night/windows/back/going_up/frame_0007.png" id="19_l5u65"]
+[ext_resource type="SpriteFrames" uid="uid://vqkb0b4gpnn3" path="res://classes/enemy/enemies/seabill/assets/jumpscare/seabill_middle_jumpscare.tres" id="20_f3gla"]
 [ext_resource type="Texture2D" uid="uid://ba2vrp7ayl2vo" path="res://scenes/night/windows/back/going_up/frame_0008.png" id="20_s7lic"]
 [ext_resource type="Texture2D" uid="uid://cjiesqex50xkd" path="res://scenes/night/windows/back/going_up/frame_0009.png" id="21_1eng1"]
 [ext_resource type="Texture2D" uid="uid://l5hpmstbpgo" path="res://scenes/night/windows/back/going_up/frame_0010.png" id="22_416qq"]
+[ext_resource type="SpriteFrames" uid="uid://ch3d6aj0qe0lj" path="res://classes/enemy/enemies/rockstar/fredbear/assets/jumpscare/fredbear_middle_jumpscare.tres" id="22_q0y1d"]
+[ext_resource type="SpriteFrames" uid="uid://c4gmxhv115605" path="res://classes/enemy/enemies/rockstar/bidy/assets/jumpscare/bidy_middle_jumpscare.tres" id="23_0dnh4"]
 [ext_resource type="Texture2D" uid="uid://bgb0ayubfh7ku" path="res://scenes/night/windows/back/going_up/frame_0011.png" id="23_ftncm"]
+[ext_resource type="SpriteFrames" uid="uid://bx4jvpo0wcmk4" path="res://classes/enemy/enemies/rockstar/buster/assets/jumpscare/buster_middle_jumpscare.tres" id="24_f3gla"]
 [ext_resource type="Texture2D" uid="uid://7ck1nayhrxj7" path="res://scenes/night/windows/back/going_up/frame_0012.png" id="24_wayww"]
 [ext_resource type="Texture2D" uid="uid://d1seilkesuq28" path="res://scenes/night/windows/back/going_up/frame_0013.png" id="25_0ntw2"]
 [ext_resource type="Texture2D" uid="uid://neu1rjo20sl5" path="res://scenes/night/windows/back/going_up/frame_0014.png" id="26_fkmqk"]
+[ext_resource type="SpriteFrames" uid="uid://55njo163vg6t" path="res://classes/enemy/enemies/bruce/jumpscare/bruce_middle_jumpscare.tres" id="26_lhdcs"]
 [ext_resource type="Texture2D" uid="uid://ddrxutf4j276q" path="res://scenes/night/windows/back/going_up/frame_0015.png" id="27_7enum"]
 [ext_resource type="Texture2D" uid="uid://d0qqialre0r28" path="res://scenes/night/windows/back/going_up/frame_0016.png" id="28_djgn7"]
+[ext_resource type="SpriteFrames" uid="uid://cbwa73ws63t0c" path="res://classes/enemy/enemies/chipper/assets/jumpscare/chipper_middle_jumpscare.tres" id="28_fnqua"]
 [ext_resource type="Texture2D" uid="uid://dljbhct8fat1j" path="res://scenes/night/windows/back/going_up/frame_0017.png" id="29_d5os0"]
 [ext_resource type="Texture2D" uid="uid://dod2wotuy2cj5" path="res://scenes/night/windows/back/going_up/frame_0018.png" id="30_ew1b4"]
+[ext_resource type="SpriteFrames" uid="uid://bq658ywa76cle" path="res://classes/enemy/enemies/toy/assets/jumpscare/toy_middle_jumpscare.tres" id="31_lhdcs"]
 [ext_resource type="Texture2D" uid="uid://dis620vs80i6o" path="res://scenes/night/windows/back/going_up/frame_0019.png" id="31_nb0rt"]
 [ext_resource type="Texture2D" uid="uid://cr8px3q0h356y" path="res://scenes/night/windows/back/going_up/frame_0020.png" id="32_6b4cf"]
 [ext_resource type="Texture2D" uid="uid://btocu5xn6kuat" path="res://scenes/night/windows/back/going_up/frame_0021.png" id="33_7ugh8"]
@@ -38,7 +51,9 @@
 [ext_resource type="Texture2D" uid="uid://btjkhgeydpt31" path="res://scenes/night/windows/back/going_up/frame_0023.png" id="35_a0pbn"]
 [ext_resource type="Texture2D" uid="uid://5mdips348bid" path="res://scenes/night/windows/back/going_up/frame_0024.png" id="36_7edwd"]
 [ext_resource type="Texture2D" uid="uid://wxb8psdu037h" path="res://scenes/night/windows/back/going_up/frame_0025.png" id="37_0t8k8"]
+[ext_resource type="SpriteFrames" uid="uid://bts62yxfqrvka" path="res://classes/enemy/enemies/happyshroom/assets/jumpscare/middle/happyshroom_middle_jumpscare.tres" id="37_q0y1d"]
 [ext_resource type="Texture2D" uid="uid://comg0jc2c7pdg" path="res://scenes/night/windows/back/going_up/frame_0026.png" id="38_lem6w"]
+[ext_resource type="SpriteFrames" uid="uid://cjd7ojrkjsml2" path="res://classes/enemy/enemies/happyshroom/assets/jumpscare/bedroom/happyshroom_bedroom_jumpscare.tres" id="38_q0y1d"]
 [ext_resource type="Texture2D" uid="uid://bryb1ffu6oo1a" path="res://scenes/night/windows/back/going_up/frame_0027.png" id="39_cjqc7"]
 [ext_resource type="Texture2D" uid="uid://cvrfttcfevs3x" path="res://scenes/night/windows/back/going_up/frame_0028.png" id="40_lftqs"]
 [ext_resource type="Texture2D" uid="uid://dbwac13um2e7h" path="res://scenes/night/windows/back/going_up/frame_0029.png" id="41_hs3m7"]
@@ -304,12 +319,9 @@
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://classes/enemy/sounds/jumpscare/jumpscare.ogg" id="300_bo7y1"]
 [ext_resource type="AudioStream" uid="uid://cc0udrk0iov5h" path="res://classes/enemy/enemies/chipomat/chipomat_2/sounds/chipomat_2_knocking.ogg" id="301_8be7k"]
 [ext_resource type="AudioStream" uid="uid://laco0tc7l474" path="res://classes/enemy/enemies/chipomat/chipomat_3/sounds/chipomat_3_knocking.ogg" id="302_1edts"]
-[ext_resource type="SpriteFrames" uid="uid://hmexkiu40fv1" path="res://classes/enemy/enemies/chipomat/chipomat_1/assets/jumpscare/jumpscare.tres" id="302_1eng1"]
 [ext_resource type="Script" uid="uid://f0vepf3put15" path="res://classes/enemy/enemies/fun_fungal/fun_fungal.gd" id="303_q6cdj"]
-[ext_resource type="SpriteFrames" uid="uid://cgsw7agy1qjmd" path="res://classes/enemy/enemies/chipomat/chipomat_2/assets/jumpscare/jumpscare.tres" id="304_416qq"]
 [ext_resource type="AudioStream" uid="uid://c3oja2d32psne" path="res://classes/enemy/sounds/jumpscare/jumpscare_fun_fungal.ogg" id="304_q36i8"]
 [ext_resource type="Script" uid="uid://bdovhfgeb56f4" path="res://classes/enemy/enemies/springcrab/springcrab.gd" id="305_38p68"]
-[ext_resource type="SpriteFrames" uid="uid://dnrmdge40dfkx" path="res://classes/enemy/enemies/chipomat/chipomat_3/assets/jumpscare/jumpscare.tres" id="306_ftncm"]
 [ext_resource type="AudioStream" uid="uid://dpa3pmqmncu0x" path="res://classes/enemy/enemies/springcrab/sounds/springcrab_walking.ogg" id="306_p2tem"]
 [ext_resource type="Script" uid="uid://bdnro702nmhg3" path="res://classes/enemy/enemies/nightmare_chipper/nightmare_chipper.gd" id="307_12jac"]
 [ext_resource type="Script" uid="uid://dv66h4165ppew" path="res://classes/enemy/enemies/seabill/seabill.gd" id="308_1u2mo"]
@@ -317,24 +329,12 @@
 [ext_resource type="SpriteFrames" uid="uid://cshws6mtgkvy2" path="res://classes/enemy/enemies/fun_fungal/assets/jumpscare/jumpscare.tres" id="309_wayww"]
 [ext_resource type="Script" uid="uid://dp3c40drmnlof" path="res://classes/enemy/enemies/bruce/bruce.gd" id="310_asmqh"]
 [ext_resource type="Script" uid="uid://qeu7nri32ca2" path="res://classes/enemy/enemies/chipper/chipper.gd" id="311_7kd1d"]
-[ext_resource type="SpriteFrames" uid="uid://3jfdm0d3dpxy" path="res://classes/enemy/enemies/springcrab/assets/jumpscare/jumpscare.tres" id="312_0ntw2"]
 [ext_resource type="Script" uid="uid://ejhhd5vc7s8g" path="res://classes/enemy/enemies/toy/toy.gd" id="312_sxuct"]
 [ext_resource type="AudioStream" uid="uid://orl7ysnchahb" path="res://classes/enemy/enemies/toy/sounds/toy_leaving.ogg" id="313_chpop"]
-[ext_resource type="SpriteFrames" uid="uid://dax66f01j7667" path="res://classes/enemy/enemies/nightmare_chipper/assets/jumpscare/middle/jumpscare.tres" id="314_fkmqk"]
 [ext_resource type="Script" uid="uid://5w5286ex124e" path="res://classes/enemy/enemies/phantom_chipomat/phantom_chipomat.gd" id="314_tjsjl"]
-[ext_resource type="SpriteFrames" uid="uid://clo6xwmvoik7q" path="res://classes/enemy/enemies/nightmare_chipper/assets/jumpscare/bedroom/jumpscare.tres" id="315_7enum"]
 [ext_resource type="AudioStream" uid="uid://c6ljbstllxkrm" path="res://classes/enemy/enemies/phantom_chipomat/sounds/jumpscare_phantom.ogg" id="315_h18a6"]
 [ext_resource type="AudioStream" uid="uid://dvfy70t3fg5oc" path="res://classes/enemy/sounds/jumpscare/jumpscare_wtf.ogg" id="316_0v611"]
-[ext_resource type="SpriteFrames" uid="uid://dwcd7fsh2iu32" path="res://classes/enemy/enemies/seabill/assets/jumpscare/jumpscare.tres" id="317_djgn7"]
-[ext_resource type="SpriteFrames" uid="uid://ds5xydebj2r1t" path="res://classes/enemy/enemies/rockstar/fredbear/assets/jumpscare/jumpscare.tres" id="319_d5os0"]
-[ext_resource type="SpriteFrames" uid="uid://1tnfmu8enmc0" path="res://classes/enemy/enemies/rockstar/bidy/assets/jumpscare/jumpscare.tres" id="320_ew1b4"]
-[ext_resource type="SpriteFrames" uid="uid://delfuqqlobkqo" path="res://classes/enemy/enemies/rockstar/buster/assets/jumpscare/jumpscare.tres" id="321_nb0rt"]
-[ext_resource type="SpriteFrames" uid="uid://q3g8sjm1h832" path="res://classes/enemy/enemies/bruce/jumpscare/jumpscare.tres" id="323_6b4cf"]
-[ext_resource type="SpriteFrames" uid="uid://jwd0ebtcbs12" path="res://classes/enemy/enemies/chipper/assets/jumpscare/jumpscare.tres" id="325_7ugh8"]
-[ext_resource type="SpriteFrames" uid="uid://oacgoiegq16" path="res://classes/enemy/enemies/toy/assets/jumpscare/jumpscare.tres" id="328_n0mbq"]
 [ext_resource type="SpriteFrames" uid="uid://bdcay5wlrvx68" path="res://classes/enemy/enemies/phantom_chipomat/assets/jumpscare/jumpscare.tres" id="331_a0pbn"]
-[ext_resource type="SpriteFrames" uid="uid://def4na0hddbtv" path="res://classes/enemy/enemies/happyshroom/assets/jumpscare/middle/jumpscare.tres" id="334_7edwd"]
-[ext_resource type="SpriteFrames" uid="uid://ceyirmcu15e87" path="res://classes/enemy/enemies/happyshroom/assets/jumpscare/bedroom/jumpscare.tres" id="335_0t8k8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_38vnp"]
 animations = [{
@@ -1758,7 +1758,7 @@ knock_sound = ExtResource("299_4eeom")
 enemy_id = 0
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("302_1eng1")])
+jumpscares = Array[SpriteFrames]([ExtResource("5_q0y1d")])
 
 [node name="Chipomat2" type="Node" parent="Enemies" unique_id=926769504 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("298_0448k")
@@ -1772,7 +1772,7 @@ knock_sound = ExtResource("301_8be7k")
 enemy_id = 1
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("304_416qq")])
+jumpscares = Array[SpriteFrames]([ExtResource("7_0dnh4")])
 
 [node name="Chipomat3" type="Node" parent="Enemies" unique_id=924281945 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("298_0448k")
@@ -1786,7 +1786,7 @@ knock_sound = ExtResource("302_1edts")
 enemy_id = 2
 sleep_assurance_score = 3.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("306_ftncm")])
+jumpscares = Array[SpriteFrames]([ExtResource("9_q0y1d")])
 
 [node name="FunFungal" type="Node" parent="Enemies" unique_id=1815203350 node_paths=PackedStringArray("office_layer", "office", "sprite")]
 script = ExtResource("303_q6cdj")
@@ -1815,7 +1815,7 @@ walking_sound = ExtResource("306_p2tem")
 enemy_id = 4
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("312_0ntw2")])
+jumpscares = Array[SpriteFrames]([ExtResource("15_q0y1d")])
 metadata/_custom_type_script = "uid://bdovhfgeb56f4"
 
 [node name="NightmareChipper" type="Node" parent="Enemies" unique_id=370165754 node_paths=PackedStringArray("office_layer", "office", "sprite", "sleep_assurance")]
@@ -1829,7 +1829,7 @@ kill_timer = 0.3
 enemy_id = 5
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("314_fkmqk"), ExtResource("315_7enum")])
+jumpscares = Array[SpriteFrames]([ExtResource("17_q0y1d"), ExtResource("18_0dnh4")])
 metadata/_custom_type_script = "uid://bdnro702nmhg3"
 
 [node name="Seabill" type="Node" parent="Enemies" unique_id=1873460938 node_paths=PackedStringArray("office", "dark_office", "dark_flicker", "sprite")]
@@ -1851,7 +1851,7 @@ stare_times = 2
 enemy_id = 6
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("317_djgn7")])
+jumpscares = Array[SpriteFrames]([ExtResource("20_f3gla")])
 metadata/_custom_type_script = "uid://dv66h4165ppew"
 
 [node name="Fredbear" type="Node" parent="Enemies" unique_id=2046731359 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
@@ -1865,7 +1865,7 @@ positions = Array[Vector2]([Vector2(37, 11), Vector2(37, 86)])
 enemy_id = 7
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("319_d5os0")])
+jumpscares = Array[SpriteFrames]([ExtResource("22_q0y1d")])
 
 [node name="Bidy" type="Node" parent="Enemies" unique_id=356077400 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
 script = ExtResource("309_ic733")
@@ -1879,7 +1879,7 @@ positions = Array[Vector2]([Vector2(11, 86), Vector2(123, 86)])
 enemy_id = 8
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("320_ew1b4")])
+jumpscares = Array[SpriteFrames]([ExtResource("23_0dnh4")])
 
 [node name="Buster" type="Node" parent="Enemies" unique_id=45018525 node_paths=PackedStringArray("player", "player_area_2d", "sprite", "sprite_area_2d")]
 script = ExtResource("309_ic733")
@@ -1892,14 +1892,14 @@ positions = Array[Vector2]([Vector2(98, 11), Vector2(98, 86)])
 enemy_id = 9
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("321_nb0rt")])
+jumpscares = Array[SpriteFrames]([ExtResource("24_f3gla")])
 
 [node name="Bruce" type="Node" parent="Enemies" unique_id=1426050415]
 script = ExtResource("310_asmqh")
 enemy_id = 10
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("323_6b4cf")])
+jumpscares = Array[SpriteFrames]([ExtResource("26_lhdcs")])
 metadata/_custom_type_script = "uid://dp3c40drmnlof"
 
 [node name="Chipper" type="Node" parent="Enemies" unique_id=1411760756 node_paths=PackedStringArray("gui_layer")]
@@ -1910,7 +1910,7 @@ lumber_timer = 1.2
 enemy_id = 11
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("325_7ugh8")])
+jumpscares = Array[SpriteFrames]([ExtResource("28_fnqua")])
 metadata/_custom_type_script = "uid://qeu7nri32ca2"
 
 [node name="Toy" type="Node" parent="Enemies" unique_id=1216605080 node_paths=PackedStringArray("office", "dark_overlay", "sprite")]
@@ -1926,7 +1926,7 @@ leaving_sound = ExtResource("313_chpop")
 enemy_id = 12
 sleep_assurance_score = 10.0
 jumpscare_sound = ExtResource("300_bo7y1")
-jumpscares = Array[SpriteFrames]([ExtResource("328_n0mbq")])
+jumpscares = Array[SpriteFrames]([ExtResource("31_lhdcs")])
 metadata/_custom_type_script = "uid://ejhhd5vc7s8g"
 
 [node name="PhantomChipomat" type="Node" parent="Enemies" unique_id=1597117739 node_paths=PackedStringArray("office", "dark_office", "sprite")]
@@ -1958,7 +1958,7 @@ happyshroom_text = NodePath("../../Happyshroom/Text")
 enemy_id = 14
 sleep_assurance_score = 0.0
 jumpscare_sound = ExtResource("316_0v611")
-jumpscares = Array[SpriteFrames]([ExtResource("334_7edwd"), ExtResource("335_0t8k8")])
+jumpscares = Array[SpriteFrames]([ExtResource("37_q0y1d"), ExtResource("38_q0y1d")])
 metadata/_custom_type_script = "uid://d13p32mq2jeip"
 
 [node name="Office" type="CanvasLayer" parent="." unique_id=381297013 node_paths=PackedStringArray("office", "lamp_button", "nose", "window_background", "front_window", "front_window_overlay", "front_window_button", "nightmare_chipper", "dark_overlay", "sleep_assurance", "popup")]
@@ -2371,8 +2371,6 @@ offset_bottom = 625.0
 theme_override_constants/line_separation = 8
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "CHIPOMAT_1:
-"
 script = ExtResource("296_q0y1d")
 enemies = NodePath("../../Enemies")
 flashlight_battery = NodePath("../FlashlightBattery")
