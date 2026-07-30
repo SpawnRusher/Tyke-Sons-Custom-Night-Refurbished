@@ -11,7 +11,7 @@ class_name Fun_Fungal extends Enemy
 
 
 var office_animation_direction: String
-var current_idle_timer: float = idle_timer
+var current_idle_timer: float
 var current_progress_timer: float
 var current_progress_normalized: float
 var flashlight_state: GameInfo.FLASHLIGHT_STATES
@@ -47,6 +47,7 @@ func _ready() -> void:
 	if not enabled: return
 	SignalBus.update_flashlight_state.connect(_update_flashlight_state)
 	office.animation_changed.connect(func(): office_animation_direction = office.animation.right(1))
+	current_idle_timer = idle_timer
 	
 func _process(delta: float) -> void:
 	sprite.visible = _visibility_checks()

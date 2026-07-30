@@ -728,6 +728,7 @@ offset_top = 6.0
 offset_right = 190.0
 offset_bottom = 46.0
 theme = ExtResource("24_jrnmg")
+bbcode_enabled = true
 text = "v0.0.0"
 fit_content = true
 vertical_alignment = 2

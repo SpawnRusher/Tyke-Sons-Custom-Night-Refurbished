@@ -80,4 +80,3 @@ func _on_statistics_return_to_menu_button_pressed() -> void:
 	tween.tween_property(camera,"position:x",0,0.2)
 	await tween.finished
 	disable_menu = false
-	
