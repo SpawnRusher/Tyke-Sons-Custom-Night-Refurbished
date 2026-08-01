@@ -8,6 +8,7 @@ signal scene_changing(previous: String, next: String)
 signal scene_changed(previous: String, next: String)
 signal scene_reloading(path: String)
 signal scene_reloaded(path: String)
+signal scene_unloaded(path: String)
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -16,27 +17,29 @@ func _process(delta: float) -> void:
 	for scene: String in scenes:
 		scenes[scene]["status"] = ResourceLoader.load_threaded_get_status(scene,scenes[scene]["progress"])
 		if scenes[scene]["load_immediately"] and scenes[scene]["progress"][0] >= 1.0:
-			var previous_scene_path:= get_tree().current_scene.scene_file_path
-			scene_changing.emit(previous_scene_path, scene)
 			change_to_scene(scene)
-			scene_changed.emit(previous_scene_path, scene)
 
 ## Loads a scene filepath with a threaded request. Supports an indefinite number of scenes at the same time.
 func load_scene(path: String, load_immediately:= false, free_after_use:= true, type_hint:= "", use_sub_threads:= false, cache_mode:= ResourceLoader.CACHE_MODE_REUSE) -> void:
 	if path in scenes:
-		push_error("Scene in path '%s' already loaded or being loaded!" % path)
+		push_warning("Scene in path '%s' already present in SceneManager!\r\nstatus: %d, progress: %d, load_immediately: %s, free_after_use: %s" % [path,scenes[path]["status"],scenes[path]["progress"][0],scenes[path]["load_immediately"],scenes[path]["free_after_use"]])
 		return
 	ResourceLoader.load_threaded_request(path, type_hint, use_sub_threads, cache_mode)
 	scenes[path] = {
-		"status":-1,
-		"progress":[-1],
+		"status":ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS,
+		"progress":[0.0],
 		"load_immediately":load_immediately,
 		"free_after_use":free_after_use}
-	print_debug("Started to load scene " + path + ": ", scenes[path])
+	print_debug("Started to load scene %s: %s" % [path,scenes[path]])
 
-func unload_scene(path: String) -> bool:
-	print_debug("Unloaded scene " + path)
-	return scenes.erase(path)
+func unload_scene(path: String) -> void:
+	if scenes[path]["free_after_use"]:
+		scenes.erase(path)
+		scene_unloaded.emit(path)
+
+## Returns the current loading status of a threaded scene as a ResourceLoader.ThreadLoadStatus value using the scene's filepath.
+func get_status(path: String) -> ResourceLoader.ThreadLoadStatus:
+	return scenes[path]["status"]
 
 ## Returns the current loading progress of a threaded scene as a float using the scene's filepath.
 func get_progress(path: String) -> float:
@@ -49,8 +52,7 @@ func change_to_scene(path: String, behavior:= CHANGE_SCENE_BEHAVIOR.AWAIT) -> vo
 		scene_changing.emit(previous_scene_path, path)
 		get_tree().change_scene_to_file(path)
 		scene_changed.emit(previous_scene_path, path)
-		return
-	if scenes[path]["progress"][0] < 1 and behavior == CHANGE_SCENE_BEHAVIOR.FAIL:
+	elif scenes[path]["progress"][0] < 1 and behavior == CHANGE_SCENE_BEHAVIOR.FAIL:
 		push_error("Attempted changing to scene before it finished loading. CHANGE_SCENE_BEHAVIOR.FAIL")
 	elif behavior == CHANGE_SCENE_BEHAVIOR.AWAIT and get_progress(path) < 1.0:
 		scenes[path]["load_immediately"] = true

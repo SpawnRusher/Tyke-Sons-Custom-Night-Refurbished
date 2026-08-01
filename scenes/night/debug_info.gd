@@ -13,7 +13,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	text = ""
-	text += "BATTERIES: %1.2f" % [30.0 - flashlight_battery.current_batteries_cooldown] + "\r\n"
+	text += "BATTERIES: [color=gold]%1.2f[/color]" % [30.0 - flashlight_battery.current_batteries_cooldown] + "\r\n"
 	for enemy: Enemy in enemies_list:
 		text += "%s: " % Enemy.ENEMY_IDS.keys()[enemy.enemy_id]
 		var new_text: String = ""

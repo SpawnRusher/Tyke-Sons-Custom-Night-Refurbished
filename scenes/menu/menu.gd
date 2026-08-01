@@ -12,8 +12,8 @@ const BUTTON_PRESS_BIG: AudioStream = preload("uid://o2ay73rlokbq")
 var disable_menu: bool
 
 func _ready() -> void:
-	SceneManager.unload_scene("res://scenes/menu/menu.tscn")
 	SceneManager.load_scene("res://scenes/later_that_night/later_that_night.tscn")
+	SceneManager.load_scene("res://scenes/night/night.tscn",false,false,"",false,ResourceLoader.CACHE_MODE_REUSE)
 	ver_string.text = ProjectSettings.get_setting("application/config/version")
 	fade.visible = true
 	var tween = get_tree().create_tween()
