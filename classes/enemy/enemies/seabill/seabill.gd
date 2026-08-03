@@ -46,10 +46,7 @@ func _process(delta: float) -> void:
 		if office.animation == "return" or office.animation == "office":
 			_jumpscare()
 		return
-	elif state == STATES.ACTIVE and office.animation == "open_f":
-		_jumpscare()
-		return
-		
+
 	if state == STATES.IDLE:
 		current_timer -= 1 * delta
 		if current_timer <= 0:
@@ -61,6 +58,9 @@ func _process(delta: float) -> void:
 			spawn_seabill()
 
 	if state == STATES.ACTIVE:
+		if office.animation == "open_f":
+			_jumpscare()
+			return
 		dark_flicker.self_modulate.a8 -= randi_range(-60,60)
 		if moving_state == MOVING_STATES.WALKING:
 			current_walk_timer -= 1 * delta

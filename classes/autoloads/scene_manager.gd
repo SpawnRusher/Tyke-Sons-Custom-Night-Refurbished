@@ -16,7 +16,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	for scene: String in scenes:
 		scenes[scene]["status"] = ResourceLoader.load_threaded_get_status(scene,scenes[scene]["progress"])
-		if scenes[scene]["load_immediately"] and scenes[scene]["progress"][0] >= 1.0:
+		if scenes[scene]["load_immediately"] and scenes[scene]["status"] == ResourceLoader.THREAD_LOAD_LOADED:
 			change_to_scene(scene)
 
 ## Loads a scene filepath with a threaded request. Supports an indefinite number of scenes at the same time.
@@ -26,7 +26,7 @@ func load_scene(path: String, load_immediately:= false, free_after_use:= true, t
 		return
 	ResourceLoader.load_threaded_request(path, type_hint, use_sub_threads, cache_mode)
 	scenes[path] = {
-		"status":ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS,
+		"status":ResourceLoader.THREAD_LOAD_IN_PROGRESS,
 		"progress":[0.0],
 		"load_immediately":load_immediately,
 		"free_after_use":free_after_use}
@@ -54,7 +54,7 @@ func change_to_scene(path: String, behavior:= CHANGE_SCENE_BEHAVIOR.AWAIT) -> vo
 		scene_changed.emit(previous_scene_path, path)
 	elif scenes[path]["progress"][0] < 1 and behavior == CHANGE_SCENE_BEHAVIOR.FAIL:
 		push_error("Attempted changing to scene before it finished loading. CHANGE_SCENE_BEHAVIOR.FAIL")
-	elif behavior == CHANGE_SCENE_BEHAVIOR.AWAIT and get_progress(path) < 1.0:
+	elif behavior == CHANGE_SCENE_BEHAVIOR.AWAIT and get_progress(path) < 1:
 		scenes[path]["load_immediately"] = true
 	else:
 		var previous_scene_path:= get_tree().current_scene.scene_file_path

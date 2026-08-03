@@ -16,7 +16,7 @@ var enabled: bool
 
 func _ready() -> void:
 	if enemy_id == -1:
-		print_debug("An Enemy ID has not been set for one of the enemies! Running _deactivate()")
+		push_error("An Enemy ID has not been set for one of the enemies! Running _deactivate()")
 		_deactivate()
 		return
 	if sleep_assurance_score == -1:

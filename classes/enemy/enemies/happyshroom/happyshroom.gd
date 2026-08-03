@@ -65,15 +65,15 @@ func _intro_dialogue() -> void:
 		await get_tree().create_timer(3).timeout
 		if i == 2:
 			await get_tree().create_timer(2).timeout
-		var tween = get_tree().create_tween()
-		tween.tween_property(happyshroom_text,"self_modulate:a",0,3)
-		await tween.finished
+		var text_tween = get_tree().create_tween()
+		text_tween.tween_property(happyshroom_text,"self_modulate:a",0,3)
+		await text_tween.finished
 		await get_tree().create_timer(3).timeout
 		if i == 2:
 			await get_tree().create_timer(2).timeout
-	var tween = get_tree().create_tween()
-	tween.tween_property(happyshroom_fade,"self_modulate:a",0,2)
-	await tween.finished
+	var fade_tween = get_tree().create_tween()
+	fade_tween.tween_property(happyshroom_fade,"self_modulate:a",0,2)
+	await fade_tween.finished
 	SignalBus.start_happyshroom_fight.emit()
 	happyshroom_fade.visible = false
 

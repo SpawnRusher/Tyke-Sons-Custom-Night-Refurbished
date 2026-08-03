@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dlqq8s6hcoknw" path="res://scenes/night/night.gd" id="1_45h36"]
 [ext_resource type="Script" uid="uid://b8eegopdrebfi" path="res://scenes/night/office/office.gd" id="2_0v611"]
-[ext_resource type="Shader" uid="uid://b7vkrd27auh0y" path="res://assets/shaders/perspective.gdshader" id="3_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://bascawiry8dwk" path="res://scenes/night/windows/left/closed/window_left_closed.png" id="3_2go0w"]
 [ext_resource type="Texture2D" uid="uid://bmupht3pf77r5" path="res://scenes/night/windows/right/closed/window_right_closed.png" id="4_0f1a6"]
 [ext_resource type="Texture2D" uid="uid://dt5y8dns3h6yr" path="res://scenes/night/windows/left/closing/window_left_closing_0.png" id="5_tt6cj"]
@@ -290,6 +289,7 @@
 [ext_resource type="AudioStream" uid="uid://sc3rt2d7xp3q" path="res://classes/enemy/enemies/chipomat/chipomat_1/sounds/chipomat_1_knocking.ogg" id="299_4eeom"]
 [ext_resource type="AudioStream" uid="uid://saeb6vipel7b" path="res://classes/enemy/sounds/jumpscare/jumpscare.ogg" id="300_bo7y1"]
 [ext_resource type="AudioStream" uid="uid://cc0udrk0iov5h" path="res://classes/enemy/enemies/chipomat/chipomat_2/sounds/chipomat_2_knocking.ogg" id="301_8be7k"]
+[ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://assets/themes/default_font_theme.tres" id="301_mablx"]
 [ext_resource type="AudioStream" uid="uid://laco0tc7l474" path="res://classes/enemy/enemies/chipomat/chipomat_3/sounds/chipomat_3_knocking.ogg" id="302_1edts"]
 [ext_resource type="Script" uid="uid://f0vepf3put15" path="res://classes/enemy/enemies/fun_fungal/fun_fungal.gd" id="303_q6cdj"]
 [ext_resource type="AudioStream" uid="uid://c3oja2d32psne" path="res://classes/enemy/sounds/jumpscare/jumpscare_fun_fungal.ogg" id="304_q36i8"]
@@ -1625,8 +1625,64 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="Shader" id="Shader_8s0t1"]
+code = "shader_type canvas_item;
+
+/**
+ * In relative units now (0-1)
+ */
+uniform float zoom = 1.0;
+
+/**
+ * Higher values = less distortion in the center
+ */
+uniform float sharpness = 2.0;
+
+/**
+ * (1, 0) for horizontal only, (0, 1) for vertical only
+ */
+uniform vec2 direction = vec2(1.0, 0.0);
+
+/**
+ * 0: Repeats
+ * 1: Clamps
+ * 2: Clips
+ */
+uniform int wrapping_mode = 0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+    float fB;
+    float fC;
+
+    vec2 posTex;
+    vec4 color = vec4(0.0, 0.0, 0.0, 1.0);
+    vec2 uv = SCREEN_UV;
+    vec2 ndir = normalize(direction);
+    float fac1 = abs(dot(uv - 0.5, normalize(ndir.yx))) * 2.0;
+    float fac2 = -dot(uv - 0.5, normalize(ndir)) * 2.0;
+    vec2 new_uv = uv + pow(fac1, sharpness) * fac2 * zoom * ndir;
+    switch (wrapping_mode)
+    {
+        case 2:
+            if (0.0 > new_uv.x || new_uv.x > 1.0 || 0.0 > new_uv.y || new_uv.y > 1.0)
+            {
+                COLOR = vec4(0);
+                break;
+            }
+        case 0:
+            new_uv = fract(new_uv);
+            // fall-through
+        case 1:
+            new_uv = clamp(new_uv, vec2(0), vec2(1));
+            COLOR = textureLod(SCREEN_TEXTURE, new_uv, 0.0);
+            break;
+    }
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0f1a6"]
-shader = ExtResource("3_0f1a6")
+shader = SubResource("Shader_8s0t1")
 shader_parameter/zoom = 1.0
 shader_parameter/sharpness = 2.0
 shader_parameter/direction = Vector2(1, 0)
@@ -1706,14 +1762,14 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tt6cj"]
-shader = ExtResource("3_0f1a6")
+shader = SubResource("Shader_8s0t1")
 shader_parameter/zoom = 1.0
 shader_parameter/sharpness = 2.0
 shader_parameter/direction = Vector2(1, 0)
 shader_parameter/wrapping_mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
-shader = ExtResource("3_0f1a6")
+shader = SubResource("Shader_8s0t1")
 shader_parameter/zoom = 0.1
 shader_parameter/sharpness = 10.0
 shader_parameter/direction = Vector2(1, 0)
@@ -2322,7 +2378,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GUI/Map/BidyIcon/Area2D" unique_id=896866965]
 shape = SubResource("ConvexPolygonShape2D_g4v7s")
 
-[node name="FlashlightBattery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button")]
+[node name="FlashlightBattery" type="TextureProgressBar" parent="GUI" unique_id=56385536 node_paths=PackedStringArray("office", "batteries", "batteries_button", "battery_label")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -2341,6 +2397,20 @@ office = NodePath("../../Office/OfficeBackground")
 batteries = NodePath("../../Office/OfficeBackground/Batteries")
 batteries_button = NodePath("../../Office/OfficeBackground/Batteries/BatteriesButton")
 batteries_cooldown = 30.0
+battery_label = NodePath("BatteryLabel")
+
+[node name="BatteryLabel" type="RichTextLabel" parent="GUI/FlashlightBattery" unique_id=537304793]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 105.0
+offset_bottom = 49.0
+theme = ExtResource("301_mablx")
+theme_override_constants/outline_size = 4
+bbcode_enabled = true
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NightTimer" type="RichTextLabel" parent="GUI" unique_id=402580439 node_paths=PackedStringArray("happyshroom")]
 anchors_preset = 1

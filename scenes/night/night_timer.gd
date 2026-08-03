@@ -31,11 +31,11 @@ func _process(delta: float) -> void:
 		
 	text = ("     %02d:%02d.%02d" % [time_minutes, time_seconds, time_milliseconds])
 	
-	if happyshroom != null and happyshroom.state == happyshroom.STATES.INTRO:
+	if happyshroom and happyshroom.state == happyshroom.STATES.INTRO:
 		text = "00:00.00"
 
 func _go_to_sleep() -> void:
-	if happyshroom != null and happyshroom.enabled == true:
+	if happyshroom and happyshroom.enabled:
 		if happyshroom.state == happyshroom.STATES.IDLE:
 			time_before_happyshroom = time_elapsed
 		if happyshroom.state == happyshroom.STATES.ACTIVE:

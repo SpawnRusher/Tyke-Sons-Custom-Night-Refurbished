@@ -85,7 +85,7 @@ const MIGRATE_SETTINGS_DATA: Dictionary = {
 	},
 	"game": {
 		"forward_screen_margin":"top_screen_margin",
-		"backward_screen_margin":"bottom_screen_margin"
+		"backward_screen_margin":"bottom_screen_margin",
 	},
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
@@ -141,15 +141,16 @@ const save_data_encryption_key: String = ""
 signal save_data_loaded
 
 func _ready() -> void:
-	_load_file(FILE_TYPE.SETTINGS) if _check_for_file(FILE_TYPE.SETTINGS) else _create_file(FILE_TYPE.SETTINGS)
-	_load_file(FILE_TYPE.SAVE) if _check_for_file(FILE_TYPE.SAVE) else _create_file(FILE_TYPE.SAVE)
+	for i in 2:
+		if not _does_file_exist(i as FILE_TYPE):
+			_create_file(i as FILE_TYPE)
+		_load_file(i as FILE_TYPE)
 
-static func _check_for_file(type: FILE_TYPE) -> bool:
-	var check_file:= FileAccess.open(file_paths[type], FileAccess.READ)
-	if check_file:
-		check_file.close()
-		return true
-	return false
+static func _does_file_exist(type: FILE_TYPE) -> bool:
+	return FileAccess.open(file_paths[type], FileAccess.READ) != null
+	
+static func _create_file(type: FILE_TYPE) -> void:
+	FileAccess.open(file_paths[type], FileAccess.WRITE).store_string("")
 	
 func _save_file(type: FILE_TYPE) -> void:
 	if type == FILE_TYPE.SETTINGS:
@@ -167,10 +168,9 @@ func _load_file(type: FILE_TYPE) -> void:
 	if type == FILE_TYPE.SETTINGS:
 		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
 		json.parse(settings_data_file.get_as_text())
-		if json.data:
-			settings_data = json.data
-		await _add_missing_data(FILE_TYPE.SETTINGS)
-		await _migrate_data(FILE_TYPE.SETTINGS)
+		if json.data: settings_data = json.data
+		_add_missing_data(FILE_TYPE.SETTINGS)
+		_migrate_data(FILE_TYPE.SETTINGS)
 		_save_file(type)
 		settings_data_loaded.emit()
 		_update_settings()
@@ -178,18 +178,11 @@ func _load_file(type: FILE_TYPE) -> void:
 	else:
 		save_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
 		json.parse(save_data_file.get_as_text())
-		if json.data:
-			save_data = json.data
+		if json.data: save_data = json.data
 		_add_missing_data(FILE_TYPE.SAVE)
 		_migrate_data(FILE_TYPE.SAVE)
 		_save_file(type)
 		save_data_loaded.emit()
-
-func _create_file(type: FILE_TYPE) -> void:
-	var create_file:= FileAccess.open(file_paths[type], FileAccess.WRITE)
-	create_file.store_string("")
-	create_file.close()
-	_load_file(type)
 	
 func _update_settings() -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),(get_data(FILE_TYPE.SETTINGS,["game","master_volume"]))/100.0)
@@ -284,40 +277,31 @@ func _migrate_data(type: FILE_TYPE) -> void:
 	
 	for first_key in migrate_data:
 		if first_key in current_data:
-			if first_key in current_data and current_data[first_key] is not Dictionary:
+			if migrate_data[first_key] is not Dictionary:
 				current_data[migrate_data[first_key]] = current_data[first_key]
 				current_data.erase(first_key)
 				continue
 				
 			for second_key in migrate_data[first_key]:
 				if second_key in current_data[first_key]:
-					if second_key == "MIGRATE_PREVIOUS_KEY":
-						current_data[migrate_data[first_key][second_key]] = current_data[first_key]
-						current_data.erase(first_key)
-						continue
-					if second_key in current_data[first_key] and current_data[first_key][second_key] is not Dictionary:
+					if migrate_data[first_key][second_key] is not Dictionary:
 						current_data[first_key][migrate_data[first_key][second_key]] = current_data[first_key][second_key]
 						current_data[first_key].erase(second_key)
+						continue
 						
 					for third_key in migrate_data[first_key][second_key]:
 						if third_key in current_data[first_key][second_key]:
-							if third_key == "MIGRATE_PREVIOUS_KEY":
-								current_data[migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key]
-								current_data[first_key].erase(second_key)
-								continue
-							if third_key in current_data[first_key][second_key] and current_data[first_key][second_key][third_key] is not Dictionary:
+							if migrate_data[first_key][second_key][third_key] is not Dictionary:
 								current_data[first_key][second_key][migrate_data[first_key][second_key][third_key]] = current_data[first_key][second_key][third_key]
 								current_data[first_key][second_key].erase(third_key)
+								continue
 								
 							for fourth_key in migrate_data[first_key][second_key][third_key]:
 								if fourth_key in current_data[first_key][second_key][third_key]:
-									if fourth_key == "MIGRATE_PREVIOUS_KEY":
-										current_data[migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key]
-										current_data[first_key][second_key].erase(third_key)
-										continue
-									if fourth_key in current_data[first_key][second_key][third_key] and current_data[first_key][second_key][third_key][fourth_key] is not Dictionary:
+									if migrate_data[first_key][second_key][third_key][fourth_key] is not Dictionary:
 										current_data[first_key][second_key][third_key][migrate_data[first_key][second_key][third_key][fourth_key]] = current_data[first_key][second_key][third_key][fourth_key]
 										current_data[first_key][second_key][third_key].erase(fourth_key)
+										continue
 
 func _add_missing_data(type: FILE_TYPE) -> void:
 	# Create reference variables to the dictionaries to be able to reuse the same code for both

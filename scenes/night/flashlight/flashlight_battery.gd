@@ -10,6 +10,7 @@ var flashlight_state: GameInfo.FLASHLIGHT_STATES
 @export var batteries: TextureProgressBar
 @export var batteries_button: TextureButton
 @export var batteries_cooldown: float
+@export var battery_label: RichTextLabel
 
 var current_batteries_cooldown: float
 var enable_cooldown: float
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 		current_batteries_cooldown += 1 * delta
 	if enable_cooldown > 0:
 		enable_cooldown -= 1 * delta
+	battery_label.text = "%d%%" % value
 	
 func _on_value_changed() -> void:
 	if value == 0 and flashlight_state == GameInfo.FLASHLIGHT_STATES.ON:

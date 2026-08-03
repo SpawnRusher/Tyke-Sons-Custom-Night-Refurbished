@@ -15,8 +15,7 @@ func _ready() -> void:
 	PauseManager.unpause()
 	_go_to_sleep()
 	wake_up.animation_finished.connect(_wake_up_loop)
-	_add_gamejolt_scores()
-	_achieve_gamejolt_trophies()
+	_gamejolt_trophies_and_scores()
 	
 	@warning_ignore_start("integer_division")
 	var time_milliseconds = (GameInfo.win_time % 1000) / 10
@@ -54,13 +53,11 @@ func _leave() -> void:
 func _wake_up_loop() -> void:
 	wake_up.play("loop")
 
-func _add_gamejolt_scores() -> void:
-	if GameInfo.current_preset_name == "Sleep Insomnia":
-		GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"score":night_timer.text.right(night_timer.text.length()-12),"sort":GameInfo.win_time,"table_id":"1091328",})
-	
-func _achieve_gamejolt_trophies() -> void:
-	if Global.current_preset_name == "Sleep Insomnia":
-		GameJolt.api_request("trophies","add_achieved",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"trophy_id":"0"})
+func _gamejolt_trophies_and_scores() -> void:
+	match GameInfo.current_preset_name:
+		"Sleep Insomnia":
+			GameJolt.api_request("scores","add",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"score":night_timer.text.right(night_timer.text.length()-12),"sort":GameInfo.win_time,"table_id":"1091328",})
+			GameJolt.api_request("trophies","add_achieved",{"username":GameJolt.authorized_username,"user_token":GameJolt.authorized_user_token,"trophy_id":"0"})
 	
 	
 	
