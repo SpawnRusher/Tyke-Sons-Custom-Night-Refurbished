@@ -1,6 +1,6 @@
 extends Node
 
-const file_paths: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
+const FILE_PATHS: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
 enum FILE_TYPE {SETTINGS, SAVE, DEFAULT_SETTINGS, DEFAULT_SAVE}
 enum SET_DATA_SPECIAL {NONE,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
 
@@ -85,13 +85,13 @@ const MIGRATE_SETTINGS_DATA: Dictionary = {
 	},
 	"game": {
 		"forward_screen_margin":"top_screen_margin",
-		"backward_screen_margin":"bottom_screen_margin",
+		"backward_screen_margin":"bottom_screen_margin"
 	},
 	"keybinds": {
 		"Toggle Lamp":"toggle_lamp"
 	},}
-var settings_data: Dictionary = DEFAULT_SETTINGS_DATA
-var settings_data_file: FileAccess
+var settings_data: Dictionary
+signal settings_data_saved
 signal settings_data_loaded
 
 const DEFAULT_SAVE_DATA: Dictionary = {
@@ -135,53 +135,55 @@ const DEFAULT_SAVE_DATA: Dictionary = {
 		},		
 	}}
 const MIGRATE_SAVE_DATA: Dictionary = {}
-var save_data: Dictionary = DEFAULT_SAVE_DATA
-var save_data_file: FileAccess
-const save_data_encryption_key: String = ""
+var save_data: Dictionary
+const SAVE_DATA_ENCRYPTION_KEY: String = ""
+signal save_data_saved
 signal save_data_loaded
 
 func _ready() -> void:
 	for i in 2:
-		if not _does_file_exist(i as FILE_TYPE):
-			_create_file(i as FILE_TYPE)
-		_load_file(i as FILE_TYPE)
+		print(i)
+		if not _does_file_exist(i):
+			_create_file(i)
+		_load_file(i)
 
 static func _does_file_exist(type: FILE_TYPE) -> bool:
-	return FileAccess.open(file_paths[type], FileAccess.READ) != null
+	return FileAccess.open(FILE_PATHS[type], FileAccess.READ) != null
 	
 static func _create_file(type: FILE_TYPE) -> void:
-	FileAccess.open(file_paths[type], FileAccess.WRITE).store_string("")
+	print("create ", type)
+	FileAccess.open(FILE_PATHS[type], FileAccess.WRITE).store_string("")
 	
 func _save_file(type: FILE_TYPE) -> void:
+	var file = FileAccess.open(FILE_PATHS[type],FileAccess.WRITE)
 	if type == FILE_TYPE.SETTINGS:
-		settings_data_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
-		settings_data_file.store_string(JSON.stringify(settings_data, "\t"))
-		settings_data_file.close()
+		file.store_string(JSON.stringify(settings_data,"\t"))
+		settings_data_saved.emit()
 		_update_settings()
 	else:
-		save_data_file = FileAccess.open(file_paths[type], FileAccess.WRITE)
-		save_data_file.store_string(JSON.stringify(save_data, "\t"))
-		save_data_file.close()
+		file.store_string(JSON.stringify(save_data,"\t"))
+		save_data_saved.emit()
+	file.close()
 
 func _load_file(type: FILE_TYPE) -> void:
 	var json:= JSON.new()
+	var file = FileAccess.open(FILE_PATHS[type], FileAccess.READ_WRITE)
+	json.parse(file.get_as_text())
+	if json.data: 
+		if type == FILE_TYPE.SETTINGS:
+			settings_data = json.data
+		else:
+			save_data = json.data
+	file.close()
+	_add_missing_data(type)
+	_migrate_data(type)
+	_save_file(type)
 	if type == FILE_TYPE.SETTINGS:
-		settings_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
-		json.parse(settings_data_file.get_as_text())
-		if json.data: settings_data = json.data
-		_add_missing_data(FILE_TYPE.SETTINGS)
-		_migrate_data(FILE_TYPE.SETTINGS)
-		_save_file(type)
 		settings_data_loaded.emit()
 		_update_settings()
 		_update_keybinds_actions()
 	else:
-		save_data_file = FileAccess.open(file_paths[type], FileAccess.READ_WRITE)
-		json.parse(save_data_file.get_as_text())
-		if json.data: save_data = json.data
-		_add_missing_data(FILE_TYPE.SAVE)
-		_migrate_data(FILE_TYPE.SAVE)
-		_save_file(type)
+		print("save loaded")
 		save_data_loaded.emit()
 	
 func _update_settings() -> void:
@@ -255,7 +257,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 		
 	_save_file(type)
 	
-func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
+func get_data(type: FILE_TYPE, keys: Array[String]) -> Variant:
 	var current_dict: Dictionary = [settings_data,save_data,DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 	var key: Variant
 	
@@ -267,6 +269,7 @@ func get_data(type: FILE_TYPE, keys: Array[Variant]) -> Variant:
 		if current_dict[key] is not Dictionary:
 			return current_dict[key]
 		current_dict = current_dict[key]	
+	print(current_dict)
 	return current_dict
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]
@@ -345,7 +348,5 @@ func _deserialize_input_event(event: Dictionary) -> InputEvent:
 		"mouse_button":
 			new_event = InputEventMouseButton.new()
 			new_event.button_index = event["button_index"]
-			
-			
 	return new_event
 		
