@@ -3,7 +3,7 @@ extends Control
 const BUTTON_PRESS_QUIET: AudioStream = preload("uid://dubq1cwtm73fs")
 const BUTTON_PRESS_LOUD: AudioStream = preload("uid://dljncvmipnl1d")
 
-@onready var tabs_container: TabContainer
+@export var debug_tab: MarginContainer
 
 var remapping: bool
 var remapping_action: String
@@ -23,6 +23,8 @@ func _ready() -> void:
 	slider_button.connect(_slider_button)
 	dropdown_button.connect(_dropdown_button)
 	keybind_button.connect(_keybind_button)
+	if not OS.is_debug_build():
+		debug_tab.queue_free()
 		
 func _input(event: InputEvent) -> void:
 	if remapping:
@@ -45,7 +47,7 @@ func _input(event: InputEvent) -> void:
 
 func _reset_to_defaults(tab_name: String) -> void:
 	for setting in SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[tab_name]):
-		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[tab_name,setting],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,[tab_name,setting]))
+		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[tab_name,setting],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,[tab_name,setting]),SaveData.SET_DATA_SPECIAL.KEYBIND)
 	resetted_to_defaults.emit()
 
 func _keybind_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
@@ -57,9 +59,9 @@ func _keybind_button(button: Button, group_name: String, setting_name: String, s
 		state_label.text = "Press any input..."
 		SpecialFunctions.create_audio(BUTTON_PRESS_QUIET)
 
-func _update_action_list(button: Button, state_label, action: String, event: InputEvent) -> void:
+func _update_action_list(button: Button, state_label: RichTextLabel, action: String, event: InputEvent) -> void:
 	state_label.text = event.as_text().trim_suffix(" - Physical")
-	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,["keybinds",remapping_action],_serialize_input_event(event))
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[button.group_name,action],_serialize_input_event(event),SaveData.SET_DATA_SPECIAL.KEYBIND)
 	
 ## Converts an InputEvent of type Key or MouseButton into readable data which can be deserialized to create and InputEvent of equal type when loading data. [br]
 ## [br] Deserialization function is in SaveData.

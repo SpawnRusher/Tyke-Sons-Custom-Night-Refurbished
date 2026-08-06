@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://8pg1ot784u4g"]
+
+[ext_resource type="Theme" uid="uid://uqgu00djilug" path="res://assets/themes/default_control_theme.tres" id="1_1x6iu"]
+[ext_resource type="Script" uid="uid://bwj6ibb6qm43i" path="res://scenes/debug_console/debug_console.gd" id="2_rui1q"]
+
+[node name="DebugConsole" type="PanelContainer" unique_id=461572795 node_paths=PackedStringArray("console_text", "console_input", "title_panel", "scroll_container")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1x6iu")
+script = ExtResource("2_rui1q")
+console_text = NodePath("VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/ConsoleText")
+console_input = NodePath("VBoxContainer/MarginContainer/VBoxContainer/ConsoleInput")
+title_panel = NodePath("VBoxContainer/TitlePanel")
+scroll_container = NodePath("VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2063587519]
+layout_mode = 2
+
+[node name="TitlePanel" type="PanelContainer" parent="VBoxContainer" unique_id=925267267]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TitlePanel" unique_id=2099942803]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TitlePanel/MarginContainer" unique_id=482716293]
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "DEBUG CONSOLE"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=173959051]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1956564292]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1213249282]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConsoleText" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1563487699]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+bbcode_enabled = true
+fit_content = true
+vertical_alignment = 2
+
+[node name="ConsoleInput" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer" unique_id=1679664287]
+layout_mode = 2
+mouse_filter = 1
+placeholder_text = "Type a command... /help /commands"
+keep_editing_on_text_submit = true
+
+[connection signal="mouse_entered" from="VBoxContainer/TitlePanel" to="." method="_on_title_panel_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/TitlePanel" to="." method="_on_title_panel_mouse_exited"]

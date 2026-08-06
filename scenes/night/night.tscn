@@ -292,6 +292,7 @@
 [ext_resource type="Theme" uid="uid://bgtihmngvxu4w" path="res://assets/themes/default_font_theme.tres" id="301_mablx"]
 [ext_resource type="AudioStream" uid="uid://laco0tc7l474" path="res://classes/enemy/enemies/chipomat/chipomat_3/sounds/chipomat_3_knocking.ogg" id="302_1edts"]
 [ext_resource type="Script" uid="uid://f0vepf3put15" path="res://classes/enemy/enemies/fun_fungal/fun_fungal.gd" id="303_q6cdj"]
+[ext_resource type="PackedScene" uid="uid://8pg1ot784u4g" path="res://scenes/debug_console/debug_console.tscn" id="304_8s0t1"]
 [ext_resource type="AudioStream" uid="uid://c3oja2d32psne" path="res://classes/enemy/sounds/jumpscare/jumpscare_fun_fungal.ogg" id="304_q36i8"]
 [ext_resource type="Script" uid="uid://bdovhfgeb56f4" path="res://classes/enemy/enemies/springcrab/springcrab.gd" id="305_38p68"]
 [ext_resource type="AudioStream" uid="uid://dpa3pmqmncu0x" path="res://classes/enemy/enemies/springcrab/sounds/springcrab_walking.ogg" id="306_p2tem"]
@@ -2440,6 +2441,8 @@ bbcode_enabled = true
 script = ExtResource("296_q0y1d")
 enemies = NodePath("../../Enemies")
 flashlight_battery = NodePath("../FlashlightBattery")
+
+[node name="DebugConsole" parent="GUI" unique_id=461572795 instance=ExtResource("304_8s0t1")]
 
 [node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
 process_mode = 3

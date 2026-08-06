@@ -105,6 +105,10 @@ click_front_window={
 "deadzone": 0.2,
 "events": []
 }
+toggle_console={
+"deadzone": 0.2,
+"events": []
+}
 
 [physics]
 

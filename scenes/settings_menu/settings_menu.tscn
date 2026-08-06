@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://br8xrm84gnlie" path="res://scenes/settings_menu/dropdown_button/dropdown_button.tscn" id="5_bsihy"]
 [ext_resource type="PackedScene" uid="uid://c5tck8h81yxqm" path="res://scenes/settings_menu/keybind_button/keybind_button.tscn" id="6_bsihy"]
 
-[node name="SettingsMenu" type="Control" unique_id=131214480]
+[node name="SettingsMenu" type="Control" unique_id=131214480 node_paths=PackedStringArray("debug_tab")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_rcdfy")
 script = ExtResource("2_wswnh")
+debug_tab = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=757844964]
 layout_mode = 1
@@ -83,10 +84,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2065030133 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../../../../..")
-tab = NodePath("")
+tab_name = "display"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=395995736]
 custom_minimum_size = Vector2(0, 50)
@@ -194,10 +195,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=373464063 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../../../../..")
-tab = NodePath("")
+tab_name = "game"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Game/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1269798834]
 custom_minimum_size = Vector2(0, 50)
@@ -412,10 +413,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu", "tab") instance=ExtResource("3_rcdfy")]
+[node name="ResetToDefaults" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=2082066047 node_paths=PackedStringArray("settings_menu") instance=ExtResource("3_rcdfy")]
 layout_mode = 2
 settings_menu = NodePath("../../../../../../../../../../..")
-tab = NodePath("")
+tab_name = "keybinds"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox" unique_id=1027549335]
 custom_minimum_size = Vector2(0, 50)
@@ -545,6 +546,54 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 [node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1628007890, 923350876) index="0" unique_id=1564517087]
 text = "Move Right"
 
+[node name="Debug" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" unique_id=1629408433]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug" unique_id=1562527978]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer" unique_id=1314134630]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer" unique_id=2085977189]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer" unique_id=412209522]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EnableConsole" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1885316250 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../../../../..")
+group_name = "debug"
+setting_name = "enable_console"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1885316250, 1937837762) index="0" unique_id=251215606]
+text = "Enable Console"
+
+[node name="ToggleConsole" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1660251940 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("6_bsihy")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../../../../..")
+group_name = "debug"
+setting_name = "toggle_console"
+setting_label = NodePath("MarginContainer/HBoxContainer/SettingLabel")
+state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
+
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ToggleConsole/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660251940, 923350876) index="0" unique_id=1564517087]
+text = "Toggle Console"
+
 [connection signal="tab_changed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" to="." method="_on_tab_changed"]
 
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS"]
@@ -574,3 +623,5 @@ text = "Move Right"
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveLeft"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveBackward"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ToggleConsole"]

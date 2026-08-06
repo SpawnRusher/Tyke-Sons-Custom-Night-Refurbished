@@ -2,7 +2,7 @@ extends Node
 
 const FILE_PATHS: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
 enum FILE_TYPE {SETTINGS, SAVE, DEFAULT_SETTINGS, DEFAULT_SAVE}
-enum SET_DATA_SPECIAL {NONE,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
+enum SET_DATA_SPECIAL {NONE,KEYBIND,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
 
 const DEFAULT_SETTINGS_DATA: Dictionary = {
 	"display": {
@@ -78,7 +78,14 @@ const DEFAULT_SETTINGS_DATA: Dictionary = {
 		"username":"",
 		"user_token":"",
 		"auto_login":false
-	},}	
+	},
+	"debug": {
+		"enable_console":false,
+		"toggle_console": {
+			"type":"key",
+			"physical_keycode":KEY_TAB
+		},
+	}}	
 const MIGRATE_SETTINGS_DATA: Dictionary = {
 	"display": {
 		"texture_filter":"antialiasing"
@@ -200,6 +207,12 @@ func _update_settings() -> void:
 func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SET_DATA_SPECIAL.NONE) -> void:
 	var current_dict: Dictionary = [settings_data,save_data][type]
 	var key: Variant
+	
+	if special == SET_DATA_SPECIAL.KEYBIND:
+		current_dict[keys[0]][keys[1]] = value
+		_save_file(type)
+		return
+		
 	for i in keys.size():
 		key = keys[i]
 		if not current_dict.has(key):
@@ -209,7 +222,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 		if current_dict[key] is not Dictionary:
 			break
 		current_dict = current_dict[key]	
-		
+	
 	if special == SET_DATA_SPECIAL.TOGGLE_BOOL:
 		if current_dict[keys[keys.size()-1]] is not bool:
 			push_error("Cannot run set_data special operation ", SET_DATA_SPECIAL.keys()[special], " as the ", FILE_TYPE.keys()[type], " data being modified is not a boolean.")
@@ -336,10 +349,12 @@ func _add_missing_data(type: FILE_TYPE) -> void:
 									continue
 
 func _update_keybinds_actions() -> void:
-	for action in settings_data["keybinds"]:
-		InputMap.action_add_event(action,_deserialize_input_event(settings_data["keybinds"][action]))
+	for group in settings_data:
+		for action in settings_data[group]:
+			if settings_data[group][action] is Dictionary and settings_data[group][action].has("type"):
+				InputMap.action_add_event(action,_deserialize_input_event(settings_data[group][action]))
 
-func _deserialize_input_event(event: Dictionary) -> InputEvent:
+static func _deserialize_input_event(event: Dictionary) -> InputEvent:
 	var new_event: InputEvent = null
 	match event["type"]:
 		"key":
