@@ -3,6 +3,7 @@ extends Node
 const FILE_PATHS: Array[String] = ["user://tscn_settings.json","user://tscn_save.json"]
 enum FILE_TYPE {SETTINGS, SAVE, DEFAULT_SETTINGS, DEFAULT_SAVE}
 enum SET_DATA_SPECIAL {NONE,KEYBIND,TOGGLE_BOOL,ADD,SUBTRACT,MULTIPLY,DIVIDE,DIVIDE_INT,MODULO,EXPONENT,ROOT}
+enum GET_DATA_SPECIAL {NONE,KEYBIND}
 
 const DEFAULT_SETTINGS_DATA: Dictionary = {
 	"display": {
@@ -270,7 +271,7 @@ func set_data(type: FILE_TYPE, keys: Array[String], value: Variant, special:= SE
 		
 	_save_file(type)
 	
-func get_data(type: FILE_TYPE, keys: Array[String]) -> Variant:
+func get_data(type: FILE_TYPE, keys: Array[String], special:= GET_DATA_SPECIAL.NONE) -> Variant:
 	var current_dict: Dictionary = [settings_data,save_data,DEFAULT_SETTINGS_DATA,DEFAULT_SAVE_DATA][type]
 	var key: Variant
 	
@@ -282,7 +283,8 @@ func get_data(type: FILE_TYPE, keys: Array[String]) -> Variant:
 		if current_dict[key] is not Dictionary:
 			return current_dict[key]
 		current_dict = current_dict[key]	
-	print(current_dict)
+	if special == GET_DATA_SPECIAL.KEYBIND:
+		return _deserialize_input_event(current_dict)
 	return current_dict
 
 ## Runs after loading settings and save data to migrate any old keys to new ones safely while maintaining values.[br]

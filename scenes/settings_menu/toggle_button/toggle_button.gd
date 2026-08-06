@@ -8,12 +8,18 @@ extends Button
 
 func _ready() -> void:
 	_update()
-	if settings_menu.has_signal("resetted_to_defaults"):
-		settings_menu.resetted_to_defaults.connect(_update)
+	if settings_menu.has_signal("reset_to_defaults"):
+		settings_menu.reset_to_defaults.connect(_reset_to_defaults)
 	
 func _update() -> void:
 	button_pressed = SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name])
-	state_label.text = ["OFF","ON"][button_pressed as int]
+	state_label.text = "OFF" if not button_pressed else "ON"
 	
 func _on_toggled(toggled_on: bool) -> void:
 	settings_menu.toggle_button.emit(self,group_name,setting_name,setting_label,state_label)
+
+func _reset_to_defaults(tab_name: String) -> void:
+	if tab_name != group_name:
+		return
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,[group_name,setting_name]))
+	_update()

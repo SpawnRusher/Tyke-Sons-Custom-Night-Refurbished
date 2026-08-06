@@ -9,7 +9,8 @@ extends Button
 
 func _ready() -> void:
 	_update()
-	settings_menu.resetted_to_defaults.connect(_update)
+	if settings_menu.has_signal("reset_to_defaults"):
+		settings_menu.reset_to_defaults.connect(_reset_to_defaults)
 	
 func _update() -> void:
 	slider.value = SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name])
@@ -17,3 +18,9 @@ func _update() -> void:
 
 func _on_slider_value_changed(value: float) -> void:
 	settings_menu.slider_button.emit(self,group_name,setting_name,setting_label,state_label,slider)
+
+func _reset_to_defaults(tab_name: String) -> void:
+	if tab_name != group_name:
+		return
+	SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[group_name,setting_name],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,[group_name,setting_name]))
+	_update()

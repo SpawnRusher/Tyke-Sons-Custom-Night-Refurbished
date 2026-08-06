@@ -36,6 +36,7 @@ var commands: Dictionary = {
 func _ready() -> void:
 	if not SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["debug","enable_console"]):
 		queue_free()
+
 	scroll_container.get_v_scroll_bar().changed.connect(_scroll_bar_changed.bind(scroll_container.get_v_scroll_bar()))
 
 func _process(delta: float) -> void:

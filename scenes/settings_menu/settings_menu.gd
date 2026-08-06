@@ -11,14 +11,14 @@ var remapping_button: Button
 var remapping_state_label: RichTextLabel
 
 signal reset_to_defaults(tab_name: String)
-signal resetted_to_defaults()
 signal toggle_button(button: Button, group_name: String, setting_name: String, setting_label: String, state_label: RichTextLabel)
 signal dropdown_button(index: int, button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel)
 signal slider_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, dropdown: OptionButton)
 signal keybind_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel)
 
 func _ready() -> void:
-	reset_to_defaults.connect(_reset_to_defaults)
+	reset_to_defaults.connect(func(tab_name):
+		print(tab_name))
 	toggle_button.connect(_toggle_button)
 	slider_button.connect(_slider_button)
 	dropdown_button.connect(_dropdown_button)
@@ -44,11 +44,6 @@ func _input(event: InputEvent) -> void:
 				remapping_state_label = null
 				
 				accept_event()
-
-func _reset_to_defaults(tab_name: String) -> void:
-	for setting in SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,[tab_name]):
-		SaveData.set_data(SaveData.FILE_TYPE.SETTINGS,[tab_name,setting],SaveData.get_data(SaveData.FILE_TYPE.DEFAULT_SETTINGS,[tab_name,setting]),SaveData.SET_DATA_SPECIAL.KEYBIND)
-	resetted_to_defaults.emit()
 
 func _keybind_button(button: Button, group_name: String, setting_name: String, setting_label: RichTextLabel, state_label: RichTextLabel) -> void:
 	if not remapping:
