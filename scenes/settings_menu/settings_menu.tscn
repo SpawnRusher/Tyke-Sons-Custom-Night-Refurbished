@@ -594,6 +594,28 @@ state_label = NodePath("MarginContainer/HBoxContainer/StateLabel")
 [node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ToggleConsole/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1660251940, 923350876) index="0" unique_id=1564517087]
 text = "Toggle Console"
 
+[node name="EnableConsole2" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1577450903 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../../../../..")
+group_name = "debug"
+setting_name = "show_debug_info"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole2/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(1577450903, 1937837762) index="0" unique_id=251215606]
+text = "Show Debug Info"
+
+[node name="EnableConsole3" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=637469984 node_paths=PackedStringArray("settings_menu", "setting_label", "state_label") instance=ExtResource("3_vlvk0")]
+layout_mode = 2
+settings_menu = NodePath("../../../../../../../../../../..")
+group_name = "debug"
+setting_name = "happyshroom_test_mode"
+setting_label = NodePath("ToggleMargin/ToggleHBox/SettingLabel")
+state_label = NodePath("ToggleMargin/ToggleHBox/StateLabel")
+
+[node name="SettingLabel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole3/ToggleMargin/ToggleHBox" parent_id_path=PackedInt32Array(637469984, 1937837762) index="0" unique_id=251215606]
+text = "Happyshroom Test Mode"
+
 [connection signal="tab_changed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer" to="." method="_on_tab_changed"]
 
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Display/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MaxFPS"]
@@ -625,3 +647,5 @@ text = "Toggle Console"
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Keybinds/PanelContainer/MarginContainer/ScrollContainer/TabVBox/MoveRight"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole"]
 [editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ToggleConsole"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole2"]
+[editable path="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/TabContainer/Debug/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/EnableConsole3"]

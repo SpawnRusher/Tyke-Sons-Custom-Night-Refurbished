@@ -82,6 +82,8 @@ const DEFAULT_SETTINGS_DATA: Dictionary = {
 	},
 	"debug": {
 		"enable_console":false,
+		"show_debug_info":false,
+		"happyshroom_test_mode":false,
 		"toggle_console": {
 			"type":"key",
 			"physical_keycode":KEY_TAB

@@ -1,13 +1,11 @@
-extends Control
+extends Window
 
 @export var console_text: RichTextLabel
 @export var console_input: LineEdit
-@export var title_panel: PanelContainer
 @export var scroll_container: ScrollContainer
 
-var title_panel_hovered: bool
-var title_panel_hold_position_local: Vector2
-var title_panel_hold_position_global: Vector2
+@export var sleep_assurance: RichTextLabel
+@export var enemies: Node
 
 var commands: Dictionary = {
 	"/help":{
@@ -27,9 +25,14 @@ var commands: Dictionary = {
 		"description":"[b][color=deep_sky_blue]/print[/color][/b] - Prints text to the console",
 		"function":_print
 	},
-	"/enemy_modify":{
-		"description":"[b][color=deep_sky_blue]/enemy_modify[/color][/b] - Used to modify any value of any active enemy",
-		"help":"Enemy modify help"
+	"/set_enemy_property":{
+		"description":"[b][color=deep_sky_blue]/set_enemy_property[/color][/b] - Used to modify any property of any active enemy.\r\nUsage: /set_enemy_value Chipomat1 current_kill_timer 1000",
+		"function":_set_enemy_property
+	},
+	"/set_sleep_assurance":{
+		"description":"[b][color=deep_sky_blue]/set_sleep_assurance[/color][/b] - Sets the sleep assurance score to the input amount.\r\nUsage: /set_sleep_assurance (score)",
+		"help":"Each sleep assurance point is worth 50 score. Accepts integers or decimals.",
+		"function":_set_sleep_assurance
 	},
 	}
 
@@ -39,21 +42,7 @@ func _ready() -> void:
 
 	scroll_container.get_v_scroll_bar().changed.connect(_scroll_bar_changed.bind(scroll_container.get_v_scroll_bar()))
 
-func _process(delta: float) -> void:
-	if not title_panel_hovered or not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		title_panel_hold_position_local = Vector2(0,0)
-		title_panel_hold_position_global = Vector2(0,0)
-		return
-	if not title_panel_hold_position_global:
-		title_panel_hold_position_local = get_local_mouse_position()
-		title_panel_hold_position_global = get_global_mouse_position()
-	if title_panel_hold_position_global:
-		position = (title_panel_hold_position_global - title_panel_hold_position_local)
-		return
-
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"toggle_console"):
-		visible = !visible
 	if event.is_action_pressed(&"ui_text_submit"):
 		_input_command(console_input.text)
 
@@ -74,6 +63,7 @@ func _input_command(text: String) -> void:
 				if arguments.size() > commands[cmd]["function"].get_argument_count():
 					_print("[color=yellow]Too many arguments were entered for command '%s'. Extra arguments will be ignored.[/color]" % cmd)
 					arguments.resize(commands[cmd]["function"].get_argument_count())
+				print(arguments)
 				commands[cmd][action].callv(arguments)
 				#arguments.resize(min(arguments.size(),commands[cmd]["function"].get_argument_count()))
 				#var optional_arguments: int
@@ -120,8 +110,19 @@ func _clear() -> void:
 func _scroll_bar_changed(scroll_bar: ScrollBar) -> void:
 	scroll_bar.value = scroll_bar.max_value - scroll_bar.page
 
-func _on_title_panel_mouse_entered() -> void:
-	title_panel_hovered = true
+func _set_enemy_property(enemy_name: String, property_name: String, value_arg: String) -> void:
+	var value = float(value_arg)
+	var enemy = enemies.find_child(enemy_name)
+	if not enemy:
+		_print("[color=red]%s does not exist or is not active" % enemy_name)
+		return
+	if enemy.get(property_name) == null:
+		_print("[color=red]%s does not have property '%s'[/color]" % [enemy_name,property_name])
+		return
+	enemy.set(property_name,value)
+	_print("%s property '%s' to %.2f" % [enemy_name,property_name,value])
 
-func _on_title_panel_mouse_exited() -> void:
-	title_panel_hovered = false
+func _set_sleep_assurance(arg:= "") -> void:
+	var score = float(arg)
+	sleep_assurance.sleep_assurance_current_score = score
+	_print("Set sleep assurance score set to %.2f." % score)

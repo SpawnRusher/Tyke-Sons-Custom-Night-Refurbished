@@ -7,7 +7,10 @@ const SLEEP_ASSURANCE_POINT_PROGRESS: CompressedTexture2D = preload("uid://iruts
 
 var sleep_assurance_points_amount: float = 16
 var sleep_assurance_score_per_point: float = 50
-var sleep_assurance_current_score: float = 0
+var sleep_assurance_current_score: float = 0:
+	set(value):
+		sleep_assurance_current_score = value
+		_update_points()
 var sleep_assurance_multiplier: float = 1.0
 var sleep_assurance_normal: float = 0.0
 var sleep_assurance_points_array: Array[TextureProgressBar]
@@ -36,10 +39,8 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventKey and event.is_pressed():
 			if event.keycode == KEY_I:
 				sleep_assurance_current_score -= sleep_assurance_score_per_point
-				_update_points()
 			if event.keycode == KEY_O:
 				sleep_assurance_current_score += sleep_assurance_score_per_point
-				_update_points()
 
 func _update_points() -> void:
 	sleep_assurance_normal = sleep_assurance_current_score/sleep_assurance_score_per_point/sleep_assurance_points_amount
@@ -51,15 +52,12 @@ func _add_score(enemy: Enemy) -> void:
 	enemy.sleep_assurance_score = max(0,enemy.sleep_assurance_score) # so I can put a warning in the Enemy class for when sleep_assurance_score is not set
 	sleep_assurance_current_score = sleep_assurance_current_score + enemy.sleep_assurance_score * sleep_assurance_multiplier
 	SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","sleep_assurance_gained"],enemy.sleep_assurance_score * sleep_assurance_multiplier,SaveData.SET_DATA_SPECIAL.ADD)
-	_update_points()
 
 func _remove_score(delta: float, enemy: Enemy) -> void:
 	if enemy is Seabill:
 		var previous_sleep_assurance: float = sleep_assurance_current_score
 		sleep_assurance_current_score = max(0,sleep_assurance_current_score - 10 * delta)
 		SaveData.set_data(SaveData.FILE_TYPE.SAVE,["statistics","general","sleep_assurance_lost"],previous_sleep_assurance - sleep_assurance_current_score,SaveData.SET_DATA_SPECIAL.ADD)
-	_update_points()
 	
 func _activate_happyshroom() -> void:
 	sleep_assurance_current_score = 0
-	_update_points()

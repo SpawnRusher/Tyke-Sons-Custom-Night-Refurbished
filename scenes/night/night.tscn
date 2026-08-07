@@ -1790,11 +1790,19 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="Night" type="Node2D" unique_id=2032443085 node_paths=PackedStringArray("go_to_sleep")]
+[node name="Night" type="Node2D" unique_id=2032443085 node_paths=PackedStringArray("go_to_sleep", "debug_console")]
 process_mode = 3
 script = ExtResource("1_45h36")
 go_to_sleep = NodePath("GoToSleep")
+debug_console = NodePath("DebugConsole")
 metadata/_edit_vertical_guides_ = [-306.0]
+
+[node name="DebugConsole" parent="." unique_id=461572795 node_paths=PackedStringArray("sleep_assurance", "enemies") instance=ExtResource("304_8s0t1")]
+initial_position = 3
+size = Vector2i(720, 500)
+current_screen = 0
+sleep_assurance = NodePath("../GUI/SleepAssurance")
+enemies = NodePath("../Enemies")
 
 [node name="Enemies" type="Node" parent="." unique_id=1986394494]
 process_mode = 1
@@ -2450,8 +2458,6 @@ bbcode_enabled = true
 script = ExtResource("296_q0y1d")
 enemies = NodePath("../../Enemies")
 flashlight_battery = NodePath("../FlashlightBattery")
-
-[node name="DebugConsole" parent="GUI" unique_id=461572795 instance=ExtResource("304_8s0t1")]
 
 [node name="Happyshroom" type="CanvasLayer" parent="." unique_id=317515506]
 process_mode = 3

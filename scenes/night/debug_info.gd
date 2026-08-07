@@ -6,7 +6,7 @@ extends RichTextLabel
 var enemies_list: Array[Node]
 
 func _ready() -> void:
-	if not GameInfo.show_debug_info:
+	if not SaveData.get_data(SaveData.FILE_TYPE.SETTINGS,["debug","show_debug_info"]):
 		queue_free()
 	await get_tree().create_timer(0.05).timeout
 	enemies_list = enemies.get_children()
